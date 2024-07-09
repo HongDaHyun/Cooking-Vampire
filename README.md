@@ -4,7 +4,7 @@
 <summary>알파 테스트</summary>
 
 <h3>[버전 0.1]</h3>
-<img src="https://github.com/HongDaHyun/Cooking-Vampire/assets/101586627/f19d5964-61e4-4bab-99ab-574fb641dcad" width="360" alt="Test 0.1">
+<img src="https://github.com/HongDaHyun/Cooking-Vampire/assets/101586627/f6cf497c-e0de-4b23-bd75-316ad86cb190" width="360" alt="Test 0.1">
 <br/>
 - 몬스터, 플레이어, 타일맵 스프라이트 추가<br/>
 - 플레이어 이동 & 애니메이션 구현<br/>
