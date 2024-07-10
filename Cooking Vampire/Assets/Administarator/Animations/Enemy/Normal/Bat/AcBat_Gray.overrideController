@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AcBat_Gray
+  m_Controller: {fileID: 9100000, guid: bbc118dfa80cca041a5c6a0fa426d4dc, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 203934364e19c274a979d91f82923e42, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 613bd0612336a294bbafaa0bb8f796b9, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 20fc2efaa4248424597bcef3555add05, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 85af6d9669caff542a494626ac1ad02c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c4a4d918a40060042800ef57a6b3bdba, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7f28c3706a9f9ab4db2bebd8edfad251, type: 2}

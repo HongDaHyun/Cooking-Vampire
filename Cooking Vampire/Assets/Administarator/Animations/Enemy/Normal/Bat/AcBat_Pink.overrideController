@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AcBat_Pink
+  m_Controller: {fileID: 9100000, guid: bbc118dfa80cca041a5c6a0fa426d4dc, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 203934364e19c274a979d91f82923e42, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1fb6a0a397bd426418fa73a74c98c91d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 20fc2efaa4248424597bcef3555add05, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2c4cb9a16e1bc5a4586956c8e88c7e2b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c4a4d918a40060042800ef57a6b3bdba, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6bbd617bb2f1a204d8fe6a23a9f941df, type: 2}

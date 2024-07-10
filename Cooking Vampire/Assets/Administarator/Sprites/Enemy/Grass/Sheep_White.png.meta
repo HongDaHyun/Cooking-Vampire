@@ -66,7 +66,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 128
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -215,8 +215,8 @@ TextureImporter:
       name: Sheep_White_4
       rect:
         serializedVersion: 2
-        x: 128
-        y: 96
+        x: 0
+        y: 64
         width: 32
         height: 32
       alignment: 9
@@ -236,7 +236,7 @@ TextureImporter:
       name: Sheep_White_5
       rect:
         serializedVersion: 2
-        x: 0
+        x: 32
         y: 64
         width: 32
         height: 32
@@ -257,7 +257,7 @@ TextureImporter:
       name: Sheep_White_6
       rect:
         serializedVersion: 2
-        x: 32
+        x: 64
         y: 64
         width: 32
         height: 32
@@ -278,7 +278,7 @@ TextureImporter:
       name: Sheep_White_7
       rect:
         serializedVersion: 2
-        x: 64
+        x: 96
         y: 64
         width: 32
         height: 32
@@ -299,8 +299,8 @@ TextureImporter:
       name: Sheep_White_8
       rect:
         serializedVersion: 2
-        x: 96
-        y: 64
+        x: 0
+        y: 32
         width: 32
         height: 32
       alignment: 9
@@ -320,8 +320,8 @@ TextureImporter:
       name: Sheep_White_9
       rect:
         serializedVersion: 2
-        x: 128
-        y: 64
+        x: 32
+        y: 32
         width: 32
         height: 32
       alignment: 9
@@ -341,7 +341,7 @@ TextureImporter:
       name: Sheep_White_10
       rect:
         serializedVersion: 2
-        x: 0
+        x: 64
         y: 32
         width: 32
         height: 32
@@ -362,7 +362,7 @@ TextureImporter:
       name: Sheep_White_11
       rect:
         serializedVersion: 2
-        x: 32
+        x: 96
         y: 32
         width: 32
         height: 32
@@ -383,8 +383,8 @@ TextureImporter:
       name: Sheep_White_12
       rect:
         serializedVersion: 2
-        x: 64
-        y: 32
+        x: 0
+        y: 0
         width: 32
         height: 32
       alignment: 9
@@ -404,8 +404,8 @@ TextureImporter:
       name: Sheep_White_13
       rect:
         serializedVersion: 2
-        x: 96
-        y: 32
+        x: 32
+        y: 0
         width: 32
         height: 32
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: Sheep_White_14
       rect:
         serializedVersion: 2
-        x: 128
-        y: 32
+        x: 64
+        y: 0
         width: 32
         height: 32
       alignment: 9
@@ -438,48 +438,6 @@ TextureImporter:
       bones: []
       spriteID: 80900a0b95acac24bafc19feb91eb0f3
       internalID: 1025193925
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sheep_White_15
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7eab17cf90362f446a9c5a76f098fcee
-      internalID: -1656615885
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sheep_White_16
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e8a980f52e26204aa1d3c1e327dfba6
-      internalID: -1958669711
       vertices: []
       indices: 
       edges: []
@@ -500,7 +458,6 @@ TextureImporter:
       Sheep_White_14: 1025193925
       Sheep_White_2: -644964629
       Sheep_White_1: 429952326
-      Sheep_White_16: -1958669711
       Sheep_White_12: 1598669343
       Sheep_White_9: -917409309
       Sheep_White_7: 476897272
@@ -510,7 +467,6 @@ TextureImporter:
       Sheep_White_13: 1006557986
       Sheep_White_6: 116453872
       Sheep_White_10: 169821892
-      Sheep_White_15: -1656615885
       Sheep_White_4: 688362024
   spritePackingTag: 
   pSDRemoveMatte: 0

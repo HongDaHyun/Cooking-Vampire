@@ -132,7 +132,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
+        y: 96
         width: 32
         height: 32
       alignment: 9
@@ -153,7 +153,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 128
+        y: 96
         width: 32
         height: 32
       alignment: 9
@@ -174,7 +174,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 128
+        y: 96
         width: 32
         height: 32
       alignment: 9
@@ -195,7 +195,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 128
+        y: 96
         width: 32
         height: 32
       alignment: 9
@@ -216,7 +216,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 128
+        y: 96
         width: 32
         height: 32
       alignment: 9
@@ -236,8 +236,8 @@ TextureImporter:
       name: Monkey_5
       rect:
         serializedVersion: 2
-        x: 160
-        y: 128
+        x: 0
+        y: 64
         width: 32
         height: 32
       alignment: 9
@@ -257,8 +257,8 @@ TextureImporter:
       name: Monkey_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
+        x: 32
+        y: 64
         width: 32
         height: 32
       alignment: 9
@@ -278,8 +278,8 @@ TextureImporter:
       name: Monkey_7
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
+        x: 64
+        y: 64
         width: 32
         height: 32
       alignment: 9
@@ -299,8 +299,8 @@ TextureImporter:
       name: Monkey_8
       rect:
         serializedVersion: 2
-        x: 64
-        y: 96
+        x: 96
+        y: 64
         width: 32
         height: 32
       alignment: 9
@@ -320,8 +320,8 @@ TextureImporter:
       name: Monkey_9
       rect:
         serializedVersion: 2
-        x: 96
-        y: 96
+        x: 128
+        y: 64
         width: 32
         height: 32
       alignment: 9
@@ -341,8 +341,8 @@ TextureImporter:
       name: Monkey_10
       rect:
         serializedVersion: 2
-        x: 128
-        y: 96
+        x: 0
+        y: 32
         width: 32
         height: 32
       alignment: 9
@@ -362,8 +362,8 @@ TextureImporter:
       name: Monkey_11
       rect:
         serializedVersion: 2
-        x: 160
-        y: 96
+        x: 32
+        y: 32
         width: 32
         height: 32
       alignment: 9
@@ -383,8 +383,8 @@ TextureImporter:
       name: Monkey_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 64
+        y: 32
         width: 32
         height: 32
       alignment: 9
@@ -404,8 +404,8 @@ TextureImporter:
       name: Monkey_13
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
+        x: 96
+        y: 32
         width: 32
         height: 32
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: Monkey_14
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 128
+        y: 32
         width: 32
         height: 32
       alignment: 9
@@ -446,8 +446,8 @@ TextureImporter:
       name: Monkey_15
       rect:
         serializedVersion: 2
-        x: 96
-        y: 64
+        x: 0
+        y: 0
         width: 32
         height: 32
       alignment: 9
@@ -467,8 +467,8 @@ TextureImporter:
       name: Monkey_16
       rect:
         serializedVersion: 2
-        x: 128
-        y: 64
+        x: 32
+        y: 0
         width: 32
         height: 32
       alignment: 9
@@ -488,8 +488,8 @@ TextureImporter:
       name: Monkey_17
       rect:
         serializedVersion: 2
-        x: 160
-        y: 64
+        x: 64
+        y: 0
         width: 32
         height: 32
       alignment: 9
@@ -509,8 +509,8 @@ TextureImporter:
       name: Monkey_18
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
+        x: 96
+        y: 0
         width: 32
         height: 32
       alignment: 9
@@ -522,153 +522,6 @@ TextureImporter:
       bones: []
       spriteID: 487aeafa68caf9b42a435e3d75736305
       internalID: 807375199
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monkey_19
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.515625, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1783a40df6c31604daf337ca3fe7f3cc
-      internalID: -341450584
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monkey_20
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.515625, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d345e9fe92ff4954896c356aa8110152
-      internalID: 1302623682
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monkey_21
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 32
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.515625, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 08f94ab76754b6941a9526c80fed5ab6
-      internalID: -1790077149
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monkey_22
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 32
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.515625, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a65e5f6493674914cbc51ba5c7afa6ef
-      internalID: 538767035
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monkey_23
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 32
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.515625, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ecf1d1e9cc348a543b29ce316fcd739d
-      internalID: -1773202757
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monkey_24
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.515625, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f0528f2b982cd2449b4d5e03647ac812
-      internalID: -677191815
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monkey_25
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.515625, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a52647b3147d13146bae009cc29ec587
-      internalID: 706399777
       vertices: []
       indices: 
       edges: []
@@ -689,17 +542,11 @@ TextureImporter:
       Monkey_17: 812002462
       Monkey_5: -35387578
       Monkey_7: -331035445
-      Monkey_20: 1302623682
       Monkey_0: -1160176014
-      Monkey_22: 538767035
       Monkey_3: 1423492251
-      Monkey_23: -1773202757
       Monkey_11: -1013703356
       Monkey_4: 1307318102
       Monkey_10: 1332105689
-      Monkey_19: -341450584
-      Monkey_21: -1790077149
-      Monkey_24: -677191815
       Monkey_13: -1368358661
       Monkey_18: 807375199
       Monkey_2: -1357241185
@@ -709,7 +556,6 @@ TextureImporter:
       Monkey_12: -2065976270
       Monkey_16: -540216716
       Monkey_14: -893130764
-      Monkey_25: 706399777
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

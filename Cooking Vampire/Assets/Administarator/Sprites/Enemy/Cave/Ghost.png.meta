@@ -132,7 +132,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
+        y: 96
         width: 32
         height: 32
       alignment: 9
@@ -153,7 +153,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 128
+        y: 96
         width: 32
         height: 32
       alignment: 9
@@ -174,7 +174,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 128
+        y: 96
         width: 32
         height: 32
       alignment: 9
@@ -195,7 +195,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 128
+        y: 96
         width: 32
         height: 32
       alignment: 9
@@ -216,7 +216,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 128
+        y: 96
         width: 32
         height: 32
       alignment: 9
@@ -237,7 +237,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
+        y: 64
         width: 32
         height: 32
       alignment: 9
@@ -258,7 +258,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 96
+        y: 64
         width: 32
         height: 32
       alignment: 9
@@ -279,7 +279,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 96
+        y: 64
         width: 32
         height: 32
       alignment: 9
@@ -300,7 +300,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 96
+        y: 64
         width: 32
         height: 32
       alignment: 9
@@ -321,7 +321,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 96
+        y: 64
         width: 32
         height: 32
       alignment: 9
@@ -342,7 +342,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
+        y: 32
         width: 32
         height: 32
       alignment: 9
@@ -363,7 +363,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 64
+        y: 32
         width: 32
         height: 32
       alignment: 9
@@ -384,7 +384,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 64
+        y: 32
         width: 32
         height: 32
       alignment: 9
@@ -405,7 +405,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 64
+        y: 32
         width: 32
         height: 32
       alignment: 9
@@ -426,7 +426,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 64
+        y: 32
         width: 32
         height: 32
       alignment: 9
@@ -447,7 +447,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
+        y: 0
         width: 32
         height: 32
       alignment: 9
@@ -468,7 +468,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 32
+        y: 0
         width: 32
         height: 32
       alignment: 9
@@ -489,7 +489,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 32
+        y: 0
         width: 32
         height: 32
       alignment: 9
@@ -501,111 +501,6 @@ TextureImporter:
       bones: []
       spriteID: c6cc532977878da44a18baa1fb34cf67
       internalID: 1284892048
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ghost_18
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 32
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.21875}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 89da0d3dbb0b73f4fb96427f09737f0d
-      internalID: 988902824
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ghost_19
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 32
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.21875}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 046807acfe7808443901e3bff6d6ecbc
-      internalID: -1271087009
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ghost_20
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.21875}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7d379b0135ca1e845bd9689d953e9bd5
-      internalID: 624431952
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ghost_21
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.21875}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d699c30d82e92de48aa94188da35e265
-      internalID: 1548361964
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ghost_22
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.21875}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8536b2edb8c666e43b0500713c10bc20
-      internalID: -1692139561
       vertices: []
       indices: 
       edges: []
@@ -624,10 +519,8 @@ TextureImporter:
       Ghost_14: -1099032763
       Ghost_16: 84867559
       Ghost_6: 1000439803
-      Ghost_20: 624431952
       Ghost_11: 979817568
       Ghost_3: -1679837191
-      Ghost_18: 988902824
       Ghost_10: -1744713745
       Ghost_1: -1467241001
       Ghost_0: -2102706066
@@ -636,13 +529,10 @@ TextureImporter:
       Ghost_4: 712671475
       Ghost_17: 1284892048
       Ghost_5: -566478801
-      Ghost_22: -1692139561
       Ghost_2: 1865213024
       Ghost_12: 1983378732
       Ghost_7: 1534341107
-      Ghost_19: -1271087009
       Ghost_8: -515252561
-      Ghost_21: 1548361964
       Ghost_13: 634708711
   spritePackingTag: 
   pSDRemoveMatte: 0

@@ -66,7 +66,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 128
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -215,8 +215,8 @@ TextureImporter:
       name: Sheep_Gray_4
       rect:
         serializedVersion: 2
-        x: 128
-        y: 96
+        x: 0
+        y: 64
         width: 32
         height: 32
       alignment: 9
@@ -236,7 +236,7 @@ TextureImporter:
       name: Sheep_Gray_5
       rect:
         serializedVersion: 2
-        x: 0
+        x: 32
         y: 64
         width: 32
         height: 32
@@ -257,7 +257,7 @@ TextureImporter:
       name: Sheep_Gray_6
       rect:
         serializedVersion: 2
-        x: 32
+        x: 64
         y: 64
         width: 32
         height: 32
@@ -278,7 +278,7 @@ TextureImporter:
       name: Sheep_Gray_7
       rect:
         serializedVersion: 2
-        x: 64
+        x: 96
         y: 64
         width: 32
         height: 32
@@ -299,8 +299,8 @@ TextureImporter:
       name: Sheep_Gray_8
       rect:
         serializedVersion: 2
-        x: 96
-        y: 64
+        x: 0
+        y: 32
         width: 32
         height: 32
       alignment: 9
@@ -320,8 +320,8 @@ TextureImporter:
       name: Sheep_Gray_9
       rect:
         serializedVersion: 2
-        x: 128
-        y: 64
+        x: 32
+        y: 32
         width: 32
         height: 32
       alignment: 9
@@ -341,7 +341,7 @@ TextureImporter:
       name: Sheep_Gray_10
       rect:
         serializedVersion: 2
-        x: 0
+        x: 64
         y: 32
         width: 32
         height: 32
@@ -362,7 +362,7 @@ TextureImporter:
       name: Sheep_Gray_11
       rect:
         serializedVersion: 2
-        x: 32
+        x: 96
         y: 32
         width: 32
         height: 32
@@ -383,8 +383,8 @@ TextureImporter:
       name: Sheep_Gray_12
       rect:
         serializedVersion: 2
-        x: 64
-        y: 32
+        x: 0
+        y: 0
         width: 32
         height: 32
       alignment: 9
@@ -404,8 +404,8 @@ TextureImporter:
       name: Sheep_Gray_13
       rect:
         serializedVersion: 2
-        x: 96
-        y: 32
+        x: 32
+        y: 0
         width: 32
         height: 32
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: Sheep_Gray_14
       rect:
         serializedVersion: 2
-        x: 128
-        y: 32
+        x: 64
+        y: 0
         width: 32
         height: 32
       alignment: 9
@@ -438,48 +438,6 @@ TextureImporter:
       bones: []
       spriteID: b932d497d7879cb4da2b369a988b845d
       internalID: 1779129378
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sheep_Gray_15
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 977bbe4a53b9db941bc82ca6bde70746
-      internalID: -1184309706
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sheep_Gray_16
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a20c2f00b44cd224cbac9a15049ce2e2
-      internalID: 474037909
       vertices: []
       indices: 
       edges: []
@@ -496,7 +454,6 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Sheep_Gray_13: -1430460594
-      Sheep_Gray_15: -1184309706
       Sheep_Gray_3: -785810408
       Sheep_Gray_14: 1779129378
       Sheep_Gray_10: -605616473
@@ -511,7 +468,6 @@ TextureImporter:
       Sheep_Gray_4: 1587501226
       Sheep_Gray_7: 1085744347
       Sheep_Gray_6: 1255697284
-      Sheep_Gray_16: 474037909
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

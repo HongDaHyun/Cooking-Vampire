@@ -66,7 +66,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 128
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -215,8 +215,8 @@ TextureImporter:
       name: Sheep_Red_4
       rect:
         serializedVersion: 2
-        x: 128
-        y: 96
+        x: 0
+        y: 64
         width: 32
         height: 32
       alignment: 9
@@ -236,7 +236,7 @@ TextureImporter:
       name: Sheep_Red_5
       rect:
         serializedVersion: 2
-        x: 0
+        x: 32
         y: 64
         width: 32
         height: 32
@@ -257,7 +257,7 @@ TextureImporter:
       name: Sheep_Red_6
       rect:
         serializedVersion: 2
-        x: 32
+        x: 64
         y: 64
         width: 32
         height: 32
@@ -278,7 +278,7 @@ TextureImporter:
       name: Sheep_Red_7
       rect:
         serializedVersion: 2
-        x: 64
+        x: 96
         y: 64
         width: 32
         height: 32
@@ -299,8 +299,8 @@ TextureImporter:
       name: Sheep_Red_8
       rect:
         serializedVersion: 2
-        x: 96
-        y: 64
+        x: 0
+        y: 32
         width: 32
         height: 32
       alignment: 9
@@ -320,8 +320,8 @@ TextureImporter:
       name: Sheep_Red_9
       rect:
         serializedVersion: 2
-        x: 128
-        y: 64
+        x: 32
+        y: 32
         width: 32
         height: 32
       alignment: 9
@@ -341,7 +341,7 @@ TextureImporter:
       name: Sheep_Red_10
       rect:
         serializedVersion: 2
-        x: 0
+        x: 64
         y: 32
         width: 32
         height: 32
@@ -362,7 +362,7 @@ TextureImporter:
       name: Sheep_Red_11
       rect:
         serializedVersion: 2
-        x: 32
+        x: 96
         y: 32
         width: 32
         height: 32
@@ -383,8 +383,8 @@ TextureImporter:
       name: Sheep_Red_12
       rect:
         serializedVersion: 2
-        x: 64
-        y: 32
+        x: 0
+        y: 0
         width: 32
         height: 32
       alignment: 9
@@ -404,8 +404,8 @@ TextureImporter:
       name: Sheep_Red_13
       rect:
         serializedVersion: 2
-        x: 96
-        y: 32
+        x: 32
+        y: 0
         width: 32
         height: 32
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: Sheep_Red_14
       rect:
         serializedVersion: 2
-        x: 128
-        y: 32
+        x: 64
+        y: 0
         width: 32
         height: 32
       alignment: 9
@@ -438,48 +438,6 @@ TextureImporter:
       bones: []
       spriteID: 58b2b545a25d8c2428bead20d66b6678
       internalID: -1687551644
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sheep_Red_15
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7fb70cc773548a144976833dd7c6e7f4
-      internalID: 1363986117
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sheep_Red_16
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 897ce69f4656f7148948ebf9ba0908f4
-      internalID: -246440049
       vertices: []
       indices: 
       edges: []
@@ -509,9 +467,7 @@ TextureImporter:
       Sheep_Red_8: 1949522106
       Sheep_Red_2: -229081477
       Sheep_Red_10: 1723095925
-      Sheep_Red_15: 1363986117
       Sheep_Red_12: -1057531953
-      Sheep_Red_16: -246440049
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

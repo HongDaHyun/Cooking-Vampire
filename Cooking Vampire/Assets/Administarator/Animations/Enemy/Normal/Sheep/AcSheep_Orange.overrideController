@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AcSheep_Orange
+  m_Controller: {fileID: 9100000, guid: bbc118dfa80cca041a5c6a0fa426d4dc, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 203934364e19c274a979d91f82923e42, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c2513dabfa9640c4f89bc5fafcfe8781, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 20fc2efaa4248424597bcef3555add05, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d6628f41cfa8bad4899f42b2ce770e05, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c4a4d918a40060042800ef57a6b3bdba, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: daf43c148767e6448adc126cc250c7e5, type: 2}

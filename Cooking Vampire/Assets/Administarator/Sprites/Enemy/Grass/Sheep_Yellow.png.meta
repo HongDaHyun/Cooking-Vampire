@@ -484,48 +484,6 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Sheep_Yellow_17
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eceebb99c7c24104d8cddffb86d0df48
-      internalID: -927772117
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sheep_Yellow_18
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3e51fe9668560f146ba2bd10514f585e
-      internalID: 1639562218
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -539,10 +497,8 @@ TextureImporter:
     nameFileIdTable:
       Sheep_Yellow_12: 1015358563
       Sheep_Yellow_2: 452849102
-      Sheep_Yellow_18: 1639562218
       Sheep_Yellow_15: 875234823
       Sheep_Yellow_8: 1020849359
-      Sheep_Yellow_17: -927772117
       Sheep_Yellow_9: 1122514006
       Sheep_Yellow_6: -1799453152
       Sheep_Yellow_13: 624761697
