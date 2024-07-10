@@ -11,14 +11,11 @@ public class TileMap : MonoBehaviour
     private SpawnManager spawnManager;
     private Sprite[] objSprites;
 
-    private void Awake()
+    private void Start()
     {
         spawnManager = SpawnManager.Instance;
         objSprites = SpriteData.Instance.Export_StageSprites(DataManager.Instance.curStage);
-    }
 
-    private void Start()
-    {
         SpawnObjs();
     }
 

@@ -5,10 +5,14 @@ using UnityEngine;
 public class Reposition : MonoBehaviour
 {
     Player player;
+    Enemy enemy;
 
     private void Awake()
     {
         player = GameManager_Survivor.Instance.player;
+
+        if (transform.CompareTag("Enemy"))
+            enemy = GetComponent<Enemy>();
     }
 
     private void Start()
@@ -41,6 +45,13 @@ public class Reposition : MonoBehaviour
                         transform.Translate(Vector3.up * dirY * 60);
                     break;
                 case "Enemy":
+                    if (enemy.isDead)
+                        break;
+
+                    if (diffX > 20)
+                        transform.Translate(Vector3.right * dirX * 40 + new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f)));
+                    if (diffY > 20)
+                        transform.Translate(Vector3.up * dirY * 40 + new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f)));
                     break;
             }
 

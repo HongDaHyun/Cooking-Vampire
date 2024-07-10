@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d9386556ef3dd4da6c775320f1bfdc, type: 3}
+  m_Name: Snake
+  m_EditorClassIdentifier: 
+  stage: 2
+  tier: 1
+  speed: 2
+  type: 2
+  animators:
+  - {fileID: 9100000, guid: 1c0f9c5780b2abd45b91c3213c449f3a, type: 2}
+  - {fileID: 22100000, guid: d33852e6783e2164887a18a2900c1aa4, type: 2}
+  - {fileID: 22100000, guid: b058154082266db4ea4990838ae151d6, type: 2}
+  - {fileID: 22100000, guid: 1ba61aa46c98a9a47b0304b48891477e, type: 2}
+  - {fileID: 22100000, guid: e3f329c3dc00f85478d9db64461d9671, type: 2}
+  - {fileID: 22100000, guid: 18dac623b27ad8a428b1cf863c3128a5, type: 2}
+  - {fileID: 22100000, guid: 59072c5161574e8448d6dd2b79f42ab0, type: 2}
+  - {fileID: 22100000, guid: 556434007c9371c439b8c11d02355648, type: 2}
