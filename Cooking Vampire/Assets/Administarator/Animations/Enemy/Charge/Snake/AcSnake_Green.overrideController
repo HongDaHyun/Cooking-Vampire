@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AcSnake_Green
+  m_Controller: {fileID: 9100000, guid: 1c0f9c5780b2abd45b91c3213c449f3a, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: feed54b211db87b4ba0de63325c3e6c9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e6440236353c3904d82fb671f4940b23, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6f5378f5d3245074ea50dd15788d8f91, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2fb710fa4e1dca84481a8c33bf35a642, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 31d5f2493bb56404e990ebd67f0e7b19, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4a8a4b7d17886f74ba1142622ca74f39, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a209576f004cea243926e26fe0058b60, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7993f325514e07c4c907d311df7aefaa, type: 2}

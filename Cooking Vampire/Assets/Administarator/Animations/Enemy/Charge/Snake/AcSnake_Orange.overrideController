@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AcSnake_Orange
+  m_Controller: {fileID: 9100000, guid: 1c0f9c5780b2abd45b91c3213c449f3a, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: feed54b211db87b4ba0de63325c3e6c9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 08bf76369dbbaf34da81232919c3c455, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6f5378f5d3245074ea50dd15788d8f91, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fbdaa4455e4159a4b8f8f7ec2bad4d36, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 31d5f2493bb56404e990ebd67f0e7b19, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6a344d754a36446489411c97b208920d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a209576f004cea243926e26fe0058b60, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0f1e4efcd5989a74481331e51624f700, type: 2}
