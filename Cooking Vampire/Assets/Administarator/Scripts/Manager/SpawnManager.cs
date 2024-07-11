@@ -19,7 +19,7 @@ public class SpawnManager : Singleton<SpawnManager>
         PoolManager.Instance.TakeToPool<SpriteRenderer>(sr);
     }
 
-    public Enemy SpawnEnemy(int[] spawnTier, Vector3 position)
+    public Enemy Spawn_Enemy(int[] spawnTier, Vector3 position)
     {
         Enemy enemy = PoolManager.Instance.GetFromPool<Enemy>("Enemy");
 
@@ -27,5 +27,18 @@ public class SpawnManager : Singleton<SpawnManager>
         enemy.SetEnemy(spawnTier[Random.Range(0, spawnTier.Length)]);
 
         return enemy;
+    }
+    public void Destroy_Enemy(Enemy enemy)
+    {
+        PoolManager.Instance.TakeToPool<Enemy>(enemy);
+    }
+
+    public Projectile Spawn_Projectile(Sprite sprite, Weapon weapon)
+    {
+        Projectile projectile = PoolManager.Instance.GetFromPool<Projectile>("Projectile");
+
+        projectile.SetProjectile(sprite, weapon);
+
+        return projectile;
     }
 }

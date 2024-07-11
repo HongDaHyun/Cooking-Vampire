@@ -22,4 +22,13 @@
 - 몬스터 스탯 & 레벨 디자인 구축<br/>
 - RePosition 몬스터 구현<br/>
 
+<h3>[버전 0.3]</h3>
+<img src="https://github.com/HongDaHyun/Cooking-Vampire/assets/101586627/877b0712-d715-4684-bc46-64531535a02a" width="360" alt="Alpha 0.3">
+<br/>
+- 무기 이미지 추가 (활 추가 예정)<br/>
+- 적 피격 로직 구현<br/>
+- 롱소드 atk_0 구현 (Surround Atk)<br/>
+- 무기 스탯 & 데이터 구축<br/>
+- 무기 레벨 시스템 구현<br/>
+
 </details>

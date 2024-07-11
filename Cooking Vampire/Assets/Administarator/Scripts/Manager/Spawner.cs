@@ -38,7 +38,7 @@ public class Spawner : MonoBehaviour
                 level++;
                 levelTime += curData.spawnTime;
             }
-            spawnManager.SpawnEnemy(curData.spawnTier, spawnPoints[Random.Range(1, spawnPoints.Length)].position);
+            spawnManager.Spawn_Enemy(curData.spawnTier, spawnPoints[Random.Range(1, spawnPoints.Length)].position);
 
             yield return new WaitForSeconds(curData.spawnCool);
         }

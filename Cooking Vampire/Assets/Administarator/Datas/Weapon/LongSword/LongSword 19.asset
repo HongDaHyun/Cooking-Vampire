@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2a96dca5a16014eb664802e495a09f, type: 3}
+  m_Name: LongSword 19
+  m_EditorClassIdentifier: 
+  tier: 19
+  weaponType: 0
+  weaponSprite: {fileID: -1391689082, guid: 12bdbe38d30f24948ae849469d97f041, type: 3}
