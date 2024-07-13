@@ -7,12 +7,17 @@ using Sirenix.OdinInspector;
 public class Projectile : MonoBehaviour, IPoolObject
 {
     [HideInInspector] public Weapon weapon;
+    int curPer;
 
+    SpawnManager spawnManager;
+    Rigidbody2D rigid;
     SpriteRenderer sr;
     BoxCollider2D col;
 
     public void OnCreatedInPool()
     {
+        spawnManager = SpawnManager.Instance;
+        rigid = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<BoxCollider2D>();
     }
@@ -21,15 +26,32 @@ public class Projectile : MonoBehaviour, IPoolObject
     {
     }
 
-    public void SetProjectile(Sprite sprite, Weapon weapon)
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Enemy") || curPer == -1)
+            return;
+
+        curPer--;
+
+        if(curPer == -1)
+        {
+            rigid.velocity = Vector2.zero;
+            spawnManager.Destroy_Projectile(this);
+        }
+    }
+
+    public void SetProjectile(Sprite sprite, Weapon weapon, Vector3 dir)
     {
         this.weapon = weapon;
+        curPer = weapon.per;
         transform.SetParent(weapon.transform);
-        transform.localPosition = Vector2.zero;
-        transform.localRotation = Quaternion.identity;
 
         sr.sprite = sprite;
         ReSetCollider();
+
+        if (dir != Vector3.zero)
+            rigid.velocity = dir * weapon.stat.speed;
     }
 
     private void ReSetCollider()

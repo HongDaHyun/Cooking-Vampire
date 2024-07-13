@@ -5,11 +5,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [HideInInspector] public MoveController moveController;
+    [HideInInspector] public Scanner scanner;
     public PlayerType type;
 
     private void Awake()
     {
         moveController = GetComponent<MoveController>();
+        scanner = GetComponent<Scanner>();
     }
 }
 

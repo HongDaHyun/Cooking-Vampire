@@ -5,9 +5,16 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    public PlayerType[] availPlayers;
+    public bool isAvail(PlayerType type)
+    {
+        return System.Array.Exists(availPlayers, x => x == type);
+    }
     [ReadOnly] public int lv;
     public int count;
+    public float coolTime, activeTime;
     public WeaponStat stat;
+    public int per; // 관통력
     public int GetDamage()
     {
         return stat.damage;
@@ -15,9 +22,11 @@ public abstract class Weapon : MonoBehaviour
 
     protected DataManager dataManager;
     protected SpawnManager spawnManager;
+    protected Player player;
 
-    private void Start()
+    private void Awake()
     {
+        player = GetComponentInParent<Player>();
         dataManager = DataManager.Instance;
         spawnManager = SpawnManager.Instance;
 
@@ -49,11 +58,7 @@ public abstract class Weapon : MonoBehaviour
         stat.speed += bonus;
     }
 
-    private void Update()
-    {
-        Move();
-    }
-    protected abstract void Move();
+    public abstract void Active();
 
     protected abstract void Batch();
 
@@ -69,6 +74,5 @@ public abstract class Weapon : MonoBehaviour
 public struct WeaponStat
 {
     public int damage;
-    public int per; // 관통력
     public float speed;
 }

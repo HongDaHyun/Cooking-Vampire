@@ -343,6 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveController: {fileID: 0}
+  scanner: {fileID: 0}
   type: 0
 --- !u!114 &75309339
 MonoBehaviour:
@@ -529,6 +530,11 @@ MonoBehaviour:
     _nonLazy: 0
   - _name: Projectile
     _component: {fileID: 9046568175878137170, guid: 981f6768dd5a48b4ca12a4f03a007e6e, type: 3}
+    _count: 0
+    _container: {fileID: 0}
+    _nonLazy: 0
+  - _name: Projectile_Rigid
+    _component: {fileID: 9046568175878137170, guid: b274dae443f6f8641a2ef17a91ef3c71, type: 3}
     _count: 0
     _container: {fileID: 0}
     _nonLazy: 0
@@ -4943,12 +4949,12 @@ GameObject:
   - component: {fileID: 441904045}
   - component: {fileID: 441904044}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: TestBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &441904043
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5014,10 +5020,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1039652066}
-        m_TargetAssemblyTypeName: Weapon_0, Assembly-CSharp
-        m_MethodName: LevelUp
-        m_Mode: 1
+      - m_Target: {fileID: 1795867284}
+        m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
+        m_MethodName: EquipWeapon
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -18499,7 +18505,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1039652065
 Transform:
   m_ObjectHideFlags: 0
@@ -18527,12 +18533,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec88f286cf122b47b64388cc8d8df8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  availPlayers: 00000000010000000200000003000000
   lv: 0
   count: 1
+  coolTime: 3
+  activeTime: 5
   stat:
     damage: 5
-    per: 0
     speed: 150
+  per: -1
+--- !u!1 &1227791294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1227791296}
+  - component: {fileID: 1227791295}
+  m_Layer: 0
+  m_Name: 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1227791295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227791294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a13f24d51ba2448b4034ff3682b64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availPlayers: 00000000010000000200000003000000
+  lv: 0
+  count: 2
+  coolTime: 3
+  activeTime: 0
+  stat:
+    damage: 5
+    speed: 10
+  per: 2
+--- !u!4 &1227791296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227791294}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.05, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1795867283}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1248124058
 GameObject:
   m_ObjectHideFlags: 0
@@ -31564,8 +31626,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1795867283}
+  - component: {fileID: 1795867284}
   m_Layer: 0
-  m_Name: LongSword
+  m_Name: WeaponController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31584,9 +31647,23 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1039652065}
+  - {fileID: 1227791296}
   m_Father: {fileID: 75309337}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1795867284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795867282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cee74db67b903f469d6033b357f63fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availWeapons: []
 --- !u!1 &1968511192
 GameObject:
   m_ObjectHideFlags: 0
@@ -32112,6 +32189,18 @@ MonoBehaviour:
     Name: 
     GameObject: {fileID: 1039652063}
     Ordinal: 37
+    Priority: 0
+    IconType: 125300
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 1227791294}
+    Ordinal: 38
     Priority: 0
     IconType: 125300
     IconTexture: {fileID: 0}

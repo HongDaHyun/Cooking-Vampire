@@ -2,8 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Surrorund
 public class Weapon_0 : Weapon
 {
+    private void Update()
+    {
+        Move();
+    }
+
+    public override void Active()
+    {
+        gameObject.SetActive(true);
+    }
+
     protected override void Batch()
     {
         for (int i = 0; i < count; i++)
@@ -11,16 +22,15 @@ public class Weapon_0 : Weapon
             Transform projectTrans;
 
             if (i < transform.childCount)
-            {
                 projectTrans = transform.GetChild(i);
-                projectTrans.localPosition = Vector2.zero;
-                projectTrans.localRotation = Quaternion.identity;
-            }
             else
             {
-                Projectile projectile = spawnManager.Spawn_Projectile(dataManager.curWeapon.weaponSprite, this);
+                Projectile projectile = spawnManager.Spawn_Projectile(dataManager.curWeapon.weaponSprite, this, Vector3.zero);
                 projectTrans = projectile.transform;
             }
+
+            projectTrans.localPosition = Vector2.zero;
+            projectTrans.localRotation = Quaternion.identity;
 
             Vector3 rotVec = Vector3.forward * 360 * i / count;
             projectTrans.Rotate(rotVec);
@@ -28,7 +38,7 @@ public class Weapon_0 : Weapon
         }
     }
 
-    protected override void Move()
+    protected void Move()
     {
         transform.Rotate(Vector3.back * stat.speed * Time.deltaTime);
     }
