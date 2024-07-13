@@ -23,27 +23,32 @@ public class WeaponController : MonoBehaviour
 
     public void EquipWeapon(int index)
     {
-        StartCoroutine(WeaponRoutine(index));
+        Weapon weapon = availWeapons[index];
+
+        if (weapon.lv > 0)
+            return;
+
+        weapon.lv = 1;
+        StartCoroutine(WeaponRoutine(weapon));
     }
     public void LevelUpWeapon(int index)
     {
         availWeapons[index].LevelUp();
     }
 
-    private IEnumerator WeaponRoutine(int index)
+    private IEnumerator WeaponRoutine(Weapon weapon)
     {
-        Weapon weapon = availWeapons[index];
         weapon.gameObject.SetActive(true);
 
         while(true)
         {
-            availWeapons[index].Active();
+            yield return weapon.Active();
 
             // activeTime이 0보다 작으면 무한 유지
             if (weapon.activeTime > 0f)
             {
                 yield return new WaitForSeconds(weapon.activeTime);
-                availWeapons[index].gameObject.SetActive(false);
+                weapon.gameObject.SetActive(false);
             }
 
             yield return new WaitForSeconds(weapon.coolTime);

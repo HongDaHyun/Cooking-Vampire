@@ -7,7 +7,7 @@ public class Scanner : MonoBehaviour
 {
     public float scanRange;
     public LayerMask targetLayer;
-    private RaycastHit2D[] targets;
+    public RaycastHit2D[] targets;
     [ReadOnly] public Transform nearestTarget;
 
     private void FixedUpdate()
@@ -35,5 +35,12 @@ public class Scanner : MonoBehaviour
         }
 
         nearestTarget = result;
+    }
+
+    public Transform Export_RanTarget()
+    {
+        if (targets.Length == 0)
+            return null;
+        return targets[Random.Range(0, targets.Length)].transform;
     }
 }

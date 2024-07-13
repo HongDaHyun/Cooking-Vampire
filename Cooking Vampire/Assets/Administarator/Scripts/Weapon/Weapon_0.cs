@@ -10,9 +10,10 @@ public class Weapon_0 : Weapon
         Move();
     }
 
-    public override void Active()
+    public override IEnumerator Active()
     {
         gameObject.SetActive(true);
+        yield return null;
     }
 
     protected override void Batch()
@@ -29,7 +30,7 @@ public class Weapon_0 : Weapon
                 projectTrans = projectile.transform;
             }
 
-            projectTrans.localPosition = Vector2.zero;
+            projectTrans.localPosition = Vector3.zero;
             projectTrans.localRotation = Quaternion.identity;
 
             Vector3 rotVec = Vector3.forward * 360 * i / count;

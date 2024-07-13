@@ -31,4 +31,15 @@
 - 무기 스탯 & 데이터 구축<br/>
 - 무기 레벨 시스템 구현<br/>
 
+<h3>[버전 0.4]</h3>
+<img src="https://github.com/user-attachments/assets/4f007d07-46d2-4d00-a4b6-aab7f4b5b835" width="360" alt="Alpha 0.4">
+<br/>
+- atk_1 구현 (Nearest Atk)<br/>
+- 적 사망 & 피격 애니메이션 추가<br/>
+- 넉백 구현<br/>
+- 무기 쿨타임 구현<br/>
+- 몬스터 HP공식 버그 수정<br/>
+- 플레이어 데이터 처리<br/>
+- 몬스터 처치 데이터 처리<br/>
+
 </details>

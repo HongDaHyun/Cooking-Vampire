@@ -30,7 +30,7 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     public void Destroy_Enemy(Enemy enemy)
     {
-        PoolManager.Instance.TakeToPool<Enemy>(enemy);
+        PoolManager.Instance.TakeToPool<Enemy>(enemy.name, enemy);
     }
 
     public Projectile Spawn_Projectile(Sprite sprite, Weapon weapon, Vector3 dir)
@@ -43,6 +43,6 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     public void Destroy_Projectile(Projectile projectile)
     {
-        PoolManager.Instance.TakeToPool<Projectile>(projectile);
+        PoolManager.Instance.TakeToPool<Projectile>(projectile.name, projectile);
     }
 }

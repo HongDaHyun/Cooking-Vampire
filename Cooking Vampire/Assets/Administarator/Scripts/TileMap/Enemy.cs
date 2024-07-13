@@ -11,16 +11,25 @@ public class Enemy : MonoBehaviour, IPoolObject
     public EnemyStat stat;
 
     EnemyMove enemyMove;
-    Animator anim;
-    GameManager_Survivor gm;
+    [HideInInspector] public Animator anim;
+    Collider2D col;
+    [HideInInspector] public Rigidbody2D rigid;
+    [HideInInspector] public SpriteRenderer sr;
+
+    [HideInInspector] public GameManager_Survivor gm;
     DataManager dataManager;
     SpawnManager spawnManager;
 
     public void OnCreatedInPool()
     {
+        name = name.Replace("(Clone)", "");
+
         spawnManager = SpawnManager.Instance;
         gm = GameManager_Survivor.Instance;
         dataManager = DataManager.Instance;
+        col = GetComponent<Collider2D>();
+        rigid = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         enemyMove = GetComponent<EnemyMove>();
     }
@@ -37,11 +46,19 @@ public class Enemy : MonoBehaviour, IPoolObject
         anim.runtimeAnimatorController = data.Export_RanAnim();
 
         SetStat(data);
+        ReSet();
+    }
+
+    private void ReSet()
+    {
+        isDead = false;
+        col.enabled = true;
+        enemyMove.ReSet();
     }
 
     private void SetStat(EnemyData data)
     {
-        stat.maxHp = Mathf.CeilToInt(10 * Mathf.Min(1f, gm.curGameTime) * tier);
+        stat.maxHp = Mathf.CeilToInt(10 * Mathf.Max(1f, gm.curGameTime) * tier);
         stat.curHp = stat.maxHp;
         stat.speed = data.speed;
         isDead = false;
@@ -49,24 +66,36 @@ public class Enemy : MonoBehaviour, IPoolObject
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Projectile"))
+        if (!collision.CompareTag("Projectile") || isDead)
             return;
 
         stat.curHp -= collision.GetComponent<Projectile>().weapon.GetDamage();
+        StartCoroutine(enemyMove.KnockBack());
 
         // 생존
         if(stat.curHp > 0)
         {
-
+            anim.SetTrigger("Damaged");
         }
 
         // 죽음
         else
-            Dead();
+        {
+            isDead = true;
+            col.enabled = false;
+            rigid.simulated = false;
+            anim.SetTrigger("Dead");
+
+            // 데이터 처리
+            gm.killCount++;
+            gm.Player_GetExp(1); // 후에 젤리로 바꿈
+        }
     }
 
-    private void Dead()
+    private IEnumerator DeadRoutine()
     {
+        yield return new WaitForSeconds(1f);
+
         spawnManager.Destroy_Enemy(this);
     }
 }

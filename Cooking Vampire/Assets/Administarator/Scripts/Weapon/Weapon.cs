@@ -58,7 +58,7 @@ public abstract class Weapon : MonoBehaviour
         stat.speed += bonus;
     }
 
-    public abstract void Active();
+    public abstract IEnumerator Active();
 
     protected abstract void Batch();
 

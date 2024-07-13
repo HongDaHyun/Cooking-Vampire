@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour, IPoolObject
     [HideInInspector] public Weapon weapon;
     int curPer;
 
+    Player player;
     SpawnManager spawnManager;
     Rigidbody2D rigid;
     SpriteRenderer sr;
@@ -16,6 +17,9 @@ public class Projectile : MonoBehaviour, IPoolObject
 
     public void OnCreatedInPool()
     {
+        name = name.Replace("(Clone)", "");
+
+        player = GameManager_Survivor.Instance.player;
         spawnManager = SpawnManager.Instance;
         rigid = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
@@ -25,7 +29,6 @@ public class Projectile : MonoBehaviour, IPoolObject
     public void OnGettingFromPool()
     {
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -41,6 +44,11 @@ public class Projectile : MonoBehaviour, IPoolObject
         }
     }
 
+    void Update()
+    {
+        Dead();
+    }
+
     public void SetProjectile(Sprite sprite, Weapon weapon, Vector3 dir)
     {
         this.weapon = weapon;
@@ -52,6 +60,15 @@ public class Projectile : MonoBehaviour, IPoolObject
 
         if (dir != Vector3.zero)
             rigid.velocity = dir * weapon.stat.speed;
+    }
+
+    void Dead()
+    {
+        Transform target = player.transform;
+        Vector3 targetPos = target.position;
+        float dir = Vector3.Distance(targetPos, transform.position);
+        if (dir > 20f)
+            spawnManager.Destroy_Projectile(this);
     }
 
     private void ReSetCollider()
