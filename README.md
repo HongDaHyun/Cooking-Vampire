@@ -42,4 +42,13 @@
 - 플레이어 데이터 처리<br/>
 - 몬스터 처치 데이터 처리<br/>
 
+<h3>[버전 0.5]</h3>
+<img src="https://github.com/user-attachments/assets/7b617a2a-9da2-4bb1-a06e-9914b63680ac" width="360" alt="Alpha 0.5">
+<br/>
+- 폰트 추가<br/>
+- 킬 카운트, 레벨, 타이머 텍스트 UI 추가<br/>
+- 경험치 Slider, 체력 Slider UI 추가<br/>
+- 바 이미지, 아이콘 추가<br/>
+- UI매니저 추가<br/>
+
 </details>

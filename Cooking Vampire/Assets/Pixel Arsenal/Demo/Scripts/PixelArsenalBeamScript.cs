@@ -23,7 +23,7 @@ namespace PixelArsenal
         private GameObject beamEnd;
         private GameObject beam;
         private LineRenderer line;
-        private Transform transform;
+        private new Transform transform;
         private float textureScrollOffset;
 
         [Header("Adjustable Variables")]

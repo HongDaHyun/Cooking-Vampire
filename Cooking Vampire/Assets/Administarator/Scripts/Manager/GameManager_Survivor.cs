@@ -11,10 +11,17 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
 
     [Title("플레이어 정보")]
     public Player player;
+    public int maxHealth;
     public int level;
     public int killCount;
     public int maxExp;
     [ReadOnly] public int exp;
+    [ReadOnly] public int health;
+
+    private void Start()
+    {
+        health = maxHealth;
+    }
 
     private void Update()
     {
@@ -27,7 +34,7 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
         }    
     }
 
-    public void Player_GetExp(int amount)
+    public void Player_GainExp(int amount)
     {
         exp += amount;
 

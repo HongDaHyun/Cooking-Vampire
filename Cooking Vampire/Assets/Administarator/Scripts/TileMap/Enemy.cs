@@ -51,7 +51,6 @@ public class Enemy : MonoBehaviour, IPoolObject
 
     private void ReSet()
     {
-        isDead = false;
         col.enabled = true;
         enemyMove.ReSet();
     }
@@ -88,7 +87,7 @@ public class Enemy : MonoBehaviour, IPoolObject
 
             // 데이터 처리
             gm.killCount++;
-            gm.Player_GetExp(1); // 후에 젤리로 바꿈
+            gm.Player_GainExp(1); // 후에 젤리로 바꿈
         }
     }
 
