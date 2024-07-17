@@ -39,9 +39,13 @@ public class Weapon_0 : Weapon
         }
     }
 
+    protected override void MaxLevel()
+    {
+    }
+
     protected void Move()
     {
-        transform.Rotate(Vector3.back * stat.speed * Time.deltaTime);
+        transform.Rotate(Vector3.back * speed * Time.deltaTime);
     }
 
     public override void LevelUp()
@@ -49,25 +53,5 @@ public class Weapon_0 : Weapon
         base.LevelUp();
 
         Batch();
-    }
-    protected override void LevelContents()
-    {
-        switch(lv)
-        {
-            case 0:
-            case 1:
-            case 2:
-                count++;
-                break;
-            case 3:
-            case 4:
-                count += 2;
-                break;
-            case 5:
-                // MAX
-                break;
-            default:
-                break;
-        }
     }
 }

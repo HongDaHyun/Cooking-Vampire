@@ -6,6 +6,14 @@ public class EnemyMove : MonoBehaviour
 {
     public Rigidbody2D target;
     public bool isStop;
+    private void IsStop()
+    {
+        isStop = true;
+    }
+    private void IsMove()
+    {
+        isStop = false;
+    }
 
     Enemy enemy;
     Player player;
@@ -31,7 +39,7 @@ public class EnemyMove : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (enemy.isDead)
+        if (enemy.isDead || isStop)
             return;
 
         enemy.sr.flipX = target.position.x < enemy.rigid.position.x;

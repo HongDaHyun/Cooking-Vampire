@@ -8,6 +8,7 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
     [Title("게임 관리")]
     public float MAX_GAMETIME;
     [ReadOnly] public float curGameTime;
+    public int playerLvCount;
 
     [Title("플레이어 정보")]
     public Player player;
@@ -43,11 +44,18 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
     }
     private void Player_LevelUp()
     {
-        while (exp >= maxExp)
+        UIManager um = UIManager.Instance;
+
+        BtnManager.Instance.Tab(um.lvUpPannel);
+        um.Set_StatUpPannels_Ran();
+
+        do
         {
+            playerLvCount++;
             level++;
             exp -= maxExp;
             maxExp *= (int)Mathf.Pow(level, 2);
         }
+        while (exp >= maxExp);
     }
 }

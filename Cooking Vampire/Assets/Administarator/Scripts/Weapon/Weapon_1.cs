@@ -15,25 +15,8 @@ public class Weapon_1 : Weapon
 
     }
 
-    protected override void LevelContents()
+    protected override void MaxLevel()
     {
-        switch (lv)
-        {
-            case 0:
-            case 1:
-            case 2:
-                count++;
-                break;
-            case 3:
-            case 4:
-                count += 2;
-                break;
-            case 5:
-                // MAX
-                break;
-            default:
-                break;
-        }
     }
 
     private void Fire(Vector3 targetPos)

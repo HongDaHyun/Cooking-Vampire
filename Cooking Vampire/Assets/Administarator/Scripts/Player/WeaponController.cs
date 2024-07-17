@@ -8,34 +8,27 @@ public class WeaponController : MonoBehaviour
 {
     [ReadOnly] public Weapon[] availWeapons;
 
-    Player player;
-
     private void Awake()
     {
-        player = GetComponentInParent<Player>();
-
-        SetAvailWeapons();
-    }
-    private void SetAvailWeapons()
-    {
-        availWeapons = Array.FindAll(transform.GetComponentsInChildren<Weapon>(true), weapon => weapon.isAvail(player.type));
+        availWeapons = GetComponentsInChildren<Weapon>(true);
     }
 
-    public void EquipWeapon(int index)
+    public void LevelUpWeapon(int ID)
     {
-        Weapon weapon = availWeapons[index];
+        Weapon weapon = Find_Weapon(ID);
 
-        if (weapon.lv > 0)
+        if (weapon.isMax)
             return;
 
-        weapon.lv = 1;
-        StartCoroutine(WeaponRoutine(weapon));
-    }
-    public void LevelUpWeapon(int index)
-    {
-        availWeapons[index].LevelUp();
-    }
+        if(weapon.lv == 0)
+        {
+            weapon.lv = 1;
+            StartCoroutine(WeaponRoutine(weapon));
 
+            return;
+        }
+        availWeapons[Find_Weapon_Index(ID)].LevelUp();
+    }
     private IEnumerator WeaponRoutine(Weapon weapon)
     {
         weapon.gameObject.SetActive(true);
@@ -53,5 +46,14 @@ public class WeaponController : MonoBehaviour
 
             yield return new WaitForSeconds(weapon.coolTime);
         }
+    }
+
+    private Weapon Find_Weapon(int ID)
+    {
+        return Array.Find(availWeapons, weapon => weapon.ID == ID);
+    }
+    private int Find_Weapon_Index(int ID)
+    {
+        return Array.FindIndex(availWeapons, weapon => weapon.ID == ID);
     }
 }

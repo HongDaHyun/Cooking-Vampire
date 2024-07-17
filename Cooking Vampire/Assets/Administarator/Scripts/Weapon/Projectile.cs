@@ -59,7 +59,7 @@ public class Projectile : MonoBehaviour, IPoolObject
         ReSetCollider();
 
         if (dir != Vector3.zero)
-            rigid.velocity = dir * weapon.stat.speed;
+            rigid.velocity = dir * weapon.speed;
     }
 
     void Dead()
