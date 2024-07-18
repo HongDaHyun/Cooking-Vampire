@@ -7,10 +7,22 @@ using Sirenix.OdinInspector;
 public class WeaponController : MonoBehaviour
 {
     [ReadOnly] public Weapon[] availWeapons;
+    private Player player;
 
     private void Awake()
     {
         availWeapons = GetComponentsInChildren<Weapon>(true);
+        player = GetComponentInParent<Player>();
+    }
+
+    private void Start()
+    {
+        EquipBasic();
+    }
+
+    private void EquipBasic()
+    {
+        LevelUpWeapon(player.data.baseWeaponID);
     }
 
     public void LevelUpWeapon(int ID)
@@ -38,13 +50,13 @@ public class WeaponController : MonoBehaviour
             yield return weapon.Active();
 
             // activeTime이 0보다 작으면 무한 유지
-            if (weapon.activeTime > 0f)
+            if (weapon.stat.activeTime > 0f)
             {
-                yield return new WaitForSeconds(weapon.activeTime);
+                yield return new WaitForSeconds(weapon.stat.activeTime);
                 weapon.gameObject.SetActive(false);
             }
 
-            yield return new WaitForSeconds(weapon.coolTime);
+            yield return new WaitForSeconds(weapon.stat.coolTime);
         }
     }
 

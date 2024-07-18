@@ -51,4 +51,20 @@
 - 바 이미지, 아이콘 추가<br/>
 - UI매니저 추가<br/>
 
+<h3>[버전 0.6]</h3>
+<img src="https://github.com/user-attachments/assets/79e2e9ba-9804-4bde-807d-258a126c7aab" width="360" alt="Alpha 0.6">
+<br/>
+- 사운드 에셋 추가<br/>
+- 레벨업 패널 추가<br/>
+- 스탯업 패널 추가<br/>
+- 무기 레벨 MAX 로직 구현<br/>
+- 무기 레벨업 기능 구현<br/>
+- 몬스터 애니메이션 디테일 추가(Stop, Move)<br/>
+- 폰트 변경<br/>
+- 스탯 데이터 정리<br/>
+- 스탯 레벨업 로직 구현<br/>
+- 플레이어 데이터 생성<br/>
+- 시간 정지&재생 기능 구현<br/>
+- 스탯 아이콘 추가<br/>
+
 </details>

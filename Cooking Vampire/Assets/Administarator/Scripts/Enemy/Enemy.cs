@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour, IPoolObject
 
     private void SetStat(EnemyData data)
     {
-        stat.maxHp = 10 + Mathf.RoundToInt(gm.curGameTime * tier);
+        stat.maxHp = (10 + Mathf.RoundToInt(gm.curGameTime / 10)) * tier;
         stat.curHp = stat.maxHp;
         stat.speed = data.speed;
         isDead = false;
@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour, IPoolObject
         if (!collision.CompareTag("Projectile") || isDead)
             return;
 
-        stat.curHp -= collision.GetComponent<Projectile>().weapon.damage;
+        stat.curHp -= collision.GetComponent<Projectile>().weapon.stat.damage;
         StartCoroutine(enemyMove.KnockBack());
 
         // »ýÁ¸

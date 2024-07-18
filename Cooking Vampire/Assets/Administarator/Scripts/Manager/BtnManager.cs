@@ -5,8 +5,6 @@ using DG.Tweening;
 
 public class BtnManager : Singleton<BtnManager>
 {
-    public GameObject raycastPannel;
-
     private bool isTouching;
 
     public void Tab(RectTransform rect)
@@ -17,17 +15,16 @@ public class BtnManager : Singleton<BtnManager>
         if (!rect.gameObject.activeSelf)
         {
             rect.gameObject.SetActive(true);
-            raycastPannel.SetActive(true);
+            UIManager.Instance.raycastPannel.SetActive(true);
             rect.localScale = new Vector3(0.05f, 0.05f, 0.05f);
             rect.DOScale(new Vector3(1f, 1f, 1f), 0.5f).SetEase(Ease.InExpo).SetEase(Ease.OutBounce).SetUpdate(true);
         }
         else
         {
-            raycastPannel.SetActive(false);
+            UIManager.Instance.raycastPannel.SetActive(false);
             rect.DOScale(new Vector3(0.05f, 0.05f, 0.05f), 0.25f).SetEase(Ease.InOutExpo).SetUpdate(true).OnComplete(() => rect.gameObject.SetActive(false));
         }
     }
-
     public void Tab_NoRayCast(RectTransform rect)
     {
         if (isTouching)
@@ -43,5 +40,15 @@ public class BtnManager : Singleton<BtnManager>
         {
             rect.DOScale(new Vector3(0.05f, 0.05f, 0.05f), 0.25f).SetEase(Ease.InOutExpo).SetUpdate(true).OnComplete(() => rect.gameObject.SetActive(false));
         }
+    }
+
+    public void Stop()
+    {
+        Time.timeScale = 0;
+
+    }
+    public void Resume()
+    {
+        Time.timeScale = 1;
     }
 }

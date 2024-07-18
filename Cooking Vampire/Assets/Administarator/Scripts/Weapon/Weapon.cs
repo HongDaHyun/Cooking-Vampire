@@ -12,16 +12,12 @@ public abstract class Weapon : MonoBehaviour
     public string title;
     [TextArea] public string discription;
 
-    [Title("½ºÅÈ")]
+    [Title("ìŠ¤íƒ¯")]
     [ReadOnly] public int lv;
     [ReadOnly] public bool isMax;
-    public int count;
-    public float coolTime, activeTime;
-    public int damage;
-    public float speed;
-    public int per; // °üÅë·Â
+    public WeaponStat stat;
 
-    [Title("·¹º§")]
+    [Title("ë ˆë²¨")]
     public WeaponLevel[] weaponPerLevels;
 
     protected UIManager uiManager;
@@ -62,8 +58,8 @@ public abstract class Weapon : MonoBehaviour
     {
         int bonus = dataManager.curWeapon.tier;
 
-        damage += bonus;
-        speed += bonus;
+        stat.damage += bonus;
+        stat.speed += bonus;
     }
 
     public abstract IEnumerator Active();
@@ -79,35 +75,12 @@ public abstract class Weapon : MonoBehaviour
             return;
         }
 
-        foreach (Update update in weaponPerLevels[lv - 1].updates)
-            StatUp(update.type, update.amount);
+        foreach (BonusStat update in weaponPerLevels[lv - 1].updates)
+            update.Update_Stat(ref stat);
 
         lv++;
     }
-    public void StatUp(UpdateType type, float amount)
-    {
-        switch(type)
-        {
-            case UpdateType.Count:
-                count += (int)amount;
-                break;
-            case UpdateType.CoolTime:
-                coolTime -= amount;
-                break;
-            case UpdateType.ActiveTime:
-                activeTime += amount;
-                break;
-            case UpdateType.Damage:
-                damage += (int)amount;
-                break;
-            case UpdateType.Speed: // % »ó½Â (10% »ó½Â)
-                speed += speed * amount / 100f;
-                break;
-            case UpdateType.Per:
-                per += (int)amount;
-                break;
-        }
-    }
+    
     protected abstract void MaxLevel();
 
     public string Export_LevelDiscription()
@@ -118,13 +91,13 @@ public abstract class Weapon : MonoBehaviour
         {
             string sum = "";
 
-            Update[] updates = weaponPerLevels[lv - 1].updates;
+            BonusStat[] updates = weaponPerLevels[lv - 1].updates;
 
-            foreach(Update update in updates)
+            foreach(BonusStat update in updates)
             {
                 string element = "";
 
-                element += uiManager.Export_UpdateString(update.type, update.amount);
+                element += update.Get_Discription();
 
                 if (update.type != updates[updates.Length - 1].type)
                     element += "\n";
@@ -143,14 +116,17 @@ public abstract class Weapon : MonoBehaviour
 }
 
 [System.Serializable]
+public struct WeaponStat
+{
+    public int count;
+    public float coolTime, activeTime;
+    public int damage;
+    public float speed;
+    public int per; // ê´€í†µë ¥
+}
+
+[System.Serializable]
 public struct WeaponLevel
 {
-    public Update[] updates;
+    public BonusStat[] updates;
 }
-[System.Serializable]
-public struct Update
-{
-    public UpdateType type;
-    public float amount;
-}
-public enum UpdateType { Count = 0, CoolTime, ActiveTime, Damage, Speed, Per }

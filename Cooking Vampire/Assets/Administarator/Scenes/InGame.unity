@@ -289,9 +289,8 @@ Transform:
   - {fileID: 1968511194}
   - {fileID: 98445037}
   - {fileID: 360954952}
-  - {fileID: 1553204534}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &70239729
 GameObject:
@@ -542,7 +541,7 @@ Transform:
   - {fileID: 1795867283}
   - {fileID: 1024656595}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &75309338
 MonoBehaviour:
@@ -559,7 +558,9 @@ MonoBehaviour:
   moveController: {fileID: 0}
   weaponController: {fileID: 0}
   scanner: {fileID: 0}
-  type: 0
+  anim: {fileID: 0}
+  gm: {fileID: 0}
+  data: {fileID: 0}
 --- !u!114 &75309339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,7 +573,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7e795027ba9e54fbf667490cb08670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
   inputVec: {x: 0, y: 0}
 --- !u!114 &75309340
 MonoBehaviour:
@@ -636,7 +636,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d93bee7fda58d44bdcbb49255286ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanRange: 7
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -1457,6 +1456,13 @@ MonoBehaviour:
   discription: "\uB354\uBBF8\uB370\uC774\uD130"
   lv: 0
   isMax: 0
+  stat:
+    count: 0
+    coolTime: 0
+    activeTime: -1
+    damage: 0
+    speed: 0
+    per: -1
   count: 0
   coolTime: 0
   activeTime: -1
@@ -1467,18 +1473,23 @@ MonoBehaviour:
   - updates:
     - type: 0
       amount: 1
+      isBase: 0
   - updates:
     - type: 0
       amount: 1
+      isBase: 0
   - updates:
     - type: 0
       amount: 1
+      isBase: 0
   - updates:
     - type: 0
       amount: 1
+      isBase: 0
   - updates:
     - type: 0
       amount: 1
+      isBase: 0
 --- !u!4 &291061501
 Transform:
   m_ObjectHideFlags: 0
@@ -1810,6 +1821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7d5e425d4f8cbb40bf99044f777184c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  raycastPannel: {fileID: 72548614}
   expSlider: {fileID: 1143366048}
   hpSlider: {fileID: 195261567}
   levelTxt: {fileID: 1677979361}
@@ -6388,7 +6400,7 @@ RectTransform:
   - {fileID: 2057351909}
   - {fileID: 1478089922}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -11586,7 +11598,7 @@ Transform:
   - {fileID: 878738221}
   - {fileID: 1515750663}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &783493144
 GameObject:
@@ -16133,7 +16145,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &906458386
 MonoBehaviour:
@@ -20840,6 +20852,11 @@ MonoBehaviour:
   curStage: 0
   curPlayer: 0
   curWeapon: {fileID: 11400000, guid: a2cabf283061bf54da703766a4046939, type: 2}
+  playerDatas:
+  - {fileID: 11400000, guid: b77d2e00ddefa2b4d92a8e304f4ba6cc, type: 2}
+  - {fileID: 11400000, guid: 5bb3dc03e6e988749ad61ded156cf314, type: 2}
+  - {fileID: 11400000, guid: 52bb84b8f8366fc42a25a6d886c230fd, type: 2}
+  - {fileID: 11400000, guid: aa42e149034db164d9099c90fe12436b, type: 2}
   enemyDatas:
   - {fileID: 11400000, guid: d6fa69934d128fa468dff7679a7df97f, type: 2}
   - {fileID: 11400000, guid: 9422b720f02863c448536816ab128bdf, type: 2}
@@ -21099,6 +21116,13 @@ MonoBehaviour:
     \uD22C\uC0AC\uCCB4\uB97C \uC18C\uD658\uD569\uB2C8\uB2E4."
   lv: 0
   isMax: 0
+  stat:
+    count: 1
+    coolTime: 5
+    activeTime: 5
+    damage: 10
+    speed: 150
+    per: -1
   count: 1
   coolTime: 5
   activeTime: 5
@@ -21107,38 +21131,52 @@ MonoBehaviour:
   per: -1
   weaponPerLevels:
   - updates:
+    - type: 14
+      amount: 1
+      isBase: 1
+    - type: 13
+      amount: 0.1
+      isBase: 0
+  - updates:
+    - type: 14
+      amount: 1
+      isBase: 1
+    - type: 13
+      amount: 0.1
+      isBase: 0
+    - type: 8
+      amount: 1
+      isBase: 1
+  - updates:
+    - type: 14
+      amount: 2
+      isBase: 1
+    - type: 0
+      amount: 0.5
+      isBase: 0
+    - type: 8
+      amount: 2
+      isBase: 1
+    - type: 9
+      amount: -1
+      isBase: 1
+  - updates:
+    - type: 14
+      amount: 2
+      isBase: 1
     - type: 0
       amount: 1
-    - type: 4
-      amount: 10
+      isBase: 0
+    - type: 9
+      amount: -1
+      isBase: 1
   - updates:
-    - type: 0
-      amount: 1
-    - type: 4
-      amount: 10
-    - type: 2
-      amount: 1
-  - updates:
-    - type: 0
-      amount: 2
-    - type: 3
-      amount: 2
-    - type: 2
-      amount: 2
-    - type: 1
-      amount: 1
-  - updates:
-    - type: 0
-      amount: 2
-    - type: 3
-      amount: 5
-    - type: 1
-      amount: 1.5
-  - updates:
-    - type: 0
+    - type: 14
       amount: 3
-    - type: 3
-      amount: 10
+      isBase: 1
+    - type: 0
+      amount: 1
+      isBase: 0
 --- !u!1 &1045990911
 GameObject:
   m_ObjectHideFlags: 0
@@ -21641,6 +21679,7 @@ GameObject:
   - component: {fileID: 1200427661}
   - component: {fileID: 1200427663}
   - component: {fileID: 1200427662}
+  - component: {fileID: 1200427664}
   m_Layer: 5
   m_Name: IconImg
   m_TagString: Untagged
@@ -21689,7 +21728,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 725200428, guid: 61621a4d9f174c543a585704ab1d97d7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -21707,6 +21746,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1200427660}
   m_CullTransparentMesh: 1
+--- !u!114 &1200427664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200427660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: -3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1227791294
 GameObject:
   m_ObjectHideFlags: 0
@@ -21743,6 +21797,13 @@ MonoBehaviour:
     \uD22C\uC0AC\uCCB4\uB97C \uC18C\uD658\uD569\uB2C8\uB2E4."
   lv: 0
   isMax: 0
+  stat:
+    count: 2
+    coolTime: 4
+    activeTime: -1
+    damage: 10
+    speed: 10
+    per: 0
   count: 2
   coolTime: 4
   activeTime: -1
@@ -21751,38 +21812,52 @@ MonoBehaviour:
   per: 0
   weaponPerLevels:
   - updates:
-    - type: 0
+    - type: 14
       amount: 1
-    - type: 5
+      isBase: 1
+    - type: 18
       amount: 1
+      isBase: 1
   - updates:
-    - type: 0
+    - type: 14
       amount: 1
-    - type: 5
-      amount: 1
+      isBase: 1
     - type: 3
-      amount: 3
-  - updates:
-    - type: 0
-      amount: 2
-    - type: 4
-      amount: 30
-    - type: 1
       amount: 0.5
+      isBase: 0
+    - type: 9
+      amount: -0.5
+      isBase: 1
   - updates:
-    - type: 0
+    - type: 14
       amount: 2
-    - type: 4
-      amount: 50
-    - type: 1
+      isBase: 1
+    - type: 3
       amount: 0.5
-    - type: 3
-      amount: 5
+      isBase: 0
+    - type: 9
+      amount: -0.5
+      isBase: 1
   - updates:
-    - type: 5
+    - type: 14
       amount: 2
+      isBase: 1
     - type: 3
-      amount: 5
+      amount: 0.5
+      isBase: 0
+    - type: 9
+      amount: -0.5
+      isBase: 1
+    - type: 0
+      amount: 0.5
+      isBase: 0
+  - updates:
+    - type: 18
+      amount: 2
+      isBase: 1
+    - type: 0
+      amount: 1
+      isBase: 1
 --- !u!4 &1227791296
 Transform:
   m_ObjectHideFlags: 0
@@ -21827,7 +21902,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1265836982
 GameObject:
@@ -22313,7 +22388,7 @@ RectTransform:
   - {fileID: 72548617}
   - {fileID: 628272411}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -31254,7 +31329,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f208aac2d821a0d4c99307141b051f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raycastPannel: {fileID: 72548614}
 --- !u!4 &1553204534
 Transform:
   m_ObjectHideFlags: 0
@@ -31262,13 +31336,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553204532}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 50984588}
-  m_RootOrder: 3
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1616563826
 GameObject:
@@ -36163,12 +36237,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MAX_GAMETIME: 600
   curGameTime: 0
-  playerLvCount: 3
+  playerLvCount: 0
   player: {fileID: 75309338}
-  maxHealth: 20
   level: 1
   killCount: 0
   maxExp: 5
+  stat:
+    defense: 0
+    maxHealth: 20
+    speed: 2.5
+    missPercent: 0
+    critPercent: 0
+    luck: 0
+    expBonus: 1
+    heal: 0
+    drainPercent: 0
+    range: 7
+    knockBack: 3
+  defense: 0
+  maxHealth: 20
+  speed: 2.5
+  missPercent: 0
+  critPercent: 0
+  luck: 0
+  expBonus: 1
+  heal: 0
+  drainPercent: 0
+  range: 7
+  knockBack: 3
   exp: 0
   health: 0
 --- !u!4 &1968511194
@@ -36793,7 +36889,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2048752593
 GameObject:

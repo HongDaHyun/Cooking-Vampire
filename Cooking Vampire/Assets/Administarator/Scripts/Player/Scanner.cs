@@ -5,14 +5,20 @@ using UnityEngine;
 
 public class Scanner : MonoBehaviour
 {
-    public float scanRange;
     public LayerMask targetLayer;
     public RaycastHit2D[] targets;
     [ReadOnly] public Transform nearestTarget;
 
+    private Player player;
+
+    private void Awake()
+    {
+        player = GetComponent<Player>();
+    }
+
     private void FixedUpdate()
     {
-        targets = Physics2D.CircleCastAll(transform.position, scanRange, Vector2.zero, 0, targetLayer);
+        targets = Physics2D.CircleCastAll(transform.position, player.gm.stat.range, Vector2.zero, 0, targetLayer);
         UpdateNearest();
     }
 

@@ -52,14 +52,14 @@ public class Projectile : MonoBehaviour, IPoolObject
     public void SetProjectile(Sprite sprite, Weapon weapon, Vector3 dir)
     {
         this.weapon = weapon;
-        curPer = weapon.per;
+        curPer = weapon.stat.per;
         transform.SetParent(weapon.transform);
 
         sr.sprite = sprite;
         ReSetCollider();
 
         if (dir != Vector3.zero)
-            rigid.velocity = dir * weapon.speed;
+            rigid.velocity = dir * weapon.stat.speed;
     }
 
     void Dead()

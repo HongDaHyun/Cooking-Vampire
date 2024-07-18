@@ -18,7 +18,7 @@ public class Weapon_0 : Weapon
 
     protected override void Batch()
     {
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < stat.count; i++)
         {
             Transform projectTrans;
 
@@ -33,7 +33,7 @@ public class Weapon_0 : Weapon
             projectTrans.localPosition = Vector3.zero;
             projectTrans.localRotation = Quaternion.identity;
 
-            Vector3 rotVec = Vector3.forward * 360 * i / count;
+            Vector3 rotVec = Vector3.forward * 360 * i / stat.count;
             projectTrans.Rotate(rotVec);
             projectTrans.Translate(projectTrans.up * 2f, Space.World);
         }
@@ -45,7 +45,7 @@ public class Weapon_0 : Weapon
 
     protected void Move()
     {
-        transform.Rotate(Vector3.back * speed * Time.deltaTime);
+        transform.Rotate(Vector3.back * stat.speed * Time.deltaTime);
     }
 
     public override void LevelUp()

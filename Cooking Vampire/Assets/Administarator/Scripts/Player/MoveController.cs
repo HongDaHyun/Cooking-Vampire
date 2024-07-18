@@ -6,18 +6,16 @@ using Sirenix.OdinInspector;
 
 public class MoveController : MonoBehaviour
 {
-    [Title("스탯", "후에 스탯 통합")]
-    public float speed;
+    [ReadOnly] public Vector2 inputVec;
 
-    [ReadOnly]
-    public Vector2 inputVec;
-
+    private Player player;
     private Rigidbody2D rigid;
     private SpriteRenderer sr;
     private Animator anim;
 
     private void Awake()
     {
+        player = GetComponent<Player>();
         rigid = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
@@ -30,7 +28,7 @@ public class MoveController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
+        Vector2 nextVec = inputVec.normalized * player.gm.stat.speed * Time.fixedDeltaTime;
 
         // 위치 이동
         rigid.MovePosition(rigid.position + nextVec);

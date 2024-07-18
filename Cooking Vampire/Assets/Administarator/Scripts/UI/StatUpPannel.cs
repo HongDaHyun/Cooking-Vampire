@@ -40,7 +40,10 @@ public class StatUpPannel : MonoBehaviour
         weaponController.LevelUpWeapon(id);
 
         if (gm.playerLvCount <= 0)
+        {
             btnManager.Tab(uiManager.lvUpPannel);
+            btnManager.Resume();
+        }
         else
             uiManager.Set_StatUpPannels_Ran();
 

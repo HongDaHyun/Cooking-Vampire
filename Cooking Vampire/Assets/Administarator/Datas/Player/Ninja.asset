@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9bbecd3b05137c4a8e163da714f47e9, type: 3}
+  m_Name: Ninja
+  m_EditorClassIdentifier: 
+  title: "\uB2CC\uC790"
+  discription: "\uADF9\uB3C4\uB85C \uBB34\uC790\uBE44\uD558\uACE0 \uC778\uC815\uC0AC\uC815
+    \uC5C6\uB294 \uC778\uBB3C\uB85C, \uD56D\uC0C1 \uC5B4\uB460\uACFC \uD568\uAED8\uD574
+    \uADF8\uC758 \uB9E8\uC5BC\uAD74\uC744 \uC9C1\uC811 \uBCF8 \uC790\uB294 \uC874\uC7AC\uD558\uC9C0
+    \uC54A\uC2B5\uB2C8\uB2E4."
+  type: 2
+  animator: {fileID: 22100000, guid: a61fe6103876a784bafeabe6a8eaab0a, type: 2}
+  baseWeaponID: 0
+  bonusStats: []

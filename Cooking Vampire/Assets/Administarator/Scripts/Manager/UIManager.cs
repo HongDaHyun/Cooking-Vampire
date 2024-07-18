@@ -8,6 +8,9 @@ using Sirenix.OdinInspector;
 
 public class UIManager : Singleton<UIManager>
 {
+    [Title("공용")]
+    public GameObject raycastPannel;
+
     [Title("서바이벌")]
     public Slider expSlider;
     public Slider hpSlider;
@@ -45,7 +48,7 @@ public class UIManager : Singleton<UIManager>
 
         // HP_SLIDER
         float curHp = gm.health;
-        float maxHp = gm.maxHealth;
+        float maxHp = gm.stat.maxHealth;
 
         float targetHP = curHp / maxHp;
         hpSlider.value = Mathf.Lerp(hpSlider.value, targetHP, Time.deltaTime * 5f);
@@ -85,27 +88,6 @@ public class UIManager : Singleton<UIManager>
             {
                 // StatUpPannel_Passive(pannel);
             }
-        }
-    }
-
-    public string Export_UpdateString(UpdateType type, float amount)
-    {
-        switch (type)
-        {
-            case UpdateType.Count:
-                return $"투사체 수 {(int)amount} 증가";
-            case UpdateType.CoolTime:
-                return $"쿨타임 {amount}초 감소";
-            case UpdateType.ActiveTime:
-                return $"지속시간 {amount}초 증가";
-            case UpdateType.Damage:
-                return $"공격력 {(int)amount} 증가";
-            case UpdateType.Speed:
-                return $"투사체 속도 {(int)amount}% 증가";
-            case UpdateType.Per:
-                return $"관통력 {(int)amount} 증가";
-            default:
-                return "";
         }
     }
 }

@@ -12,8 +12,14 @@ public class DataManager : Singleton<DataManager>
     public WeaponData curWeapon;
 
     [Title("정적 데이터")]
+    public PlayerData[] playerDatas;
     public EnemyData[] enemyDatas;
     public WeaponData[] weaponDatas;
+
+    public PlayerData Export_PlayerData()
+    {
+        return Array.Find(playerDatas, data => data.type == curPlayer);
+    }
 
     public EnemyData Export_EnemyData(int tier)
     {
