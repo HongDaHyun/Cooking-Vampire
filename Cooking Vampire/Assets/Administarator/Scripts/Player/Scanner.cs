@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class Scanner : MonoBehaviour
 {
-    public LayerMask targetLayer;
+    public LayerMask enemyLayer;
+    public LayerMask itemLayer;
+
     public RaycastHit2D[] targets;
-    [ReadOnly] public Transform nearestTarget;
+    private RaycastHit2D[] itemTargets;
+
+    public Transform nearestTarget;
 
     private Player player;
 
@@ -18,7 +22,9 @@ public class Scanner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        targets = Physics2D.CircleCastAll(transform.position, player.gm.stat.range, Vector2.zero, 0, targetLayer);
+        targets = Physics2D.CircleCastAll(transform.position, player.gm.stat.range, Vector2.zero, 0, enemyLayer);
+        itemTargets = Physics2D.CircleCastAll(transform.position, player.gm.stat.range / 2, Vector2.zero, 0, itemLayer);
+        DrainGem();
         UpdateNearest();
     }
 
@@ -48,5 +54,14 @@ public class Scanner : MonoBehaviour
         if (targets.Length == 0)
             return null;
         return targets[Random.Range(0, targets.Length)].transform;
+    }
+
+    private void DrainGem()
+    {
+        foreach(RaycastHit2D target in itemTargets)
+        {
+            Item gem = target.transform.GetComponent<Item>();
+            gem.isDrain = true;
+        }
     }
 }

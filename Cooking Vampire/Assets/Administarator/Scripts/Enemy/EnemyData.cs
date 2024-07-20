@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyData", menuName = "Enemy/EnemyData")]
 public class EnemyData : ScriptableObject
 {
+    [Title("UI")]
+    public string title;
+    [TextArea] public string discription;
+
+    [Title("데이터")]
     public StageType stage;
     public int tier; // 4는 보스
     public float speed;

@@ -67,4 +67,10 @@
 - 시간 정지&재생 기능 구현<br/>
 - 스탯 아이콘 추가<br/>
 
+<h3>[버전 0.7]</h3>
+<img src="https://github.com/user-attachments/assets/141779f0-8079-4166-9e42-ab190ffca959" width="360" alt="Alpha 0.7">
+<br/>
+- 경험치 젬 추가<br/>
+- 경험치 젬 흡수 구현<br/>
+
 </details>

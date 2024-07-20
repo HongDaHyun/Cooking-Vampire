@@ -636,9 +636,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d93bee7fda58d44bdcbb49255286ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetLayer:
+  enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  itemLayer:
+    serializedVersion: 2
+    m_Bits: 128
   nearestTarget: {fileID: 0}
 --- !u!1 &82300036
 GameObject:
@@ -1011,6 +1014,11 @@ MonoBehaviour:
     _component: {fileID: 3918482349272054123, guid: 6cbcb9ab39d7ec74eb62f226926a8096, type: 3}
     _count: 0
     _container: {fileID: 1248124059}
+    _nonLazy: 0
+  - _name: Gem
+    _component: {fileID: -667716104821179834, guid: dd3b66f0cd1904043b40c2b30e42b06e, type: 3}
+    _count: 0
+    _container: {fileID: 983652939}
     _nonLazy: 0
   - _name: Projectile
     _component: {fileID: 9046568175878137170, guid: 981f6768dd5a48b4ca12a4f03a007e6e, type: 3}
@@ -1463,12 +1471,6 @@ MonoBehaviour:
     damage: 0
     speed: 0
     per: -1
-  count: 0
-  coolTime: 0
-  activeTime: -1
-  damage: 0
-  speed: 0
-  per: -1
   weaponPerLevels:
   - updates:
     - type: 0
@@ -6400,7 +6402,7 @@ RectTransform:
   - {fileID: 2057351909}
   - {fileID: 1478089922}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -11598,7 +11600,7 @@ Transform:
   - {fileID: 878738221}
   - {fileID: 1515750663}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &783493144
 GameObject:
@@ -16145,7 +16147,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &906458386
 MonoBehaviour:
@@ -20820,6 +20822,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &983652938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 983652939}
+  m_Layer: 0
+  m_Name: Gems
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &983652939
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983652938}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1021996981
 GameObject:
   m_ObjectHideFlags: 0
@@ -21123,12 +21156,6 @@ MonoBehaviour:
     damage: 10
     speed: 150
     per: -1
-  count: 1
-  coolTime: 5
-  activeTime: 5
-  damage: 10
-  speed: 150
-  per: -1
   weaponPerLevels:
   - updates:
     - type: 14
@@ -21804,12 +21831,6 @@ MonoBehaviour:
     damage: 10
     speed: 10
     per: 0
-  count: 2
-  coolTime: 4
-  activeTime: -1
-  damage: 10
-  speed: 10
-  per: 0
   weaponPerLevels:
   - updates:
     - type: 14
@@ -22388,7 +22409,7 @@ RectTransform:
   - {fileID: 72548617}
   - {fileID: 628272411}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -31424,6 +31445,19 @@ MonoBehaviour:
     - {fileID: 463193539, guid: 57dd4aad533e77b4ea76403f37ae809b, type: 3}
     - {fileID: -1314332380, guid: 57dd4aad533e77b4ea76403f37ae809b, type: 3}
     - {fileID: -141980598, guid: 57dd4aad533e77b4ea76403f37ae809b, type: 3}
+  gemSprites:
+  - unit: 100
+    idleSprite: {fileID: 1310001245, guid: 628dcfa839620574693155d3c8b50a72, type: 3}
+    moveSprite: {fileID: 2069678160, guid: 628dcfa839620574693155d3c8b50a72, type: 3}
+  - unit: 50
+    idleSprite: {fileID: -893916132, guid: 628dcfa839620574693155d3c8b50a72, type: 3}
+    moveSprite: {fileID: -2141856818, guid: 628dcfa839620574693155d3c8b50a72, type: 3}
+  - unit: 10
+    idleSprite: {fileID: -1734447812, guid: 628dcfa839620574693155d3c8b50a72, type: 3}
+    moveSprite: {fileID: -716050898, guid: 628dcfa839620574693155d3c8b50a72, type: 3}
+  - unit: 1
+    idleSprite: {fileID: 557557298, guid: 628dcfa839620574693155d3c8b50a72, type: 3}
+    moveSprite: {fileID: 786671298, guid: 628dcfa839620574693155d3c8b50a72, type: 3}
 --- !u!4 &1616563828
 Transform:
   m_ObjectHideFlags: 0
@@ -36254,17 +36288,6 @@ MonoBehaviour:
     drainPercent: 0
     range: 7
     knockBack: 3
-  defense: 0
-  maxHealth: 20
-  speed: 2.5
-  missPercent: 0
-  critPercent: 0
-  luck: 0
-  expBonus: 1
-  heal: 0
-  drainPercent: 0
-  range: 7
-  knockBack: 3
   exp: 0
   health: 0
 --- !u!4 &1968511194
@@ -36876,6 +36899,18 @@ MonoBehaviour:
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
     IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 983652938}
+    Ordinal: 47
+    Priority: 0
+    IconType: 13000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
 --- !u!4 &2040417953
 Transform:
   m_ObjectHideFlags: 0
@@ -36889,7 +36924,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2048752593
 GameObject:

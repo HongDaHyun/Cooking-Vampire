@@ -87,6 +87,7 @@ public class Enemy : MonoBehaviour, IPoolObject
 
             // 데이터 처리
             gm.killCount++;
+            spawnManager.Spawn_Gems(173, transform.position);
             gm.Player_GainExp(1); // 후에 젤리로 바꿈
         }
     }
