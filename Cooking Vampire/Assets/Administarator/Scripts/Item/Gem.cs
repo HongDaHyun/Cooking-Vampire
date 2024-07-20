@@ -12,17 +12,15 @@ public class Gem : Item
     {
         amount = unit;
 
-        SetPath_Ran(pos);
+        Drop(pos);
     }
     protected override void Drain()
     {
         sr.sprite = spriteData.Export_GemSprites(amount).moveSprite;
         base.Drain();
     }
-
-    private void SetPath_Ran(Vector2 pos)
+    protected override void Drop(Vector2 pos)
     {
-        isActive = false;
         sr.sortingOrder = 1;
         sr.sprite = spriteData.Export_GemSprites(amount).moveSprite;
         transform.position = pos;

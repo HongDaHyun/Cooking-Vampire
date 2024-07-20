@@ -73,4 +73,13 @@
 - 경험치 젬 추가<br/>
 - 경험치 젬 흡수 구현<br/>
 
+<hr>[버전 0.7.1]</h3>
+<img src="https://github.com/user-attachments/assets/b016be12-4ba1-45e2-81c5-4b24073adea0" width="360" alt="Alpha 0.7.1">
+<br/>
+- 데미지 팝업 생성<br/>
+- 아이템 흡수 사거리 감소<br/>
+- 아이템 관련 스크립트 최적화<br/>
+- 데미지 감소 디테일 추가<br/>
+- 아이템 바로 흡수되는 버그 수정<br/>
+
 </details>

@@ -28,6 +28,8 @@ public abstract class Item : MonoBehaviour, IPoolObject
 
     public void OnGettingFromPool()
     {
+        isActive = false;
+        isDrain = false;
     }
 
     private void FixedUpdate()
@@ -46,4 +48,5 @@ public abstract class Item : MonoBehaviour, IPoolObject
     }
 
     protected abstract void Destroy();
+    protected abstract void Drop(Vector2 pos);
 }

@@ -50,9 +50,6 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
         UIManager um = UIManager.Instance;
         BtnManager bm = BtnManager.Instance;
 
-        bm.Tab(um.lvUpPannel);
-        um.Set_StatUpPannels_Ran();
-
         do
         {
             playerLvCount++;
@@ -62,6 +59,8 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
         }
         while (exp >= maxExp);
 
+        bm.Tab(um.lvUpPannel);
         bm.Stop();
+        um.Set_StatUpPannels_Ran();
     }
 }

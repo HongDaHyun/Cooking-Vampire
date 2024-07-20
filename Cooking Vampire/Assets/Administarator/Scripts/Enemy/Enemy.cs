@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour, IPoolObject
 {
     [ReadOnly] public int tier; // 1부터 시작
     [ReadOnly] public bool isDead;
+    private int difficult;
     public EnemyStat stat;
 
     EnemyMove enemyMove;
@@ -57,7 +58,8 @@ public class Enemy : MonoBehaviour, IPoolObject
 
     private void SetStat(EnemyData data)
     {
-        stat.maxHp = (10 + Mathf.RoundToInt(gm.curGameTime / 10)) * tier;
+        difficult = Mathf.Max(1, Mathf.RoundToInt(gm.curGameTime / 10));
+        stat.maxHp = (10 + difficult) * tier;
         stat.curHp = stat.maxHp;
         stat.speed = data.speed;
         isDead = false;
@@ -68,7 +70,9 @@ public class Enemy : MonoBehaviour, IPoolObject
         if (!collision.CompareTag("Projectile") || isDead)
             return;
 
-        stat.curHp -= collision.GetComponent<Projectile>().weapon.stat.damage;
+        int trueDmg = Mathf.Min(stat.curHp , collision.GetComponent<Projectile>().weapon.stat.damage);
+        stat.curHp -= trueDmg;
+        spawnManager.Spawn_PopUpTxt(trueDmg, transform.position);
         StartCoroutine(enemyMove.KnockBack());
 
         // 생존
@@ -87,8 +91,7 @@ public class Enemy : MonoBehaviour, IPoolObject
 
             // 데이터 처리
             gm.killCount++;
-            spawnManager.Spawn_Gems(173, transform.position);
-            gm.Player_GainExp(1); // 후에 젤리로 바꿈
+            spawnManager.Spawn_Gems(difficult * tier, transform.position);
         }
     }
 

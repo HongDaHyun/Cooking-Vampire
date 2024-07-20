@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Redcode.Pools;
+using TMPro;
+using DG.Tweening;
 
 public class SpawnManager : Singleton<SpawnManager>
 {
@@ -77,5 +79,27 @@ public class SpawnManager : Singleton<SpawnManager>
     public void Destroy_Gem(Gem gem)
     {
         PoolManager.Instance.TakeToPool<Gem>(gem.name, gem);
+    }
+
+    public TextMeshPro Spawn_PopUpTxt(int amount, Vector2 pos)
+    {
+        TextMeshPro text = PoolManager.Instance.GetFromPool<TextMeshPro>("PopUpTxt");
+        text.transform.position = pos;
+
+        text.text = amount.ToString();
+        Color color = text.color;
+        color.a = 1f;
+        text.color = color;
+
+        Sequence popSeq = DOTween.Sequence().SetUpdate(true);
+        popSeq.Append(text.transform.DOMoveY(pos.y + 1f, 0.5f))
+            .Join(text.DOFade(0f, 1f).SetEase(Ease.InExpo))
+            .OnComplete(() => Destroy_PopUpTxt(text));
+
+        return text;
+    }
+    public void Destroy_PopUpTxt(TextMeshPro tmpro)
+    {
+        PoolManager.Instance.TakeToPool<TextMeshPro>(tmpro);
     }
 }
