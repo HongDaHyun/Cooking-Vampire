@@ -51,6 +51,8 @@ public class Scanner : MonoBehaviour
 
     public Transform Export_RanTarget()
     {
+        if (targets == null)
+            return null;
         if (targets.Length == 0)
             return null;
         return targets[Random.Range(0, targets.Length)].transform;

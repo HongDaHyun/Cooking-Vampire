@@ -6,17 +6,18 @@ using Sirenix.OdinInspector;
 
 public class WeaponController : MonoBehaviour
 {
+    public Transform[] typeTrans;
     [ReadOnly] public Weapon[] availWeapons;
     private Player player;
 
     private void Awake()
     {
-        availWeapons = GetComponentsInChildren<Weapon>(true);
         player = GetComponentInParent<Player>();
     }
 
     private void Start()
     {
+        availWeapons = typeTrans[(int)player.data.type].GetComponentsInChildren<Weapon>(true);
         EquipBasic();
     }
 

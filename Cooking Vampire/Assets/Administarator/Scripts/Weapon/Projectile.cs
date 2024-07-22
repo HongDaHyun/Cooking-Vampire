@@ -7,41 +7,24 @@ using Sirenix.OdinInspector;
 public class Projectile : MonoBehaviour, IPoolObject
 {
     [HideInInspector] public Weapon weapon;
-    int curPer;
 
     Player player;
-    SpawnManager spawnManager;
-    Rigidbody2D rigid;
-    SpriteRenderer sr;
+    protected SpawnManager spawnManager;
+    [HideInInspector] public SpriteRenderer sr;
     BoxCollider2D col;
 
-    public void OnCreatedInPool()
+    public virtual void OnCreatedInPool()
     {
         name = name.Replace("(Clone)", "");
 
         player = GameManager_Survivor.Instance.player;
         spawnManager = SpawnManager.Instance;
-        rigid = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<BoxCollider2D>();
     }
 
-    public void OnGettingFromPool()
+    public virtual void OnGettingFromPool()
     {
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!collision.CompareTag("Enemy") || curPer == -1)
-            return;
-
-        curPer--;
-
-        if(curPer == -1)
-        {
-            rigid.velocity = Vector2.zero;
-            spawnManager.Destroy_Projectile(this);
-        }
     }
 
     void Update()
@@ -49,17 +32,41 @@ public class Projectile : MonoBehaviour, IPoolObject
         Dead();
     }
 
-    public void SetProjectile(Sprite sprite, Weapon weapon, Vector3 dir)
+    public virtual void SetProjectile(Sprite sprite, Weapon weapon)
     {
         this.weapon = weapon;
-        curPer = weapon.stat.per;
         transform.SetParent(weapon.transform);
 
+        SetSprite(sprite);
+    }
+    public void SetSprite(Sprite sprite)
+    {
         sr.sprite = sprite;
         ReSetCollider();
+    }
 
-        if (dir != Vector3.zero)
-            rigid.velocity = dir * weapon.stat.speed;
+    public IEnumerator Spin(Quaternion targetRot, float durTime, int spinCount)
+    {
+        sr.spriteSortPoint = SpriteSortPoint.Center;
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < durTime)
+        {
+            float progress = elapsedTime / durTime;
+
+            float currentAngle = 360 * spinCount * progress;
+            Quaternion spinRotation = Quaternion.Euler(0, 0, currentAngle);
+
+            // Combine the spin rotation with the target rotation
+            transform.rotation = spinRotation * targetRot;
+
+            elapsedTime += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        transform.rotation = targetRot;
+
+        sr.spriteSortPoint = SpriteSortPoint.Pivot;
     }
 
     void Dead()

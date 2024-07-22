@@ -35,11 +35,28 @@ public class SpawnManager : Singleton<SpawnManager>
         PoolManager.Instance.TakeToPool<Enemy>(enemy.name, enemy);
     }
 
-    public Projectile Spawn_Projectile(Sprite sprite, Weapon weapon, Vector3 dir)
+    public Projectile Spawn_Projectile(Sprite sprite, Weapon weapon)
     {
-        Projectile projectile = PoolManager.Instance.GetFromPool<Projectile>(dir == Vector3.zero ? "Projectile" : "Projectile_Rigid");
+        Projectile projectile = PoolManager.Instance.GetFromPool<Projectile>("Projectile");
 
-        projectile.SetProjectile(sprite, weapon, dir);
+        projectile.SetProjectile(sprite, weapon);
+
+        return projectile;
+    }
+    public Projectile_Rigid Spawn_Projectile_Rigid(Sprite sprite, Weapon weapon)
+    {
+        Projectile_Rigid projectile = PoolManager.Instance.GetFromPool<Projectile_Rigid>("Projectile_Rigid");
+
+        projectile.SetProjectile(sprite, weapon);
+
+        return projectile;
+    }
+    public Projectile_Animation Spawn_Projectile_Anim(Sprite sprite, Weapon weapon, RuntimeAnimatorController anim)
+    {
+        Projectile_Animation projectile = PoolManager.Instance.GetFromPool<Projectile_Animation>("Projectile_Animation");
+
+        projectile.SetProjectile(sprite, weapon);
+        projectile.SetAnim(anim);
 
         return projectile;
     }

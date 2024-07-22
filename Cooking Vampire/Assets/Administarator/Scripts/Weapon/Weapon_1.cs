@@ -10,40 +10,8 @@ public class Weapon_1 : Weapon
         yield return FireRoutine();
     }
 
-    protected override void Batch()
-    {
-
-    }
-
     protected override void MaxLevel()
     {
-    }
-
-    private void Fire(Vector3 targetPos)
-    {
-        Vector3 dir = targetPos - transform.position;
-        dir = dir.normalized;
-
-        Projectile projectile = spawnManager.Spawn_Projectile(dataManager.curWeapon.weaponSprite, this, dir);
-        Transform projectTrans = projectile.transform;
-        projectTrans.localPosition = Vector2.zero;
-        projectTrans.localRotation = Quaternion.FromToRotation(Vector3.up, dir);
-    }
-    private void Fire_Nearest()
-    {
-        if (!player.scanner.nearestTarget)
-            return;
-
-        Vector3 targetPos = player.scanner.nearestTarget.position;
-        Fire(targetPos);
-    }
-    private void Fire_Ran()
-    {
-        Transform target = player.scanner.Export_RanTarget();
-        if (!target)
-            return;
-
-        Fire(target.position);
     }
 
     private IEnumerator FireRoutine()

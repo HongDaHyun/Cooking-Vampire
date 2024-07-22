@@ -21,11 +21,16 @@ MonoBehaviour:
   bonusStats:
   - type: 0
     amount: 0.2
+    isBase: 0
   - type: 1
     amount: 0.5
+    isBase: 0
   - type: 2
     amount: 0.5
+    isBase: 0
   - type: 3
     amount: -0.5
+    isBase: 0
   - type: 4
     amount: -0.5
+    isBase: 0

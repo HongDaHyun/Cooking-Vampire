@@ -76,6 +76,8 @@ public struct BonusStat
                 Calculating(ref stat.damage);
                 break;
             case StatType.ACTIVE:
+                if (stat.activeTime == -1)
+                    return;
                 Calculating(ref stat.activeTime);
                 break;
             case StatType.COOL:
@@ -94,6 +96,8 @@ public struct BonusStat
                 // ¹Ì±¸Çö
                 break;
             case StatType.PER:
+                if (stat.per == -1)
+                    break;
                 Calculating(ref stat.per);
                 break;
             default:

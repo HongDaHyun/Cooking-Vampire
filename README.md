@@ -82,4 +82,13 @@
 - 데미지 감소 디테일 추가<br/>
 - 아이템 바로 흡수되는 버그 수정<br/>
 
+<hr>[버전 0.8]</h3>
+<img src="https://github.com/user-attachments/assets/b5df7bbe-07eb-4218-b5a4-12b1191ea746" width="360" alt="Alpha 0.8">
+<br/>
+- 슬래쉬 이미지 추가<br/>
+- 투사체 세분화 (기본, 물리, 애니메이션)<br/>
+- 0번_무기 이미지 짱돌로 변환<br/>
+- 투사체 Set함수 추가<br/>
+- 2,3번_무기 추가 (부메랑, 슬래쉬)<br/>
+
 </details>

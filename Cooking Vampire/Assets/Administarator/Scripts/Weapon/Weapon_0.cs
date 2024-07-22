@@ -5,18 +5,25 @@ using UnityEngine;
 // Surrorund
 public class Weapon_0 : Weapon
 {
-    private void Update()
+    protected override void Awake()
+    {
+        base.Awake();
+        Batch();
+    }
+
+    private void FixedUpdate()
     {
         Move();
     }
 
     public override IEnumerator Active()
     {
+        ResetRanSprite();
         gameObject.SetActive(true);
         yield return null;
     }
 
-    protected override void Batch()
+    private void Batch()
     {
         for (int i = 0; i < stat.count; i++)
         {
@@ -24,9 +31,10 @@ public class Weapon_0 : Weapon
 
             if (i < transform.childCount)
                 projectTrans = transform.GetChild(i);
+
             else
             {
-                Projectile projectile = spawnManager.Spawn_Projectile(dataManager.curWeapon.weaponSprite, this, Vector3.zero);
+                Projectile projectile = spawnManager.Spawn_Projectile(GetProjectileSprite(), this);
                 projectTrans = projectile.transform;
             }
 
@@ -53,5 +61,12 @@ public class Weapon_0 : Weapon
         base.LevelUp();
 
         Batch();
+    }
+
+    private void ResetRanSprite()
+    {
+        Projectile[] projectiles = GetComponentsInChildren<Projectile>(true);
+        foreach (Projectile pro in projectiles)
+            pro.SetSprite(GetProjectileSprite());
     }
 }

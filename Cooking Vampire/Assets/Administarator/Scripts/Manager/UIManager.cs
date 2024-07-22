@@ -15,7 +15,7 @@ public class UIManager : Singleton<UIManager>
     public Slider expSlider;
     public Slider hpSlider;
     public TextMeshProUGUI levelTxt, killTxt, timeTxt;
-    public TextMeshProUGUI weapon0_Btn, weapon1_Btn;
+    public TextMeshProUGUI[] weaponTest_Btn;
     public RectTransform lvUpPannel;
 
     private void LateUpdate()
@@ -54,10 +54,11 @@ public class UIManager : Singleton<UIManager>
         hpSlider.value = Mathf.Lerp(hpSlider.value, targetHP, Time.deltaTime * 5f);
 
         // TEST_BTN
-        weapon0_Btn.text = gm.player.weaponController.availWeapons[0].isMax ?
-            "Weapon 0\nLv.MAX" : $"Weapon 0\nLv.{gm.player.weaponController.availWeapons[0].lv}";
-        weapon1_Btn.text = gm.player.weaponController.availWeapons[1].isMax ?
-            "Weapon 1\nLv.MAX" : $"Weapon 1\nLv.{gm.player.weaponController.availWeapons[1].lv}";
+        for (int i = 0; i < weaponTest_Btn.Length; i++)
+        {
+            weaponTest_Btn[i].text = gm.player.weaponController.availWeapons[i].isMax ?
+                $"Weapon {i}\nLv.MAX" : $"Weapon {i}\nLv.{gm.player.weaponController.availWeapons[i].lv}";
+        }
     }
 
     public void Set_StatUpPannels_Ran()
