@@ -67,6 +67,9 @@ public abstract class Weapon : MonoBehaviour
     }
     protected Sprite GetProjectileSprite()
     {
+        if (projectileSprite.Count == 1)
+            return projectileSprite[0];
+
         return projectileSprite[Random.Range(0, projectileSprite.Count)];
     }
 
@@ -89,9 +92,22 @@ public abstract class Weapon : MonoBehaviour
     
     protected abstract void MaxLevel();
 
+    protected Projectile_Rigid FireDir(Vector3 dir)
+    {
+        Projectile_Rigid projectile = spawnManager.Spawn_Projectile_Rigid(GetProjectileSprite(), this, 1);
+
+        dir = dir.normalized;
+        projectile.SetDir(dir);
+
+        Transform projectTrans = projectile.transform;
+        projectTrans.localPosition = Vector2.zero;
+        projectTrans.localRotation = Quaternion.FromToRotation(Vector3.up, dir);
+
+        return projectile;
+    }
     protected Projectile_Rigid Fire(Vector3 targetPos)
     {
-        Projectile_Rigid projectile = spawnManager.Spawn_Projectile_Rigid(GetProjectileSprite(), this);
+        Projectile_Rigid projectile = spawnManager.Spawn_Projectile_Rigid(GetProjectileSprite(), this, 1);
 
         Vector3 dir = targetPos - transform.position;
         dir = dir.normalized;

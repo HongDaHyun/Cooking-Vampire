@@ -7,6 +7,7 @@ using Sirenix.OdinInspector;
 public class MoveController : MonoBehaviour
 {
     [ReadOnly] public Vector2 inputVec;
+    [ReadOnly] public Vector2 inputLook;
 
     private Player player;
     private Rigidbody2D rigid;
@@ -21,9 +22,23 @@ public class MoveController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    private void Start()
+    {
+        StartCoroutine(LookRoutine());
+    }
+
     void OnMove(InputValue value)
     {
         inputVec = value.Get<Vector2>();
+    }
+    IEnumerator LookRoutine()
+    {
+        while(true)
+        {
+            if (inputVec != Vector2.zero)
+                inputLook = inputVec;
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
     private void FixedUpdate()

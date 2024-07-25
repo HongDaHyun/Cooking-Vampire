@@ -27,9 +27,9 @@ public class Projectile_Rigid : Projectile
         }
     }
 
-    public override void SetProjectile(Sprite sprite, Weapon weapon)
+    public override void SetProjectile(Sprite sprite, Weapon weapon, float size)
     {
-        base.SetProjectile(sprite, weapon);
+        base.SetProjectile(sprite, weapon, size);
         curPer = weapon.stat.per;
     }
 

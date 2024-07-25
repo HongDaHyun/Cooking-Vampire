@@ -21,7 +21,7 @@ public class Weapon_3 : Weapon
 
     private IEnumerator Slash(int elementID, bool isEven)
     {
-        Projectile_Animation projectile = spawnManager.Spawn_Projectile_Anim(GetProjectileSprite(), this, animators[elementID]);
+        Projectile_Animation projectile = spawnManager.Spawn_Projectile_Anim(GetProjectileSprite(), this, animators[elementID], 1.5f);
         Vector2 slashPos = transform.position;
         projectile.sr.flipX = isEven;
         slashPos += isEven ? new Vector2(-3, 0) : new Vector2(3, 0);

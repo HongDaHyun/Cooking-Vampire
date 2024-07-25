@@ -32,10 +32,11 @@ public class Projectile : MonoBehaviour, IPoolObject
         Dead();
     }
 
-    public virtual void SetProjectile(Sprite sprite, Weapon weapon)
+    public virtual void SetProjectile(Sprite sprite, Weapon weapon, float size)
     {
         this.weapon = weapon;
         transform.SetParent(weapon.transform);
+        transform.localScale = new Vector2(size, size);
 
         SetSprite(sprite);
     }
