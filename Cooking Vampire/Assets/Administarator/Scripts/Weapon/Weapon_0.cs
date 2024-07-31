@@ -34,7 +34,7 @@ public class Weapon_0 : Weapon
 
             else
             {
-                Projectile projectile = spawnManager.Spawn_Projectile(GetProjectileSprite(), this, 1);
+                Projectile projectile = spawnManager.Spawn_Projectile(GetProjectileSprite(), stat, 1, transform);
                 projectTrans = projectile.transform;
             }
 

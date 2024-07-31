@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 
 public class Projectile : MonoBehaviour, IPoolObject
 {
-    [HideInInspector] public Weapon weapon;
+    [HideInInspector] public WeaponStat stat;
 
     Player player;
     protected SpawnManager spawnManager;
@@ -32,10 +32,10 @@ public class Projectile : MonoBehaviour, IPoolObject
         Dead();
     }
 
-    public virtual void SetProjectile(Sprite sprite, Weapon weapon, float size)
+    public virtual void SetProjectile(Sprite sprite, WeaponStat stat, float size, Transform parent)
     {
-        this.weapon = weapon;
-        transform.SetParent(weapon.transform);
+        this.stat = stat;
+        transform.SetParent(parent);
         transform.localScale = new Vector2(size, size);
 
         SetSprite(sprite);

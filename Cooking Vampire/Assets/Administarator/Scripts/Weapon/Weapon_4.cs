@@ -21,8 +21,7 @@ public class Weapon_4 : Weapon
 
     private IEnumerator Slash()
     {
-        Projectile_Animation projectile = spawnManager.Spawn_Projectile_Anim(GetProjectileSprite(), this, animator, 2f);
-        projectile.transform.SetParent(null);
+        Projectile_Animation projectile = spawnManager.Spawn_Projectile_Anim(GetProjectileSprite(), stat, animator, 2f, null);
 
         Transform target = player.scanner.Export_RanTarget();
         projectile.transform.position = target ? target.position : RanPos();

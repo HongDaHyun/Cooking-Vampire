@@ -8,17 +8,37 @@ public class WeaponController : MonoBehaviour
 {
     public Transform[] typeTrans;
     [ReadOnly] public Weapon[] availWeapons;
+    DataManager dataManager;
     private Player player;
 
     private void Awake()
     {
         player = GetComponentInParent<Player>();
+        dataManager = DataManager.Instance;
+
+        SetPivot();
     }
 
     private void Start()
     {
         availWeapons = typeTrans[(int)player.data.type].GetComponentsInChildren<Weapon>(true);
         EquipBasic();
+    }
+
+    private void SetPivot()
+    {
+        switch (dataManager.curPlayer)
+        {
+            case PlayerType.Knight:
+                transform.localPosition = new Vector2(0.05f, 0.5f);
+                break;
+            case PlayerType.Archer:
+                break;
+            case PlayerType.Ninja:
+                break;
+            case PlayerType.Magician:
+                break;
+        }
     }
 
     private void EquipBasic()
@@ -57,6 +77,8 @@ public class WeaponController : MonoBehaviour
                 weapon.gameObject.SetActive(false);
             }
 
+            if (weapon.isPet)
+                yield break;
             yield return new WaitForSeconds(weapon.stat.coolTime);
         }
     }
@@ -68,5 +90,9 @@ public class WeaponController : MonoBehaviour
     private int Find_Weapon_Index(int ID)
     {
         return Array.FindIndex(availWeapons, weapon => weapon.ID == ID);
+    }
+    public Weapon Find_Weapon_Pet()
+    {
+        return Array.Find(availWeapons, weapon => weapon.isPet);
     }
 }

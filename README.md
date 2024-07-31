@@ -91,4 +91,13 @@
 - 투사체 Set함수 추가<br/>
 - 2,3번_무기 추가 (부메랑, 슬래쉬)<br/>
 
+<hr>[버전 0.9]</h3>
+<img src="https://github.com/user-attachments/assets/ab2c8b12-aac7-45df-9578-b63485105909" width="360" alt="Alpha 0.9">
+<br/>
+- 투사체 (애니메이션) 추가<br/>
+- 이펙트 추가<br/>
+- 무기 3종 추가 (X슬래쉬, 샷건, 고양이)<br/>
+- 고양이 패턴 구현 (미완)<br/>
+- 고양이, 이펙트 등 Pooling 최적화<br/>
+
 </details>

@@ -9,6 +9,7 @@ public class SpriteData : Singleton<SpriteData>
     [Title("¼­¹ÙÀÌ¹ú")]
     public StageSprite[] stageSprites;
     public GemSprite[] gemSprites;
+    public RuntimeAnimatorController[] effects;
 
     public Sprite[] Export_StageSprites(StageType type)
     {

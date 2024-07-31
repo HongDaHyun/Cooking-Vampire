@@ -17,6 +17,7 @@ public abstract class Weapon : MonoBehaviour
     [ReadOnly] public int lv;
     [ReadOnly] public bool isMax;
     public WeaponStat stat;
+    public bool isPet;
 
     [Title("레벨")]
     public WeaponLevel[] weaponPerLevels;
@@ -40,23 +41,7 @@ public abstract class Weapon : MonoBehaviour
         if (projectileSprite.Count == 0)
             projectileSprite.Add(dataManager.curWeapon.weaponSprite);
 
-        SetPivot();
         SetStat();
-    }
-    private void SetPivot()
-    {
-        switch(dataManager.curPlayer)
-        {
-            case PlayerType.Knight:
-                transform.localPosition = new Vector2(0.05f, 0.5f);
-                break;
-            case PlayerType.Archer:
-                break;
-            case PlayerType.Ninja:
-                break;
-            case PlayerType.Magician:
-                break;
-        }
     }
     private void SetStat()
     {
@@ -94,7 +79,7 @@ public abstract class Weapon : MonoBehaviour
 
     protected Projectile_Rigid FireDir(Vector3 dir)
     {
-        Projectile_Rigid projectile = spawnManager.Spawn_Projectile_Rigid(GetProjectileSprite(), this, 1);
+        Projectile_Rigid projectile = spawnManager.Spawn_Projectile_Rigid(GetProjectileSprite(), stat, 1, transform);
 
         dir = dir.normalized;
         projectile.SetDir(dir);
@@ -107,7 +92,7 @@ public abstract class Weapon : MonoBehaviour
     }
     protected Projectile_Rigid Fire(Vector3 targetPos)
     {
-        Projectile_Rigid projectile = spawnManager.Spawn_Projectile_Rigid(GetProjectileSprite(), this, 1);
+        Projectile_Rigid projectile = spawnManager.Spawn_Projectile_Rigid(GetProjectileSprite(), stat, 1, transform);
 
         Vector3 dir = targetPos - transform.position;
         dir = dir.normalized;

@@ -65,18 +65,14 @@ public class Enemy : MonoBehaviour, IPoolObject
         isDead = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void Damaged(int dmg)
     {
-        if (!collision.CompareTag("Projectile") || isDead)
-            return;
-
-        int trueDmg = Mathf.Min(stat.curHp , collision.GetComponent<Projectile>().weapon.stat.damage);
-        stat.curHp -= trueDmg;
-        spawnManager.Spawn_PopUpTxt(trueDmg, transform.position);
+        stat.curHp -= dmg;
+        spawnManager.Spawn_PopUpTxt(dmg, transform.position);
         StartCoroutine(enemyMove.KnockBack());
 
         // »ýÁ¸
-        if(stat.curHp > 0)
+        if (stat.curHp > 0)
         {
             anim.SetTrigger("Damaged");
         }
@@ -93,6 +89,15 @@ public class Enemy : MonoBehaviour, IPoolObject
             gm.killCount++;
             spawnManager.Spawn_Gems(difficult * tier, transform.position);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Projectile") || isDead)
+            return;
+
+        int trueDmg = Mathf.Min(stat.curHp , collision.GetComponent<Projectile>().stat.damage);
+        Damaged(trueDmg);
     }
 
     private IEnumerator DeadRoutine()

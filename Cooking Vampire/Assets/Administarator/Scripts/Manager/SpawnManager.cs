@@ -35,27 +35,27 @@ public class SpawnManager : Singleton<SpawnManager>
         PoolManager.Instance.TakeToPool<Enemy>(enemy.name, enemy);
     }
 
-    public Projectile Spawn_Projectile(Sprite sprite, Weapon weapon, float size)
+    public Projectile Spawn_Projectile(Sprite sprite, WeaponStat stat, float size, Transform parent)
     {
         Projectile projectile = PoolManager.Instance.GetFromPool<Projectile>("Projectile");
 
-        projectile.SetProjectile(sprite, weapon, size);
+        projectile.SetProjectile(sprite, stat, size, parent);
 
         return projectile;
     }
-    public Projectile_Rigid Spawn_Projectile_Rigid(Sprite sprite, Weapon weapon, float size)
+    public Projectile_Rigid Spawn_Projectile_Rigid(Sprite sprite, WeaponStat stat, float size, Transform parent)
     {
         Projectile_Rigid projectile = PoolManager.Instance.GetFromPool<Projectile_Rigid>("Projectile_Rigid");
 
-        projectile.SetProjectile(sprite, weapon, size);
+        projectile.SetProjectile(sprite, stat, size, parent);
 
         return projectile;
     }
-    public Projectile_Animation Spawn_Projectile_Anim(Sprite sprite, Weapon weapon, RuntimeAnimatorController anim, float size)
+    public Projectile_Animation Spawn_Projectile_Anim(Sprite sprite, WeaponStat stat, RuntimeAnimatorController anim, float size, Transform parent)
     {
         Projectile_Animation projectile = PoolManager.Instance.GetFromPool<Projectile_Animation>("Projectile_Animation");
 
-        projectile.SetProjectile(sprite, weapon, size);
+        projectile.SetProjectile(sprite, stat, size, parent);
         projectile.SetAnim(anim);
 
         return projectile;
@@ -118,5 +118,24 @@ public class SpawnManager : Singleton<SpawnManager>
     public void Destroy_PopUpTxt(TextMeshPro tmpro)
     {
         PoolManager.Instance.TakeToPool<TextMeshPro>(tmpro);
+    }
+
+    public Pet Spawn_Pet(string name)
+    {
+        Pet pet = PoolManager.Instance.GetFromPool<Pet>(name);
+
+        return pet;
+    }
+
+    public Effect Spawn_Effect(RuntimeAnimatorController anim, Vector2 pos)
+    {
+        Effect effect = PoolManager.Instance.GetFromPool<Effect>("Effect");
+        effect.SetEffect(anim, pos);
+
+        return effect;
+    }
+    public void Destroy_Effect(Effect effect)
+    {
+        PoolManager.Instance.TakeToPool<Effect>(effect);
     }
 }
