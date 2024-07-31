@@ -73,7 +73,7 @@
 - 경험치 젬 추가<br/>
 - 경험치 젬 흡수 구현<br/>
 
-<hr>[버전 0.7.1]</h3>
+<h3>[버전 0.7.1]</h3>
 <img src="https://github.com/user-attachments/assets/b016be12-4ba1-45e2-81c5-4b24073adea0" width="360" alt="Alpha 0.7.1">
 <br/>
 - 데미지 팝업 생성<br/>
@@ -82,7 +82,7 @@
 - 데미지 감소 디테일 추가<br/>
 - 아이템 바로 흡수되는 버그 수정<br/>
 
-<hr>[버전 0.8]</h3>
+<h3>[버전 0.8]</h3>
 <img src="https://github.com/user-attachments/assets/b5df7bbe-07eb-4218-b5a4-12b1191ea746" width="360" alt="Alpha 0.8">
 <br/>
 - 슬래쉬 이미지 추가<br/>
@@ -91,7 +91,7 @@
 - 투사체 Set함수 추가<br/>
 - 2,3번_무기 추가 (부메랑, 슬래쉬)<br/>
 
-<hr>[버전 0.9]</h3>
+<h3>[버전 0.9]</h3>
 <img src="https://github.com/user-attachments/assets/ab2c8b12-aac7-45df-9578-b63485105909" width="360" alt="Alpha 0.9">
 <br/>
 - 투사체 (애니메이션) 추가<br/>
