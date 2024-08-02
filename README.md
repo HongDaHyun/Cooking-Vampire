@@ -101,7 +101,7 @@
 - 고양이, 이펙트 등 Pooling 최적화<br/>
 
 <h3>[버전 0.9.1]</h3>
-<img src="https://github.com/user-attachments/assets/9ada47fc-eda3-4b79-bf5c-ed7f2254ccbd" width="360" alt="Alpha 0.9">
+<img src="https://github.com/user-attachments/assets/4bb6dbaa-f1e3-48d2-9c19-f1fcab3dca4a" width="360" alt="Alpha 0.9">
 <br/>
 - 스킬 아이콘 추가<br/>
 - 레벨업 패널 UI 변경<br/>

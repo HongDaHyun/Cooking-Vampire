@@ -156,7 +156,7 @@ public struct BonusStat
 
     public string Get_Discription()
     {
-        string output = $"{Get_Name()} ";
+        string output = $"{Get_Name()}¿Ã(∞°) ";
 
         if (isBase)
         {
