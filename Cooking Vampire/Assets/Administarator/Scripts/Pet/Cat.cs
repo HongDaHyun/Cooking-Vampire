@@ -63,6 +63,7 @@ public class Cat : Pet
             yield break;
 
         SetAnim(PetState.Danger);
+        SetAnim(PetState.Idle);
         yield return new WaitForSeconds(player.weaponController.Find_Weapon_Pet().stat.coolTime);
     }
 }

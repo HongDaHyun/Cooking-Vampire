@@ -100,4 +100,12 @@
 - 고양이 패턴 구현 (미완)<br/>
 - 고양이, 이펙트 등 Pooling 최적화<br/>
 
+<h3>[버전 0.9.1]</h3>
+<img src="https://github.com/user-attachments/assets/9ada47fc-eda3-4b79-bf5c-ed7f2254ccbd" width="360" alt="Alpha 0.9">
+<br/>
+- 스킬 아이콘 추가<br/>
+- 레벨업 패널 UI 변경<br/>
+- 페이퍼 패널 디자인<br/>
+- 한글 깨짐 오류 수정<br/>
+
 </details>

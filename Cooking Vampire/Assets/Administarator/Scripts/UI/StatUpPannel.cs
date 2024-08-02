@@ -14,13 +14,15 @@ public class StatUpPannel : MonoBehaviour
     WeaponController weaponController;
     UIManager uiManager;
     BtnManager btnManager;
+    SpriteData spriteData;
 
-    private void Start()
+    private void Awake()
     {
         gm = GameManager_Survivor.Instance;
         weaponController = gm.player.weaponController;
         uiManager = UIManager.Instance;
         btnManager = BtnManager.Instance;
+        spriteData = SpriteData.Instance;
     }
 
     public void SetUI(Weapon weapon)
@@ -31,6 +33,7 @@ public class StatUpPannel : MonoBehaviour
 
         titleTxt.text = weapon.title;
         contentsTxt.text = weapon.Export_LevelDiscription();
+        levelTxt.color = spriteData.levelColor[weapon.lv];
         levelTxt.text = $"Lv.{weapon.lv}";
     }
 

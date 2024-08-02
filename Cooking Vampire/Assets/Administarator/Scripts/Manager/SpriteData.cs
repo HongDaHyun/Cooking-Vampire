@@ -10,6 +10,7 @@ public class SpriteData : Singleton<SpriteData>
     public StageSprite[] stageSprites;
     public GemSprite[] gemSprites;
     public RuntimeAnimatorController[] effects;
+    public Color[] levelColor;
 
     public Sprite[] Export_StageSprites(StageType type)
     {

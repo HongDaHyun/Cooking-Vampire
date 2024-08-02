@@ -143,14 +143,10 @@ public abstract class Weapon : MonoBehaviour
 
             BonusStat[] updates = weaponPerLevels[lv - 1].updates;
 
-            foreach(BonusStat update in updates)
+            for(int i = 0; i < updates.Length; i++)
             {
-                string element = "";
-
-                element += update.Get_Discription();
-
-                if (update.type != updates[updates.Length - 1].type)
-                    element += "\n";
+                string element = updates[i].Get_Discription();
+                element += i != updates.Length - 1 ? "하고, " : "합니다.";
 
                 sum += element;
             }
