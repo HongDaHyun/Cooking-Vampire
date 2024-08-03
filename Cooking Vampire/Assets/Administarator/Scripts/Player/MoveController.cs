@@ -8,18 +8,19 @@ public class MoveController : MonoBehaviour
 {
     [ReadOnly] public Vector2 inputVec;
     [ReadOnly] public Vector2 inputLook;
+    public float defSpeed;
 
-    private Player player;
+    GameManager_Survivor gm;
     private Rigidbody2D rigid;
     private SpriteRenderer sr;
     private Animator anim;
 
     private void Awake()
     {
-        player = GetComponent<Player>();
         rigid = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        gm = GameManager_Survivor.Instance;
     }
 
     private void Start()
@@ -43,7 +44,7 @@ public class MoveController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 nextVec = inputVec.normalized * player.gm.stat.speed * Time.fixedDeltaTime;
+        Vector2 nextVec = inputVec.normalized * gm.stat.Get_SPEED(defSpeed) * Time.fixedDeltaTime;
 
         // 위치 이동
         rigid.MovePosition(rigid.position + nextVec);

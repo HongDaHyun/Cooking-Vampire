@@ -11,7 +11,7 @@ public class Weapon_5 : Weapon
 
     public override IEnumerator Active()
     {
-        int projectileCount = stat.count;
+        int projectileCount = gm.stat.Get_COUNT(stat.count);
 
         while(projectileCount > 0)
         {

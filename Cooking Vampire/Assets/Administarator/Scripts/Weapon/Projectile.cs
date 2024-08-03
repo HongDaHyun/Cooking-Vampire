@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour, IPoolObject
 
     Player player;
     protected SpawnManager spawnManager;
+    protected GameManager_Survivor gm;
     [HideInInspector] public SpriteRenderer sr;
     BoxCollider2D col;
 
@@ -19,6 +20,7 @@ public class Projectile : MonoBehaviour, IPoolObject
 
         player = GameManager_Survivor.Instance.player;
         spawnManager = SpawnManager.Instance;
+        gm = GameManager_Survivor.Instance;
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<BoxCollider2D>();
     }
@@ -32,10 +34,11 @@ public class Projectile : MonoBehaviour, IPoolObject
         Dead();
     }
 
-    public virtual void SetProjectile(Sprite sprite, WeaponStat stat, float size, Transform parent)
+    public virtual void SetProjectile(Sprite sprite, WeaponStat stat, Transform parent)
     {
         this.stat = stat;
         transform.SetParent(parent);
+        float size = gm.stat.Get_PRO_SIZE(stat.size);
         transform.localScale = new Vector2(size, size);
 
         SetSprite(sprite);

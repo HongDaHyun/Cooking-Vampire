@@ -211,33 +211,29 @@ MonoBehaviour:
   isMax: 0
   stat:
     count: 1
-    coolTime: 3
+    coolTime: 0.5
     activeTime: -1
     damage: 10
     speed: 3
     per: -1
+    size: 1
   isPet: 1
   weaponPerLevels:
-  - updates:
+  - bonusStats:
     - type: 14
       amount: 1
-      isBase: 1
-  - updates:
+  - bonusStats:
     - type: 14
       amount: 1
-      isBase: 1
-  - updates:
+  - bonusStats:
     - type: 14
       amount: 1
-      isBase: 1
-  - updates:
+  - bonusStats:
     - type: 14
       amount: 1
-      isBase: 1
-  - updates:
+  - bonusStats:
     - type: 14
-      amount: 2
-      isBase: 1
+      amount: 1
   petName: Cat
   spawnCount: 0
 --- !u!1 &50984587
@@ -691,6 +687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputVec: {x: 0, y: 0}
   inputLook: {x: 0, y: 0}
+  defSpeed: 2.5
 --- !u!114 &75309340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -805,6 +802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d93bee7fda58d44bdcbb49255286ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defRange: 8
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -1585,28 +1583,24 @@ MonoBehaviour:
     damage: 7
     speed: 15
     per: -1
+    size: 1
   isPet: 0
   weaponPerLevels:
-  - updates:
+  - bonusStats:
     - type: 14
       amount: 1
-      isBase: 1
-  - updates:
+  - bonusStats:
     - type: 14
       amount: 1
-      isBase: 1
-  - updates:
+  - bonusStats:
     - type: 14
-      amount: 2
-      isBase: 1
-  - updates:
+      amount: 1
+  - bonusStats:
     - type: 14
-      amount: 2
-      isBase: 1
-  - updates:
+      amount: 1
+  - bonusStats:
     - type: 14
-      amount: 3
-      isBase: 1
+      amount: 1
 --- !u!4 &291061501
 Transform:
   m_ObjectHideFlags: 0
@@ -2031,28 +2025,24 @@ MonoBehaviour:
     damage: 5
     speed: 10
     per: 0
+    size: 1
   isPet: 0
   weaponPerLevels:
-  - updates:
+  - bonusStats:
     - type: 14
-      amount: 3
-      isBase: 1
-  - updates:
+      amount: 1
+  - bonusStats:
     - type: 14
-      amount: 3
-      isBase: 1
-  - updates:
+      amount: 1
+  - bonusStats:
     - type: 14
-      amount: 6
-      isBase: 1
-  - updates:
+      amount: 1
+  - bonusStats:
     - type: 14
-      amount: 6
-      isBase: 1
-  - updates:
+      amount: 1
+  - bonusStats:
     - type: 14
-      amount: 9
-      isBase: 1
+      amount: 1
   coneAngle: 90
   maxCount: 9
 --- !u!4 &422487522
@@ -10978,28 +10968,24 @@ MonoBehaviour:
     damage: 5
     speed: -1
     per: -1
+    size: 2
   isPet: 0
   weaponPerLevels:
-  - updates:
+  - bonusStats:
     - type: 14
       amount: 1
-      isBase: 1
-  - updates:
+  - bonusStats:
     - type: 14
-      amount: 2
-      isBase: 1
-  - updates:
+      amount: 1
+  - bonusStats:
     - type: 14
-      amount: 2
-      isBase: 1
-  - updates:
+      amount: 1
+  - bonusStats:
     - type: 14
-      amount: 3
-      isBase: 1
-  - updates:
+      amount: 1
+  - bonusStats:
     - type: 14
-      amount: 4
-      isBase: 1
+      amount: 1
   animator: {fileID: 22100000, guid: 6485cd94245d55245be8ea70cf9dc6e7, type: 2}
 --- !u!4 &470680544
 Transform:
@@ -12361,55 +12347,14 @@ MonoBehaviour:
     damage: 10
     speed: 150
     per: -1
+    size: 0
   isPet: 0
   weaponPerLevels:
-  - updates:
-    - type: 14
-      amount: 1
-      isBase: 1
-    - type: 13
-      amount: 0.1
-      isBase: 0
-  - updates:
-    - type: 14
-      amount: 1
-      isBase: 1
-    - type: 13
-      amount: 0.1
-      isBase: 0
-    - type: 8
-      amount: 1
-      isBase: 1
-  - updates:
-    - type: 14
-      amount: 2
-      isBase: 1
-    - type: 0
-      amount: 0.5
-      isBase: 0
-    - type: 8
-      amount: 2
-      isBase: 1
-    - type: 9
-      amount: -1
-      isBase: 1
-  - updates:
-    - type: 14
-      amount: 2
-      isBase: 1
-    - type: 0
-      amount: 1
-      isBase: 0
-    - type: 9
-      amount: -1
-      isBase: 1
-  - updates:
-    - type: 14
-      amount: 3
-      isBase: 1
-    - type: 0
-      amount: 1
-      isBase: 0
+  - bonusStats: []
+  - bonusStats: []
+  - bonusStats: []
+  - bonusStats: []
+  - bonusStats: []
 --- !u!1 &774058394
 GameObject:
   m_ObjectHideFlags: 0
@@ -21653,55 +21598,14 @@ MonoBehaviour:
     damage: 10
     speed: 10
     per: 0
+    size: 0
   isPet: 0
   weaponPerLevels:
-  - updates:
-    - type: 14
-      amount: 1
-      isBase: 1
-    - type: 18
-      amount: 1
-      isBase: 1
-  - updates:
-    - type: 14
-      amount: 1
-      isBase: 1
-    - type: 3
-      amount: 0.5
-      isBase: 0
-    - type: 9
-      amount: -0.5
-      isBase: 1
-  - updates:
-    - type: 14
-      amount: 2
-      isBase: 1
-    - type: 3
-      amount: 0.5
-      isBase: 0
-    - type: 9
-      amount: -0.5
-      isBase: 1
-  - updates:
-    - type: 14
-      amount: 2
-      isBase: 1
-    - type: 3
-      amount: 0.5
-      isBase: 0
-    - type: 9
-      amount: -0.5
-      isBase: 1
-    - type: 0
-      amount: 0.5
-      isBase: 0
-  - updates:
-    - type: 18
-      amount: 2
-      isBase: 1
-    - type: 0
-      amount: 1
-      isBase: 1
+  - bonusStats: []
+  - bonusStats: []
+  - bonusStats: []
+  - bonusStats: []
+  - bonusStats: []
 --- !u!1 &1021996981
 GameObject:
   m_ObjectHideFlags: 0
@@ -22008,55 +21912,24 @@ MonoBehaviour:
     damage: 10
     speed: 150
     per: -1
+    size: 1
   isPet: 0
   weaponPerLevels:
-  - updates:
+  - bonusStats:
     - type: 14
       amount: 1
-      isBase: 1
-    - type: 13
-      amount: 0.1
-      isBase: 0
-  - updates:
+  - bonusStats:
     - type: 14
       amount: 1
-      isBase: 1
-    - type: 13
-      amount: 0.1
-      isBase: 0
-    - type: 8
-      amount: 1
-      isBase: 1
-  - updates:
+  - bonusStats:
     - type: 14
-      amount: 2
-      isBase: 1
-    - type: 0
-      amount: 0.5
-      isBase: 0
-    - type: 8
-      amount: 2
-      isBase: 1
-    - type: 9
-      amount: -1
-      isBase: 1
-  - updates:
-    - type: 14
-      amount: 2
-      isBase: 1
-    - type: 0
       amount: 1
-      isBase: 0
-    - type: 9
-      amount: -1
-      isBase: 1
-  - updates:
+  - bonusStats:
     - type: 14
-      amount: 3
-      isBase: 1
-    - type: 0
       amount: 1
-      isBase: 0
+  - bonusStats:
+    - type: 14
+      amount: 1
 --- !u!1 &1045862638
 GameObject:
   m_ObjectHideFlags: 0
@@ -22635,55 +22508,24 @@ MonoBehaviour:
     damage: 10
     speed: 10
     per: 0
+    size: 1
   isPet: 0
   weaponPerLevels:
-  - updates:
+  - bonusStats:
     - type: 14
       amount: 1
-      isBase: 1
-    - type: 18
-      amount: 1
-      isBase: 1
-  - updates:
+  - bonusStats:
     - type: 14
       amount: 1
-      isBase: 1
-    - type: 3
-      amount: 0.5
-      isBase: 0
-    - type: 9
-      amount: -0.5
-      isBase: 1
-  - updates:
+  - bonusStats:
     - type: 14
-      amount: 2
-      isBase: 1
-    - type: 3
-      amount: 0.5
-      isBase: 0
-    - type: 9
-      amount: -0.5
-      isBase: 1
-  - updates:
-    - type: 14
-      amount: 2
-      isBase: 1
-    - type: 3
-      amount: 0.5
-      isBase: 0
-    - type: 9
-      amount: -0.5
-      isBase: 1
-    - type: 0
-      amount: 0.5
-      isBase: 0
-  - updates:
-    - type: 18
-      amount: 2
-      isBase: 1
-    - type: 0
       amount: 1
-      isBase: 1
+  - bonusStats:
+    - type: 14
+      amount: 1
+  - bonusStats:
+    - type: 14
+      amount: 1
 --- !u!4 &1227791296
 Transform:
   m_ObjectHideFlags: 0
@@ -27737,6 +27579,7 @@ MonoBehaviour:
     damage: 0
     speed: 0
     per: 0
+    size: 0
   isPet: 0
   weaponPerLevels: []
   animators: []
@@ -27799,28 +27642,14 @@ MonoBehaviour:
     damage: 7
     speed: 15
     per: -1
+    size: 0
   isPet: 0
   weaponPerLevels:
-  - updates:
-    - type: 0
-      amount: 1
-      isBase: 0
-  - updates:
-    - type: 0
-      amount: 1
-      isBase: 0
-  - updates:
-    - type: 0
-      amount: 1
-      isBase: 0
-  - updates:
-    - type: 0
-      amount: 1
-      isBase: 0
-  - updates:
-    - type: 0
-      amount: 1
-      isBase: 0
+  - bonusStats: []
+  - bonusStats: []
+  - bonusStats: []
+  - bonusStats: []
+  - bonusStats: []
 --- !u!1 &1515750662
 GameObject:
   m_ObjectHideFlags: 0
@@ -36734,28 +36563,24 @@ MonoBehaviour:
     damage: 3
     speed: -1
     per: -1
+    size: 1.5
   isPet: 0
   weaponPerLevels:
-  - updates:
+  - bonusStats:
     - type: 14
       amount: 1
-      isBase: 1
-  - updates:
+  - bonusStats:
     - type: 14
       amount: 1
-      isBase: 1
-  - updates:
+  - bonusStats:
     - type: 14
       amount: 1
-      isBase: 1
-  - updates:
+  - bonusStats:
     - type: 14
-      amount: 2
-      isBase: 1
-  - updates:
+      amount: 1
+  - bonusStats:
     - type: 14
-      amount: 2
-      isBase: 1
+      amount: 1
   animators:
   - {fileID: 9100000, guid: f331db6e5b10a9f45875a5776005146e, type: 2}
   - {fileID: 22100000, guid: 46f4b2eefe5b83848abe9e21d157aa15, type: 2}
@@ -37832,17 +37657,25 @@ MonoBehaviour:
   killCount: 0
   maxExp: 5
   stat:
+    dmg_p: 0
     defense: 0
     maxHealth: 20
-    speed: 2.5
-    missPercent: 0
-    critPercent: 0
+    speed_p: 0
+    miss_p: 0
+    crit_p: 0
     luck: 0
-    expBonus: 1
+    expBonus_p: 0
+    active_p: 0
+    cool_p: 0
     heal: 0
-    drainPercent: 0
-    range: 7
-    knockBack: 3
+    drain_p: 0
+    proSize_p: 0
+    proSpeed_p: 0
+    count: 0
+    element: 0
+    range: 0
+    knockBack: 0
+    per: 0
   exp: 0
   health: 0
 --- !u!4 &1968511194

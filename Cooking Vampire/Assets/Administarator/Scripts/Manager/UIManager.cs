@@ -69,7 +69,7 @@ public class UIManager : Singleton<UIManager>
         foreach (StatUpPannel pannel in pannels)
         {
             bool isWeapon = Random.Range(0, 2) == 0; // 0 -> Weapon / 1 -> Etc...
-            isWeapon = true; // test¿ë
+            isWeapon = true;
 
             if (isWeapon)
             {

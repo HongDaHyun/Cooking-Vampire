@@ -69,17 +69,50 @@ public abstract class Weapon : MonoBehaviour
             return;
         }
 
-        foreach (BonusStat update in weaponPerLevels[lv - 1].updates)
-            update.Update_Stat(ref stat);
+        foreach (BonusStat bonus in weaponPerLevels[lv - 1].bonusStats)
+            Weapon_UpStat(bonus.type, (int)bonus.amount);
 
         lv++;
+    }
+    private void Weapon_UpStat(StatType statType, int amount)
+    {
+        if (player.data.IsExist(statType))
+            amount += Mathf.RoundToInt(player.data.Find_Bonus(statType).amount * amount);
+
+        switch(statType)
+        {
+            case StatType.COUNT:
+                stat.count += amount;
+                break;
+            case StatType.COOL:
+                stat.coolTime += stat.coolTime * amount / 100f;
+                break;
+            case StatType.ACTIVE:
+                stat.activeTime += stat.activeTime * amount / 100f;
+                break;
+            case StatType.DMG:
+                stat.damage += Mathf.RoundToInt(stat.damage * amount / 100f);
+                break;
+            case StatType.PRO_SPEED:
+                stat.speed += stat.speed * amount / 100f;
+                break;
+            case StatType.PRO_SIZE:
+                stat.size += stat.size * amount / 100f;
+                break;
+            case StatType.PER:
+                stat.per += amount;
+                break;
+            default:
+                break;
+        }
+
     }
     
     protected abstract void MaxLevel();
 
     protected Projectile_Rigid FireDir(Vector3 dir)
     {
-        Projectile_Rigid projectile = spawnManager.Spawn_Projectile_Rigid(GetProjectileSprite(), stat, 1, transform);
+        Projectile_Rigid projectile = spawnManager.Spawn_Projectile_Rigid(GetProjectileSprite(), stat, transform);
 
         dir = dir.normalized;
         projectile.SetDir(dir);
@@ -92,7 +125,7 @@ public abstract class Weapon : MonoBehaviour
     }
     protected Projectile_Rigid Fire(Vector3 targetPos)
     {
-        Projectile_Rigid projectile = spawnManager.Spawn_Projectile_Rigid(GetProjectileSprite(), stat, 1, transform);
+        Projectile_Rigid projectile = spawnManager.Spawn_Projectile_Rigid(GetProjectileSprite(), stat, transform);
 
         Vector3 dir = targetPos - transform.position;
         dir = dir.normalized;
@@ -125,7 +158,7 @@ public abstract class Weapon : MonoBehaviour
         Vector2 center = transform.position;
 
         float angle = Random.Range(0f, Mathf.PI * 2);
-        float radius = gm.stat.range;
+        float radius = gm.stat.Get_RANGE();
 
         float x = center.x + radius * Mathf.Cos(angle);
         float y = center.y + radius * Mathf.Sin(angle);
@@ -141,11 +174,11 @@ public abstract class Weapon : MonoBehaviour
         {
             string sum = "";
 
-            BonusStat[] updates = weaponPerLevels[lv - 1].updates;
+            BonusStat[] updates = weaponPerLevels[lv - 1].bonusStats;
 
             for(int i = 0; i < updates.Length; i++)
             {
-                string element = updates[i].Get_Discription();
+                string element = updates[i].Get_Name() + "이(가) " + updates[i].Get_Discription();
                 
                 element += i != updates.Length - 1 ? "하고, " : "합니다.";
 
@@ -170,12 +203,13 @@ public struct WeaponStat
     public int damage;
     public float speed;
     public int per; // 관통력
+    public float size;
 }
 
 [System.Serializable]
 public struct WeaponLevel
 {
-    public BonusStat[] updates;
+    public BonusStat[] bonusStats;
 }
 
 public enum WeaponSpriteType { Default, Projectile, Special }

@@ -12,8 +12,8 @@ public class Cat : Pet
 
         SetFlip(target);
         SetAnim(PetState.Walk);
-        float speed = player.weaponController.Find_Weapon_Pet().stat.speed;
-        float range = gm.stat.range / 3f;
+        float speed = gm.stat.Get_PRO_SPEED(player.weaponController.Find_Weapon_Pet().stat.speed);
+        float range = gm.stat.Get_RANGE() / 3f;
 
         while (Vector2.Distance(transform.position, target.position) > range && isMove)
         {
@@ -44,13 +44,24 @@ public class Cat : Pet
             yield break;
 
         SetAnim(PetState.Atk);
+        WeaponStat stat = player.weaponController.Find_Weapon_Pet().stat;
+
         Projectile_Animation projectile =
-            spawnManager.Spawn_Projectile_Anim(projectileSprite, player.weaponController.Find_Weapon_Pet().stat, projectileAnim, 1, transform);
-        projectile.transform.localPosition = new Vector2(spriteRenderer.flipX ? -gm.stat.range / 3f : gm.stat.range / 3f, 0);
+            spawnManager.Spawn_Projectile_Anim(projectileSprite, stat, projectileAnim, transform);
+        if(spriteRenderer.flipX)
+        {
+            projectile.transform.localPosition = new Vector2(-(gm.stat.Get_RANGE() + gm.stat.Get_PRO_SIZE(stat.size)) / 3f, 0);
+            projectile.sr.flipX = true;
+        }
+        else
+        {
+            projectile.transform.localPosition = new Vector2((gm.stat.Get_RANGE() + gm.stat.Get_PRO_SIZE(stat.size)) / 3f, 0);
+            projectile.sr.flipX = false;
+        }
 
         yield return new WaitUntil(() => projectile.isFinish);
         SetAnim(PetState.Idle);
-        yield return new WaitForSeconds(player.weaponController.Find_Weapon_Pet().stat.coolTime);
+        yield return new WaitForSeconds(gm.stat.Get_COOL(stat.coolTime));
     }
 
     protected override IEnumerator DangerRoutine()
@@ -64,6 +75,6 @@ public class Cat : Pet
 
         SetAnim(PetState.Danger);
         SetAnim(PetState.Idle);
-        yield return new WaitForSeconds(player.weaponController.Find_Weapon_Pet().stat.coolTime);
+        yield return new WaitForSeconds(gm.stat.Get_COOL(player.weaponController.Find_Weapon_Pet().stat.coolTime));
     }
 }

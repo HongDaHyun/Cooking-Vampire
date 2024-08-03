@@ -40,7 +40,7 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
 
     public void Player_GainExp(int amount)
     {
-        exp += Mathf.RoundToInt(amount * stat.expBonus);
+        exp += stat.Get_EXPBONUS(amount);
 
         if(exp >= maxExp)
             Player_LevelUp();
@@ -62,5 +62,71 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
         bm.Tab(um.lvUpPannel);
         bm.Stop();
         um.Set_StatUpPannels_Ran();
+    }
+    private void Player_UpStat(StatType statType, int amount)
+    {
+        if (player.data.IsExist(statType))
+            amount += Mathf.RoundToInt(player.data.Find_Bonus(statType).amount * amount);
+
+        switch(statType)
+        {
+            case StatType.DMG:
+                stat.dmg_p += amount;
+                break;
+            case StatType.DEF:
+                stat.defense += amount;
+                break;
+            case StatType.HP:
+                stat.maxHealth += amount;
+                break;
+            case StatType.SPEED:
+                stat.speed_p += amount;
+                break;
+            case StatType.MISS:
+                stat.miss_p += amount;
+                break;
+            case StatType.CRIT:
+                stat.crit_p += amount;
+                break;
+            case StatType.LUCK:
+                stat.luck += amount;
+                break;
+            case StatType.EXP:
+                stat.expBonus_p += amount;
+                break;
+            case StatType.ACTIVE:
+                stat.active_p += amount;
+                break;
+            case StatType.COOL:
+                stat.cool_p += amount;
+                break;
+            case StatType.HEAL:
+                stat.heal += amount;
+                break;
+            case StatType.DRAIN:
+                stat.drain_p += amount;
+                break;
+            case StatType.PRO_SIZE:
+                stat.proSize_p += amount;
+                break;
+            case StatType.PRO_SPEED:
+                stat.proSpeed_p += amount;
+                break;
+            case StatType.COUNT:
+                stat.count += amount;
+                break;
+            case StatType.ELE:
+                stat.element += amount;
+                break;
+            case StatType.RANGE:
+                stat.range += amount;
+                break;
+            case StatType.BACK:
+                stat.knockBack += amount;
+                break;
+            case StatType.PER:
+                stat.per += amount;
+                break;
+        }
     }
 }

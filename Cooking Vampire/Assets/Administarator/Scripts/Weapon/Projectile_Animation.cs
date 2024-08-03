@@ -17,6 +17,7 @@ public class Projectile_Animation : Projectile
     {
         base.OnGettingFromPool();
         isFinish = false;
+        sr.flipX = false;
     }
 
     public void SetAnim(RuntimeAnimatorController anim)

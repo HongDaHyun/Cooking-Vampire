@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Scanner : MonoBehaviour
 {
+    public float defRange;
     public LayerMask enemyLayer;
     public LayerMask itemLayer;
 
@@ -13,7 +14,7 @@ public class Scanner : MonoBehaviour
 
     public Transform nearestTarget;
 
-    private Player player;
+    Player player;
 
     private void Awake()
     {
@@ -22,8 +23,8 @@ public class Scanner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        targets = Physics2D.CircleCastAll(transform.position, player.gm.stat.range, Vector2.zero, 0, enemyLayer);
-        itemTargets = Physics2D.CircleCastAll(transform.position, player.gm.stat.range / 3, Vector2.zero, 0, itemLayer);
+        targets = Physics2D.CircleCastAll(transform.position, player.gm.stat.Get_RANGE(defRange), Vector2.zero, 0, enemyLayer);
+        itemTargets = Physics2D.CircleCastAll(transform.position, player.gm.stat.Get_RANGE(defRange) / 3, Vector2.zero, 0, itemLayer);
         DrainGem();
         UpdateNearest();
     }

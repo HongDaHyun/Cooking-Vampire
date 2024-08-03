@@ -18,7 +18,7 @@ public class Weapon_1 : Weapon
     {
         Fire_Nearest();
         yield return new WaitForSeconds(0.2f);
-        for(int i = 1; i < stat.count; i++)
+        for(int i = 1; i < gm.stat.Get_COUNT(stat.count); i++)
         {
             yield return new WaitForSeconds(0.2f);
             Fire_Ran();

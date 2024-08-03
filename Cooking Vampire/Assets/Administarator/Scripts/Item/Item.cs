@@ -41,7 +41,7 @@ public abstract class Item : MonoBehaviour, IPoolObject
 
     protected virtual void Drain()
     {
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 5f * Time.fixedDeltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, (gm.stat.Get_SPEED(player.moveController.defSpeed) + 1f) * Time.fixedDeltaTime);
 
         if (Vector2.Distance(transform.position, player.transform.position) <= 0.1f)
             Destroy();

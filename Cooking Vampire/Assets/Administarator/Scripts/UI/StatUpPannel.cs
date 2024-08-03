@@ -9,6 +9,7 @@ public class StatUpPannel : MonoBehaviour
     int id;
     public Image iconImg;
     public TextMeshProUGUI titleTxt, contentsTxt, levelTxt;
+    private bool isWeapon;
 
     GameManager_Survivor gm;
     WeaponController weaponController;
@@ -27,6 +28,7 @@ public class StatUpPannel : MonoBehaviour
 
     public void SetUI(Weapon weapon)
     {
+        isWeapon = true;
         id = weapon.ID;
 
         iconImg.sprite = weapon.icon;
@@ -35,6 +37,10 @@ public class StatUpPannel : MonoBehaviour
         contentsTxt.text = weapon.Export_LevelDiscription();
         levelTxt.color = spriteData.levelColor[weapon.lv];
         levelTxt.text = $"Lv.{weapon.lv}";
+    }
+    public void SetUI()
+    {
+        isWeapon = false;
     }
 
     public void OnClick()

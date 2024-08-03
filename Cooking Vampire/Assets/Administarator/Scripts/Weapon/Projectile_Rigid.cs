@@ -27,15 +27,15 @@ public class Projectile_Rigid : Projectile
         }
     }
 
-    public override void SetProjectile(Sprite sprite, WeaponStat stat, float size, Transform parent)
+    public override void SetProjectile(Sprite sprite, WeaponStat stat, Transform parent)
     {
-        base.SetProjectile(sprite, stat, size, parent);
-        curPer = stat.per;
+        base.SetProjectile(sprite, stat, parent);
+        curPer = gm.stat.Get_Per(stat.per);
     }
 
     public void SetDir(Vector3 dir)
     {
-        rigid.velocity = dir * stat.speed;
+        rigid.velocity = dir * gm.stat.Get_PRO_SPEED(stat.speed);
     }
     public void SetDir(Vector3 dir, float speed)
     {

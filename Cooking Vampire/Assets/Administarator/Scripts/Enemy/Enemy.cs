@@ -96,7 +96,7 @@ public class Enemy : MonoBehaviour, IPoolObject
         if (!collision.CompareTag("Projectile") || isDead)
             return;
 
-        int trueDmg = Mathf.Min(stat.curHp , collision.GetComponent<Projectile>().stat.damage);
+        int trueDmg = Mathf.Min(stat.curHp , gm.stat.Get_DMG(collision.GetComponent<Projectile>().stat.damage));
         Damaged(trueDmg);
     }
 

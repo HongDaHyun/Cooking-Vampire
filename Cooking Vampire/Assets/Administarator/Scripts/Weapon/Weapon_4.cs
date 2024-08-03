@@ -10,7 +10,7 @@ public class Weapon_4 : Weapon
 
     public override IEnumerator Active()
     {
-        for (int i = 1; i <= stat.count; i++)
+        for (int i = 1; i <= gm.stat.Get_COUNT(stat.count); i++)
             yield return Slash();
         yield return null;
     }
@@ -21,7 +21,7 @@ public class Weapon_4 : Weapon
 
     private IEnumerator Slash()
     {
-        Projectile_Animation projectile = spawnManager.Spawn_Projectile_Anim(GetProjectileSprite(), stat, animator, 2f, null);
+        Projectile_Animation projectile = spawnManager.Spawn_Projectile_Anim(GetProjectileSprite(), stat, animator, null);
 
         Transform target = player.scanner.Export_RanTarget();
         projectile.transform.position = target ? target.position : RanPos();

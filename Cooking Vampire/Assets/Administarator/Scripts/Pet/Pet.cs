@@ -40,7 +40,7 @@ public abstract class Pet : MonoBehaviour, IPoolObject
 
     private void Update()
     {
-        if (Vector2.Distance(player.transform.position, transform.position) > gm.stat.range * 2f)
+        if (Vector2.Distance(player.transform.position, transform.position) > player.scanner.defRange * 2f)
             Warp();
     }
 
