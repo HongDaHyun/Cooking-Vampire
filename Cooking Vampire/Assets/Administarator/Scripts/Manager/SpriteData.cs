@@ -11,6 +11,8 @@ public class SpriteData : Singleton<SpriteData>
     public GemSprite[] gemSprites;
     public RuntimeAnimatorController[] effects;
     public Color[] levelColor;
+    public TierColor[] tierColor;
+    public Sprite[] statSprites;
 
     public Sprite[] Export_StageSprites(StageType type)
     {
@@ -22,6 +24,11 @@ public class SpriteData : Singleton<SpriteData>
     public GemSprite Export_GemSprites(int unit)
     {
         return Array.Find(gemSprites, data => data.unit == unit);
+    }
+
+    public Color Export_TierColor(Tier tier)
+    {
+        return Array.Find(tierColor, color => color.tier == tier).color;
     }
 }
 
@@ -38,4 +45,11 @@ public struct GemSprite
     public int unit;
     public Sprite idleSprite;
     public Sprite moveSprite;
+}
+
+[Serializable]
+public struct TierColor
+{
+    public Tier tier;
+    public Color color;
 }

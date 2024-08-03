@@ -84,7 +84,7 @@ public struct BonusStat
     }
     public string Get_Discription()
     {
-        string output = amount.ToString();
+        string output = Mathf.Abs(amount).ToString();
         switch (type)
         {
             case StatType.DMG:
@@ -115,5 +115,77 @@ public struct BonusStat
         }
         output += amount > 0 ? "증가" : "감소";
         return output;
+    }
+
+    public void Set_Amount(Tier tier)
+    {
+        int baseAmount = 0;
+
+        switch(type)
+        {
+            case StatType.DMG:
+                baseAmount = 5;
+                break;
+            case StatType.DEF:
+                baseAmount = 1;
+                break;
+            case StatType.HP:
+                baseAmount = 3;
+                break;
+            case StatType.SPEED:
+                baseAmount = 5;
+                break;
+            case StatType.MISS:
+                baseAmount = 1;
+                break;
+            case StatType.CRIT:
+                baseAmount = 1;
+                break;
+            case StatType.LUCK:
+                baseAmount = 1;
+                break;
+            case StatType.EXP: // 완
+                baseAmount = 5;
+                break;
+            case StatType.ACTIVE: // 완
+                baseAmount = 5;
+                break;
+            case StatType.COOL: // 완
+                baseAmount = -5;
+                break;
+            case StatType.HEAL:
+                baseAmount = 1;
+                break;
+            case StatType.DRAIN:
+                baseAmount = 1;
+                break;
+            case StatType.PRO_SIZE: // 완
+                baseAmount = 5;
+                break;
+            case StatType.PRO_SPEED: // 완
+                baseAmount = 5;
+                break;
+            case StatType.COUNT: // 완
+                baseAmount = 1;
+                break;
+            case StatType.ELE:
+                baseAmount = 1;
+                break;
+            case StatType.RANGE: // 완
+                baseAmount = 10;
+                break;
+            case StatType.BACK:
+                baseAmount = 1;
+                break;
+            case StatType.PER: // 완
+                baseAmount = 1;
+                break;
+
+        }
+
+        if (type != StatType.COUNT || type != StatType.PER)
+            baseAmount *= (int)tier;
+
+        amount = baseAmount;
     }
 }

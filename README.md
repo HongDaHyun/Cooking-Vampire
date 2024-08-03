@@ -1,7 +1,7 @@
 # Cooking-Vampire
 
 <details>
-<summary>알파 테스트</summary>
+<summary>알파 테스트[0.1~]</summary>
 
 <h3>[버전 0.1]</h3>
 <img src="https://github.com/HongDaHyun/Cooking-Vampire/assets/101586627/a21f1cca-fca1-45b9-a01d-434c8cef9984" width="360" alt="Alpha 0.1">
@@ -101,17 +101,27 @@
 - 고양이, 이펙트 등 Pooling 최적화<br/>
 
 <h3>[버전 0.9.1]</h3>
-<img src="https://github.com/user-attachments/assets/4bb6dbaa-f1e3-48d2-9c19-f1fcab3dca4a" width="360" alt="Alpha 0.9">
+<img src="https://github.com/user-attachments/assets/4bb6dbaa-f1e3-48d2-9c19-f1fcab3dca4a" width="360" alt="Alpha 0.9.1">
 <br/>
 - 스킬 아이콘 추가<br/>
 - 레벨업 패널 UI 변경<br/>
 - 페이퍼 패널 디자인<br/>
 - 한글 깨짐 오류 수정<br/>
+</details>
 
+<details>
+<summary>알파 테스트[0.10~]</summary>
 <h3>[버전 0.10]</h3>
 - 스탯 계산 공식 변경<br/>
 - 스탯 일부 적용<br/>
 - 잔버그 수정<br/>
 - 무기 사거리, 투사체 크기에 비례해 생성 위치 조정<br/>
 
+<h3>[버전 0.10.1]</h3>
+<img src="https://github.com/user-attachments/assets/5cb303da-d292-4c71-b073-070ec9f8e0b7" width="360" alt="Alpha 0.10.1">
+<br/>
+- 스탯 업그레이드 구현<br/>
+- UpStatPannel UI 재조정<br/>
+- 티어, 티어색 추가<br/>
+- 스탯 아이콘 구현<br/>
 </details>

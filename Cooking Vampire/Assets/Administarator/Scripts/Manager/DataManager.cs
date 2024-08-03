@@ -31,6 +31,24 @@ public class DataManager : Singleton<DataManager>
     {
         return Array.Find(weaponDatas, data => data.weaponType == type && data.tier == tier);
     }
+
+    public string Get_Tier_Name(Tier tier)
+    {
+        switch(tier)
+        {
+            case Tier.Common:
+                return "일반";
+            case Tier.Rare:
+                return "레어";
+            case Tier.Epic:
+                return "에픽";
+            case Tier.Legend:
+                return "레전드";
+            default:
+                return "";
+        }
+    }
 }
 
+public enum Tier { Common = 1, Rare = 2, Epic = 4, Legend = 8 }
 public enum StageType { Grass = 0, Cave, Swarm, Forest }

@@ -9,12 +9,14 @@ public class StatUpPannel : MonoBehaviour
     int id;
     public Image iconImg;
     public TextMeshProUGUI titleTxt, contentsTxt, levelTxt;
+    private BonusStat bonusStat;
     private bool isWeapon;
 
     GameManager_Survivor gm;
     WeaponController weaponController;
     UIManager uiManager;
     BtnManager btnManager;
+    DataManager dataManager;
     SpriteData spriteData;
 
     private void Awake()
@@ -24,6 +26,7 @@ public class StatUpPannel : MonoBehaviour
         uiManager = UIManager.Instance;
         btnManager = BtnManager.Instance;
         spriteData = SpriteData.Instance;
+        dataManager = DataManager.Instance;
     }
 
     public void SetUI(Weapon weapon)
@@ -38,15 +41,32 @@ public class StatUpPannel : MonoBehaviour
         levelTxt.color = spriteData.levelColor[weapon.lv];
         levelTxt.text = $"Lv.{weapon.lv}";
     }
-    public void SetUI()
+    public void SetUI(int statID)
     {
         isWeapon = false;
+        id = statID;
+        Tier tier = gm.Get_Tier();
+
+        bonusStat = new BonusStat();
+        bonusStat.type = (StatType)id;
+        bonusStat.Set_Amount(tier);
+
+        iconImg.sprite = spriteData.statSprites[id];
+
+        titleTxt.text = bonusStat.Get_Name();
+        contentsTxt.text = $"{bonusStat.Get_Name()}이(가) {bonusStat.Get_Discription()}합니다.";
+        levelTxt.color = spriteData.Export_TierColor(tier);
+        levelTxt.text = dataManager.Get_Tier_Name(tier);
     }
 
     public void OnClick()
     {
         gm.playerLvCount--;
-        weaponController.LevelUpWeapon(id);
+
+        if (isWeapon)
+            weaponController.LevelUpWeapon(id);
+        else
+            gm.Player_UpStat(bonusStat.type, (int)bonusStat.amount);
 
         if (gm.playerLvCount <= 0)
         {

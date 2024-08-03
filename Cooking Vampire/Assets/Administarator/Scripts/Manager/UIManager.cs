@@ -69,15 +69,11 @@ public class UIManager : Singleton<UIManager>
         foreach (StatUpPannel pannel in pannels)
         {
             bool isWeapon = Random.Range(0, 2) == 0; // 0 -> Weapon / 1 -> Etc...
-            isWeapon = true;
 
             if (isWeapon)
             {
                 if (weapons.Count == 0 || weapons == null)
-                {
-                    // StatUpPannel_Passive(pannel)
-                    // return;
-                }
+                    pannel.SetUI(Random.Range(0, System.Enum.GetValues(typeof(StatType)).Length));
 
                 int ranIndex = Random.Range(0, weapons.Count);
                 Weapon weapon = weapons[ranIndex];
@@ -86,9 +82,7 @@ public class UIManager : Singleton<UIManager>
                 pannel.SetUI(weapon);
             }
             else
-            {
-                // StatUpPannel_Passive(pannel);
-            }
+                pannel.SetUI(Random.Range(0, System.Enum.GetValues(typeof(StatType)).Length));
         }
     }
 }

@@ -63,7 +63,7 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
         bm.Stop();
         um.Set_StatUpPannels_Ran();
     }
-    private void Player_UpStat(StatType statType, int amount)
+    public void Player_UpStat(StatType statType, int amount)
     {
         if (player.data.IsExist(statType))
             amount += Mathf.RoundToInt(player.data.Find_Bonus(statType).amount * amount);
@@ -128,5 +128,19 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
                 stat.per += amount;
                 break;
         }
+    }
+
+    public Tier Get_Tier()
+    {
+        int ran = Random.Range(0, 100 + stat.luck);
+
+        if (ran < 3 + stat.luck)
+            return Tier.Legend;
+        else if (ran < 5 + stat.luck)
+            return Tier.Epic;
+        else if (ran < 40)
+            return Tier.Rare;
+        else
+            return Tier.Common;
     }
 }
