@@ -66,7 +66,7 @@ public class WeaponController : MonoBehaviour
     {
         weapon.gameObject.SetActive(true);
 
-        while(true)
+        while(!player.isDead)
         {
             yield return weapon.Active();
 

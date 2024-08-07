@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile_Animation : Projectile
 {
-    Animator animator;
+    protected Animator animator;
     [HideInInspector] public bool isFinish;
 
     public override void OnCreatedInPool()
@@ -25,7 +25,7 @@ public class Projectile_Animation : Projectile
         animator.runtimeAnimatorController = anim;
     }
 
-    private void Finish()
+    protected virtual void Finish()
     {
         isFinish = true;
         spawnManager.Destroy_Projectile(this);

@@ -51,4 +51,8 @@ public class BtnManager : Singleton<BtnManager>
     {
         Time.timeScale = 1;
     }
+    public void TestBoss()
+    {
+        UIManager.Instance.bossPannel.SetUI();
+    }
 }

@@ -60,6 +60,15 @@ public class SpawnManager : Singleton<SpawnManager>
 
         return projectile;
     }
+    public Projectile_Animation Spawn_Projectile_Trap(Sprite sprite, WeaponStat stat, RuntimeAnimatorController anim, Transform parent)
+    {
+        Projectile_Animation projectile = PoolManager.Instance.GetFromPool<Projectile_Animation>("Projectile_Trap");
+
+        projectile.SetProjectile(sprite, stat, parent);
+        projectile.SetAnim(anim);
+
+        return projectile;
+    }
     public void Destroy_Projectile(Projectile projectile)
     {
         PoolManager.Instance.TakeToPool<Projectile>(projectile.name, projectile);

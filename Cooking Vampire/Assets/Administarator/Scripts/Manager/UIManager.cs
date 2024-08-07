@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 using Sirenix.OdinInspector;
+using DG.Tweening;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -17,6 +18,7 @@ public class UIManager : Singleton<UIManager>
     public TextMeshProUGUI levelTxt, killTxt, timeTxt;
     public TextMeshProUGUI[] weaponTest_Btn;
     public RectTransform lvUpPannel;
+    public BossPannel bossPannel;
 
     private void LateUpdate()
     {
@@ -84,5 +86,53 @@ public class UIManager : Singleton<UIManager>
             else
                 pannel.SetUI(Random.Range(0, System.Enum.GetValues(typeof(StatType)).Length));
         }
+    }
+}
+
+[System.Serializable]
+public class BossPannel
+{
+    public Image redPannel;
+
+    public void SetUI()
+    {
+        BtnManager bm = BtnManager.Instance;
+                bm.Stop();
+
+        float delay = 1f;
+        List<Image> warningImgs = redPannel.GetComponentsInChildren<Image>().ToList();
+        warningImgs.RemoveAt(0);
+
+        redPannel.gameObject.SetActive(true);
+
+        Color red = redPannel.color;
+        red.a = 0.2f;
+        redPannel.color = red;
+        foreach (Image img in warningImgs)
+            img.color = new Vector4(1, 1, 1, 0);
+
+        Sequence warningSeq = DOTween.Sequence().SetUpdate(true);
+        Tween redPannelFadeTween = redPannel.DOFade(0.5f, delay).SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
+
+        for (int i = 0; i < warningImgs.Count; i++)
+        {
+            if (i % 4 == 0 && i != 0)
+            {
+                delay = Mathf.Max(0.1f, delay / 2f);
+                warningSeq.AppendCallback(() => {
+                    redPannelFadeTween.Kill();
+                    redPannelFadeTween = redPannel.DOFade(0.5f, delay).SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
+                });
+            }
+            warningSeq.Append(warningImgs[i].DOFade(1f, delay));
+        }
+        warningSeq.AppendCallback(() => redPannelFadeTween.Kill());
+        warningSeq.Append(redPannel.DOFade(0f, 1f))
+            .OnComplete(() => {
+                redPannel.gameObject.SetActive(false);
+                bm.Resume();
+            });
+        foreach (Image img in warningImgs)
+            warningSeq.Join(img.DOFade(0f, 1f));
     }
 }

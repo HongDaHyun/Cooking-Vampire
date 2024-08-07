@@ -10,6 +10,7 @@ public class MoveController : MonoBehaviour
     [ReadOnly] public Vector2 inputLook;
     public float defSpeed;
 
+    Player player;
     GameManager_Survivor gm;
     private Rigidbody2D rigid;
     private SpriteRenderer sr;
@@ -21,6 +22,7 @@ public class MoveController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         gm = GameManager_Survivor.Instance;
+        player = GetComponent<Player>();
     }
 
     private void Start()
@@ -34,7 +36,7 @@ public class MoveController : MonoBehaviour
     }
     IEnumerator LookRoutine()
     {
-        while(true)
+        while(!player.isDead)
         {
             if (inputVec != Vector2.zero)
                 inputLook = inputVec;
@@ -44,6 +46,9 @@ public class MoveController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (player.isDead)
+            return;
+
         Vector2 nextVec = inputVec.normalized * gm.stat.Get_SPEED(defSpeed) * Time.fixedDeltaTime;
 
         // 위치 이동
@@ -52,6 +57,9 @@ public class MoveController : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (player.isDead)
+            return;
+
         // 움직임 애니메이션
         anim.SetFloat("Speed", inputVec.magnitude);
 

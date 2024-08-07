@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour, IPoolObject
     protected SpawnManager spawnManager;
     protected GameManager_Survivor gm;
     [HideInInspector] public SpriteRenderer sr;
-    BoxCollider2D col;
+    protected BoxCollider2D col;
 
     public virtual void OnCreatedInPool()
     {

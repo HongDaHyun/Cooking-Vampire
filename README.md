@@ -124,4 +124,14 @@
 - UpStatPannel UI 재조정<br/>
 - 티어, 티어색 추가<br/>
 - 스탯 아이콘 구현<br/>
+
+<h3>[버전 0.11]</h3>
+<img src="https://github.com/user-attachments/assets/1e76eb8c-08c1-479d-9ed4-102a2bbeca2b" width="360" alt="Alpha 0.11">
+<br/>
+- 플레이어 피격 구현<br/>
+- 플레이어 사망 구현<br/>
+- 3번 무기 조정 (플레이어 바라보는 기준으로 생성)<br/>
+- 7번 무기 제작 (트랩)<br/>
+- 트랩형 투사체 구현<br/>
+- 보스 등장 경고 UI 추가<br/>
 </details>

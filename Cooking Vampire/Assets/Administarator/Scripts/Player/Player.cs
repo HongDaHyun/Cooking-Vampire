@@ -9,6 +9,12 @@ public class Player : MonoBehaviour
     [HideInInspector] public WeaponController weaponController;
     [HideInInspector] public Scanner scanner;
     [HideInInspector] public Animator anim;
+    [HideInInspector] public SpriteRenderer sr;
+    Spawner spawner;
+    Rigidbody2D rigid;
+
+    private bool isHit;
+    public bool isDead;
 
     [HideInInspector] public GameManager_Survivor gm;
     private DataManager dataManager;
@@ -19,7 +25,10 @@ public class Player : MonoBehaviour
         moveController = GetComponent<MoveController>();
         weaponController = GetComponentInChildren<WeaponController>();
         scanner = GetComponent<Scanner>();
+        sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        rigid = GetComponent<Rigidbody2D>();
+        spawner = GetComponentInChildren<Spawner>();
     }
 
     private void Start()
@@ -30,6 +39,46 @@ public class Player : MonoBehaviour
         data = dataManager.Export_PlayerData();
 
         anim.runtimeAnimatorController = data.animator;
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Enemy") && !isHit)
+        {
+            Hitted(Mathf.Max(1, (int)(gm.curGameTime / 10f)));
+        }
+    }
+
+    private void Hitted(int dmg)
+    {
+        isHit = true;
+
+        gm.health -= Mathf.Min(gm.health, dmg);
+
+        if(gm.health <= 0)
+        {
+            Dead();
+        }
+        else
+        {
+            anim.SetTrigger("Damaged");
+        }
+    }
+    private void Dead()
+    {
+        isDead = true;
+        rigid.simulated = false;
+
+        spawner.gameObject.SetActive(false);
+        weaponController.gameObject.SetActive(false);
+
+        anim.SetTrigger("Dead");
+        Debug.Log("게임오버");
+    }
+
+    private void ResetHit()
+    {
+        isHit = false;
     }
 }
 
