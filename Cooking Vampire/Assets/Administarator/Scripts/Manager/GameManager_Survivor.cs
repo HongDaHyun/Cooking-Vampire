@@ -78,6 +78,7 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
                 break;
             case StatType.HP:
                 stat.maxHealth += amount;
+                health += amount;
                 break;
             case StatType.SPEED:
                 stat.speed_p += amount;

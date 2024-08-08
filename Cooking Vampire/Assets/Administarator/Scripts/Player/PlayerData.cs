@@ -40,13 +40,13 @@ public struct BonusStat
     {
         switch (type)
         {
-            case StatType.DMG: // 완
+            case StatType.DMG:
                 return "공격력";
             case StatType.DEF:
                 return "방어력";
             case StatType.HP:
                 return "체력";
-            case StatType.SPEED: // 완
+            case StatType.SPEED:
                 return "이동속도";
             case StatType.MISS:
                 return "회피 확률";
@@ -54,29 +54,29 @@ public struct BonusStat
                 return "치명타 확률";
             case StatType.LUCK:
                 return "운";
-            case StatType.EXP: // 완
+            case StatType.EXP:
                 return "경험치 배율";
-            case StatType.ACTIVE: // 완
+            case StatType.ACTIVE:
                 return "무기 지속 시간";
-            case StatType.COOL: // 완
+            case StatType.COOL:
                 return "무기 쿨타임";
             case StatType.HEAL:
                 return "체력 재생량";
             case StatType.DRAIN:
                 return "체력 흡수 확률";
-            case StatType.PRO_SIZE: // 완
+            case StatType.PRO_SIZE:
                 return "투사체 크기";
-            case StatType.PRO_SPEED: // 완
+            case StatType.PRO_SPEED:
                 return "투사체 속도";
-            case StatType.COUNT: // 완
+            case StatType.COUNT:
                 return "투사체 개수";
             case StatType.ELE:
                 return "원소 데미지";
-            case StatType.RANGE: // 완
+            case StatType.RANGE:
                 return "사거리";
             case StatType.BACK:
                 return "넉백";
-            case StatType.PER: // 완
+            case StatType.PER:
                 return "관통력";
             default:
                 return "";

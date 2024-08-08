@@ -53,7 +53,8 @@ public class Player : MonoBehaviour
     {
         isHit = true;
 
-        gm.health -= Mathf.Min(gm.health, dmg);
+        int defendDmg = Mathf.RoundToInt(dmg * (1 - gm.stat.Cal_Defense()));
+        gm.health -= Mathf.Min(gm.health, defendDmg);
 
         if(gm.health <= 0)
         {
@@ -76,8 +77,10 @@ public class Player : MonoBehaviour
         Debug.Log("게임오버");
     }
 
-    private void ResetHit()
+    private IEnumerator HitRoutine()
     {
+        yield return new WaitForSeconds(0.2f);
+
         isHit = false;
     }
 }
@@ -157,5 +160,10 @@ public struct PlayerStat
         if (def < 0)
             return -1;
         return def + per;
+    }
+
+    public float Cal_Defense()
+    {
+        return (float)defense / (Mathf.Abs(defense) + 15);
     }
 }

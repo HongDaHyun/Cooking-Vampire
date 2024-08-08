@@ -100,7 +100,7 @@ Animator:
   m_GameObject: {fileID: 3918482349272054115}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 18dac623b27ad8a428b1cf863c3128a5, type: 2}
+  m_Controller: {fileID: 22100000, guid: 556434007c9371c439b8c11d02355648, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -187,6 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tier: 0
   isDead: 0
+  isDamaged: 0
   stat:
     curHp: 0
     maxHp: 0

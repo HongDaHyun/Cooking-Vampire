@@ -34,7 +34,7 @@ public class TileMap : MonoBehaviour
 
     private void SpawnObjs()
     {
-        int ranCount = Random.Range(10, 50);
+        int ranCount = Random.Range(10, 25);
         List<Vector2Int> ranPoses = new List<Vector2Int>();
         Vector2Int ranPos = Vector2Int.zero;
 

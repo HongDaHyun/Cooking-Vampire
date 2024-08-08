@@ -7,7 +7,7 @@ using Sirenix.OdinInspector;
 public class Enemy : MonoBehaviour, IPoolObject
 {
     [ReadOnly] public int tier; // 1부터 시작
-    [ReadOnly] public bool isDead;
+    [ReadOnly] public bool isDead, isDamaged;
     private int difficult;
     public EnemyStat stat;
 
@@ -52,6 +52,10 @@ public class Enemy : MonoBehaviour, IPoolObject
 
     private void ReSet()
     {
+        anim.Rebind();
+        anim.ResetTrigger("Dead");
+        isDamaged = false;
+
         col.enabled = true;
         enemyMove.ReSet();
     }
@@ -74,6 +78,7 @@ public class Enemy : MonoBehaviour, IPoolObject
         // 생존
         if (stat.curHp > 0)
         {
+            isDamaged = true;
             anim.SetTrigger("Damaged");
         }
 
@@ -93,7 +98,7 @@ public class Enemy : MonoBehaviour, IPoolObject
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Projectile") || isDead)
+        if (!collision.CompareTag("Projectile") || isDead || isDamaged)
             return;
 
         int trueDmg = Mathf.Min(stat.curHp , gm.stat.Get_DMG(collision.GetComponent<Projectile>().stat.damage));
@@ -105,6 +110,13 @@ public class Enemy : MonoBehaviour, IPoolObject
         yield return new WaitForSeconds(1f);
 
         spawnManager.Destroy_Enemy(this);
+    }
+
+    private IEnumerator DamagedRoutine()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        isDamaged = false;
     }
 }
 
