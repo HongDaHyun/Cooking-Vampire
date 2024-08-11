@@ -73,13 +73,13 @@ public class WeaponController : MonoBehaviour
             // activeTime이 0보다 작으면 무한 유지
             if (weapon.stat.activeTime > 0f)
             {
-                yield return new WaitForSeconds(player.gm.stat.Get_ACTIVE(weapon.stat.activeTime));
+                yield return new WaitForSeconds(player.gm.stat.Get_Value(StatType.ACTIVE, weapon.stat.activeTime));
                 weapon.gameObject.SetActive(false);
             }
 
             if (weapon.isPet)
                 yield break;
-            yield return new WaitForSeconds(player.gm.stat.Get_COOL(weapon.stat.coolTime));
+            yield return new WaitForSeconds(player.gm.stat.Get_Value(StatType.COOL, weapon.stat.coolTime));
         }
     }
 

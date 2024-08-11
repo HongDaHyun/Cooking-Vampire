@@ -10,7 +10,7 @@ public class Weapon_4 : Weapon
 
     public override IEnumerator Active()
     {
-        for (int i = 1; i <= gm.stat.Get_COUNT(stat.count); i++)
+        for (int i = 1; i <= gm.stat.Get_Value(StatType.COUNT, stat.count); i++)
             yield return Slash();
         yield return null;
     }

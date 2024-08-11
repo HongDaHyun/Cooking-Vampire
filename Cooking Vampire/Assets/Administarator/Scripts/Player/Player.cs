@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     Spawner spawner;
     Rigidbody2D rigid;
 
+    private Coroutine hitRoutine;
     private bool isHit;
     public bool isDead;
 
@@ -51,7 +52,12 @@ public class Player : MonoBehaviour
 
     private void Hitted(int dmg)
     {
-        isHit = true;
+        hitRoutine = StartCoroutine(HitRoutine());
+
+        // È¸ÇÇ
+        int ranMiss = Random.Range(0, 100);
+        if (ranMiss < gm.stat.Get_Value(StatType.MISS, 0))
+            return;
 
         int defendDmg = Mathf.RoundToInt(dmg * (1 - gm.stat.Cal_Defense()));
         gm.health -= Mathf.Min(gm.health, defendDmg);
@@ -79,9 +85,14 @@ public class Player : MonoBehaviour
 
     private IEnumerator HitRoutine()
     {
+        if (hitRoutine != null)
+            yield break;
+
+        isHit = true;
         yield return new WaitForSeconds(0.2f);
 
         isHit = false;
+        hitRoutine = null;
     }
 }
 
@@ -108,58 +119,164 @@ public struct PlayerStat
     public int knockBack; // ¿Ï
     public int per;
 
-    public int Get_DMG(int def)
+    public int Get_Value(StatType type, int def)
     {
-        return def + Mathf.RoundToInt(def * dmg_p / 100f);
+        StatData data = CSVManager.Instance.Find_StatCSV(type);
+
+        int upValue = 0;
+
+        switch(type)
+        {
+            case StatType.DMG:
+                upValue = dmg_p;
+                break;
+            case StatType.DEF:
+                upValue = defense;
+                break;
+            case StatType.HP:
+                upValue = maxHealth;
+                break;
+            case StatType.SPEED:
+                upValue = speed_p;
+                break;
+            case StatType.MISS:
+                upValue = miss_p;
+                break;
+            case StatType.CRIT:
+                upValue = crit_p;
+                break;
+            case StatType.LUCK:
+                upValue = luck;
+                break;
+            case StatType.EXP:
+                upValue = expBonus_p;
+                break;
+            case StatType.ACTIVE:
+                upValue = active_p;
+                break;
+            case StatType.COOL:
+                upValue = cool_p;
+                break;
+            case StatType.HEAL:
+                upValue = heal;
+                break;
+            case StatType.DRAIN:
+                upValue = drain_p;
+                break;
+            case StatType.PRO_SIZE:
+                upValue = proSize_p;
+                break;
+            case StatType.PRO_SPEED:
+                upValue = proSpeed_p;
+                break;
+            case StatType.COUNT:
+                upValue = count;
+                break;
+            case StatType.ELE:
+                upValue = element;
+                break;
+            case StatType.RANGE:
+                upValue = range;
+                break;
+            case StatType.BACK:
+                upValue = knockBack;
+                break;
+            case StatType.PER:
+                upValue = per;
+                break;
+        }
+
+        def = data.isPercent ? def + Mathf.RoundToInt(def * upValue / 100f) : def + upValue;
+        Limit_Value(data, ref def);
+        return def;
     }
-    public float Get_SPEED(float def)
+    public float Get_Value(StatType type, float def)
     {
-        return def + def * speed_p / 100f;
+        StatData data = CSVManager.Instance.Find_StatCSV(type);
+
+        int upValue = 0;
+
+        switch (type)
+        {
+            case StatType.DMG:
+                upValue = dmg_p;
+                break;
+            case StatType.DEF:
+                upValue = defense;
+                break;
+            case StatType.HP:
+                upValue = maxHealth;
+                break;
+            case StatType.SPEED:
+                upValue = speed_p;
+                break;
+            case StatType.MISS:
+                upValue = miss_p;
+                break;
+            case StatType.CRIT:
+                upValue = crit_p;
+                break;
+            case StatType.LUCK:
+                upValue = luck;
+                break;
+            case StatType.EXP:
+                upValue = expBonus_p;
+                break;
+            case StatType.ACTIVE:
+                upValue = active_p;
+                break;
+            case StatType.COOL:
+                upValue = cool_p;
+                break;
+            case StatType.HEAL:
+                upValue = heal;
+                break;
+            case StatType.DRAIN:
+                upValue = drain_p;
+                break;
+            case StatType.PRO_SIZE:
+                upValue = proSize_p;
+                break;
+            case StatType.PRO_SPEED:
+                upValue = proSpeed_p;
+                break;
+            case StatType.COUNT:
+                upValue = count;
+                break;
+            case StatType.ELE:
+                upValue = element;
+                break;
+            case StatType.RANGE:
+                upValue = range;
+                break;
+            case StatType.BACK:
+                upValue = knockBack;
+                break;
+            case StatType.PER:
+                upValue = per;
+                break;
+        }
+
+        def = data.isPercent ? def + def * upValue : upValue;
+        Limit_Value(data, ref def);
+
+        return def;
     }
-    public int Get_EXPBONUS(int def)
+    private void Limit_Value(StatData data, ref int def)
     {
-        return def + Mathf.RoundToInt(def * expBonus_p / 100f);
+        int NULL = CSVManager.NULL;
+        if (data.maxAmount != NULL)
+            Mathf.Min(def, data.maxAmount);
+        if (data.minAmount != NULL)
+            Mathf.Max(def, data.minAmount);
     }
-    public float Get_ACTIVE(float def)
+    private void Limit_Value(StatData data, ref float def)
     {
-        if (def < 0)
-            return -1;
-        return def + def * active_p / 100f;
-    }
-    public float Get_COOL(float def)
-    {
-        if (def < 0)
-            return -1;
-        return def + def * cool_p / 100f;
-    }
-    public float Get_PRO_SIZE(float def)
-    {
-        return def + def * proSize_p / 100f;
-    }
-    public float Get_PRO_SPEED(float def)
-    {
-        if (def < 0)
-            return -1;
-        return def + def * proSpeed_p / 100f;
-    }
-    public int Get_COUNT(int def)
-    {
-        return def + count;
-    }
-    public float Get_RANGE()
-    {
-        float def = GameManager_Survivor.Instance.player.scanner.defRange;
-        return def + def * range / 100f;
-    }
-    public float Get_RANGE(float def)
-    {
-        return def + def * range / 100f;
-    }
-    public int Get_Per(int def)
-    {
-        if (def < 0)
-            return -1;
-        return def + per;
+        int NULL = CSVManager.NULL;
+        if (data.maxAmount != NULL)
+            Mathf.Min(def, data.maxAmount);
+        if (data.minAmount != NULL)
+            Mathf.Max(def, data.minAmount);
     }
 
     public float Cal_Defense()

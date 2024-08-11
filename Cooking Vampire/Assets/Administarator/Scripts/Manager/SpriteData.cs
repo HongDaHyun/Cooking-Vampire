@@ -10,8 +10,7 @@ public class SpriteData : Singleton<SpriteData>
     public StageSprite[] stageSprites;
     public GemSprite[] gemSprites;
     public RuntimeAnimatorController[] effects;
-    public Color[] levelColor;
-    public TierColor[] tierColor;
+    public Pallate[] pallates;
     public Sprite[] statSprites;
 
     public Sprite[] Export_StageSprites(StageType type)
@@ -26,11 +25,28 @@ public class SpriteData : Singleton<SpriteData>
         return Array.Find(gemSprites, data => data.unit == unit);
     }
 
+    public Color Export_Pallate(ColorType type)
+    {
+        return Array.Find(pallates, color => color.colorType == type).color;
+    }
     public Color Export_TierColor(Tier tier)
     {
-        return Array.Find(tierColor, color => color.tier == tier).color;
+        switch(tier)
+        {
+            case Tier.Common:
+                return Export_Pallate(ColorType.Green);
+            case Tier.Rare:
+                return Export_Pallate(ColorType.Blue);
+            case Tier.Epic:
+                return Export_Pallate(ColorType.Purple);
+            case Tier.Legend:
+                return Export_Pallate(ColorType.Yellow);
+            default:
+                return Export_Pallate(ColorType.Gray);
+        }
     }
 }
+public enum ColorType { Gray, Mint, Green, Blue, Purple, Red, Yellow }
 
 [Serializable]
 public struct StageSprite
@@ -48,8 +64,8 @@ public struct GemSprite
 }
 
 [Serializable]
-public struct TierColor
+public struct Pallate
 {
-    public Tier tier;
+    public ColorType colorType;
     public Color color;
 }

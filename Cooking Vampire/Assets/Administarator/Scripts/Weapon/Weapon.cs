@@ -158,7 +158,7 @@ public abstract class Weapon : MonoBehaviour
         Vector2 center = transform.position;
 
         float angle = Random.Range(0f, Mathf.PI * 2);
-        float radius = gm.stat.Get_RANGE();
+        float radius = gm.stat.Get_Value(StatType.RANGE, player.scanner.defRange);
 
         float x = center.x + radius * Mathf.Cos(angle);
         float y = center.y + radius * Mathf.Sin(angle);

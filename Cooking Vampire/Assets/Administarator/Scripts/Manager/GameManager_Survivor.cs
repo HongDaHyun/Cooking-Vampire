@@ -40,7 +40,7 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
 
     public void Player_GainExp(int amount)
     {
-        exp += stat.Get_EXPBONUS(amount);
+        exp += stat.Get_Value(StatType.EXP, amount);
 
         if(exp >= maxExp)
             Player_LevelUp();
@@ -65,68 +65,70 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
     }
     public void Player_UpStat(StatType statType, int amount)
     {
+        StatData statData = CSVManager.Instance.Find_StatCSV(statType);
+        
         if (player.data.IsExist(statType))
             amount += Mathf.RoundToInt(player.data.Find_Bonus(statType).amount * amount);
 
         switch(statType)
         {
             case StatType.DMG:
-                stat.dmg_p += amount;
+                statData.Update_Stat(ref stat.dmg_p, amount);
                 break;
             case StatType.DEF:
-                stat.defense += amount;
+                statData.Update_Stat(ref stat.defense, amount);
                 break;
             case StatType.HP:
-                stat.maxHealth += amount;
-                health += amount;
+                statData.Update_Stat(ref stat.maxHealth, amount);
+                health = Mathf.Min(health + amount, stat.maxHealth);
                 break;
             case StatType.SPEED:
-                stat.speed_p += amount;
+                statData.Update_Stat(ref stat.speed_p, amount);
                 break;
             case StatType.MISS:
-                stat.miss_p += amount;
+                statData.Update_Stat(ref stat.miss_p, amount);
                 break;
             case StatType.CRIT:
-                stat.crit_p += amount;
+                statData.Update_Stat(ref stat.crit_p, amount);
                 break;
             case StatType.LUCK:
-                stat.luck += amount;
+                statData.Update_Stat(ref stat.luck, amount);
                 break;
             case StatType.EXP:
-                stat.expBonus_p += amount;
+                statData.Update_Stat(ref stat.expBonus_p, amount);
                 break;
             case StatType.ACTIVE:
-                stat.active_p += amount;
+                statData.Update_Stat(ref stat.active_p, amount);
                 break;
             case StatType.COOL:
-                stat.cool_p += amount;
+                statData.Update_Stat(ref stat.cool_p, amount);
                 break;
             case StatType.HEAL:
-                stat.heal += amount;
+                statData.Update_Stat(ref stat.heal, amount);
                 break;
             case StatType.DRAIN:
-                stat.drain_p += amount;
+                statData.Update_Stat(ref stat.drain_p, amount);
                 break;
             case StatType.PRO_SIZE:
-                stat.proSize_p += amount;
+                statData.Update_Stat(ref stat.proSize_p, amount);
                 break;
             case StatType.PRO_SPEED:
-                stat.proSpeed_p += amount;
+                statData.Update_Stat(ref stat.proSpeed_p, amount);
                 break;
             case StatType.COUNT:
-                stat.count += amount;
+                statData.Update_Stat(ref stat.count, amount);
                 break;
             case StatType.ELE:
-                stat.element += amount;
+                statData.Update_Stat(ref stat.element, amount);
                 break;
             case StatType.RANGE:
-                stat.range += amount;
+                statData.Update_Stat(ref stat.range, amount);
                 break;
             case StatType.BACK:
-                stat.knockBack += amount;
+                statData.Update_Stat(ref stat.knockBack, amount);
                 break;
             case StatType.PER:
-                stat.per += amount;
+                statData.Update_Stat(ref stat.per, amount);
                 break;
         }
     }

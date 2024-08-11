@@ -26,8 +26,8 @@ public class Weapon_0 : Weapon
 
     private void Batch()
     {
-        int count = gm.stat.Get_COUNT(stat.count);
-        float range = (gm.stat.Get_PRO_SIZE(stat.size) + gm.stat.Get_RANGE()) / 4f;
+        int count = gm.stat.Get_Value(StatType.COUNT, stat.count);
+        float range = (gm.stat.Get_Value(StatType.PRO_SIZE, stat.size) + gm.stat.Get_Value(StatType.RANGE, player.scanner.defRange)) / 4f;
         for (int i = 0; i < count; i++)
         {
             Transform projectTrans;
@@ -58,7 +58,7 @@ public class Weapon_0 : Weapon
 
     protected void Move()
     {
-        transform.Rotate(Vector3.back * gm.stat.Get_PRO_SPEED(stat.speed) * Time.deltaTime);
+        transform.Rotate(Vector3.back * gm.stat.Get_Value(StatType.PRO_SPEED, stat.speed) * Time.deltaTime);
     }
 
     public override void LevelUp()

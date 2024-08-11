@@ -17,7 +17,7 @@ public class Weapon_2 : Weapon
     {
         StartCoroutine(MoveToTargetAndBack(Fire_Nearest()));
         yield return new WaitForSeconds(0.2f);
-        for (int i = 1; i < gm.stat.Get_COUNT(stat.count); i++)
+        for (int i = 1; i < gm.stat.Get_Value(StatType.COUNT, stat.count); i++)
         {
             yield return new WaitForSeconds(0.2f);
             StartCoroutine(MoveToTargetAndBack(Fire_Ran()));
@@ -26,7 +26,7 @@ public class Weapon_2 : Weapon
 
     private IEnumerator MoveToTargetAndBack(Projectile_Rigid projectile)
     {
-        yield return new WaitUntil(() => Vector2.Distance(projectile.transform.position, transform.position) > gm.stat.Get_RANGE());
+        yield return new WaitUntil(() => Vector2.Distance(projectile.transform.position, transform.position) > gm.stat.Get_Value(StatType.RANGE, player.scanner.defRange));
         // Á¤Áö
         projectile.SetDir(Vector3.zero);
 

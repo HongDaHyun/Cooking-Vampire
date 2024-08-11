@@ -49,7 +49,7 @@ public class MoveController : MonoBehaviour
         if (player.isDead)
             return;
 
-        Vector2 nextVec = inputVec.normalized * gm.stat.Get_SPEED(defSpeed) * Time.fixedDeltaTime;
+        Vector2 nextVec = inputVec.normalized * gm.stat.Get_Value(StatType.SPEED, defSpeed) * Time.fixedDeltaTime;
 
         // 위치 이동
         rigid.MovePosition(rigid.position + nextVec);

@@ -38,7 +38,7 @@ public class Projectile : MonoBehaviour, IPoolObject
     {
         this.stat = stat;
         transform.SetParent(parent);
-        float size = gm.stat.Get_PRO_SIZE(stat.size);
+        float size = gm.stat.Get_Value(StatType.PRO_SIZE, stat.size);
         transform.localScale = new Vector2(size, size);
 
         SetSprite(sprite);

@@ -8,7 +8,7 @@ public class Weapon_7 : Weapon
 
     public override IEnumerator Active()
     {
-        int count = gm.stat.Get_COUNT(stat.count);
+        int count = gm.stat.Get_Value(StatType.COUNT, stat.count);
         for (int i = 0; i < count; i++)
         {
             Trap();

@@ -71,8 +71,16 @@ public class Enemy : MonoBehaviour, IPoolObject
 
     public void Damaged(int dmg)
     {
+        int ranCrit = Random.Range(0, 100);
+        bool isCrit = false;
+        if (ranCrit < gm.stat.Get_Value(StatType.CRIT, 0))
+        {
+            dmg *= 2;
+            isCrit = true;
+        }
+
         stat.curHp -= dmg;
-        spawnManager.Spawn_PopUpTxt(dmg, transform.position);
+        spawnManager.Spawn_PopUpTxt(dmg, transform.position, isCrit);
         StartCoroutine(enemyMove.KnockBack());
 
         // »ýÁ¸
@@ -95,13 +103,17 @@ public class Enemy : MonoBehaviour, IPoolObject
             spawnManager.Spawn_Gems(difficult * tier, transform.position);
         }
     }
+    private void Crit(ref int dmg)
+    {
+
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Projectile") || isDead || isDamaged)
             return;
 
-        int trueDmg = Mathf.Min(stat.curHp , gm.stat.Get_DMG(collision.GetComponent<Projectile>().stat.damage));
+        int trueDmg = Mathf.Min(stat.curHp , gm.stat.Get_Value(StatType.DMG, collision.GetComponent<Projectile>().stat.damage));
         Damaged(trueDmg);
     }
 

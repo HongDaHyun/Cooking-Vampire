@@ -20,9 +20,9 @@ public class Weapon_3 : Weapon
     private IEnumerator Slash(int elementID)
     {
         bool playerFlip = player.sr.flipX;
-        float range = gm.stat.Get_RANGE() / 3f + gm.stat.Get_PRO_SIZE(stat.size) / 2f;
+        float range = gm.stat.Get_Value(StatType.RANGE, player.scanner.defRange) / 3f + gm.stat.Get_Value(StatType.PRO_SIZE, stat.size) / 2f;
 
-        for (int i = 0; i < gm.stat.Get_COUNT(stat.count); i++)
+        for (int i = 0; i < gm.stat.Get_Value(StatType.COUNT, stat.count); i++)
         {
             Projectile_Animation projectile = spawnManager.Spawn_Projectile_Anim(GetProjectileSprite(), stat, animators[elementID], transform);
 

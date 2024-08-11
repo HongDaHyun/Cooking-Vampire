@@ -107,15 +107,15 @@ public class SpawnManager : Singleton<SpawnManager>
         PoolManager.Instance.TakeToPool<Gem>(gem.name, gem);
     }
 
-    public TextMeshPro Spawn_PopUpTxt(int amount, Vector2 pos)
+    public TextMeshPro Spawn_PopUpTxt(int amount, Vector2 pos, bool isCrit)
     {
+        SpriteData data = SpriteData.Instance;
+
         TextMeshPro text = PoolManager.Instance.GetFromPool<TextMeshPro>("PopUpTxt");
         text.transform.position = pos;
 
         text.text = amount.ToString();
-        Color color = text.color;
-        color.a = 1f;
-        text.color = color;
+        text.color = isCrit ? data.Export_Pallate(ColorType.Yellow) : data.Export_Pallate(ColorType.Red);
 
         Sequence popSeq = DOTween.Sequence().SetUpdate(true);
         popSeq.Append(text.transform.DOMoveY(pos.y + 1f, 0.5f))

@@ -38,7 +38,7 @@ public class StatUpPannel : MonoBehaviour
 
         titleTxt.text = weapon.title;
         contentsTxt.text = weapon.Export_LevelDiscription();
-        levelTxt.color = spriteData.levelColor[weapon.lv];
+        levelTxt.color = spriteData.pallates[weapon.lv].color;
         levelTxt.text = $"Lv.{weapon.lv}";
     }
     public void SetUI(int statID)
