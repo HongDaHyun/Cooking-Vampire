@@ -96,6 +96,7 @@ public struct BonusStat
             case StatType.COOL:
             case StatType.PRO_SIZE:
             case StatType.PRO_SPEED:
+            case StatType.BACK:
                 output += "% ";
                 break;
             case StatType.DEF:
@@ -105,7 +106,6 @@ public struct BonusStat
             case StatType.COUNT:
             case StatType.ELE:
             case StatType.RANGE:
-            case StatType.BACK:
             case StatType.PER:
                 output += "¸¸Å­ ";
                 break;

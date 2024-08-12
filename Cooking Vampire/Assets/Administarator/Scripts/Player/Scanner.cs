@@ -23,8 +23,10 @@ public class Scanner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        targets = Physics2D.CircleCastAll(transform.position, player.gm.stat.Get_Value(StatType.RANGE, defRange), Vector2.zero, 0, enemyLayer);
-        itemTargets = Physics2D.CircleCastAll(transform.position, player.gm.stat.Get_Value(StatType.RANGE, defRange) / 3, Vector2.zero, 0, itemLayer);
+        float range = player.gm.stat.Get_Value(StatType.RANGE, defRange);
+
+        targets = Physics2D.CircleCastAll(transform.position, range, Vector2.zero, 0, enemyLayer);
+        itemTargets = Physics2D.CircleCastAll(transform.position, range / 3, Vector2.zero, 0, itemLayer);
         DrainGem();
         UpdateNearest();
     }

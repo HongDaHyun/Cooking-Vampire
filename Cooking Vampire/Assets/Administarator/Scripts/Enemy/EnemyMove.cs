@@ -65,6 +65,6 @@ public class EnemyMove : MonoBehaviour
 
         Vector3 playerPos = player.transform.position;
         Vector3 dirVec = transform.position - playerPos;
-        enemy.rigid.AddForce(dirVec.normalized * player.gm.stat.knockBack, ForceMode2D.Impulse);
+        enemy.rigid.AddForce(dirVec.normalized * player.gm.stat.Get_Value(StatType.BACK, 1), ForceMode2D.Impulse);
     }    
 }

@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour, IPoolObject
     [ReadOnly] public bool isDead, isDamaged;
     private int difficult;
     public EnemyStat stat;
+    private Coroutine hitRoutine;
 
     EnemyMove enemyMove;
     [HideInInspector] public Animator anim;
@@ -71,13 +72,14 @@ public class Enemy : MonoBehaviour, IPoolObject
 
     public void Damaged(int dmg)
     {
-        int ranCrit = Random.Range(0, 100);
-        bool isCrit = false;
-        if (ranCrit < gm.stat.Get_Value(StatType.CRIT, 0))
-        {
+        // 크리티컬
+        bool isCrit = dataManager.Get_Ran(gm.stat.Get_Value(StatType.CRIT));
+        if (isCrit)
             dmg *= 2;
-            isCrit = true;
-        }
+
+        // 체력 흡수
+        if (dataManager.Get_Ran(gm.stat.Get_Value(StatType.DRAIN)))
+            gm.Player_HealHP(1);
 
         stat.curHp -= dmg;
         spawnManager.Spawn_PopUpTxt(dmg, transform.position, isCrit);
@@ -103,10 +105,6 @@ public class Enemy : MonoBehaviour, IPoolObject
             spawnManager.Spawn_Gems(difficult * tier, transform.position);
         }
     }
-    private void Crit(ref int dmg)
-    {
-
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -126,9 +124,14 @@ public class Enemy : MonoBehaviour, IPoolObject
 
     private IEnumerator DamagedRoutine()
     {
+        if (hitRoutine != null)
+            yield break;
+
+        isDamaged = true;
         yield return new WaitForSeconds(0.1f);
 
         isDamaged = false;
+        hitRoutine = null;
     }
 }
 

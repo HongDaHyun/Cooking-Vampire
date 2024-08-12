@@ -2,6 +2,6 @@
 2. 고양이 패턴 구현
 3. 보스 구현 -> 등장 씬만 구현
 4. 스탯 구현 -> 스탯 업그레이드만 구현
-DMG, DEF(음수 가능), HP, SPEED, MISS, CRIT 
+DMG, DEF(음수 가능), HP, SPEED, MISS, CRIT, EXP, ACTIVE, COOL, HEAL, DRAIN, PRO_SIZE, PRO_SPEED, COUNT, RANGE, BACK, PER
 5. 무기 1종 추가 -> 완
 6. 플레이어 피격 구현 -> 완

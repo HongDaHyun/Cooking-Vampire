@@ -38,6 +38,10 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
         }    
     }
 
+    public void Player_HealHP(int amount)
+    {
+        health = Mathf.Min(health + amount, stat.maxHealth);
+    }
     public void Player_GainExp(int amount)
     {
         exp += stat.Get_Value(StatType.EXP, amount);

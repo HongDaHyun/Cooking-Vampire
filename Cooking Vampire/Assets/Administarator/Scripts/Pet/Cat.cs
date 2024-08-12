@@ -43,27 +43,31 @@ public class Cat : Pet
         if (ranTarget == null)
             yield break;
 
-        SetAnim(PetState.Atk);
         WeaponStat stat = player.weaponController.Find_Weapon_Pet().stat;
+        int projectileCount = gm.stat.Get_Value(StatType.COUNT, 1);
 
-        Projectile_Animation projectile =
-            spawnManager.Spawn_Projectile_Anim(projectileSprite, stat, projectileAnim, transform);
-        float range = gm.stat.Get_Value(StatType.RANGE, player.scanner.defRange);
-        float proSize = gm.stat.Get_Value(StatType.PRO_SIZE, stat.size);
-
-        if(spriteRenderer.flipX)
+        for(int i = 0; i < projectileCount; i++)
         {
-            projectile.transform.localPosition = new Vector2(-(range + proSize) / 3f, 0);
-            projectile.sr.flipX = true;
-        }
-        else
-        {
-            projectile.transform.localPosition = new Vector2((range + proSize) / 3f, 0);
-            projectile.sr.flipX = false;
-        }
+            SetAnim(PetState.Atk);
+            Projectile_Animation projectile =
+                spawnManager.Spawn_Projectile_Anim(projectileSprite, stat, projectileAnim, transform);
+            float range = gm.stat.Get_Value(StatType.RANGE, player.scanner.defRange);
+            float proSize = gm.stat.Get_Value(StatType.PRO_SIZE, stat.size);
 
-        yield return new WaitUntil(() => projectile.isFinish);
-        SetAnim(PetState.Idle);
+            if (spriteRenderer.flipX)
+            {
+                projectile.transform.localPosition = new Vector2(-(range + proSize) / 3f, 0);
+                projectile.sr.flipX = true;
+            }
+            else
+            {
+                projectile.transform.localPosition = new Vector2((range + proSize) / 3f, 0);
+                projectile.sr.flipX = false;
+            }
+
+            SetAnim(PetState.Idle);
+            yield return new WaitUntil(() => projectile.isFinish);
+        }
         yield return new WaitForSeconds(gm.stat.Get_Value(StatType.COOL, stat.coolTime));
     }
 

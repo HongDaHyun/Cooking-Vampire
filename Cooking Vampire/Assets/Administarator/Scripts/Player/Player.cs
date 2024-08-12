@@ -40,6 +40,8 @@ public class Player : MonoBehaviour
         data = dataManager.Export_PlayerData();
 
         anim.runtimeAnimatorController = data.animator;
+
+        StartCoroutine(HealRoutine());
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -55,8 +57,7 @@ public class Player : MonoBehaviour
         hitRoutine = StartCoroutine(HitRoutine());
 
         // 회피
-        int ranMiss = Random.Range(0, 100);
-        if (ranMiss < gm.stat.Get_Value(StatType.MISS, 0))
+        if (dataManager.Get_Ran(gm.stat.Get_Value(StatType.MISS)))
             return;
 
         int defendDmg = Mathf.RoundToInt(dmg * (1 - gm.stat.Cal_Defense()));
@@ -94,6 +95,21 @@ public class Player : MonoBehaviour
         isHit = false;
         hitRoutine = null;
     }
+    private IEnumerator HealRoutine()
+    {
+        while(!isDead)
+        {
+            int amount = gm.stat.Get_Value(StatType.HEAL);
+
+            if (amount <= 0)
+                yield return new WaitForSeconds(1f);
+            else
+            {
+                gm.Player_HealHP(1);
+                yield return new WaitForSeconds(5f / (1 + (amount - 1) / 2.25f));
+            }
+        }
+    }
 }
 
 [System.Serializable]
@@ -102,11 +118,11 @@ public struct PlayerStat
     public int dmg_p;
     public int defense;
     public int maxHealth;
-    public int speed_p; // 완
+    public int speed_p;
     public int miss_p;
     public int crit_p;
     public int luck;
-    public int expBonus_p; // 완
+    public int expBonus_p;
     public int active_p;
     public int cool_p;
     public int heal;
@@ -115,8 +131,8 @@ public struct PlayerStat
     public int proSpeed_p;
     public int count;
     public int element;
-    public int range; // 완
-    public int knockBack; // 완
+    public int range;
+    public int knockBack;
     public int per;
 
     public int Get_Value(StatType type, int def)
@@ -260,6 +276,76 @@ public struct PlayerStat
         def = data.isPercent ? def + def * upValue : upValue;
         Limit_Value(data, ref def);
 
+        return def;
+    }
+    public int Get_Value(StatType type)
+    {
+        StatData data = CSVManager.Instance.Find_StatCSV(type);
+
+        int def = 0;
+
+        switch (type)
+        {
+            case StatType.DMG:
+                def = dmg_p;
+                break;
+            case StatType.DEF:
+                def = defense;
+                break;
+            case StatType.HP:
+                def = maxHealth;
+                break;
+            case StatType.SPEED:
+                def = speed_p;
+                break;
+            case StatType.MISS:
+                def = miss_p;
+                break;
+            case StatType.CRIT:
+                def = crit_p;
+                break;
+            case StatType.LUCK:
+                def = luck;
+                break;
+            case StatType.EXP:
+                def = expBonus_p;
+                break;
+            case StatType.ACTIVE:
+                def = active_p;
+                break;
+            case StatType.COOL:
+                def = cool_p;
+                break;
+            case StatType.HEAL:
+                def = heal;
+                break;
+            case StatType.DRAIN:
+                def = drain_p;
+                break;
+            case StatType.PRO_SIZE:
+                def = proSize_p;
+                break;
+            case StatType.PRO_SPEED:
+                def = proSpeed_p;
+                break;
+            case StatType.COUNT:
+                def = count;
+                break;
+            case StatType.ELE:
+                def = element;
+                break;
+            case StatType.RANGE:
+                def = range;
+                break;
+            case StatType.BACK:
+                def = knockBack;
+                break;
+            case StatType.PER:
+                def = per;
+                break;
+        }
+
+        Limit_Value(data, ref def);
         return def;
     }
     private void Limit_Value(StatData data, ref int def)

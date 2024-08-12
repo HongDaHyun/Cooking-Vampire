@@ -48,6 +48,16 @@ public class DataManager : Singleton<DataManager>
                 return "";
         }
     }
+
+    public bool Get_Ran(int percent)
+    {
+        int ranID = UnityEngine.Random.Range(1, 101);
+
+        if (ranID <= percent)
+            return true;
+        else
+            return false;
+    }
 }
 
 public enum Tier { Common = 1, Rare = 2, Epic = 4, Legend = 8 }
