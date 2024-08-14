@@ -144,4 +144,13 @@
 - Stat 로직 개선<br/>
 - 스탯 구현 완 (원소 데미지 제외)<br/>
 
+<h3>[버전 0.13]</h3>
+<img src="https://github.com/user-attachments/assets/9d3a0198-dafa-46b4-8457-9379041cb804" width="360" alt="Alpha 0.13">
+<br/>
+- 적 공격 타입 제작 중 (Normal, Charge 완)<br/>
+- VFX 업데이트<br/>
+- 적 원거리 공격 투사체 스프라이트 제작<br/>
+- 피격 이펙트 추가<br/>
+- 스킬 아이콘 추가<br/>
+
 </details>

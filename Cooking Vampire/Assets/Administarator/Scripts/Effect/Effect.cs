@@ -20,10 +20,11 @@ public class Effect : MonoBehaviour, IPoolObject
     {
     }
 
-    public void SetEffect(RuntimeAnimatorController animatorController, Vector2 pos)
+    public void SetEffect(RuntimeAnimatorController animatorController, Vector2 pos, float size)
     {
         anim.runtimeAnimatorController = animatorController;
         transform.position = pos;
+        transform.localScale = new Vector2(size, size);
     }
 
     private void Destroy()

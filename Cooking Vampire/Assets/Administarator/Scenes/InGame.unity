@@ -24299,7 +24299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 7
-  icon: {fileID: 0}
+  icon: {fileID: -1296634218, guid: 3ae00de42ba18e941bef8558dfae8727, type: 3}
   title: "\uD2B8\uB7A9"
   discription: "\uD2B8\uB7A9\uC744 \uC124\uCE58\uD569\uB2C8\uB2E4!"
   projectileSprite:
@@ -33922,6 +33922,7 @@ MonoBehaviour:
     moveSprite: {fileID: 786671298, guid: 628dcfa839620574693155d3c8b50a72, type: 3}
   effects:
   - {fileID: 9100000, guid: b429777a544996e4b8b616d30b535f7a, type: 2}
+  - {fileID: 22100000, guid: f3e3b663229ab1546bfa3986e2b8f45c, type: 2}
   pallates:
   - colorType: 0
     color: {r: 0.34117648, g: 0.34117648, b: 0.34117648, a: 1}

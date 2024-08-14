@@ -116,5 +116,5 @@ Twitter: @Archanor
 
 Special thanks to:
 
-Jan Jørgensen
+Jan J?gensen
 Sound fx in this asset was created with BFXR: http://www.bfxr.net/

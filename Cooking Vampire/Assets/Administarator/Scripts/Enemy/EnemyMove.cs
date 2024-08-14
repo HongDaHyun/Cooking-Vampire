@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     public Rigidbody2D target;
-    public bool isStop;
+    public bool isStop, isCharge;
     private void IsStop()
     {
         isStop = true;
@@ -13,6 +13,11 @@ public class EnemyMove : MonoBehaviour
     private void IsMove()
     {
         isStop = false;
+    }
+    private void IsCharge_Stop()
+    {
+        IsMove();
+        isCharge = false;
     }
 
     Enemy enemy;
@@ -22,7 +27,6 @@ public class EnemyMove : MonoBehaviour
     {
         enemy = GetComponent<Enemy>();
     }
-
     private void Start()
     {
         player = enemy.gm.player;
@@ -31,7 +35,7 @@ public class EnemyMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (enemy.isDead || isStop || enemy.anim.GetCurrentAnimatorStateInfo(0).IsName("Damaged"))
+        if (enemy.isDead || isStop || isCharge || enemy.anim.GetCurrentAnimatorStateInfo(0).IsName("Damaged"))
             return;
 
         Track();
@@ -48,7 +52,11 @@ public class EnemyMove : MonoBehaviour
     public void ReSet()
     {
         isStop = false;
+        isCharge = false;
         enemy.rigid.simulated = true;
+
+        StopAllCoroutines();
+        StartCoroutine(TypeRoutine());
     }
 
     private void Track()
@@ -57,6 +65,19 @@ public class EnemyMove : MonoBehaviour
         Vector2 nextVec = dirVec.normalized * enemy.stat.speed * Time.fixedDeltaTime;
         enemy.rigid.MovePosition(enemy.rigid.position + nextVec);
         enemy.rigid.velocity = Vector2.zero;
+    }
+    private IEnumerator Charging()
+    {
+        isCharge = true;
+        Vector2 dirVec = (target.position - enemy.rigid.position).normalized;
+
+        while (isCharge)
+        {
+            Vector2 nextVec = dirVec.normalized * enemy.stat.speed * 7f * Time.fixedDeltaTime;
+            enemy.rigid.MovePosition(enemy.rigid.position + nextVec);
+            enemy.rigid.velocity = Vector2.zero;
+            yield return new WaitForFixedUpdate();
+        }
     }
 
     public IEnumerator KnockBack()
@@ -67,4 +88,24 @@ public class EnemyMove : MonoBehaviour
         Vector3 dirVec = transform.position - playerPos;
         enemy.rigid.AddForce(dirVec.normalized * player.gm.stat.Get_Value(StatType.BACK, 1), ForceMode2D.Impulse);
     }    
+
+    private IEnumerator TypeRoutine()
+    {
+        while(true)
+        {
+            switch(enemy.data.type)
+            {
+                case AtkType.Normal:
+                    yield break;
+                case AtkType.Range:
+                    break;
+                case AtkType.Charge:
+                    enemy.anim.SetTrigger("Charge");
+                    yield return new WaitForSeconds(5f);
+                    break;
+                case AtkType.Area:
+                    break;
+            }
+        }
+    }
 }

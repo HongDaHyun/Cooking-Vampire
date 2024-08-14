@@ -5,6 +5,13 @@ using UnityEngine;
 public class Weapon_7 : Weapon
 {
     public RuntimeAnimatorController trapAnim;
+    SpriteData spriteData;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        spriteData = SpriteData.Instance;
+    }
 
     public override IEnumerator Active()
     {
@@ -25,6 +32,7 @@ public class Weapon_7 : Weapon
 
     private void Trap()
     {
+        spawnManager.Spawn_Effect(spriteData.effects[0], player.transform.position, 1f);
         Projectile projectile = spawnManager.Spawn_Projectile_Trap(GetProjectileSprite(), stat, trapAnim, null);
         projectile.transform.position = player.transform.position;
     }

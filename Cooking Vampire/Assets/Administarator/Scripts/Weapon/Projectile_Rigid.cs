@@ -19,6 +19,7 @@ public class Projectile_Rigid : Projectile
             return;
 
         curPer--;
+        spawnManager.Spawn_Effect(spriteData.effects[1], transform.position, 0.8f);
 
         if (curPer == -1)
         {

@@ -161,6 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   isStop: 0
+  isCharge: 0
 --- !u!114 &3918482349272054122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +193,7 @@ MonoBehaviour:
     curHp: 0
     maxHp: 0
     speed: 0
+  data: {fileID: 0}
   anim: {fileID: 0}
   rigid: {fileID: 0}
   sr: {fileID: 0}

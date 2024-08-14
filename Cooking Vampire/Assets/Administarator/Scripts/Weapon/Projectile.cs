@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour, IPoolObject
     Player player;
     protected SpawnManager spawnManager;
     protected GameManager_Survivor gm;
+    protected SpriteData spriteData;
     [HideInInspector] public SpriteRenderer sr;
     protected BoxCollider2D col;
 
@@ -21,6 +22,7 @@ public class Projectile : MonoBehaviour, IPoolObject
         player = GameManager_Survivor.Instance.player;
         spawnManager = SpawnManager.Instance;
         gm = GameManager_Survivor.Instance;
+        spriteData = SpriteData.Instance;
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<BoxCollider2D>();
     }

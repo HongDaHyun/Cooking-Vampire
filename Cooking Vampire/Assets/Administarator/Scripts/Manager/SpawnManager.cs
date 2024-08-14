@@ -136,10 +136,10 @@ public class SpawnManager : Singleton<SpawnManager>
         return pet;
     }
 
-    public Effect Spawn_Effect(RuntimeAnimatorController anim, Vector2 pos)
+    public Effect Spawn_Effect(RuntimeAnimatorController anim, Vector2 pos, float size)
     {
         Effect effect = PoolManager.Instance.GetFromPool<Effect>("Effect");
-        effect.SetEffect(anim, pos);
+        effect.SetEffect(anim, pos, size);
 
         return effect;
     }

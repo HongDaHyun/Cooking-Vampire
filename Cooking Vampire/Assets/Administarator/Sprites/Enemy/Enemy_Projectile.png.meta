@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3ae00de42ba18e941bef8558dfae8727
+guid: 6181ec4cab33cdf4ca5d7034f31cda8f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SkillIcon_0
+      name: Enemy_Projectile_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 5
         width: 16
-        height: 16
+        height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,20 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ba78b4e9ca8a61439a6e00a001b6060
-      internalID: -1314346397
+      spriteID: feb449cf7a4bd1e4584f2850b177fd9f
+      internalID: 843337318
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkillIcon_1
+      name: Enemy_Projectile_1
       rect:
         serializedVersion: 2
         x: 16
-        y: 0
+        y: 5
         width: 16
-        height: 16
+        height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,20 +163,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f22fc6bed5e3ca84a8e94346eb40d086
-      internalID: -1540385662
+      spriteID: c00fcce5fc354204da201cc82c68b77d
+      internalID: 1710718352
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkillIcon_2
+      name: Enemy_Projectile_2
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
+        x: 33
+        y: 1
+        width: 14
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +184,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: faf127fb31e137d43bd31fb6db1b7bad
-      internalID: 726075674
+      spriteID: d2d59aaef50020a448881c8a059bab57
+      internalID: -1608282366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkillIcon_3
+      name: Enemy_Projectile_3
       rect:
         serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
+        x: 49
+        y: 1
+        width: 14
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,20 +205,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18ccf657b1d4e5e4d8e71dfb37853c2b
-      internalID: -1738997628
+      spriteID: af908ea883ed87d4ca12b9436ba2067d
+      internalID: -840727456
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkillIcon_4
+      name: Enemy_Projectile_4
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 16
+        x: 67
+        y: 3
+        width: 10
+        height: 9
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,20 +226,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3b0cc9d5ceba64458790644b5b97d90
-      internalID: 1458589008
+      spriteID: 752593fbeda76ce42ac4c2c9547ea508
+      internalID: -42451790
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkillIcon_5
+      name: Enemy_Projectile_5
       rect:
         serializedVersion: 2
-        x: 80
-        y: 0
-        width: 16
-        height: 16
+        x: 83
+        y: 3
+        width: 10
+        height: 9
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,50 +247,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81ddf643e3809634abb02e00e83890a8
-      internalID: 1033762282
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SkillIcon_6
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5ef661e6cae2eba44abc58b612a546cb
-      internalID: -726043896
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SkillIcon_7
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1c008500fe796a240bcf0ed149b7cd38
-      internalID: -1296634218
+      spriteID: 77cd5d05f6af69140b3119becdb2e021
+      internalID: -1338068984
       vertices: []
       indices: 
       edges: []
@@ -306,14 +264,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      SkillIcon_1: -1540385662
-      SkillIcon_6: -726043896
-      SkillIcon_2: 726075674
-      SkillIcon_7: -1296634218
-      SkillIcon_4: 1458589008
-      SkillIcon_0: -1314346397
-      SkillIcon_3: -1738997628
-      SkillIcon_5: 1033762282
+      Enemy_Projectile_3: -840727456
+      Enemy_Projectile_1: 1710718352
+      Enemy_Projectile_4: -42451790
+      Enemy_Projectile_2: -1608282366
+      Enemy_Projectile_5: -1338068984
+      Enemy_Projectile_0: 843337318
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

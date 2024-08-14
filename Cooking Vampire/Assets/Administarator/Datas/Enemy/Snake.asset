@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d9386556ef3dd4da6c775320f1bfdc, type: 3}
   m_Name: Snake
   m_EditorClassIdentifier: 
+  title: 
+  discription: 
   stage: 2
   tier: 1
-  speed: 2
+  speed: 1
   type: 2
   animators:
   - {fileID: 9100000, guid: 1c0f9c5780b2abd45b91c3213c449f3a, type: 2}

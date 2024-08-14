@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour, IPoolObject
     [ReadOnly] public bool isDead, isDamaged;
     private int difficult;
     public EnemyStat stat;
+    public EnemyData data;
     private Coroutine hitRoutine;
 
     EnemyMove enemyMove;
@@ -61,12 +62,14 @@ public class Enemy : MonoBehaviour, IPoolObject
         enemyMove.ReSet();
     }
 
-    private void SetStat(EnemyData data)
+    private void SetStat(EnemyData _data)
     {
+        data = _data;
+
         difficult = Mathf.Max(1, Mathf.RoundToInt(gm.curGameTime / 10));
         stat.maxHp = (10 + difficult) * tier;
         stat.curHp = stat.maxHp;
-        stat.speed = data.speed;
+        stat.speed = _data.speed;
         isDead = false;
     }
 

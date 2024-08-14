@@ -23,11 +23,11 @@ AnimationClip:
       value: {fileID: 696952172, guid: 7e28b30c779dd5042934ef017b7b89a4, type: 3}
     - time: 0.083333336
       value: {fileID: 12596176, guid: 7e28b30c779dd5042934ef017b7b89a4, type: 3}
-    - time: 0.16666667
+    - time: 0.5
       value: {fileID: 777322623, guid: 7e28b30c779dd5042934ef017b7b89a4, type: 3}
-    - time: 0.25
+    - time: 0.5833333
       value: {fileID: -1913109528, guid: 7e28b30c779dd5042934ef017b7b89a4, type: 3}
-    - time: 0.41666666
+    - time: 1
       value: {fileID: -1913109528, guid: 7e28b30c779dd5042934ef017b7b89a4, type: 3}
     attribute: m_Sprite
     path: 
@@ -58,7 +58,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5
+    m_StopTime: 1.0833334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -77,4 +77,25 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: IsStop
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.5833333
+    functionName: Charging
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1
+    functionName: IsCharge_Stop
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
