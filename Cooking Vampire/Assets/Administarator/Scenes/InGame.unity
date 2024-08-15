@@ -543,7 +543,7 @@ GameObject:
   - component: {fileID: 75309340}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1213,6 +1213,11 @@ MonoBehaviour:
     _nonLazy: 0
   - _name: Projectile_Rigid
     _component: {fileID: -5054625224552965630, guid: b274dae443f6f8641a2ef17a91ef3c71, type: 3}
+    _count: 0
+    _container: {fileID: 0}
+    _nonLazy: 0
+  - _name: Projectile_Enemy
+    _component: {fileID: 7476855480991472747, guid: 8cfc37ce0f0df0746b1131396a48bbcf, type: 3}
     _count: 0
     _container: {fileID: 0}
     _nonLazy: 0
@@ -17530,7 +17535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnDatas:
-  - spawnTier: 01000000
+  - spawnTier: 03000000
     spawnCool: 2
     spawnTime: 10
   - spawnTier: 0100000002000000
@@ -33958,6 +33963,16 @@ MonoBehaviour:
   - {fileID: -1571137804, guid: 61621a4d9f174c543a585704ab1d97d7, type: 3}
   - {fileID: -92415145, guid: 61621a4d9f174c543a585704ab1d97d7, type: 3}
   - {fileID: 1017502573, guid: 61621a4d9f174c543a585704ab1d97d7, type: 3}
+  enemyProjectile_Sprites:
+  - name: Slime
+    sprite: {fileID: -1608282366, guid: 6181ec4cab33cdf4ca5d7034f31cda8f, type: 3}
+    anim: {fileID: 22100000, guid: 359289d6742a7e8479b9a7f7e5d055c8, type: 2}
+  - name: Skeleton
+    sprite: {fileID: 843337318, guid: 6181ec4cab33cdf4ca5d7034f31cda8f, type: 3}
+    anim: {fileID: 9100000, guid: 53dd65366570e714985a4b552100cd4a, type: 2}
+  - name: Mushroom
+    sprite: {fileID: -42451790, guid: 6181ec4cab33cdf4ca5d7034f31cda8f, type: 3}
+    anim: {fileID: 22100000, guid: 4f061e3295f6a3c4b888bc66f34c7d43, type: 2}
 --- !u!4 &1616563828
 Transform:
   m_ObjectHideFlags: 0

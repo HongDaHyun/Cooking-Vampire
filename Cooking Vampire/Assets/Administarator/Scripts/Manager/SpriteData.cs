@@ -12,6 +12,7 @@ public class SpriteData : Singleton<SpriteData>
     public RuntimeAnimatorController[] effects;
     public Pallate[] pallates;
     public Sprite[] statSprites;
+    public Enemy_Projectile_Sprite[] enemyProjectile_Sprites;
 
     public Sprite[] Export_StageSprites(StageType type)
     {
@@ -45,6 +46,11 @@ public class SpriteData : Singleton<SpriteData>
                 return Export_Pallate(ColorType.Gray);
         }
     }
+
+    public Enemy_Projectile_Sprite Export_Enemy_Projectile_Sprite(string name)
+    {
+        return Array.Find(enemyProjectile_Sprites, data => data.name == name);
+    }
 }
 public enum ColorType { Gray, Mint, Green, Blue, Purple, Red, Yellow }
 
@@ -68,4 +74,12 @@ public struct Pallate
 {
     public ColorType colorType;
     public Color color;
+}
+
+[Serializable]
+public struct Enemy_Projectile_Sprite
+{
+    public string name;
+    public Sprite sprite;
+    public RuntimeAnimatorController anim;
 }

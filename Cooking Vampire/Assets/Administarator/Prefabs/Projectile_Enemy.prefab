@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 1610067524390063148}
   - component: {fileID: 2842329717761990558}
   - component: {fileID: 3667389366683774144}
-  - component: {fileID: -5054625224552965630}
+  - component: {fileID: 3447650579762230143}
+  - component: {fileID: 7476855480991472747}
   m_Layer: 0
-  m_Name: Projectile_Rigid
-  m_TagString: Projectile
+  m_Name: Projectile_Enemy
+  m_TagString: Projectile_Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,7 +135,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 1.0625}
   m_EdgeRadius: 0
---- !u!114 &-5054625224552965630
+--- !u!95 &3447650579762230143
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610067524390063139}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 359289d6742a7e8479b9a7f7e5d055c8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7476855480991472747
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,7 +164,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1610067524390063139}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05a5563f831b08c48be6ba72b6e8da2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 362b44291a9ab744b9bdfa1449c5d50b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stat:

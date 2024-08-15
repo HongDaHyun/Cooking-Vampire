@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour, IPoolObject
     [HideInInspector] public GameManager_Survivor gm;
     DataManager dataManager;
     SpawnManager spawnManager;
+    SpriteData spriteData;
 
     public void OnCreatedInPool()
     {
@@ -30,6 +31,8 @@ public class Enemy : MonoBehaviour, IPoolObject
         spawnManager = SpawnManager.Instance;
         gm = GameManager_Survivor.Instance;
         dataManager = DataManager.Instance;
+        spriteData = SpriteData.Instance;
+
         col = GetComponent<Collider2D>();
         rigid = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
@@ -59,6 +62,7 @@ public class Enemy : MonoBehaviour, IPoolObject
         isDamaged = false;
 
         col.enabled = true;
+        StartCoroutine(TypeRoutine());
         enemyMove.ReSet();
     }
 
@@ -108,6 +112,25 @@ public class Enemy : MonoBehaviour, IPoolObject
             spawnManager.Spawn_Gems(difficult * tier, transform.position);
         }
     }
+    public void Atk()
+    {
+        Vector2 targetPos = gm.player.transform.position;
+
+        if (Vector2.Distance(targetPos, transform.position) > 5f)
+            return;
+
+        anim.SetTrigger("Atk");
+        ShootRange(targetPos);
+    }
+    private void ShootRange(Vector3 pos)
+    {
+        Enemy_Projectile_Sprite sprite = spriteData.Export_Enemy_Projectile_Sprite(data.title);
+        Projectile_Enemy projectile = spawnManager.Spawn_Projectile_Enemy(sprite.sprite, transform, sprite.anim);
+
+        Vector3 dir = (pos - transform.position).normalized;
+        projectile.SetDir(dir, 5f);
+        projectile.transform.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -124,7 +147,6 @@ public class Enemy : MonoBehaviour, IPoolObject
 
         spawnManager.Destroy_Enemy(this);
     }
-
     private IEnumerator DamagedRoutine()
     {
         if (hitRoutine != null)
@@ -135,6 +157,28 @@ public class Enemy : MonoBehaviour, IPoolObject
 
         isDamaged = false;
         hitRoutine = null;
+    }
+
+    private IEnumerator TypeRoutine()
+    {
+        while (true)
+        {
+            switch (data.type)
+            {
+                case AtkType.Normal:
+                    yield break;
+                case AtkType.Range:
+                    Atk();
+                    break;
+                case AtkType.Charge:
+                    anim.SetTrigger("Charge");
+                    break;
+                case AtkType.Area:
+                    break;
+            }
+
+            yield return new WaitForSeconds(5f);
+        }
     }
 }
 

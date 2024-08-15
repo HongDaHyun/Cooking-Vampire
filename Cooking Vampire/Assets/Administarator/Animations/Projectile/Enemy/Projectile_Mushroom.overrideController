@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Projectile_Mushroom
+  m_Controller: {fileID: 9100000, guid: 53dd65366570e714985a4b552100cd4a, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: b611e991e0096314bb32468b050b1a34, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: eeb4584c1ecc37a4bbd0f662f689e3fe, type: 2}

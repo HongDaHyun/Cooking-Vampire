@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile_Rigid : Projectile
 {
-    Rigidbody2D rigid;
+    protected Rigidbody2D rigid;
     int curPer;
 
     public override void OnCreatedInPool()
@@ -13,7 +13,7 @@ public class Projectile_Rigid : Projectile
         rigid = GetComponent<Rigidbody2D>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Enemy"))
             return;

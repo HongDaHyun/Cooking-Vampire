@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d9386556ef3dd4da6c775320f1bfdc, type: 3}
   m_Name: Mushroom
   m_EditorClassIdentifier: 
+  title: Mushroom
+  discription: 
   stage: 2
   tier: 3
   speed: 1.8

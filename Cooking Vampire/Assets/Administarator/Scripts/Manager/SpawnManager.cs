@@ -51,6 +51,18 @@ public class SpawnManager : Singleton<SpawnManager>
 
         return projectile;
     }
+    public Projectile_Enemy Spawn_Projectile_Enemy(Sprite sprite, Transform trans, RuntimeAnimatorController anim)
+    {
+        Projectile_Enemy projectile = PoolManager.Instance.GetFromPool<Projectile_Enemy>("Projectile_Enemy");
+
+        WeaponStat weaponStat = new WeaponStat();
+        weaponStat.size = 1f;
+        projectile.SetProjectile(sprite, weaponStat, null);
+        projectile.SetAnim(anim);
+        projectile.transform.position = trans.position;
+
+        return projectile;
+    }
     public Projectile_Animation Spawn_Projectile_Anim(Sprite sprite, WeaponStat stat, RuntimeAnimatorController anim, Transform parent)
     {
         Projectile_Animation projectile = PoolManager.Instance.GetFromPool<Projectile_Animation>("Projectile_Animation");
