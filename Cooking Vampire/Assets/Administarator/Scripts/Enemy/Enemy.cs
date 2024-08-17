@@ -62,7 +62,6 @@ public class Enemy : MonoBehaviour, IPoolObject
         isDamaged = false;
 
         col.enabled = true;
-        StartCoroutine(TypeRoutine());
         enemyMove.ReSet();
     }
 
@@ -122,7 +121,7 @@ public class Enemy : MonoBehaviour, IPoolObject
         anim.SetTrigger("Atk");
         ShootRange(targetPos);
     }
-    private void ShootRange(Vector3 pos)
+    public void ShootRange(Vector3 pos)
     {
         Enemy_Projectile_Sprite sprite = spriteData.Export_Enemy_Projectile_Sprite(data.title);
         Projectile_Enemy projectile = spawnManager.Spawn_Projectile_Enemy(sprite.sprite, transform, sprite.anim);
@@ -157,28 +156,6 @@ public class Enemy : MonoBehaviour, IPoolObject
 
         isDamaged = false;
         hitRoutine = null;
-    }
-
-    private IEnumerator TypeRoutine()
-    {
-        while (true)
-        {
-            switch (data.type)
-            {
-                case AtkType.Normal:
-                    yield break;
-                case AtkType.Range:
-                    Atk();
-                    break;
-                case AtkType.Charge:
-                    anim.SetTrigger("Charge");
-                    break;
-                case AtkType.Area:
-                    break;
-            }
-
-            yield return new WaitForSeconds(5f);
-        }
     }
 }
 

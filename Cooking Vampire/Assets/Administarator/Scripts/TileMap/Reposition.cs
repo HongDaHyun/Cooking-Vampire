@@ -40,9 +40,15 @@ public class Reposition : MonoBehaviour
             {
                 case "Ground":
                     if (diffX > 30)
+                    {
                         transform.Translate(Vector3.right * dirX * 60);
+                        GetComponent<TileMap>().ArrangeObj();
+                    }
                     if (diffY > 30)
+                    {
                         transform.Translate(Vector3.up * dirY * 60);
+                        GetComponent<TileMap>().ArrangeObj();
+                    }
                     break;
                 case "Enemy":
                     if (enemy.isDead)

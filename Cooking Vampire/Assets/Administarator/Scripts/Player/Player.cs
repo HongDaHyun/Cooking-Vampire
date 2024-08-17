@@ -44,21 +44,19 @@ public class Player : MonoBehaviour
         StartCoroutine(HealRoutine());
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Projectile_Enemy") && !isHit)
-            Hitted(Mathf.Max(1, (int)(gm.curGameTime / 10f)));
-    }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Enemy") && !isHit)
+        if (collision.collider.CompareTag("Enemy"))
         {
             Hitted(Mathf.Max(1, (int)(gm.curGameTime / 10f)));
         }
     }
 
-    private void Hitted(int dmg)
+    public void Hitted(int dmg)
     {
+        if (isHit)
+            return;
+
         hitRoutine = StartCoroutine(HitRoutine());
 
         // È¸ÇÇ

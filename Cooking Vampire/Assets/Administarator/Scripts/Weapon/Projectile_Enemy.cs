@@ -18,6 +18,8 @@ public class Projectile_Enemy : Projectile_Rigid
         if (!collision.CompareTag("Player"))
             return;
 
+        collision.GetComponent<Player>().Hitted(Mathf.Max(1, (int)(gm.curGameTime / 10f)));
+
         rigid.velocity = Vector2.zero;
         spawnManager.Destroy_Projectile(this);
     }

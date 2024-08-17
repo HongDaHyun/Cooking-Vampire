@@ -56,10 +56,8 @@ public class EnemyMove : MonoBehaviour
         isCharge = false;
         enemy.rigid.simulated = true;
 
-        if (enemy.data.type == AtkType.Range)
-            enemy.anim.SetBool("IsStop", false);
-
         StopAllCoroutines();
+        StartCoroutine($"{enemy.data.type}Move");
     }
 
     private void Track()
@@ -91,4 +89,53 @@ public class EnemyMove : MonoBehaviour
         Vector3 dirVec = transform.position - playerPos;
         enemy.rigid.AddForce(dirVec.normalized * player.gm.stat.Get_Value(StatType.BACK, 1), ForceMode2D.Impulse);
     }    
+
+    private IEnumerator NormalMove()
+    {
+        yield break;
+    }
+    private IEnumerator ChargeMove()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(5f);
+
+            enemy.anim.SetTrigger("Charge");
+        }
+    }
+    private IEnumerator RangeMove()
+    {
+        float atkCool = 0f;
+
+        yield return new WaitUntil(() => target);
+
+        while(true)
+        {
+            atkCool += Time.fixedDeltaTime;
+
+            if(Vector2.Distance(target.transform.position, transform.position) < 5f)
+            {
+                if(atkCool > 4f)
+                {
+                    enemy.anim.SetTrigger("Atk");
+                    enemy.ShootRange(target.transform.position);
+                    atkCool = 0f;
+                    yield return new WaitUntil(() => !enemy.anim.GetCurrentAnimatorStateInfo(0).IsName("Atk"));
+                }
+                else
+                {
+                    IsStop();
+                    enemy.anim.SetBool("IsStop", true);
+                    yield return new WaitForSeconds(0.5f);
+                    atkCool += 0.5f;
+                }
+            }
+            else
+            {
+                IsMove();
+                enemy.anim.SetBool("IsStop", false);
+            }
+            yield return new WaitForFixedUpdate();
+        }
+    }
 }

@@ -9,6 +9,7 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
     public float MAX_GAMETIME;
     [ReadOnly] public float curGameTime;
     [ReadOnly] public int playerLvCount;
+    public GameObject[] tileMaps;
 
     [Title("플레이어 정보")]
     public Player player;
@@ -25,6 +26,7 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
     private void Start()
     {
         health = stat.maxHealth;
+        tileMaps[(int)DataManager.Instance.curStage].gameObject.SetActive(true);
     }
 
     private void Update()
