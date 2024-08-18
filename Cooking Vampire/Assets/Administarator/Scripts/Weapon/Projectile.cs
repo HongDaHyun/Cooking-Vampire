@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour, IPoolObject
 {
     [HideInInspector] public WeaponStat stat;
 
-    Player player;
+    protected Player player;
     protected SpawnManager spawnManager;
     protected GameManager_Survivor gm;
     protected SpriteData spriteData;

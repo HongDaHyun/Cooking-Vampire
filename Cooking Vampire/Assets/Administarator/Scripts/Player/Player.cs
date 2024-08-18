@@ -44,12 +44,26 @@ public class Player : MonoBehaviour
         StartCoroutine(HealRoutine());
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Enemy"))
+            return;
+
+        Hitted(Mathf.Max(1, (int)(gm.curGameTime / 10f)));
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Enemy"))
+            return;
+
+        Hitted(Mathf.Max(1, (int)(gm.curGameTime / 10f)));
+    }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Enemy"))
-        {
-            Hitted(Mathf.Max(1, (int)(gm.curGameTime / 10f)));
-        }
+        if (!collision.collider.CompareTag("Enemy"))
+            return;
+
+        Hitted(Mathf.Max(1, (int)(gm.curGameTime / 10f)));
     }
 
     public void Hitted(int dmg)
@@ -276,7 +290,7 @@ public struct PlayerStat
                 break;
         }
 
-        def = data.isPercent ? def + def * upValue : upValue;
+        def = data.isPercent ? def + def * upValue / 100f : upValue;
         Limit_Value(data, ref def);
 
         return def;

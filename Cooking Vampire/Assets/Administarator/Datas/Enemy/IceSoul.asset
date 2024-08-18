@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d9386556ef3dd4da6c775320f1bfdc, type: 3}
   m_Name: IceSoul
   m_EditorClassIdentifier: 
+  title: 
+  discription: 
   stage: 3
   tier: 2
   speed: 2
-  type: 3
+  atkType: 3
+  eleType: 2
   animators:
   - {fileID: 22100000, guid: c683c7915b00e804397192651849cab0, type: 2}

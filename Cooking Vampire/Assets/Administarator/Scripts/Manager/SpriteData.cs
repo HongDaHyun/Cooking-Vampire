@@ -13,6 +13,7 @@ public class SpriteData : Singleton<SpriteData>
     public Pallate[] pallates;
     public Sprite[] statSprites;
     public Enemy_Projectile_Sprite[] enemyProjectile_Sprites;
+    public Area_Sprite[] area_Sprites;
 
     public Sprite[] Export_StageSprites(StageType type)
     {
@@ -51,8 +52,14 @@ public class SpriteData : Singleton<SpriteData>
     {
         return Array.Find(enemyProjectile_Sprites, data => data.name == name);
     }
+
+    public Area_Sprite Export_Area_Sprite(EleType type)
+    {
+        return Array.Find(area_Sprites, data => data.eleType == type);
+    }
 }
 public enum ColorType { Gray, Mint, Green, Blue, Purple, Red, Yellow }
+public enum EleType { Normal, Fire, Ice, Poison }
 
 [Serializable]
 public struct StageSprite
@@ -81,5 +88,12 @@ public struct Enemy_Projectile_Sprite
 {
     public string name;
     public Sprite sprite;
+    public RuntimeAnimatorController anim;
+}
+
+[Serializable]
+public struct Area_Sprite
+{
+    public EleType eleType;
     public RuntimeAnimatorController anim;
 }

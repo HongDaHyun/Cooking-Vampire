@@ -18,10 +18,17 @@ public class Projectile_Enemy : Projectile_Rigid
         if (!collision.CompareTag("Player"))
             return;
 
-        collision.GetComponent<Player>().Hitted(Mathf.Max(1, (int)(gm.curGameTime / 10f)));
-
         rigid.velocity = Vector2.zero;
         spawnManager.Destroy_Projectile(this);
+    }
+
+    public override void SetProjectile(Sprite sprite, WeaponStat stat, Transform parent)
+    {
+        this.stat = stat;
+        transform.SetParent(parent);
+        transform.localScale = new Vector2(stat.size, stat.size);
+
+        SetSprite(sprite);
     }
 
     public void SetAnim(RuntimeAnimatorController anim)

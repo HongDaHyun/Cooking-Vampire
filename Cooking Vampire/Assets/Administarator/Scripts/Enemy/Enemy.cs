@@ -121,10 +121,15 @@ public class Enemy : MonoBehaviour, IPoolObject
         anim.SetTrigger("Atk");
         ShootRange(targetPos);
     }
+    public void ShootArea()
+    {
+        Area_Sprite sprite = spriteData.Export_Area_Sprite(data.eleType);
+        spawnManager.Spawn_Projectile_Area(1f, sprite.anim, transform);
+    }
     public void ShootRange(Vector3 pos)
     {
         Enemy_Projectile_Sprite sprite = spriteData.Export_Enemy_Projectile_Sprite(data.title);
-        Projectile_Enemy projectile = spawnManager.Spawn_Projectile_Enemy(sprite.sprite, transform, sprite.anim);
+        Projectile_Enemy projectile = spawnManager.Spawn_Projectile_Enemy(sprite.sprite, 1f, sprite.anim, transform);
 
         Vector3 dir = (pos - transform.position).normalized;
         projectile.SetDir(dir, 5f);

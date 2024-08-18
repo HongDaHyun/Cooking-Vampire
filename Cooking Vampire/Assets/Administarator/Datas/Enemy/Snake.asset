@@ -17,7 +17,8 @@ MonoBehaviour:
   stage: 2
   tier: 1
   speed: 1
-  type: 2
+  atkType: 2
+  eleType: 0
   animators:
   - {fileID: 9100000, guid: 1c0f9c5780b2abd45b91c3213c449f3a, type: 2}
   - {fileID: 22100000, guid: d33852e6783e2164887a18a2900c1aa4, type: 2}

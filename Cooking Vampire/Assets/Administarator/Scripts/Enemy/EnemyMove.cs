@@ -57,7 +57,7 @@ public class EnemyMove : MonoBehaviour
         enemy.rigid.simulated = true;
 
         StopAllCoroutines();
-        StartCoroutine($"{enemy.data.type}Move");
+        StartCoroutine($"{enemy.data.atkType}Move");
     }
 
     private void Track()
@@ -136,6 +136,16 @@ public class EnemyMove : MonoBehaviour
                 enemy.anim.SetBool("IsStop", false);
             }
             yield return new WaitForFixedUpdate();
+        }
+    }
+    private IEnumerator AreaMove()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(5f);
+
+            enemy.anim.SetTrigger("Atk");
+            enemy.ShootArea();
         }
     }
 }

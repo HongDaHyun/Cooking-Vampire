@@ -14,7 +14,8 @@ public class EnemyData : ScriptableObject
     public StageType stage;
     public int tier; // 4´Â º¸½º
     public float speed;
-    public AtkType type;
+    public AtkType atkType;
+    public EleType eleType;
     public RuntimeAnimatorController[] animators;
 
     public RuntimeAnimatorController Export_RanAnim()

@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d9386556ef3dd4da6c775320f1bfdc, type: 3}
   m_Name: PoisonSoul
   m_EditorClassIdentifier: 
+  title: 
+  discription: 
   stage: 3
   tier: 3
   speed: 2
-  type: 3
+  atkType: 3
+  eleType: 3
   animators:
   - {fileID: 22100000, guid: 96f72a00796fea24a90457eec9c9564c, type: 2}
