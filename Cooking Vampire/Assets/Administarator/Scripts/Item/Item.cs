@@ -15,7 +15,7 @@ public abstract class Item : MonoBehaviour, IPoolObject
 
     [ReadOnly] public bool isActive, isDrain;
 
-    public void OnCreatedInPool()
+    public virtual void OnCreatedInPool()
     {
         name = name.Replace("(Clone)", "");
 
@@ -26,13 +26,13 @@ public abstract class Item : MonoBehaviour, IPoolObject
         spawnManager = SpawnManager.Instance;
     }
 
-    public void OnGettingFromPool()
+    public virtual void OnGettingFromPool()
     {
         isActive = false;
         isDrain = false;
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (!isActive || !isDrain)
             return;

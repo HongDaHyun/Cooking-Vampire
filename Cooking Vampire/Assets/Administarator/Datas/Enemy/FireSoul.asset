@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d9386556ef3dd4da6c775320f1bfdc, type: 3}
   m_Name: FireSoul
   m_EditorClassIdentifier: 
-  title: 
+  title: "\uBD88 \uC815\uB839"
   discription: 
   stage: 3
-  tier: 1
   speed: 2
   atkType: 3
   eleType: 1

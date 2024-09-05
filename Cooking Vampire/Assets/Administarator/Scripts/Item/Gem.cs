@@ -16,13 +16,13 @@ public class Gem : Item
     }
     protected override void Drain()
     {
-        sr.sprite = spriteData.Export_GemSprites(amount).moveSprite;
+        sr.sprite = spriteData.Export_GemSprite(amount).moveSprite;
         base.Drain();
     }
     protected override void Drop(Vector2 pos)
     {
         sr.sortingOrder = 1;
-        sr.sprite = spriteData.Export_GemSprites(amount).moveSprite;
+        sr.sprite = spriteData.Export_GemSprite(amount).idleSprite;
         transform.position = pos;
 
         Vector2 startPos = pos;
@@ -36,7 +36,7 @@ public class Gem : Item
 
         transform.DOPath(path, 0.5f, PathType.CatmullRom).SetEase(Ease.Linear).OnComplete(() =>
         {
-            sr.sprite = spriteData.Export_GemSprites(amount).idleSprite;
+            sr.sprite = spriteData.Export_GemSprite(amount).idleSprite;
             sr.sortingOrder = 0;
             isActive = true;
         });

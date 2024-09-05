@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d9386556ef3dd4da6c775320f1bfdc, type: 3}
   m_Name: Ghost
   m_EditorClassIdentifier: 
+  title: "\uC720\uB839"
+  discription: 
   stage: 1
-  tier: 2
   speed: 3
-  type: 0
+  atkType: 0
+  eleType: 0
   animators:
   - {fileID: 22100000, guid: 1f1060c206081034da8b3d7864c83620, type: 2}

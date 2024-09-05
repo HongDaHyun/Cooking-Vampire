@@ -21,12 +21,12 @@ public class SpawnManager : Singleton<SpawnManager>
         PoolManager.Instance.TakeToPool<SpriteRenderer>(sr);
     }
 
-    public Enemy Spawn_Enemy(int[] spawnTier, Vector3 position)
+    public Enemy Spawn_Enemy(string enemyName, Vector3 position)
     {
         Enemy enemy = PoolManager.Instance.GetFromPool<Enemy>("Enemy");
 
         enemy.transform.position = position;
-        enemy.SetEnemy(spawnTier[Random.Range(0, spawnTier.Length)]);
+        enemy.SetEnemy(enemyName);
 
         return enemy;
     }
@@ -129,6 +129,32 @@ public class SpawnManager : Singleton<SpawnManager>
     public void Destroy_Gem(Gem gem)
     {
         PoolManager.Instance.TakeToPool<Gem>(gem.name, gem);
+    }
+    public Box Spawn_Box(Vector2 pos)
+    {
+        Box box = PoolManager.Instance.GetFromPool<Box>("Box");
+
+        box.SetBox(pos);
+
+        return box;
+    }
+    public void Destroy_Box(Box box)
+    {
+        PoolManager.Instance.TakeToPool<Box>(box.name, box);
+    }
+    private Droptem Spawn_Droptem(ItemType type, Vector2 pos)
+    {
+        Droptem droptem = PoolManager.Instance.GetFromPool<Droptem>("Droptem");
+
+        droptem.SetDropItem(pos, type);
+
+        return droptem;
+    }
+    public void Spawn_Droptem_Ran(Vector2 pos)
+    {
+        ItemType ranType = (ItemType)Random.Range(0, System.Enum.GetValues(typeof(ItemType)).Length);
+
+        Spawn_Droptem(ranType, pos);
     }
 
     public TextMeshPro Spawn_PopUpTxt(int amount, Vector2 pos, bool isCrit)

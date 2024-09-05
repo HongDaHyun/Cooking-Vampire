@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d9386556ef3dd4da6c775320f1bfdc, type: 3}
   m_Name: Bat
   m_EditorClassIdentifier: 
+  title: "\uBC15\uC950"
+  discription: 
   stage: 1
-  tier: 1
   speed: 2.7
-  type: 0
+  atkType: 0
+  eleType: 0
   animators:
   - {fileID: 22100000, guid: 982234b44e9552747aa754c55d2da6cf, type: 2}
   - {fileID: 22100000, guid: 8c512547fd957e4428f52f1b5ca3bc98, type: 2}

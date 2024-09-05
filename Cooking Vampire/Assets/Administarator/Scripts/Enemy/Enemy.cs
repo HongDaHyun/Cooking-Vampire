@@ -6,7 +6,6 @@ using Sirenix.OdinInspector;
 
 public class Enemy : MonoBehaviour, IPoolObject
 {
-    [ReadOnly] public int tier; // 1부터 시작
     [ReadOnly] public bool isDead, isDamaged;
     private int difficult;
     public EnemyStat stat;
@@ -44,11 +43,9 @@ public class Enemy : MonoBehaviour, IPoolObject
     {
     }
 
-    public void SetEnemy(int _tier)
+    public void SetEnemy(string enemyName)
     {
-        tier = _tier;
-
-        EnemyData data = dataManager.Export_EnemyData(tier);
+        EnemyData data = dataManager.Export_EnemyData(enemyName);
         anim.runtimeAnimatorController = data.Export_RanAnim();
 
         SetStat(data);
@@ -70,7 +67,7 @@ public class Enemy : MonoBehaviour, IPoolObject
         data = _data;
 
         difficult = Mathf.Max(1, Mathf.RoundToInt(gm.curGameTime / 10));
-        stat.maxHp = (10 + difficult) * tier;
+        stat.maxHp = 10 + difficult;
         stat.curHp = stat.maxHp;
         stat.speed = _data.speed;
         isDead = false;
@@ -108,7 +105,8 @@ public class Enemy : MonoBehaviour, IPoolObject
 
             // 데이터 처리
             gm.killCount++;
-            spawnManager.Spawn_Gems(difficult * tier, transform.position);
+            spawnManager.Spawn_Gems(difficult, transform.position);
+            spawnManager.Spawn_Box(transform.position);
         }
     }
     public void Atk()

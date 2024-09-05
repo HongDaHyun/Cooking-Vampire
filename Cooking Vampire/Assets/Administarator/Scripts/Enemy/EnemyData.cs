@@ -12,7 +12,6 @@ public class EnemyData : ScriptableObject
 
     [Title("데이터")]
     public StageType stage;
-    public int tier; // 4는 보스
     public float speed;
     public AtkType atkType;
     public EleType eleType;

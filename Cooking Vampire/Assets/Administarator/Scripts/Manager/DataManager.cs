@@ -10,21 +10,27 @@ public class DataManager : Singleton<DataManager>
     public StageType curStage;
     public PlayerType curPlayer;
     public WeaponData curWeapon;
+    public int coin;
 
     [Title("정적 데이터")]
     public PlayerData[] playerDatas;
     public EnemyData[] enemyDatas;
     public WeaponData[] weaponDatas;
 
+    public void EarnCoin(int amount)
+    {
+        coin += amount;
+    }
+
     public PlayerData Export_PlayerData()
     {
         return Array.Find(playerDatas, data => data.type == curPlayer);
     }
 
-    public EnemyData Export_EnemyData(int tier)
+    public EnemyData Export_EnemyData(string enemyName)
     {
-        EnemyData[] tierDatas = Array.FindAll(enemyDatas, data => data.tier == tier && data.stage == curStage);
-        return tierDatas[UnityEngine.Random.Range(0, tierDatas.Length)];
+        EnemyData[] datas = Array.FindAll(enemyDatas, data => data.title == enemyName && data.stage == curStage);
+        return datas[UnityEngine.Random.Range(0, datas.Length)];
     }
 
     public WeaponData Export_WeaponData(PlayerType type, int tier)

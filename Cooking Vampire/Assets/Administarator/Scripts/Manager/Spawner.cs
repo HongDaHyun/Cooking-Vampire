@@ -38,7 +38,8 @@ public class Spawner : MonoBehaviour
                 level++;
                 levelTime += curData.spawnTime;
             }
-            spawnManager.Spawn_Enemy(curData.spawnTier, spawnPoints[Random.Range(1, spawnPoints.Length)].position);
+
+            spawnManager.Spawn_Enemy(curData.Get_RanName(), spawnPoints[Random.Range(1, spawnPoints.Length)].position);
 
             yield return new WaitForSeconds(curData.spawnCool);
         }
@@ -48,7 +49,35 @@ public class Spawner : MonoBehaviour
 [System.Serializable]
 public struct SpawnData
 {
-    public int[] spawnTier;
+    public SpawnData_Detail[] spawnData_Details;
     public float spawnCool;
     public float spawnTime;
+
+    public string Get_RanName()
+    {
+        int length = spawnData_Details.Length;
+        float fullScale = 0f;
+        float curScale = 0f;
+
+        for(int i = 0; i < length; i++)
+        {
+            fullScale = spawnData_Details[i].scale;
+        }
+
+        float ranID = Random.Range(0f, fullScale);
+
+        for(int i = 0; i < length; i++)
+        {
+            curScale = spawnData_Details[i].scale;
+            if (ranID < curScale)
+                return spawnData_Details[i].name;
+        }
+        return null;
+    }
+}
+[System.Serializable]
+public struct SpawnData_Detail
+{
+    public string name;
+    [Range(0f, 1f)]public float scale;
 }

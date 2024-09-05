@@ -27,7 +27,7 @@ public class Scanner : MonoBehaviour
 
         targets = Physics2D.CircleCastAll(transform.position, range, Vector2.zero, 0, enemyLayer);
         itemTargets = Physics2D.CircleCastAll(transform.position, range / 3, Vector2.zero, 0, itemLayer);
-        DrainGem();
+        DrainItem();
         UpdateNearest();
     }
 
@@ -61,12 +61,12 @@ public class Scanner : MonoBehaviour
         return targets[Random.Range(0, targets.Length)].transform;
     }
 
-    private void DrainGem()
+    private void DrainItem()
     {
         foreach(RaycastHit2D target in itemTargets)
         {
-            Item gem = target.transform.GetComponent<Item>();
-            gem.isDrain = true;
+            Item item = target.transform.GetComponent<Item>();
+            item.isDrain = true;
         }
     }
 }

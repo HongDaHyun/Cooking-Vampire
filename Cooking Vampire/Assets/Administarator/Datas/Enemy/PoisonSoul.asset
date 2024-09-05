@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d9386556ef3dd4da6c775320f1bfdc, type: 3}
   m_Name: PoisonSoul
   m_EditorClassIdentifier: 
-  title: 
+  title: "\uB3C5 \uC815\uB839"
   discription: 
   stage: 3
-  tier: 3
   speed: 2
   atkType: 3
   eleType: 3

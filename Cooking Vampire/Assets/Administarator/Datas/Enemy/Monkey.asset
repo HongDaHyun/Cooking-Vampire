@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d9386556ef3dd4da6c775320f1bfdc, type: 3}
   m_Name: Monkey
   m_EditorClassIdentifier: 
+  title: "\uC6D0\uC22D\uC774"
+  discription: 
   stage: 2
-  tier: 2
   speed: 2.2
-  type: 0
+  atkType: 0
+  eleType: 0
   animators:
   - {fileID: 22100000, guid: ab8c55795bbf3be4193670598cd61b9d, type: 2}

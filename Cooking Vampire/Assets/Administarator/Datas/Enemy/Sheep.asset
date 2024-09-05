@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d9386556ef3dd4da6c775320f1bfdc, type: 3}
   m_Name: Sheep
   m_EditorClassIdentifier: 
+  title: "\uC591"
+  discription: 
   stage: 0
-  tier: 1
   speed: 2
-  type: 0
+  atkType: 0
+  eleType: 0
   animators:
   - {fileID: 9100000, guid: bbc118dfa80cca041a5c6a0fa426d4dc, type: 2}
   - {fileID: 22100000, guid: d635c564689431344891473e060321cc, type: 2}

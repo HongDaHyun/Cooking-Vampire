@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d9386556ef3dd4da6c775320f1bfdc, type: 3}
   m_Name: Skeleton
   m_EditorClassIdentifier: 
-  title: Skeleton
+  title: "\uC2A4\uCF08\uB808\uD1A4"
   discription: 
   stage: 1
-  tier: 3
   speed: 2
   atkType: 1
   eleType: 0
