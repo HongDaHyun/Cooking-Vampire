@@ -16,6 +16,7 @@ public class DataManager : Singleton<DataManager>
     public PlayerData[] playerDatas;
     public EnemyData[] enemyDatas;
     public WeaponData[] weaponDatas;
+    public DroptemData[] droptemDatas;
 
     public void EarnCoin(int amount)
     {
@@ -26,16 +27,30 @@ public class DataManager : Singleton<DataManager>
     {
         return Array.Find(playerDatas, data => data.type == curPlayer);
     }
-
     public EnemyData Export_EnemyData(string enemyName)
     {
         EnemyData[] datas = Array.FindAll(enemyDatas, data => data.title == enemyName && data.stage == curStage);
         return datas[UnityEngine.Random.Range(0, datas.Length)];
     }
-
     public WeaponData Export_WeaponData(PlayerType type, int tier)
     {
         return Array.Find(weaponDatas, data => data.weaponType == type && data.tier == tier);
+    }
+    public DroptemData Export_DroptemData(string _name)
+    {
+        return Array.Find(droptemDatas, data => data.droptemName == _name);
+    }
+    public DroptemData Export_DroptemData_Ran()
+    {
+        Tier ranTier = GameManager_Survivor.Instance.Get_Tier();
+
+        DroptemData[] dropArray = Array.FindAll(droptemDatas, data => data.tier == ranTier);
+        
+        // 예외 처리
+        if (dropArray.Length == 0 || dropArray == null)
+            return droptemDatas[0];
+
+        return dropArray[UnityEngine.Random.Range(0, dropArray.Length)];
     }
 
     public string Get_Tier_Name(Tier tier)
@@ -54,7 +69,6 @@ public class DataManager : Singleton<DataManager>
                 return "";
         }
     }
-
     public bool Get_Ran(int percent)
     {
         int ranID = UnityEngine.Random.Range(1, 101);

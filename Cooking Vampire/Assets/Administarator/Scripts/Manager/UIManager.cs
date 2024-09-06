@@ -75,7 +75,10 @@ public class UIManager : Singleton<UIManager>
             if (isWeapon)
             {
                 if (weapons.Count == 0 || weapons == null)
+                {
                     pannel.SetUI(Random.Range(0, System.Enum.GetValues(typeof(StatType)).Length));
+                    continue;
+                }
 
                 int ranIndex = Random.Range(0, weapons.Count);
                 Weapon weapon = weapons[ranIndex];

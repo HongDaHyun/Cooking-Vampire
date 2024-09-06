@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Droptem : Item
 {
-    public ItemType type;
+    public DroptemData temData;
 
     Animator anim;
     DataManager dataManager;
@@ -16,25 +16,25 @@ public class Droptem : Item
         base.OnCreatedInPool();
     }
 
-    public void SetDropItem(Vector2 pos, ItemType _type)
+    public void SetDropItem(Vector2 pos, DroptemData data)
     {
-        type = _type;
+        temData = data;
 
-        anim.runtimeAnimatorController = spriteData.Export_DroptemSprite(type);
+        anim.runtimeAnimatorController = temData.anim;
 
         Drop(pos);
     }
 
     protected override void Destroy()
     {
-        switch(type)
+        switch(temData.droptemName)
         {
-            case ItemType.Coin:
+            case "코인":
                 dataManager.EarnCoin(50);
                 break;
-            case ItemType.Potion:
+            case "포션":
                 break;
-            case ItemType.Shield:
+            case "보호막":
                 break;
         }
     }
@@ -54,5 +54,3 @@ public class Droptem : Item
         base.Drain();
     }
 }
-
-public enum ItemType { Coin, Potion, Shield }

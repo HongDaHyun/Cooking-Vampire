@@ -9,7 +9,6 @@ public class SpriteData : Singleton<SpriteData>
     [Title("¼­¹ÙÀÌ¹ú")]
     public StageSprite[] stageSprites;
     public GemSprite[] gemSprites;
-    public DroptemSprite[] droptemSprites;
     public RuntimeAnimatorController[] effects;
     public Pallate[] pallates;
     public Sprite[] statSprites;
@@ -26,10 +25,6 @@ public class SpriteData : Singleton<SpriteData>
     public GemSprite Export_GemSprite(int unit)
     {
         return Array.Find(gemSprites, data => data.unit == unit);
-    }
-    public RuntimeAnimatorController Export_DroptemSprite(ItemType type)
-    {
-        return Array.Find(droptemSprites, data => data.type == type).anim;
     }
 
     public Color Export_Pallate(ColorType type)
@@ -79,12 +74,6 @@ public struct GemSprite
     public int unit;
     public Sprite idleSprite;
     public Sprite moveSprite;
-}
-[Serializable]
-public struct DroptemSprite
-{
-    public ItemType type;
-    public RuntimeAnimatorController anim;
 }
 
 [Serializable]

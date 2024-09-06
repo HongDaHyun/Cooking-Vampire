@@ -142,19 +142,19 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         PoolManager.Instance.TakeToPool<Box>(box.name, box);
     }
-    private Droptem Spawn_Droptem(ItemType type, Vector2 pos)
+    private Droptem Spawn_Droptem(DroptemData data, Vector2 pos)
     {
         Droptem droptem = PoolManager.Instance.GetFromPool<Droptem>("Droptem");
 
-        droptem.SetDropItem(pos, type);
+        droptem.SetDropItem(pos, data);
 
         return droptem;
     }
     public void Spawn_Droptem_Ran(Vector2 pos)
     {
-        ItemType ranType = (ItemType)Random.Range(0, System.Enum.GetValues(typeof(ItemType)).Length);
+        DataManager dm = DataManager.Instance;
 
-        Spawn_Droptem(ranType, pos);
+        Spawn_Droptem(dm.Export_DroptemData_Ran(), pos);
     }
 
     public TextMeshPro Spawn_PopUpTxt(int amount, Vector2 pos, bool isCrit)

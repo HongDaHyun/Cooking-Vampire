@@ -60,7 +60,6 @@ public class Box : Item
         else
         {
             Destroy();
-            Debug.Log("æ∆¿Ã≈∆ º“»Ø");
         }
     }
 }
