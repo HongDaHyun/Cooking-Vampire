@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: "\uC5BC\uC74C \uC815\uB839"
   discription: 
-  stage: 3
+  stage: 03000000
   speed: 2
   atkType: 3
   eleType: 2

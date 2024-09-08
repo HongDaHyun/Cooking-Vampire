@@ -11,7 +11,7 @@ public class EnemyData : ScriptableObject
     [TextArea] public string discription;
 
     [Title("ตฅภฬลอ")]
-    public StageType stage;
+    public StageType[] stage;
     public float speed;
     public AtkType atkType;
     public EleType eleType;
@@ -23,4 +23,4 @@ public class EnemyData : ScriptableObject
     }
 }
 
-public enum AtkType { Normal, Range, Charge, Area }
+public enum AtkType { Normal, Range, Charge, Area, Box }

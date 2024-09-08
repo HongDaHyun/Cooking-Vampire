@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: "\uC591"
   discription: 
-  stage: 0
+  stage: 00000000
   speed: 2
   atkType: 0
   eleType: 0
