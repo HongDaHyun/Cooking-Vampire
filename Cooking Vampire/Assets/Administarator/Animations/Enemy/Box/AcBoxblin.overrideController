@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AcBoxblin
+  m_Controller: {fileID: 9100000, guid: bbc118dfa80cca041a5c6a0fa426d4dc, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 203934364e19c274a979d91f82923e42, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: aef3b9acdacbb5e489fd0cf46008225d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 20fc2efaa4248424597bcef3555add05, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: bdf65ae826209d548807013de8222fb2, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c4a4d918a40060042800ef57a6b3bdba, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e75eefd16aab65b428c2747492729ec6, type: 2}

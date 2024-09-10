@@ -27,6 +27,8 @@ public class Spawner : MonoBehaviour
 
     IEnumerator SpawnRoutine()
     {
+        DataManager dataManager = DataManager.Instance;
+
         levelTime = spawnDatas[0].spawnTime;
 
         while(true)
@@ -39,7 +41,7 @@ public class Spawner : MonoBehaviour
                 levelTime += curData.spawnTime;
             }
 
-            spawnManager.Spawn_Enemy(curData.Get_RanName(), spawnPoints[Random.Range(1, spawnPoints.Length)].position);
+            spawnManager.Spawn_Enemy(dataManager.Export_EnemyData(curData.Get_RanName()), spawnPoints[Random.Range(1, spawnPoints.Length)].position);
 
             yield return new WaitForSeconds(curData.spawnCool);
         }

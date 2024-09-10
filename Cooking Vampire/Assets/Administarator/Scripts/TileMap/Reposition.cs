@@ -15,7 +15,7 @@ public class Reposition : MonoBehaviour
             enemy = GetComponent<Enemy>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
         StartCoroutine(RePosRoutine());
     }
@@ -58,6 +58,10 @@ public class Reposition : MonoBehaviour
                         transform.Translate(Vector3.right * dirX * 40 + new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f)));
                     if (diffY > 20)
                         transform.Translate(Vector3.up * dirY * 40 + new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f)));
+                    break;
+                case "Item":
+                    if (diffX > 30 || diffY > 30)
+                        SpawnManager.Instance.Destroy_Item(transform.GetComponent<Item>());
                     break;
             }
 

@@ -153,4 +153,19 @@
 - 피격 이펙트 추가<br/>
 - 스킬 아이콘 추가<br/>
 
+<h3>[버전 0.14]</h3>
+<img src="https://github.com/user-attachments/assets/95156dbd-6bf5-4031-9c65-080f495f6e55" width="360" alt="Alpha 0.14">
+<br/>
+- Enemy 프리팹 공격타입에 따라 추상화<br/>
+- Range, Area, Box 공격 제작<br/>
+- 스테이지 변경 (타일맵, 맵 오브젝트)<br/>
+- 맵 오브젝트 재배치 추가<br/>
+- 모든 투사체에 물리효과 추가<br/>
+- 박스 제작<br/>
+- 드롭아이템 추가<br/>
+- 아이템 데이터 추가<br/>
+- 박블린 추가<br/>
+- Enemy 공격 Animation 관련 잔버그 수정<br/>
+- 모든 무기 만렙 시 레벨업 추가 특성창에 생기는 버그 수정<br/>
+
 </details>

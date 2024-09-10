@@ -7,7 +7,6 @@ using DG.Tweening;
 
 public class SpawnManager : Singleton<SpawnManager>
 {
-
     public SpriteRenderer Spawn_TileObj(Transform parentTrans)
     {
         SpriteRenderer obj = PoolManager.Instance.GetFromPool<SpriteRenderer>("TileObj");
@@ -21,12 +20,12 @@ public class SpawnManager : Singleton<SpawnManager>
         PoolManager.Instance.TakeToPool<SpriteRenderer>(sr);
     }
 
-    public Enemy Spawn_Enemy(string enemyName, Vector3 position)
+    public Enemy Spawn_Enemy(EnemyData data, Vector3 position)
     {
-        Enemy enemy = PoolManager.Instance.GetFromPool<Enemy>("Enemy");
+        Enemy enemy = PoolManager.Instance.GetFromPool<Enemy>($"Enemy_{data.atkType}");
 
         enemy.transform.position = position;
-        enemy.SetEnemy(enemyName);
+        enemy.SetEnemy(data);
 
         return enemy;
     }
@@ -138,10 +137,6 @@ public class SpawnManager : Singleton<SpawnManager>
 
         return box;
     }
-    public void Destroy_Box(Box box)
-    {
-        PoolManager.Instance.TakeToPool<Box>(box.name, box);
-    }
     private Droptem Spawn_Droptem(DroptemData data, Vector2 pos)
     {
         Droptem droptem = PoolManager.Instance.GetFromPool<Droptem>("Droptem");
@@ -155,6 +150,10 @@ public class SpawnManager : Singleton<SpawnManager>
         DataManager dm = DataManager.Instance;
 
         Spawn_Droptem(dm.Export_DroptemData_Ran(), pos);
+    }
+    public void Destroy_Item(Item item)
+    {
+        PoolManager.Instance.TakeToPool<Item>(item.name, item);
     }
 
     public TextMeshPro Spawn_PopUpTxt(int amount, Vector2 pos, bool isCrit)

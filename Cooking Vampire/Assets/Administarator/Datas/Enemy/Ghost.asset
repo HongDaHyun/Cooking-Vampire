@@ -16,6 +16,7 @@ MonoBehaviour:
   discription: 
   stage: 01000000
   speed: 3
+  hpScale: 1
   atkType: 0
   eleType: 0
   animators:

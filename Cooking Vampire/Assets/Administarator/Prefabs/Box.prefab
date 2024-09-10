@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 4745020662116113280}
   - component: {fileID: 6326748593524305036}
   - component: {fileID: -2782624469817837838}
+  - component: {fileID: 8797469020371206510}
   m_Layer: 8
   m_Name: Box
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,3 +148,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   isDrain: 0
+--- !u!114 &8797469020371206510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7007477142719316580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac33ba6cdb64ba147af3364cdc42214f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -43,9 +43,8 @@ public class Enemy : MonoBehaviour, IPoolObject
     {
     }
 
-    public void SetEnemy(string enemyName)
+    public void SetEnemy(EnemyData data)
     {
-        EnemyData data = dataManager.Export_EnemyData(enemyName);
         anim.runtimeAnimatorController = data.Export_RanAnim();
 
         SetStat(data);
@@ -67,7 +66,7 @@ public class Enemy : MonoBehaviour, IPoolObject
         data = _data;
 
         difficult = Mathf.Max(1, Mathf.RoundToInt(gm.curGameTime / 10));
-        stat.maxHp = 10 + difficult;
+        stat.maxHp = Mathf.Max(1, Mathf.RoundToInt((10 + difficult) * data.hpScale));
         stat.curHp = stat.maxHp;
         stat.speed = _data.speed;
         isDead = false;
@@ -106,7 +105,6 @@ public class Enemy : MonoBehaviour, IPoolObject
             // 데이터 처리
             gm.killCount++;
             spawnManager.Spawn_Gems(difficult, transform.position);
-            spawnManager.Spawn_Box(transform.position);
         }
     }
     public void Atk()
@@ -143,11 +141,18 @@ public class Enemy : MonoBehaviour, IPoolObject
         Damaged(trueDmg);
     }
 
+    private void Destroy()
+    {
+        if (data.atkType == AtkType.Box)
+            spawnManager.Spawn_Box(transform.position);
+
+        spawnManager.Destroy_Enemy(this);
+    }
     private IEnumerator DeadRoutine()
     {
         yield return new WaitForSeconds(1f);
 
-        spawnManager.Destroy_Enemy(this);
+        Destroy();
     }
     private IEnumerator DamagedRoutine()
     {

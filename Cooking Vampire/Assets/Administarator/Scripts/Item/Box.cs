@@ -37,7 +37,7 @@ public class Box : Item
     protected override void Destroy()
     {
         spawnManager.Spawn_Droptem_Ran(transform.position);
-        spawnManager.Destroy_Box(this);
+        spawnManager.Destroy_Item(this);
     }
 
     protected override void Drop(Vector2 pos)

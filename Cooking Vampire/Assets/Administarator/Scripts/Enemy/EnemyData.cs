@@ -13,6 +13,7 @@ public class EnemyData : ScriptableObject
     [Title("ตฅภฬลอ")]
     public StageType[] stage;
     public float speed;
+    public float hpScale = 1f;
     public AtkType atkType;
     public EleType eleType;
     public RuntimeAnimatorController[] animators;

@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 4745020662116113280}
   - component: {fileID: 381370193781553647}
   - component: {fileID: 8206268500823548096}
+  - component: {fileID: -2959843365723001636}
   m_Layer: 7
   m_Name: Droptem
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,4 +138,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   isDrain: 0
-  type: 0
+  temData: {fileID: 0}
+--- !u!114 &-2959843365723001636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7007477142719316580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac33ba6cdb64ba147af3364cdc42214f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
