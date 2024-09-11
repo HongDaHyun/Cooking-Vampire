@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour, IPoolObject
     {
         data = _data;
 
-        difficult = Mathf.Max(1, Mathf.RoundToInt(gm.curGameTime / 10));
+        difficult = gm.Get_TimeDifficult();
         stat.maxHp = Mathf.Max(1, Mathf.RoundToInt((10 + difficult) * data.hpScale));
         stat.curHp = stat.maxHp;
         stat.speed = _data.speed;
@@ -107,16 +107,7 @@ public class Enemy : MonoBehaviour, IPoolObject
             spawnManager.Spawn_Gems(difficult, transform.position);
         }
     }
-    public void Atk()
-    {
-        Vector2 targetPos = gm.player.transform.position;
 
-        if (Vector2.Distance(targetPos, transform.position) > 5f)
-            return;
-
-        anim.SetTrigger("Atk");
-        ShootRange(targetPos);
-    }
     public void ShootArea()
     {
         Area_Sprite sprite = spriteData.Export_Area_Sprite(data.eleType);

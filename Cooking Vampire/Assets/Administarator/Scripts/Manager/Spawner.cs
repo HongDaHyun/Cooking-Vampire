@@ -29,15 +29,15 @@ public class Spawner : MonoBehaviour
     {
         DataManager dataManager = DataManager.Instance;
 
-        levelTime = spawnDatas[0].spawnTime;
+        SpawnData curData = spawnDatas[level];
+        levelTime += curData.spawnTime;
 
-        while(true)
+        while (true)
         {
-            SpawnData curData = spawnDatas[level];
-
             if(gm.curGameTime > levelTime && level < spawnDatas.Length - 1)
             {
                 level++;
+                curData = spawnDatas[level];
                 levelTime += curData.spawnTime;
             }
 
@@ -63,18 +63,18 @@ public struct SpawnData
 
         for(int i = 0; i < length; i++)
         {
-            fullScale = spawnData_Details[i].scale;
+            fullScale += spawnData_Details[i].scale;
         }
 
         float ranID = Random.Range(0f, fullScale);
 
         for(int i = 0; i < length; i++)
         {
-            curScale = spawnData_Details[i].scale;
+            curScale += spawnData_Details[i].scale;
             if (ranID < curScale)
                 return spawnData_Details[i].name;
         }
-        return null;
+        return spawnData_Details[0].name;
     }
 }
 [System.Serializable]

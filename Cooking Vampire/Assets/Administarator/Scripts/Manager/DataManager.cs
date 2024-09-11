@@ -29,8 +29,7 @@ public class DataManager : Singleton<DataManager>
     }
     public EnemyData Export_EnemyData(string enemyName)
     {
-        EnemyData[] datas = Array.FindAll(enemyDatas, data => data.title == enemyName);
-        return datas[UnityEngine.Random.Range(0, datas.Length)];
+        return Array.Find(enemyDatas, data => data.title == enemyName);
     }
     public WeaponData Export_WeaponData(PlayerType type, int tier)
     {

@@ -33,7 +33,6 @@ public class EnemyMove_Range : EnemyMove
             }
             else
             {
-                IsMove();
                 enemy.anim.SetBool("IsStop", false);
             }
             yield return new WaitForFixedUpdate();

@@ -152,4 +152,8 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
         else
             return Tier.Common;
     }
+    public int Get_TimeDifficult()
+    {
+        return Mathf.Max(1, Mathf.RoundToInt(curGameTime / 10));
+    }
 }
