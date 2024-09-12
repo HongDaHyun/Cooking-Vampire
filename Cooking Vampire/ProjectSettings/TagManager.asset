@@ -9,6 +9,7 @@ TagManager:
   - Projectile
   - Item
   - Enemy_Projectile
+  - Item_Box
   layers:
   - Default
   - TransparentFX

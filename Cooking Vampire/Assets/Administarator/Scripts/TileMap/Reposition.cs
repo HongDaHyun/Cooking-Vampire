@@ -60,6 +60,7 @@ public class Reposition : MonoBehaviour
                         transform.Translate(Vector3.up * dirY * 40 + new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f)));
                     break;
                 case "Item":
+                case "Item_Box":
                     if (diffX > 30 || diffY > 30)
                         SpawnManager.Instance.Destroy_Item(transform.GetComponent<Item>());
                     break;

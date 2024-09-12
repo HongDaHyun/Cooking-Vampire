@@ -15,7 +15,7 @@ public class Projectile_Rigid : Projectile
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Enemy"))
+        if (!collision.CompareTag("Enemy") && !collision.CompareTag("Item_Box"))
             return;
 
         curPer--;

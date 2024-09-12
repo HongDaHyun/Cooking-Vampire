@@ -6,7 +6,7 @@ using UnityEngine;
 public class Scanner : MonoBehaviour
 {
     public float defRange;
-    public LayerMask enemyLayer;
+    public LayerMask[] atkLayers;
     public LayerMask itemLayer;
 
     public RaycastHit2D[] targets;
@@ -25,7 +25,11 @@ public class Scanner : MonoBehaviour
     {
         float range = player.gm.stat.Get_Value(StatType.RANGE, defRange);
 
-        targets = Physics2D.CircleCastAll(transform.position, range, Vector2.zero, 0, enemyLayer);
+        int targetCombineds = 0;
+        foreach (LayerMask layer in atkLayers)
+            targetCombineds |= layer;
+
+        targets = Physics2D.CircleCastAll(transform.position, range, Vector2.zero, 0, targetCombineds);
         itemTargets = Physics2D.CircleCastAll(transform.position, range / 3, Vector2.zero, 0, itemLayer);
         DrainItem();
         UpdateNearest();

@@ -17,7 +17,6 @@ public class Weapon_1 : Weapon
     private IEnumerator FireRoutine()
     {
         Fire_Nearest();
-        yield return new WaitForSeconds(0.2f);
         for(int i = 1; i < gm.stat.Get_Value(StatType.COUNT, stat.count); i++)
         {
             yield return new WaitForSeconds(0.2f);
