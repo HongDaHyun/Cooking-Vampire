@@ -42,7 +42,9 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
 
     public void Player_HealHP(int amount)
     {
-        health = Mathf.Min(health + amount, stat.maxHealth);
+        int healedAmount = Mathf.Min(amount, stat.maxHealth - health);
+        health += healedAmount;
+        SpawnManager.Instance.Spawn_PopUpTxt(healedAmount, PopUpType.Heal, player.transform.position);
     }
     public void Player_GainExp(int amount)
     {
@@ -141,13 +143,15 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
 
     public Tier Get_Tier()
     {
-        int ran = Random.Range(0, 100 + stat.luck);
+        int luck = stat.Get_Value(StatType.LUCK);
+        int ranBase = Random.Range(0, 100 + luck);
+        int calLuck = (ranBase + Get_TimeDifficult()) * luck;
 
-        if (ran < 3 + stat.luck)
+        if (calLuck > 30000)
             return Tier.Legend;
-        else if (ran < 5 + stat.luck)
+        else if (calLuck > 10000)
             return Tier.Epic;
-        else if (ran < 40)
+        else if (calLuck > 100)
             return Tier.Rare;
         else
             return Tier.Common;

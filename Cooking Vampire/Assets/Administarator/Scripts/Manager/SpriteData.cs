@@ -27,24 +27,24 @@ public class SpriteData : Singleton<SpriteData>
         return Array.Find(gemSprites, data => data.unit == unit);
     }
 
-    public Color Export_Pallate(ColorType type)
+    public Color Export_Pallate(string _name)
     {
-        return Array.Find(pallates, color => color.colorType == type).color;
+        return Array.Find(pallates, color => color.colorName == _name).color;
     }
     public Color Export_TierColor(Tier tier)
     {
         switch(tier)
         {
             case Tier.Common:
-                return Export_Pallate(ColorType.Green);
+                return Export_Pallate("Green");
             case Tier.Rare:
-                return Export_Pallate(ColorType.Blue);
+                return Export_Pallate("Blue");
             case Tier.Epic:
-                return Export_Pallate(ColorType.Purple);
+                return Export_Pallate("Purple");
             case Tier.Legend:
-                return Export_Pallate(ColorType.Yellow);
+                return Export_Pallate("Yellow");
             default:
-                return Export_Pallate(ColorType.Gray);
+                return Export_Pallate("Gray");
         }
     }
 
@@ -58,7 +58,6 @@ public class SpriteData : Singleton<SpriteData>
         return Array.Find(area_Sprites, data => data.eleType == type);
     }
 }
-public enum ColorType { Gray, Mint, Green, Blue, Purple, Red, Yellow }
 public enum EleType { Normal, Fire, Ice, Poison }
 
 [Serializable]
@@ -79,7 +78,7 @@ public struct GemSprite
 [Serializable]
 public struct Pallate
 {
-    public ColorType colorType;
+    public string colorName;
     public Color color;
 }
 

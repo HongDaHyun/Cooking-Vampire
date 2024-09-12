@@ -15,7 +15,7 @@ public class UIManager : Singleton<UIManager>
     [Title("¼­¹ÙÀÌ¹ú")]
     public Slider expSlider;
     public Slider hpSlider;
-    public TextMeshProUGUI levelTxt, killTxt, timeTxt;
+    public TextMeshProUGUI levelTxt, killTxt, timeTxt, coinTxt;
     public TextMeshProUGUI[] weaponTest_Btn;
     public RectTransform lvUpPannel;
     public BossPannel bossPannel;
@@ -28,6 +28,7 @@ public class UIManager : Singleton<UIManager>
     private void Update_HUD()
     {
         GameManager_Survivor gm = GameManager_Survivor.Instance;
+        DataManager dm = DataManager.Instance;
 
         // EXP_SLIDER
         float cur = gm.exp;
@@ -47,6 +48,9 @@ public class UIManager : Singleton<UIManager>
         int min = Mathf.FloorToInt(remainTime / 60);
         int sec = Mathf.FloorToInt(remainTime % 60);
         timeTxt.text = $"{min:D2}:{sec:D2}";
+
+        // COIN_TXT
+        coinTxt.text = dm.coin.ToString();
 
         // HP_SLIDER
         float curHp = gm.health;

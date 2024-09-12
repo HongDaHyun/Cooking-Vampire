@@ -33,10 +33,13 @@ public class Droptem : Item
                 dataManager.EarnCoin(50);
                 break;
             case "포션":
+                gm.Player_HealHP(5);
                 break;
             case "보호막":
                 break;
         }
+
+        spawnManager.Destroy_Item(this);
     }
 
     protected override void Drop(Vector2 pos)

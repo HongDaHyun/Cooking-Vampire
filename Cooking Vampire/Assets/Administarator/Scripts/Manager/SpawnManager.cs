@@ -156,26 +156,17 @@ public class SpawnManager : Singleton<SpawnManager>
         PoolManager.Instance.TakeToPool<Item>(item.name, item);
     }
 
-    public TextMeshPro Spawn_PopUpTxt(int amount, Vector2 pos, bool isCrit)
+    public PopUpTxt Spawn_PopUpTxt(int amount, PopUpType type, Vector2 pos)
     {
-        SpriteData data = SpriteData.Instance;
+        PopUpTxt text = PoolManager.Instance.GetFromPool<PopUpTxt>("PopUpTxt");
 
-        TextMeshPro text = PoolManager.Instance.GetFromPool<TextMeshPro>("PopUpTxt");
-        text.transform.position = pos;
-
-        text.text = amount.ToString();
-        text.color = isCrit ? data.Export_Pallate(ColorType.Yellow) : data.Export_Pallate(ColorType.Red);
-
-        Sequence popSeq = DOTween.Sequence().SetUpdate(true);
-        popSeq.Append(text.transform.DOMoveY(pos.y + 1f, 0.5f))
-            .Join(text.DOFade(0f, 1f).SetEase(Ease.InExpo))
-            .OnComplete(() => Destroy_PopUpTxt(text));
+        text.SetUI(amount, type, pos);
 
         return text;
     }
-    public void Destroy_PopUpTxt(TextMeshPro tmpro)
+    public void Destroy_PopUpTxt(PopUpTxt popUp)
     {
-        PoolManager.Instance.TakeToPool<TextMeshPro>(tmpro);
+        PoolManager.Instance.TakeToPool<TextMeshPro>(popUp.name, popUp);
     }
 
     public Pet Spawn_Pet(string name)
