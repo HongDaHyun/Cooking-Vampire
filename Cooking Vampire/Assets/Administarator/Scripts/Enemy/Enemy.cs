@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour, IPoolObject
             gm.Player_HealHP(1);
 
         stat.curHp -= dmg;
-        spawnManager.Spawn_PopUpTxt(dmg, isCrit ? PopUpType.Deal_Crit : PopUpType.Deal, transform.position);
+        spawnManager.Spawn_PopUpTxt(dmg.ToString(), isCrit ? PopUpType.Deal_Crit : PopUpType.Deal, transform.position);
         StartCoroutine(enemyMove.KnockBack());
 
         // »ýÁ¸

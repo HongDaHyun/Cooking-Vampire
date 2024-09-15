@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DroptemData", menuName = "DroptemData")]
 public class DroptemData : ScriptableObject
 {
-    public Tier tier;
+    public TierType tierType;
     public string droptemName; // string으로 구별
     public RuntimeAnimatorController anim;
 }

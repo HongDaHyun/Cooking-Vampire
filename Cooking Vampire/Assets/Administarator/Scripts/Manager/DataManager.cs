@@ -41,9 +41,9 @@ public class DataManager : Singleton<DataManager>
     }
     public DroptemData Export_DroptemData_Ran()
     {
-        Tier ranTier = GameManager_Survivor.Instance.Get_Tier();
+        TierType ranTier = GameManager_Survivor.Instance.Get_Tier();
 
-        DroptemData[] dropArray = Array.FindAll(droptemDatas, data => data.tier == ranTier);
+        DroptemData[] dropArray = Array.FindAll(droptemDatas, data => data.tierType == ranTier);
         
         // 예외 처리
         if (dropArray.Length == 0 || dropArray == null)
@@ -52,17 +52,17 @@ public class DataManager : Singleton<DataManager>
         return dropArray[UnityEngine.Random.Range(0, dropArray.Length)];
     }
 
-    public string Get_Tier_Name(Tier tier)
+    public string Get_Tier_Name(TierType tier)
     {
         switch(tier)
         {
-            case Tier.Common:
+            case TierType.Common:
                 return "일반";
-            case Tier.Rare:
+            case TierType.Rare:
                 return "레어";
-            case Tier.Epic:
+            case TierType.Epic:
                 return "에픽";
-            case Tier.Legend:
+            case TierType.Legend:
                 return "레전드";
             default:
                 return "";
@@ -79,5 +79,5 @@ public class DataManager : Singleton<DataManager>
     }
 }
 
-public enum Tier { Common = 1, Rare = 2, Epic = 4, Legend = 8 }
+public enum TierType { Common = 1, Rare = 2, Epic = 4, Legend = 8 }
 public enum StageType { Grass = 0, Cave, Swarm, Forest }

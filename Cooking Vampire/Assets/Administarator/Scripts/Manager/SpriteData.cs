@@ -31,17 +31,17 @@ public class SpriteData : Singleton<SpriteData>
     {
         return Array.Find(pallates, color => color.colorName == _name).color;
     }
-    public Color Export_TierColor(Tier tier)
+    public Color Export_TierColor(TierType tier)
     {
         switch(tier)
         {
-            case Tier.Common:
+            case TierType.Common:
                 return Export_Pallate("Green");
-            case Tier.Rare:
+            case TierType.Rare:
                 return Export_Pallate("Blue");
-            case Tier.Epic:
+            case TierType.Epic:
                 return Export_Pallate("Purple");
-            case Tier.Legend:
+            case TierType.Legend:
                 return Export_Pallate("Yellow");
             default:
                 return Export_Pallate("Gray");

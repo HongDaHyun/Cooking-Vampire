@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b6a9da844b3d2e4a9689892daa28164, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
-  tier: 2
+  tierType: 4
   droptemName: "\uBCF4\uD638\uB9C9"
   anim: {fileID: 22100000, guid: 83cd9380896727740a031b9d695a5a84, type: 2}

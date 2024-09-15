@@ -50,7 +50,7 @@ public class Box : Item
         anim.SetTrigger("Hit");
 
         curHp -= dmg;
-        spawnManager.Spawn_PopUpTxt(dmg, PopUpType.Deal, transform.position);
+        spawnManager.Spawn_PopUpTxt(dmg.ToString(), PopUpType.Deal, transform.position);
 
         if(curHp > 0)
         {

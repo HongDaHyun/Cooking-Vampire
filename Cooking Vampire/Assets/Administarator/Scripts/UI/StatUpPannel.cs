@@ -45,7 +45,7 @@ public class StatUpPannel : MonoBehaviour
     {
         isWeapon = false;
         id = statID;
-        Tier tier = gm.Get_Tier();
+        TierType tier = gm.Get_Tier();
 
         bonusStat = new BonusStat();
         bonusStat.type = (StatType)id;

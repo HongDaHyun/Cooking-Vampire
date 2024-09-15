@@ -10,15 +10,18 @@ public class Player : MonoBehaviour
     [HideInInspector] public Scanner scanner;
     [HideInInspector] public Animator anim;
     [HideInInspector] public SpriteRenderer sr;
+    public GameObject shield_Effect;
     Spawner spawner;
     Rigidbody2D rigid;
 
     private Coroutine hitRoutine;
     private bool isHit;
+    private int shieldCount;
     public bool isDead;
 
     [HideInInspector] public GameManager_Survivor gm;
     private DataManager dataManager;
+    private SpawnManager spawnManager;
     [ReadOnly] public PlayerData data;
 
     private void Awake()
@@ -35,6 +38,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         dataManager = DataManager.Instance;
+        spawnManager = SpawnManager.Instance;
         gm = GameManager_Survivor.Instance;
 
         data = dataManager.Export_PlayerData();
@@ -76,6 +80,12 @@ public class Player : MonoBehaviour
         // È¸ÇÇ
         if (dataManager.Get_Ran(gm.stat.Get_Value(StatType.MISS)))
             return;
+
+        if(shieldCount > 0)
+        {
+            ReduceShield();
+            return;
+        }
 
         int defendDmg = Mathf.RoundToInt(dmg * (1 - gm.stat.Cal_Defense()));
         gm.health -= Mathf.Min(gm.health, defendDmg);
@@ -125,6 +135,25 @@ public class Player : MonoBehaviour
                 gm.Player_HealHP(1);
                 yield return new WaitForSeconds(5f / (1 + (amount - 1) / 2.25f));
             }
+        }
+    }
+
+    public void GetShield(int amount)
+    {
+        shieldCount += amount;
+
+        if (!shield_Effect.activeSelf)
+            shield_Effect.SetActive(true);
+    }
+    private void ReduceShield()
+    {
+        shieldCount--;
+        spawnManager.Spawn_PopUpTxt("BLOCK", PopUpType.Block, transform.position);
+
+        if(shieldCount <= 0)
+        {
+            shieldCount = 0;
+            shield_Effect.SetActive(false);
         }
     }
 }

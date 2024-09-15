@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b6a9da844b3d2e4a9689892daa28164, type: 3}
   m_Name: Potion
   m_EditorClassIdentifier: 
-  tier: 2
+  tierType: 2
   droptemName: "\uD3EC\uC158"
   anim: {fileID: 22100000, guid: 65581796c2738b24680abbe8db9ec349, type: 2}

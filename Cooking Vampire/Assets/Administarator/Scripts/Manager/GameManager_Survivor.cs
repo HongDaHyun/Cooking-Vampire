@@ -1,6 +1,7 @@
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager_Survivor : Singleton<GameManager_Survivor>
@@ -44,7 +45,7 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
     {
         int healedAmount = Mathf.Min(amount, stat.maxHealth - health);
         health += healedAmount;
-        SpawnManager.Instance.Spawn_PopUpTxt(healedAmount, PopUpType.Heal, player.transform.position);
+        SpawnManager.Instance.Spawn_PopUpTxt(healedAmount.ToString(), PopUpType.Heal, player.transform.position);
     }
     public void Player_GainExp(int amount)
     {
@@ -141,20 +142,18 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
         }
     }
 
-    public Tier Get_Tier()
+    public TierType Get_Tier()
     {
-        int luck = stat.Get_Value(StatType.LUCK);
-        int ranBase = Random.Range(0, 100 + luck);
-        int calLuck = (ranBase + Get_TimeDifficult()) * luck;
+        int luck = Random.Range(0, 100 + stat.Get_Value(StatType.LUCK)) + Get_TimeDifficult();
 
-        if (calLuck > 30000)
-            return Tier.Legend;
-        else if (calLuck > 10000)
-            return Tier.Epic;
-        else if (calLuck > 100)
-            return Tier.Rare;
+        if (luck > 150)
+            return TierType.Legend;
+        else if (luck > 120)
+            return TierType.Epic;
+        else if (luck > 70)
+            return TierType.Rare;
         else
-            return Tier.Common;
+            return TierType.Common;
     }
     public int Get_TimeDifficult()
     {

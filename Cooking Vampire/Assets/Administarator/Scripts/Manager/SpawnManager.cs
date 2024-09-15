@@ -156,11 +156,11 @@ public class SpawnManager : Singleton<SpawnManager>
         PoolManager.Instance.TakeToPool<Item>(item.name, item);
     }
 
-    public PopUpTxt Spawn_PopUpTxt(int amount, PopUpType type, Vector2 pos)
+    public PopUpTxt Spawn_PopUpTxt(string contents, PopUpType type, Vector2 pos)
     {
         PopUpTxt text = PoolManager.Instance.GetFromPool<PopUpTxt>("PopUpTxt");
 
-        text.SetUI(amount, type, pos);
+        text.SetUI(contents, type, pos);
 
         return text;
     }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b6a9da844b3d2e4a9689892daa28164, type: 3}
   m_Name: Coin
   m_EditorClassIdentifier: 
-  tier: 1
+  tierType: 1
   droptemName: "\uCF54\uC778"
   anim: {fileID: 9100000, guid: 7eb73b008bc0ccb4b89ca890d0240251, type: 2}

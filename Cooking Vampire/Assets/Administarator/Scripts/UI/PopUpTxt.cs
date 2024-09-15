@@ -24,10 +24,10 @@ public class PopUpTxt : MonoBehaviour, IPoolObject
     {
     }
 
-    public void SetUI(int amount, PopUpType type, Vector2 pos)
+    public void SetUI(string contents, PopUpType type, Vector2 pos)
     {
         transform.position = GetRanPos(pos);
-        SetType(amount, type);
+        SetType(contents, type);
 
         PopUp();
     }
@@ -36,21 +36,25 @@ public class PopUpTxt : MonoBehaviour, IPoolObject
     {
         return new Vector2(pos.x + Random.Range(-0.5f, 0.5f), pos.y + Random.Range(0f, 0.5f));
     }
-    private void SetType(int amount, PopUpType type)
+    private void SetType(string contents, PopUpType type)
     {
         switch(type)
         {
             case PopUpType.Deal:
-                textMeshPro.text = amount.ToString();
-                textMeshPro.color = spriteData.Export_Pallate("Bright_Green");
+                textMeshPro.text = contents;
+                textMeshPro.color = spriteData.Export_Pallate("Red");
                 break;
             case PopUpType.Deal_Crit:
-                textMeshPro.text = amount.ToString();
+                textMeshPro.text = contents;
                 textMeshPro.color = spriteData.Export_Pallate("Yellow");
                 break;
             case PopUpType.Heal:
-                textMeshPro.text = $"+{amount}";
+                textMeshPro.text = $"+{contents}";
                 textMeshPro.color = spriteData.Export_Pallate("Bright_Green");
+                break;
+            case PopUpType.Block:
+                textMeshPro.text = contents;
+                textMeshPro.color = spriteData.Export_Pallate("Blue");
                 break;
         }
     }
@@ -63,4 +67,4 @@ public class PopUpTxt : MonoBehaviour, IPoolObject
     }
 }
 
-public enum PopUpType { Deal, Deal_Crit, Heal,  }
+public enum PopUpType { Deal, Deal_Crit, Heal, Block }

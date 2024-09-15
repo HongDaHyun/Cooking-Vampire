@@ -36,6 +36,7 @@ public class Droptem : Item
                 gm.Player_HealHP(5);
                 break;
             case "º¸È£¸·":
+                player.GetShield(1);
                 break;
         }
 

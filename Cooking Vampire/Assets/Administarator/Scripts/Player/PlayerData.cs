@@ -117,7 +117,7 @@ public struct BonusStat
         return output;
     }
 
-    public void Set_Amount(Tier tier)
+    public void Set_Amount(TierType tier)
     {
         int baseAmount = CSVManager.Instance.Find_StatCSV(type).baseAmount;
 
