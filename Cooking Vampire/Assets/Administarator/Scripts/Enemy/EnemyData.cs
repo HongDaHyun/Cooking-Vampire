@@ -24,4 +24,4 @@ public class EnemyData : ScriptableObject
     }
 }
 
-public enum AtkType { Normal, Range, Charge, Area, Box }
+public enum AtkType { Normal, Range, Charge, Area, Box, Boss }
