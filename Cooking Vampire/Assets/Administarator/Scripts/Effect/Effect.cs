@@ -3,31 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using Redcode.Pools;
 
-public class Effect : MonoBehaviour, IPoolObject
+public abstract class Effect : MonoBehaviour, IPoolObject
 {
-    SpawnManager spawnManager;
-    Animator anim;
+    protected SpawnManager spawnManager;
 
-    public void OnCreatedInPool()
+    public virtual void OnCreatedInPool()
     {
         name = name.Replace("(Clone)", "");
 
         spawnManager = SpawnManager.Instance;
-        anim = GetComponent<Animator>();
     }
 
-    public void OnGettingFromPool()
+    public virtual void OnGettingFromPool()
     {
     }
 
-    public void SetEffect(RuntimeAnimatorController animatorController, Vector2 pos, float size)
+    public void SetTrans(Vector2 pos, float size)
     {
-        anim.runtimeAnimatorController = animatorController;
         transform.position = pos;
         transform.localScale = new Vector2(size, size);
     }
 
-    private void Destroy()
+    protected void Destroy()
     {
         spawnManager.Destroy_Effect(this);
     }

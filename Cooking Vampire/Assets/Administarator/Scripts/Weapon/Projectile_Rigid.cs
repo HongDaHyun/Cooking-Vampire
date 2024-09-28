@@ -6,11 +6,19 @@ public class Projectile_Rigid : Projectile
 {
     protected Rigidbody2D rigid;
     int curPer;
+    protected int border2;
 
     public override void OnCreatedInPool()
     {
         base.OnCreatedInPool();
         rigid = GetComponent<Rigidbody2D>();
+        border2 = LevelManager.Instance.BORDER * 2;
+    }
+
+    public override void OnGettingFromPool()
+    {
+        base.OnGettingFromPool();
+        StartCoroutine(DistanceRoutine());
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -41,5 +49,20 @@ public class Projectile_Rigid : Projectile
     public void SetDir(Vector3 dir, float speed)
     {
         rigid.velocity = dir * speed;
+    }
+
+    protected IEnumerator DistanceRoutine()
+    {
+        while (gameObject.activeSelf)
+        {
+            yield return new WaitForSeconds(5f);
+
+            Vector2 pos = transform.position;
+
+            if (pos.x > border2 || pos.x < -border2 || pos.y > border2 || pos.y < -border2)
+            {
+                spawnManager.Destroy_Projectile(this);
+            }
+        }
     }
 }

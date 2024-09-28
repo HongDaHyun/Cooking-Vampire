@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     [HideInInspector] public Animator anim;
     [HideInInspector] public SpriteRenderer sr;
     public GameObject shield_Effect;
-    Spawner spawner;
     Rigidbody2D rigid;
 
     private Coroutine hitRoutine;
@@ -32,7 +31,6 @@ public class Player : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
-        spawner = GetComponentInChildren<Spawner>();
     }
 
     private void Start()
@@ -104,11 +102,9 @@ public class Player : MonoBehaviour
         isDead = true;
         rigid.simulated = false;
 
-        spawner.gameObject.SetActive(false);
         weaponController.gameObject.SetActive(false);
 
         anim.SetTrigger("Dead");
-        Debug.Log("게임오버");
     }
 
     private IEnumerator HitRoutine()

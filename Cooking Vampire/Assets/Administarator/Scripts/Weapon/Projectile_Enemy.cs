@@ -12,7 +12,6 @@ public class Projectile_Enemy : Projectile_Rigid
         animator = GetComponent<Animator>();
     }
 
-
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Player"))

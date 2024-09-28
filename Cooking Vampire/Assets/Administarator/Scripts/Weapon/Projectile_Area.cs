@@ -7,9 +7,8 @@ public class Projectile_Area : Projectile_Animation
     public override void OnGettingFromPool()
     {
         base.OnGettingFromPool();
-        col.enabled = false;
 
-        StopAllCoroutines();
+        col.enabled = false;
         StartCoroutine(LifeRoutine());
     }
 

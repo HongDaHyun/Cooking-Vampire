@@ -5,38 +5,24 @@ using Sirenix.OdinInspector;
 
 public class TileMap : MonoBehaviour
 {
-    [ReadOnly]
-    public List<SpriteRenderer> objList;
+    public int minCount, maxCount;
+    public Sprite[] objSprites;
 
     private SpawnManager spawnManager;
-    private Sprite[] objSprites;
 
     private void Start()
     {
         spawnManager = SpawnManager.Instance;
-        objSprites = SpriteData.Instance.Export_StageSprites(DataManager.Instance.curStage);
 
         SpawnObjs();
-    }
-
-    public void ArrangeObj()
-    {
-        DestroyObjs();
-        SpawnObjs();
-    }
-
-    private void DestroyObjs()
-    {
-        foreach (SpriteRenderer sr in objList)
-            spawnManager.Destroy_TileObj(sr);
-        objList.Clear();
     }
 
     private void SpawnObjs()
     {
-        int ranCount = Random.Range(10, 25);
+        int ranCount = Random.Range(minCount, maxCount);
         List<Vector2Int> ranPoses = new List<Vector2Int>();
         Vector2Int ranPos = Vector2Int.zero;
+        int border = LevelManager.Instance.BORDER;
 
         for(int i = 0; i < ranCount; i++)
         {
@@ -45,13 +31,12 @@ public class TileMap : MonoBehaviour
 
             do
             {
-                ranPos = new Vector2Int(Random.Range(-9, 9), Random.Range(-9, 9));
+                ranPos = new Vector2Int(Random.Range(-border, border), Random.Range(-border, border));
             } while (ranPoses.Contains(ranPos));
 
             obj.transform.localPosition = new Vector3(ranPos.x, ranPos.y);
 
             ranPoses.Add(ranPos);
-            objList.Add(obj);
         }
     }
 }

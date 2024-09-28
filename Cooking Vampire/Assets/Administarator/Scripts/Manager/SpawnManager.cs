@@ -7,6 +7,7 @@ using DG.Tweening;
 
 public class SpawnManager : Singleton<SpawnManager>
 {
+    #region 타일
     public SpriteRenderer Spawn_TileObj(Transform parentTrans)
     {
         SpriteRenderer obj = PoolManager.Instance.GetFromPool<SpriteRenderer>("TileObj");
@@ -19,7 +20,8 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         PoolManager.Instance.TakeToPool<SpriteRenderer>(sr);
     }
-
+    #endregion
+    #region 적
     public Enemy Spawn_Enemy(EnemyData data, Vector3 position)
     {
         Enemy enemy = PoolManager.Instance.GetFromPool<Enemy>($"Enemy_{data.atkType}");
@@ -29,11 +31,19 @@ public class SpawnManager : Singleton<SpawnManager>
 
         return enemy;
     }
+    public Enemy Spawn_Enemy(string enemyName, Vector3 position)
+    {
+        EnemyData data = DataManager.Instance.Export_EnemyData(enemyName);
+        Enemy enemy = Spawn_Enemy(data, position);
+
+        return enemy;
+    }
     public void Destroy_Enemy(Enemy enemy)
     {
         PoolManager.Instance.TakeToPool<Enemy>(enemy.name, enemy);
     }
-
+    #endregion
+    #region 투사체
     public Projectile Spawn_Projectile(Sprite sprite, WeaponStat stat, Transform parent)
     {
         Projectile projectile = PoolManager.Instance.GetFromPool<Projectile>("Projectile");
@@ -96,7 +106,8 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         PoolManager.Instance.TakeToPool<Projectile>(projectile.name, projectile);
     }
-
+    #endregion
+    #region 아이템
     private Gem Spawn_Gem(int unit, Vector2 pos)
     {
         Gem gem = PoolManager.Instance.GetFromPool<Gem>("Gem");
@@ -155,7 +166,8 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         PoolManager.Instance.TakeToPool<Item>(item.name, item);
     }
-
+    #endregion
+    #region 팝업텍스트
     public PopUpTxt Spawn_PopUpTxt(string contents, PopUpType type, Vector2 pos)
     {
         PopUpTxt text = PoolManager.Instance.GetFromPool<PopUpTxt>("PopUpTxt");
@@ -166,20 +178,29 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     public void Destroy_PopUpTxt(PopUpTxt popUp)
     {
-        PoolManager.Instance.TakeToPool<TextMeshPro>(popUp.name, popUp);
+        PoolManager.Instance.TakeToPool<PopUpTxt>(popUp.name, popUp);
     }
-
+    #endregion
+    #region 펫
     public Pet Spawn_Pet(string name)
     {
         Pet pet = PoolManager.Instance.GetFromPool<Pet>(name);
 
         return pet;
     }
-
-    public Effect Spawn_Effect(RuntimeAnimatorController anim, Vector2 pos, float size)
+    #endregion
+    #region 이펙트
+    public Effect_Anim Spawn_Effect(RuntimeAnimatorController anim, Vector2 pos, float size)
     {
-        Effect effect = PoolManager.Instance.GetFromPool<Effect>("Effect");
+        Effect_Anim effect = PoolManager.Instance.GetFromPool<Effect_Anim>("Effect_Anim");
         effect.SetEffect(anim, pos, size);
+
+        return effect;
+    }
+    public Effect_X Spawn_Effect_X(string spawnName, Vector2 pos, float size)
+    {
+        Effect_X effect = PoolManager.Instance.GetFromPool<Effect_X>("Effect_X");
+        effect.SetEffect(pos, size, spawnName);
 
         return effect;
     }
@@ -187,4 +208,5 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         PoolManager.Instance.TakeToPool<Effect>(effect);
     }
+    #endregion
 }

@@ -29,11 +29,7 @@ public class Projectile : MonoBehaviour, IPoolObject
 
     public virtual void OnGettingFromPool()
     {
-    }
-
-    void Update()
-    {
-        Dead();
+        StopAllCoroutines();
     }
 
     public virtual void SetProjectile(Sprite sprite, WeaponStat stat, Transform parent)
@@ -73,15 +69,6 @@ public class Projectile : MonoBehaviour, IPoolObject
         transform.rotation = targetRot;
 
         sr.spriteSortPoint = SpriteSortPoint.Pivot;
-    }
-
-    void Dead()
-    {
-        Transform target = player.transform;
-        Vector3 targetPos = target.position;
-        float dir = Vector3.Distance(targetPos, transform.position);
-        if (dir > 20f)
-            spawnManager.Destroy_Projectile(this);
     }
 
     private void ReSetCollider()
