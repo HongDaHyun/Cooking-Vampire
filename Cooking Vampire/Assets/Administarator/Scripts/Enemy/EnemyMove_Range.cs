@@ -25,7 +25,7 @@ public class EnemyMove_Range : EnemyMove
                 }
                 else
                 {
-                    IsStop();
+                    isStop = true;
                     enemy.anim.SetBool("IsStop", true);
                     yield return new WaitForSeconds(0.5f);
                     atkCool += 0.5f;
@@ -33,6 +33,7 @@ public class EnemyMove_Range : EnemyMove
             }
             else
             {
+                isStop = false;
                 enemy.anim.SetBool("IsStop", false);
             }
             yield return new WaitForFixedUpdate();

@@ -74,6 +74,9 @@ public class Enemy : MonoBehaviour, IPoolObject
 
     public void Damaged(int dmg)
     {
+        if (isDamaged)
+            return;
+
         // 크리티컬
         bool isCrit = dataManager.Get_Ran(gm.stat.Get_Value(StatType.CRIT));
         if (isCrit)
@@ -85,12 +88,12 @@ public class Enemy : MonoBehaviour, IPoolObject
 
         stat.curHp -= dmg;
         spawnManager.Spawn_PopUpTxt(dmg.ToString(), isCrit ? PopUpType.Deal_Crit : PopUpType.Deal, transform.position);
+        hitRoutine = StartCoroutine(DamagedRoutine());
         StartCoroutine(enemyMove.KnockBack());
 
         // 생존
         if (stat.curHp > 0)
         {
-            isDamaged = true;
             anim.SetTrigger("Damaged");
         }
 

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Effect_Shield
+  m_Name: Damaged_AcWolf
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,14 +20,14 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -33850846, guid: 6a5553dbc57011a4886e7746a34febbb, type: 3}
-    - time: 0.125
-      value: {fileID: -775841468, guid: 6a5553dbc57011a4886e7746a34febbb, type: 3}
+      value: {fileID: -1493197299, guid: 4d3a629527940184084a679fea5f45fa, type: 3}
+    - time: 0.083333336
+      value: {fileID: 2083816170, guid: 4d3a629527940184084a679fea5f45fa, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 8
+  m_SampleRate: 12
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -42,19 +42,19 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -33850846, guid: 6a5553dbc57011a4886e7746a34febbb, type: 3}
-    - {fileID: -775841468, guid: 6a5553dbc57011a4886e7746a34febbb, type: 3}
+    - {fileID: -1493197299, guid: 4d3a629527940184084a679fea5f45fa, type: 3}
+    - {fileID: 2083816170, guid: 4d3a629527940184084a679fea5f45fa, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.25
+    m_StopTime: 0.16666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0

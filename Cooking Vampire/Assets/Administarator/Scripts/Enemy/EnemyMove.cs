@@ -5,14 +5,14 @@ using UnityEngine;
 public abstract class EnemyMove : MonoBehaviour
 {
     public Rigidbody2D target;
-    public bool isStop;
+    public bool isStop, isForceStop;
     protected void IsStop()
     {
-        isStop = true;
+        isForceStop = true;
     }
     protected void IsMove()
     {
-        isStop = false;
+        isForceStop = false;
     }
 
     protected Enemy enemy;
@@ -29,7 +29,7 @@ public abstract class EnemyMove : MonoBehaviour
     }
     public virtual void ReSet()
     {
-        isStop = false;
+        isStop = false; isForceStop = false;
         enemy.rigid.simulated = true;
 
         StopAllCoroutines();
@@ -38,17 +38,25 @@ public abstract class EnemyMove : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        if (enemy.isDead || isStop || enemy.anim.GetCurrentAnimatorStateInfo(0).IsName("Damaged"))
+        if (ChkStop())
             return;
 
         Track();
     }
     protected virtual void LateUpdate()
     {
-        if (enemy.isDead || isStop || enemy.anim.GetCurrentAnimatorStateInfo(0).IsName("Damaged"))
+        if (ChkStop())
             return;
 
         enemy.sr.flipX = target.position.x < enemy.rigid.position.x;
+    }
+
+    protected bool ChkStop()
+    {
+        if (enemy.isDead || isStop || isForceStop)
+            return true;
+        else
+            return false;
     }
 
     protected virtual void Track()
@@ -61,11 +69,17 @@ public abstract class EnemyMove : MonoBehaviour
 
     public IEnumerator KnockBack()
     {
-        yield return new WaitForFixedUpdate();
+        if (ChkStop())
+            yield break;
 
+        isStop = true;
         Vector3 playerPos = player.transform.position;
         Vector3 dirVec = transform.position - playerPos;
+        enemy.rigid.velocity = Vector2.zero;
         enemy.rigid.AddForce(dirVec.normalized * player.gm.stat.Get_Value(StatType.BACK, 1), ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(0.1f);
+        isStop = false;
     }
 
     protected abstract IEnumerator SpecialMoveRoutine();
