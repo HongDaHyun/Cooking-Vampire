@@ -183,3 +183,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   isStop: 0
+  isForceStop: 0

@@ -18,10 +18,16 @@ public class EnemyMove_Range : EnemyMove
             {
                 if (atkCool > 4f)
                 {
+                    isForceStop = true;
+
                     enemy.anim.SetTrigger("Atk");
                     enemy.ShootRange(target.transform.position);
                     atkCool = 0f;
+
+                    yield return new WaitUntil(() => enemy.anim.GetCurrentAnimatorStateInfo(0).IsName("Atk"));
                     yield return new WaitUntil(() => !enemy.anim.GetCurrentAnimatorStateInfo(0).IsName("Atk"));
+
+                    isForceStop = false;
                 }
                 else
                 {
