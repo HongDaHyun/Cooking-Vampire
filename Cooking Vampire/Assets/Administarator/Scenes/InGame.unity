@@ -1236,6 +1236,11 @@ MonoBehaviour:
     _count: 0
     _container: {fileID: 1248124059}
     _nonLazy: 0
+  - _name: Enemy_Boss
+    _component: {fileID: 3918482349272054123, guid: 30922e2766b0792429bca7cd3612f3cd, type: 3}
+    _count: 0
+    _container: {fileID: 1248124059}
+    _nonLazy: 0
   - _name: Gem
     _component: {fileID: -667716104821179834, guid: dd3b66f0cd1904043b40c2b30e42b06e, type: 3}
     _count: 0
@@ -27525,6 +27530,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5fc35875016798347a9cd49b054091c3, type: 2}
   - {fileID: 11400000, guid: 5b7adbdab4f771f419c992fcdedc2744, type: 2}
   - {fileID: 11400000, guid: 397412634eeba744186c43cbdb67f665, type: 2}
+  - {fileID: 11400000, guid: c4de7e729672ef344884c9affccb9778, type: 2}
   weaponDatas:
   - {fileID: 11400000, guid: a2cabf283061bf54da703766a4046939, type: 2}
   - {fileID: 11400000, guid: de6dd1bb83946584fbc4ec08b59babf5, type: 2}
@@ -67123,7 +67129,7 @@ MonoBehaviour:
   killCount: 0
   maxExp: 5
   stat:
-    dmg_p: -100
+    dmg_p: 0
     defense: 0
     maxHealth: 20
     speed_p: 0

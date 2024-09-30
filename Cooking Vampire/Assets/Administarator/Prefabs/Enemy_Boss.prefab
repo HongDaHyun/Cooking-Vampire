@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3918482349272054119}
   - component: {fileID: 3918482349272054118}
   - component: {fileID: 3918482349272054123}
+  - component: {fileID: 1231091947306257415}
   m_Layer: 6
   m_Name: Enemy_Boss
   m_TagString: Enemy
@@ -98,7 +99,7 @@ Animator:
   m_GameObject: {fileID: 3918482349272054115}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 595a2690a77d60243a2795ebf8d8aef3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 11b811edf8592b049b7eee39c68bc570, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -168,3 +169,23 @@ MonoBehaviour:
   rigid: {fileID: 0}
   sr: {fileID: 0}
   gm: {fileID: 0}
+  spawnManager: {fileID: 0}
+  spriteData: {fileID: 0}
+--- !u!114 &1231091947306257415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3918482349272054115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89836ca4e581b8c47910f1a3a6d1aa89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  isStop: 0
+  isForceStop: 0
+  patternDelayT_min: 3
+  patternDelayT_max: 10
+  patternCount: 2

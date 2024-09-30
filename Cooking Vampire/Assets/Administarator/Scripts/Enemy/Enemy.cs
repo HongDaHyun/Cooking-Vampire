@@ -20,8 +20,8 @@ public class Enemy : MonoBehaviour, IPoolObject
 
     [HideInInspector] public GameManager_Survivor gm;
     DataManager dataManager;
-    SpawnManager spawnManager;
-    SpriteData spriteData;
+    [HideInInspector] public SpawnManager spawnManager;
+    [HideInInspector] public SpriteData spriteData;
 
     public void OnCreatedInPool()
     {
@@ -109,21 +109,6 @@ public class Enemy : MonoBehaviour, IPoolObject
             gm.killCount++;
             spawnManager.Spawn_Gems(difficult, transform.position);
         }
-    }
-
-    public void ShootArea()
-    {
-        Area_Sprite sprite = spriteData.Export_Area_Sprite(data.eleType);
-        spawnManager.Spawn_Projectile_Area(1f, sprite.anim, transform);
-    }
-    public void ShootRange(Vector3 pos)
-    {
-        Enemy_Projectile_Sprite sprite = spriteData.Export_Enemy_Projectile_Sprite(data.title);
-        Projectile_Enemy projectile = spawnManager.Spawn_Projectile_Enemy(sprite.sprite, 1f, sprite.anim, transform);
-
-        Vector3 dir = (pos - transform.position).normalized;
-        projectile.SetDir(dir, 5f);
-        projectile.transform.rotation = Quaternion.FromToRotation(Vector3.up, dir);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

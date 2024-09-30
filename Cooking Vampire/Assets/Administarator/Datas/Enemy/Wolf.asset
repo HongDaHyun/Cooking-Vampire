@@ -19,4 +19,5 @@ MonoBehaviour:
   hpScale: 20
   atkType: 5
   eleType: 0
-  animators: []
+  animators:
+  - {fileID: 9100000, guid: 11b811edf8592b049b7eee39c68bc570, type: 2}

@@ -13,12 +13,18 @@ public class EnemyMove_Area : EnemyMove
             isForceStop = true;
 
             enemy.anim.SetTrigger("Atk");
-            enemy.ShootArea();
+            ShootArea();
 
             yield return new WaitUntil(() => enemy.anim.GetCurrentAnimatorStateInfo(0).IsName("Atk"));
             yield return new WaitUntil(() => !enemy.anim.GetCurrentAnimatorStateInfo(0).IsName("Atk"));
 
             isForceStop = false;
         }
+    }
+
+    public void ShootArea()
+    {
+        Area_Sprite sprite = enemy.spriteData.Export_Area_Sprite(enemy.data.eleType);
+        enemy.spawnManager.Spawn_Projectile_Area(1f, sprite.anim, transform);
     }
 }
