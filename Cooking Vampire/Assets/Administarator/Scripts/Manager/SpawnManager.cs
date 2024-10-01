@@ -24,7 +24,12 @@ public class SpawnManager : Singleton<SpawnManager>
     #region Àû
     public Enemy Spawn_Enemy(EnemyData data, Vector3 position)
     {
-        Enemy enemy = PoolManager.Instance.GetFromPool<Enemy>($"Enemy_{data.atkType}");
+        string enemyName = $"Enemy_{data.atkType}";
+
+        if (data.atkType == AtkType.Boss)
+            enemyName += $"_{data.title}";
+
+        Enemy enemy = PoolManager.Instance.GetFromPool<Enemy>(enemyName);
 
         enemy.transform.position = position;
         enemy.SetEnemy(data);

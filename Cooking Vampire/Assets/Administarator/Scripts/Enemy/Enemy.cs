@@ -65,6 +65,9 @@ public class Enemy : MonoBehaviour, IPoolObject
     {
         data = _data;
 
+        float scale = data.atkType == AtkType.Boss ? 2f : 1f;
+        transform.localScale = new Vector3(scale, scale, scale);
+
         difficult = gm.Get_TimeDifficult();
         stat.maxHp = Mathf.Max(1, Mathf.RoundToInt((10 + difficult) * data.hpScale));
         stat.curHp = stat.maxHp;
@@ -94,7 +97,8 @@ public class Enemy : MonoBehaviour, IPoolObject
         // »ýÁ¸
         if (stat.curHp > 0)
         {
-            anim.SetTrigger("Damaged");
+            if(!enemyMove.isPattern)
+                anim.SetTrigger("Damaged");
         }
 
         // Á×À½

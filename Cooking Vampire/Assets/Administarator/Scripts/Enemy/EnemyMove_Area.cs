@@ -10,7 +10,7 @@ public class EnemyMove_Area : EnemyMove
         {
             yield return new WaitForSeconds(5f);
 
-            isForceStop = true;
+            isForceStop = true; isPattern = true;
 
             enemy.anim.SetTrigger("Atk");
             ShootArea();
@@ -18,7 +18,7 @@ public class EnemyMove_Area : EnemyMove
             yield return new WaitUntil(() => enemy.anim.GetCurrentAnimatorStateInfo(0).IsName("Atk"));
             yield return new WaitUntil(() => !enemy.anim.GetCurrentAnimatorStateInfo(0).IsName("Atk"));
 
-            isForceStop = false;
+            isForceStop = false; isPattern = false;
         }
     }
 

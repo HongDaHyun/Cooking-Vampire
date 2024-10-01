@@ -6,6 +6,7 @@ public abstract class EnemyMove : MonoBehaviour
 {
     public Rigidbody2D target;
     public bool isStop, isForceStop;
+    public bool isPattern;
     protected void IsStop()
     {
         isForceStop = true;
@@ -22,14 +23,14 @@ public abstract class EnemyMove : MonoBehaviour
     {
         enemy = GetComponent<Enemy>();
     }
-    private void Start()
+    protected virtual void Start()
     {
         player = enemy.gm.player;
         target = player.GetComponent<Rigidbody2D>();
     }
     public virtual void ReSet()
     {
-        isStop = false; isForceStop = false;
+        isStop = false; isForceStop = false; isPattern = false;
         enemy.rigid.simulated = true;
 
         StopAllCoroutines();
@@ -79,6 +80,7 @@ public abstract class EnemyMove : MonoBehaviour
         enemy.rigid.AddForce(dirVec.normalized * player.gm.stat.Get_Value(StatType.BACK, 1), ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(0.1f);
+        enemy.rigid.velocity = Vector2.zero;
         isStop = false;
     }
 

@@ -8,7 +8,7 @@ public class EnemyMove_Charge : EnemyMove
     protected void IsCharge_Stop()
     {
         IsMove();
-        isCharge = false;
+        isCharge = false; isPattern = false;
     }
 
     public override void ReSet()
@@ -42,7 +42,7 @@ public class EnemyMove_Charge : EnemyMove
 
     private IEnumerator Charging()
     {
-        isCharge = true;
+        isCharge = true; isPattern = true;
         Vector2 dirVec = (target.position - enemy.rigid.position).normalized;
 
         while (isCharge)
@@ -52,5 +52,6 @@ public class EnemyMove_Charge : EnemyMove
             enemy.rigid.velocity = Vector2.zero;
             yield return new WaitForFixedUpdate();
         }
+
     }
 }

@@ -253,6 +253,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Enemy_Projectile_6
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 0
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfedd0b40cd6e9348ba57842c409faa1
+      internalID: -2094592491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -265,6 +286,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Enemy_Projectile_3: -840727456
+      Enemy_Projectile_6: -2094592491
       Enemy_Projectile_1: 1710718352
       Enemy_Projectile_4: -42451790
       Enemy_Projectile_2: -1608282366

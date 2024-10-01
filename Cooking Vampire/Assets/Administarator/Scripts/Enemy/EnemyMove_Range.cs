@@ -18,7 +18,7 @@ public class EnemyMove_Range : EnemyMove
             {
                 if (atkCool > 4f)
                 {
-                    isForceStop = true;
+                    isForceStop = true; isPattern = true;
 
                     enemy.anim.SetTrigger("Atk");
                     ShootRange(target.transform.position);
@@ -27,7 +27,7 @@ public class EnemyMove_Range : EnemyMove
                     yield return new WaitUntil(() => enemy.anim.GetCurrentAnimatorStateInfo(0).IsName("Atk"));
                     yield return new WaitUntil(() => !enemy.anim.GetCurrentAnimatorStateInfo(0).IsName("Atk"));
 
-                    isForceStop = false;
+                    isForceStop = false; isPattern = false;
                 }
                 else
                 {

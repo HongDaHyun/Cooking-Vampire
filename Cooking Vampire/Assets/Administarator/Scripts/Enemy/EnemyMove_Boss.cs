@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMove_Boss : EnemyMove
+public abstract class EnemyMove_Boss : EnemyMove
 {
     public float patternDelayT_min, patternDelayT_max;
     public int patternCount; // 0: 걷기, 달리기(기본), 1~: 특수 패턴
@@ -15,15 +15,15 @@ public class EnemyMove_Boss : EnemyMove
         {
             yield return new WaitForSeconds(SetRanDelay());
 
-            isForceStop = true;
+            isForceStop = true; isPattern = true;
             SetRanPattern();
             enemy.anim.SetTrigger($"Pattern_{curPatternInt}");
-
+            
             yield return new WaitUntil(() => enemy.anim.GetCurrentAnimatorStateInfo(0).IsName($"Pattern_{curPatternInt}"));
             yield return new WaitUntil(() => !enemy.anim.GetCurrentAnimatorStateInfo(0).IsName($"Pattern_{curPatternInt}"));
 
             curPatternInt = 0;
-            isForceStop = false;
+            isForceStop = false; isPattern = false;
         }
     }
 

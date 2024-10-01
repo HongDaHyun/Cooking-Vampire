@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 3918482349272054119}
   - component: {fileID: 3918482349272054118}
   - component: {fileID: 3918482349272054123}
-  - component: {fileID: 1231091947306257415}
+  - component: {fileID: 827653334601530186}
   m_Layer: 6
-  m_Name: Enemy_Boss
+  m_Name: Enemy_Boss_Wolf
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
   gm: {fileID: 0}
   spawnManager: {fileID: 0}
   spriteData: {fileID: 0}
---- !u!114 &1231091947306257415
+--- !u!114 &827653334601530186
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,12 +180,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3918482349272054115}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89836ca4e581b8c47910f1a3a6d1aa89, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c2006358c83749428bac49fc4dd9a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   isStop: 0
   isForceStop: 0
+  isPattern: 0
   patternDelayT_min: 3
-  patternDelayT_max: 10
+  patternDelayT_max: 7
   patternCount: 2
+  curPatternInt: 0

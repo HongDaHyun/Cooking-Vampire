@@ -1236,7 +1236,7 @@ MonoBehaviour:
     _count: 0
     _container: {fileID: 1248124059}
     _nonLazy: 0
-  - _name: Enemy_Boss
+  - _name: "Enemy_Boss_\uB291\uB300"
     _component: {fileID: 3918482349272054123, guid: 30922e2766b0792429bca7cd3612f3cd, type: 3}
     _count: 0
     _container: {fileID: 1248124059}
@@ -27531,6 +27531,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5b7adbdab4f771f419c992fcdedc2744, type: 2}
   - {fileID: 11400000, guid: 397412634eeba744186c43cbdb67f665, type: 2}
   - {fileID: 11400000, guid: c4de7e729672ef344884c9affccb9778, type: 2}
+  - {fileID: 11400000, guid: 483797116a69180418baa293422f21de, type: 2}
   weaponDatas:
   - {fileID: 11400000, guid: a2cabf283061bf54da703766a4046939, type: 2}
   - {fileID: 11400000, guid: de6dd1bb83946584fbc4ec08b59babf5, type: 2}
@@ -49025,6 +49026,9 @@ MonoBehaviour:
   - name: "\uBC84\uC12F\uB9E8"
     sprite: {fileID: -42451790, guid: 6181ec4cab33cdf4ca5d7034f31cda8f, type: 3}
     anim: {fileID: 22100000, guid: 4f061e3295f6a3c4b888bc66f34c7d43, type: 2}
+  - name: "\uB291\uB300"
+    sprite: {fileID: -2094592491, guid: 6181ec4cab33cdf4ca5d7034f31cda8f, type: 3}
+    anim: {fileID: 9100000, guid: 53dd65366570e714985a4b552100cd4a, type: 2}
   area_Sprites:
   - eleType: 1
     anim: {fileID: 9100000, guid: 498eebfd997a31044b672cf913ab2b66, type: 2}
