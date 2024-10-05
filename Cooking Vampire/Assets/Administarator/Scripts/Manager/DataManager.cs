@@ -23,18 +23,29 @@ public class DataManager : Singleton<DataManager>
         coin += amount;
     }
 
+    #region 플레이어
     public PlayerData Export_PlayerData()
     {
         return Array.Find(playerDatas, data => data.type == curPlayer);
     }
+    #endregion
+    #region 적
     public EnemyData Export_EnemyData(string enemyName)
     {
         return Array.Find(enemyDatas, data => data.title == enemyName);
     }
+    public EnemyData Export_BossData(StageType stage)
+    {
+        return Array.Find(enemyDatas, data => data.atkType == AtkType.Boss && Array.Exists(data.stage, x => x == stage));
+    }
+    #endregion
+    #region 무기
     public WeaponData Export_WeaponData(PlayerType type, int tier)
     {
         return Array.Find(weaponDatas, data => data.weaponType == type && data.tier == tier);
     }
+    #endregion
+    #region 아이템
     public DroptemData Export_DroptemData(string _name)
     {
         return Array.Find(droptemDatas, data => data.droptemName == _name);
@@ -51,7 +62,9 @@ public class DataManager : Singleton<DataManager>
 
         return dropArray[UnityEngine.Random.Range(0, dropArray.Length)];
     }
+    #endregion
 
+    #region ETC
     public string Get_Tier_Name(TierType tier)
     {
         switch(tier)
@@ -77,6 +90,7 @@ public class DataManager : Singleton<DataManager>
         else
             return false;
     }
+    #endregion
 }
 
 public enum TierType { Common = 1, Rare = 2, Epic = 4, Legend = 8 }

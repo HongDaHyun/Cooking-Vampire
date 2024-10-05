@@ -101,6 +101,7 @@ public class Player : MonoBehaviour
     {
         isDead = true;
         rigid.simulated = false;
+        sr.sortingOrder += 1;
 
         weaponController.gameObject.SetActive(false);
 
