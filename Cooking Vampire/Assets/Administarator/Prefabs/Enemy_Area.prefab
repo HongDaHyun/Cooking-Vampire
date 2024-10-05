@@ -169,6 +169,8 @@ MonoBehaviour:
   rigid: {fileID: 0}
   sr: {fileID: 0}
   gm: {fileID: 0}
+  spawnManager: {fileID: 0}
+  spriteData: {fileID: 0}
 --- !u!114 &-3877820322679074352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,3 +186,4 @@ MonoBehaviour:
   target: {fileID: 0}
   isStop: 0
   isForceStop: 0
+  isPattern: 0

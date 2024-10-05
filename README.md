@@ -187,4 +187,12 @@
 - 슬라임 움직임 관련 버그 수정<br/>
 - 시간 관련 난이도 조정 최적화<br/>
 
+<h3>[버전 0.16]</h3>
+<img src="https://github.com/user-attachments/assets/5a292a97-29dc-4d80-8023-60d8d36e6496" width="360" alt="Alpha 0.16">
+<br/>
+- 새 보스 등장 (늑대)<br/>
+- 플레이어, 적 데미지 딜레이 루틴 중첩 버그 수정<br/>
+- 적 움직임 & 애니메이션 최적화<br/>
+- 불 투사체 애니메이션 버그 수정<br/>
+- Area 투사체 Layer 설정<br/>
 </details>

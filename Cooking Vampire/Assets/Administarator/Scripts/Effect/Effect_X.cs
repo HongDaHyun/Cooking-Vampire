@@ -8,7 +8,6 @@ public class Effect_X : Effect
     string spawnName;
 
     SpriteRenderer sr;
-    Sequence effectSeq;
 
     bool isTrigger;
 
@@ -17,17 +16,6 @@ public class Effect_X : Effect
         base.OnCreatedInPool();
 
         sr = GetComponent<SpriteRenderer>();
-
-        effectSeq = DOTween.Sequence().SetUpdate(false).SetAutoKill(false);
-        effectSeq.OnStart(() => sr.color = new Vector4(1, 1, 1, 0))
-            .Append(sr.DOFade(1, 0.2f))
-            .AppendInterval(0.5f)
-            .Append(sr.DOFade(0, 0.2f))
-            .OnComplete(() =>
-            {
-                if (!isTrigger)
-                    spawnManager.Spawn_Enemy(spawnName, transform.position);
-            });
     }
 
     public override void OnGettingFromPool()
@@ -46,6 +34,20 @@ public class Effect_X : Effect
     {
         spawnName = s_name;
         SetTrans(pos, size);
-        effectSeq.Restart();
+        DOEffect();
+    }
+
+    public void DOEffect()
+    {
+        Sequence effectSeq = DOTween.Sequence().SetUpdate(false);
+        effectSeq.OnStart(() => sr.color = new Vector4(1, 1, 1, 0))
+            .Append(sr.DOFade(1, 0.2f))
+            .AppendInterval(0.5f)
+            .Append(sr.DOFade(0, 0.2f))
+            .OnComplete(() =>
+            {
+                if (!isTrigger)
+                    spawnManager.Spawn_Enemy(spawnName, transform.position);
+            });
     }
 }

@@ -58,10 +58,11 @@ public class PopUpTxt : MonoBehaviour, IPoolObject
                 break;
         }
     }
+
     private void PopUp()
     {
-        Sequence popSeq = DOTween.Sequence().SetUpdate(true);
-        popSeq.Append(textMeshPro.transform.DOMoveY(transform.position.y + 1f, 0.5f))
+        Sequence popSeq = DOTween.Sequence().SetUpdate(false);
+        popSeq.Append(transform.DOMoveY(transform.position.y + 1f, 0.5f))
             .Join(textMeshPro.DOFade(0f, 1f).SetEase(Ease.InExpo))
             .OnComplete(() => spawnManager.Destroy_PopUpTxt(this));
     }
