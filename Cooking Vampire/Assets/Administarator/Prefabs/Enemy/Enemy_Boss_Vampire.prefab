@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3918482349272054119}
   - component: {fileID: 3918482349272054118}
   - component: {fileID: 3918482349272054123}
-  - component: {fileID: 827653334601530186}
+  - component: {fileID: 1885458}
   m_Layer: 6
   m_Name: Enemy_Boss_Vampire
   m_TagString: Enemy
@@ -99,7 +99,7 @@ Animator:
   m_GameObject: {fileID: 3918482349272054115}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 11b811edf8592b049b7eee39c68bc570, type: 2}
+  m_Controller: {fileID: 9100000, guid: e78e3b92865acec4c9b8083c75ce1f60, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
   gm: {fileID: 0}
   spawnManager: {fileID: 0}
   spriteData: {fileID: 0}
---- !u!114 &827653334601530186
+--- !u!114 &1885458
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,14 +180,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3918482349272054115}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c2006358c83749428bac49fc4dd9a36, type: 3}
+  m_Script: {fileID: 11500000, guid: d8e73a842680ff84c810e8a5a4bf9c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   isStop: 0
   isForceStop: 0
   isPattern: 0
-  patternDelayT_min: 3
-  patternDelayT_max: 7
+  patternDelayT_min: 0
+  patternDelayT_max: 0
   patternCount: 2
   curPatternInt: 0
