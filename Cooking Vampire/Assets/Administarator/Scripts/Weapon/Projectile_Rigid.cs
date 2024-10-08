@@ -50,6 +50,14 @@ public class Projectile_Rigid : Projectile
     {
         rigid.velocity = dir * speed;
     }
+    public void SetRotation(Vector3 dir)
+    {
+        transform.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+    }
+    public void SetGravity(float scale)
+    {
+        rigid.gravityScale = scale;
+    }
 
     protected IEnumerator DistanceRoutine()
     {

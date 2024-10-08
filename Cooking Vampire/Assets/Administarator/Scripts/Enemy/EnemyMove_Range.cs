@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class EnemyMove_Range : EnemyMove
 {
+    Enemy_Projectile_Sprite projectileSprite;
+
+    public override void ReSet()
+    {
+        base.ReSet();
+        projectileSprite = enemy.spriteData.Export_Enemy_Projectile_Sprite(enemy.data.title);
+    }
+
     protected override IEnumerator SpecialMoveRoutine()
     {
         float atkCool = 0f;
@@ -48,11 +56,10 @@ public class EnemyMove_Range : EnemyMove
 
     public void ShootRange(Vector3 pos)
     {
-        Enemy_Projectile_Sprite sprite = enemy.spriteData.Export_Enemy_Projectile_Sprite(enemy.data.title);
-        Projectile_Enemy projectile = enemy.spawnManager.Spawn_Projectile_Enemy(sprite.sprite, 1f, sprite.anim, transform);
+        Projectile_Enemy projectile = enemy.spawnManager.Spawn_Projectile_Enemy(projectileSprite.sprite, 1f, projectileSprite.anim, transform.position, 0f);
 
         Vector3 dir = (pos - transform.position).normalized;
         projectile.SetDir(dir, 5f);
-        projectile.transform.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+        projectile.SetRotation(dir);
     }
 }

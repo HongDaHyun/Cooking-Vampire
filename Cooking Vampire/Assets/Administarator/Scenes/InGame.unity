@@ -49034,8 +49034,11 @@ MonoBehaviour:
     sprite: {fileID: -42451790, guid: 6181ec4cab33cdf4ca5d7034f31cda8f, type: 3}
     anim: {fileID: 22100000, guid: 4f061e3295f6a3c4b888bc66f34c7d43, type: 2}
   - name: "\uB291\uB300"
+    sprite: {fileID: 1211258203, guid: 6181ec4cab33cdf4ca5d7034f31cda8f, type: 3}
+    anim: {fileID: 22100000, guid: 632e169cb25652441940b5638340a89c, type: 2}
+  - name: "\uBC40\uD30C\uC774\uC5B4"
     sprite: {fileID: -2094592491, guid: 6181ec4cab33cdf4ca5d7034f31cda8f, type: 3}
-    anim: {fileID: 9100000, guid: 53dd65366570e714985a4b552100cd4a, type: 2}
+    anim: {fileID: 22100000, guid: 970f12846f86ebf42b8c475dbb7fdc6d, type: 2}
   area_Sprites:
   - eleType: 1
     anim: {fileID: 9100000, guid: 498eebfd997a31044b672cf913ab2b66, type: 2}

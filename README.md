@@ -195,4 +195,12 @@
 - 적 움직임 & 애니메이션 최적화<br/>
 - 불 투사체 애니메이션 버그 수정<br/>
 - Area 투사체 Layer 설정<br/>
+
+<h3>[버전 0.17]</h3>
+<img src="https://github.com/user-attachments/assets/bffc16a7-cee5-4edb-a127-4c37b5b8bcc6" width="360" alt="Alpha 0.17">
+<br/>
+- 뱀파이어(보스) 제작 완료<br/>
+- 투사체(물리) 중력 파라미터 추가<br/>
+- 투사체 스프라이트 (늑대, 뱀파이어) 추가<br/>
+
 </details>

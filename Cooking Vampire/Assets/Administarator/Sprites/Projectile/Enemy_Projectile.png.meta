@@ -66,7 +66,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 64
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -132,7 +132,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3
-        y: 0
+        y: 32
         width: 9
         height: 16
       alignment: 0
@@ -153,7 +153,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 20
-        y: 0
+        y: 32
         width: 7
         height: 16
       alignment: 0
@@ -174,7 +174,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 0
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -195,7 +195,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 49
-        y: 1
+        y: 33
         width: 14
         height: 14
       alignment: 0
@@ -215,8 +215,8 @@ TextureImporter:
       name: Enemy_Projectile_4
       rect:
         serializedVersion: 2
-        x: 66
-        y: 2
+        x: 2
+        y: 18
         width: 12
         height: 11
       alignment: 0
@@ -236,8 +236,8 @@ TextureImporter:
       name: Enemy_Projectile_5
       rect:
         serializedVersion: 2
-        x: 82
-        y: 2
+        x: 18
+        y: 18
         width: 12
         height: 11
       alignment: 0
@@ -257,12 +257,12 @@ TextureImporter:
       name: Enemy_Projectile_6
       rect:
         serializedVersion: 2
-        x: 99
-        y: 0
-        width: 10
+        x: 32
+        y: 16
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -270,6 +270,69 @@ TextureImporter:
       bones: []
       spriteID: dfedd0b40cd6e9348ba57842c409faa1
       internalID: -2094592491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Projectile_7
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 17
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85bda9ca1ee4a46469725055e25bf414
+      internalID: -1107698407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Projectile_8
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 0
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6964a679645af5f43afde0cb44a481d5
+      internalID: 1211258203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Projectile_9
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 0
+        width: 7
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8936d4142fe04644b6941cc21294dee
+      internalID: -97297331
       vertices: []
       indices: 
       edges: []
@@ -285,11 +348,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Enemy_Projectile_8: 1211258203
       Enemy_Projectile_3: -840727456
+      Enemy_Projectile_7: -1107698407
       Enemy_Projectile_6: -2094592491
       Enemy_Projectile_1: 1710718352
       Enemy_Projectile_4: -42451790
       Enemy_Projectile_2: -1608282366
+      Enemy_Projectile_9: -97297331
       Enemy_Projectile_5: -1338068984
       Enemy_Projectile_0: 843337318
   spritePackingTag: 

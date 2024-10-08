@@ -89,13 +89,9 @@ public class Player : MonoBehaviour
         gm.health -= Mathf.Min(gm.health, defendDmg);
 
         if(gm.health <= 0)
-        {
             Dead();
-        }
         else
-        {
             anim.SetTrigger("Damaged");
-        }
     }
     private void Dead()
     {
