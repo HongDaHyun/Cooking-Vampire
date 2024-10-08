@@ -22,7 +22,7 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     #endregion
     #region 적
-    public Enemy Spawn_Enemy(EnemyData data, Vector3 position)
+    public Enemy Spawn_Enemy(EnemyData data, Vector3 position, float size)
     {
         string enemyName = $"Enemy_{data.atkType}";
 
@@ -32,20 +32,23 @@ public class SpawnManager : Singleton<SpawnManager>
         Enemy enemy = PoolManager.Instance.GetFromPool<Enemy>(enemyName);
 
         enemy.transform.position = position;
-        enemy.SetEnemy(data);
+        enemy.SetEnemy(data, size);
 
         return enemy;
     }
-    public Enemy Spawn_Enemy(string enemyName, Vector3 position)
+    public Enemy Spawn_Enemy(string enemyName, Vector3 position, float size)
     {
         EnemyData data = DataManager.Instance.Export_EnemyData(enemyName);
-        Enemy enemy = Spawn_Enemy(data, position);
+        Enemy enemy = Spawn_Enemy(data, position, size);
 
         return enemy;
     }
     public void Destroy_Enemy(Enemy enemy)
     {
-        PoolManager.Instance.TakeToPool<Enemy>(enemy.name, enemy);
+        string enemyName = enemy.data.atkType == AtkType.Boss ? $"Enemy_{enemy.data.atkType}_{enemy.data.title}" : enemy.name;
+
+        Debug.Log(enemyName);
+        PoolManager.Instance.TakeToPool<Enemy>(enemyName, enemy);
     }
     #endregion
     #region 투사체

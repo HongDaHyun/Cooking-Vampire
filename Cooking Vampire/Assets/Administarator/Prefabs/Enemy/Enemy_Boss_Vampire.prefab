@@ -144,7 +144,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.5}
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.5, y: 1}
   m_Direction: 0
 --- !u!114 &3918482349272054123
 MonoBehaviour:
@@ -169,6 +169,7 @@ MonoBehaviour:
   rigid: {fileID: 0}
   sr: {fileID: 0}
   gm: {fileID: 0}
+  dataManager: {fileID: 0}
   spawnManager: {fileID: 0}
   spriteData: {fileID: 0}
 --- !u!114 &1885458
@@ -187,7 +188,7 @@ MonoBehaviour:
   isStop: 0
   isForceStop: 0
   isPattern: 0
-  patternDelayT_min: 0
-  patternDelayT_max: 0
+  patternDelayT_min: 3
+  patternDelayT_max: 7
   patternCount: 2
   curPatternInt: 0

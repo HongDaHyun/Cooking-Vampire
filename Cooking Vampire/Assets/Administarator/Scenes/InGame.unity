@@ -1241,6 +1241,11 @@ MonoBehaviour:
     _count: 0
     _container: {fileID: 1248124059}
     _nonLazy: 0
+  - _name: "Enemy_Boss_\uBC40\uD30C\uC774\uC5B4"
+    _component: {fileID: 3918482349272054123, guid: b39674f6a0c9b8e4580a20e12cf5a073, type: 3}
+    _count: 0
+    _container: {fileID: 1248124059}
+    _nonLazy: 0
   - _name: Gem
     _component: {fileID: -667716104821179834, guid: dd3b66f0cd1904043b40c2b30e42b06e, type: 3}
     _count: 0
@@ -27507,7 +27512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407cc2c5670dbba47babe662c2cc49d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curStage: 0
+  curStage: 1
   curPlayer: 0
   curWeapon: {fileID: 11400000, guid: a2cabf283061bf54da703766a4046939, type: 2}
   coin: 0
@@ -27532,6 +27537,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 397412634eeba744186c43cbdb67f665, type: 2}
   - {fileID: 11400000, guid: c4de7e729672ef344884c9affccb9778, type: 2}
   - {fileID: 11400000, guid: 483797116a69180418baa293422f21de, type: 2}
+  - {fileID: 11400000, guid: 6d9d02cc6a7cf624492ead694aa37095, type: 2}
+  - {fileID: 11400000, guid: 78c2602e5da77a542b312801a0d19c3e, type: 2}
   weaponDatas:
   - {fileID: 11400000, guid: a2cabf283061bf54da703766a4046939, type: 2}
   - {fileID: 11400000, guid: de6dd1bb83946584fbc4ec08b59babf5, type: 2}

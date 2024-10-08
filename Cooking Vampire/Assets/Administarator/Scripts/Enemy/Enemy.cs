@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour, IPoolObject
     [HideInInspector] public SpriteRenderer sr;
 
     [HideInInspector] public GameManager_Survivor gm;
-    DataManager dataManager;
+    [HideInInspector] public DataManager dataManager;
     [HideInInspector] public SpawnManager spawnManager;
     [HideInInspector] public SpriteData spriteData;
 
@@ -43,11 +43,11 @@ public class Enemy : MonoBehaviour, IPoolObject
     {
     }
 
-    public void SetEnemy(EnemyData data)
+    public void SetEnemy(EnemyData data, float size)
     {
         anim.runtimeAnimatorController = data.Export_RanAnim();
 
-        SetStat(data);
+        SetStat(data, size);
         ReSet();
     }
 
@@ -61,12 +61,11 @@ public class Enemy : MonoBehaviour, IPoolObject
         enemyMove.ReSet();
     }
 
-    private void SetStat(EnemyData _data)
+    private void SetStat(EnemyData _data, float size)
     {
         data = _data;
 
-        float scale = data.atkType == AtkType.Boss ? 2f : 1f;
-        transform.localScale = new Vector3(scale, scale, scale);
+        transform.localScale = new Vector3(size, size, size);
 
         difficult = gm.Get_TimeDifficult();
         stat.maxHp = Mathf.Max(1, Mathf.RoundToInt((10 + difficult) * data.hpScale));
@@ -124,13 +123,14 @@ public class Enemy : MonoBehaviour, IPoolObject
         Damaged(trueDmg);
     }
 
-    private void Destroy()
+    public void Destroy()
     {
         if (data.atkType == AtkType.Box)
             spawnManager.Spawn_Box(transform.position);
 
         spawnManager.Destroy_Enemy(this);
     }
+
     private IEnumerator DeadRoutine()
     {
         yield return new WaitForSeconds(1f);
