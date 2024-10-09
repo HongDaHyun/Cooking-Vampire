@@ -5,13 +5,6 @@ using UnityEngine;
 public class EnemyMove_Boss_Wolf : EnemyMove_Boss
 {
     bool rangeFlip;
-    Enemy_Projectile_Sprite projectileSprite;
-
-    public override void ReSet()
-    {
-        base.ReSet();
-        projectileSprite = enemy.spriteData.Export_Enemy_Projectile_Sprite(enemy.data.title);
-    }
 
     void SpawnBabyWolf()
     {

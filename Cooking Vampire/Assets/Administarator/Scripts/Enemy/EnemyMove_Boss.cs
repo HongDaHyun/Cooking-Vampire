@@ -9,6 +9,14 @@ public abstract class EnemyMove_Boss : EnemyMove
 
     public int curPatternInt;
 
+    protected Enemy_Projectile_Sprite projectileSprite;
+
+    public override void ReSet()
+    {
+        base.ReSet();
+        projectileSprite = enemy.spriteData.Export_Enemy_Projectile_Sprite(enemy.data.title);
+    }
+
     protected override IEnumerator SpecialMoveRoutine()
     {
         while(true)

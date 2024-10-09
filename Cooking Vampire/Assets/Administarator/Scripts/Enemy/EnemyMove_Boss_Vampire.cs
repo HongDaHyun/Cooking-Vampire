@@ -4,14 +4,7 @@ using UnityEngine;
 
 public class EnemyMove_Boss_Vampire : EnemyMove_Boss
 {
-    Enemy_Projectile_Sprite projectileSprite;
     bool isShotting;
-
-    public override void ReSet()
-    {
-        base.ReSet();
-        projectileSprite = enemy.spriteData.Export_Enemy_Projectile_Sprite(enemy.data.title);
-    }
 
     public void VampireDead()
     {

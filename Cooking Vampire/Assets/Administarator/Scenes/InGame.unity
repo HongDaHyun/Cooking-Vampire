@@ -1246,6 +1246,11 @@ MonoBehaviour:
     _count: 0
     _container: {fileID: 1248124059}
     _nonLazy: 0
+  - _name: "Enemy_Boss_\uB543\uC950"
+    _component: {fileID: 3918482349272054123, guid: 08d429adf9033ab419efaf3a3aa57855, type: 3}
+    _count: 0
+    _container: {fileID: 1248124059}
+    _nonLazy: 0
   - _name: Gem
     _component: {fileID: -667716104821179834, guid: dd3b66f0cd1904043b40c2b30e42b06e, type: 3}
     _count: 0
@@ -27512,7 +27517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407cc2c5670dbba47babe662c2cc49d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curStage: 1
+  curStage: 3
   curPlayer: 0
   curWeapon: {fileID: 11400000, guid: a2cabf283061bf54da703766a4046939, type: 2}
   coin: 0
@@ -27539,6 +27544,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 483797116a69180418baa293422f21de, type: 2}
   - {fileID: 11400000, guid: 6d9d02cc6a7cf624492ead694aa37095, type: 2}
   - {fileID: 11400000, guid: 78c2602e5da77a542b312801a0d19c3e, type: 2}
+  - {fileID: 11400000, guid: 36eabc093c557c6419095887c92a3cf3, type: 2}
   weaponDatas:
   - {fileID: 11400000, guid: a2cabf283061bf54da703766a4046939, type: 2}
   - {fileID: 11400000, guid: de6dd1bb83946584fbc4ec08b59babf5, type: 2}
@@ -49039,6 +49045,9 @@ MonoBehaviour:
   - name: "\uBC40\uD30C\uC774\uC5B4"
     sprite: {fileID: -2094592491, guid: 6181ec4cab33cdf4ca5d7034f31cda8f, type: 3}
     anim: {fileID: 22100000, guid: 970f12846f86ebf42b8c475dbb7fdc6d, type: 2}
+  - name: "\uB543\uC950"
+    sprite: {fileID: 185050617, guid: 6181ec4cab33cdf4ca5d7034f31cda8f, type: 3}
+    anim: {fileID: 22100000, guid: 1da834709d85d1d44940f5aece37bebf, type: 2}
   area_Sprites:
   - eleType: 1
     anim: {fileID: 9100000, guid: 498eebfd997a31044b672cf913ab2b66, type: 2}
