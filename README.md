@@ -203,4 +203,10 @@
 - 투사체(물리) 중력 파라미터 추가<br/>
 - 투사체 스프라이트 (늑대, 뱀파이어) 추가<br/>
 
+<h3>[버전 0.18]</h3>
+<img src="https://github.com/user-attachments/assets/0977348b-eb67-4499-bb70-c2cc92c3acbf" width="360" alt="Alpha 0.18">
+<br/>
+- 땃쥐(보스) 제작 완료<br/>
+- 투사체 스프라이트 (땃쥐) 추가<br/>
+
 </details>

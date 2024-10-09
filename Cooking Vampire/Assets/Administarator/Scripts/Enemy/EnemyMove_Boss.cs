@@ -35,11 +35,11 @@ public abstract class EnemyMove_Boss : EnemyMove
         }
     }
 
-    float SetRanDelay()
+    protected float SetRanDelay()
     {
         return Random.Range(patternDelayT_min, patternDelayT_max);
     }
-    void SetRanPattern()
+    protected void SetRanPattern()
     {
         curPatternInt = Random.Range(1, patternCount + 1);
     }
