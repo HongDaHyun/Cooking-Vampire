@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 361496679, guid: 33e99abf7fceac2499ab5b2d15df6274, type: 3}
+  m_Sprite: {fileID: -301073613, guid: 4a1dec5efc428e14381da73d200d0b67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,7 +99,7 @@ Animator:
   m_GameObject: {fileID: 3918482349272054115}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 33fffefb3a5b22e4a91485e6d3c19ca0, type: 2}
+  m_Controller: {fileID: 22100000, guid: 13aa6d9986e84934cae889f1dae04a96, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -143,8 +143,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.5}
-  m_Size: {x: 0.5, y: 0.5}
+  m_Offset: {x: 0.05, y: 0.4}
+  m_Size: {x: 0.6, y: 0.8}
   m_Direction: 0
 --- !u!114 &3918482349272054123
 MonoBehaviour:
@@ -169,6 +169,7 @@ MonoBehaviour:
   rigid: {fileID: 0}
   sr: {fileID: 0}
   gm: {fileID: 0}
+  dataManager: {fileID: 0}
   spawnManager: {fileID: 0}
   spriteData: {fileID: 0}
 --- !u!114 &1188602202492456004

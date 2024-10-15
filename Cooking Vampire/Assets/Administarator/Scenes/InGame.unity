@@ -26725,8 +26725,10 @@ MonoBehaviour:
   BORDER: 14
   spawnDatas:
   - spawnData_Details:
-    - name: "\uBD88 \uC815\uB839"
-      scale: 1
+    - name: "\uACE0\uBE14\uB9B0"
+      scale: 0.3
+    - name: "\uC591"
+      scale: 0.7
     spawnCool: 2
     spawnTime: 1
   level: 0

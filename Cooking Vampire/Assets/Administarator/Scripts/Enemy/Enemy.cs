@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour, IPoolObject
 
     EnemyMove enemyMove;
     [HideInInspector] public Animator anim;
-    Collider2D col;
+    CapsuleCollider2D col;
     [HideInInspector] public Rigidbody2D rigid;
     [HideInInspector] public SpriteRenderer sr;
 
@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour, IPoolObject
         dataManager = DataManager.Instance;
         spriteData = SpriteData.Instance;
 
-        col = GetComponent<Collider2D>();
+        col = GetComponent<CapsuleCollider2D>();
         rigid = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
@@ -65,13 +65,19 @@ public class Enemy : MonoBehaviour, IPoolObject
     {
         data = _data;
 
-        transform.localScale = new Vector3(size, size, size);
+        SetCol(data.colSetting, size);
 
         difficult = gm.Get_TimeDifficult();
         stat.maxHp = Mathf.Max(1, Mathf.RoundToInt((10 + difficult) * data.hpScale));
         stat.curHp = stat.maxHp;
         stat.speed = _data.speed;
         isDead = false;
+    }
+    private void SetCol(ColliderSetting setting, float size)
+    {
+        col.offset = setting.colOff;
+        col.size = setting.colSize;
+        transform.localScale = new Vector3(size, size, size);
     }
 
     public void Damaged(int dmg)
@@ -121,6 +127,12 @@ public class Enemy : MonoBehaviour, IPoolObject
 
         int trueDmg = Mathf.Min(stat.curHp , gm.stat.Get_Value(StatType.DMG, collision.GetComponent<Projectile>().stat.damage));
         Damaged(trueDmg);
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        // 충돌시 물리 영향 방지
+        if(collision.gameObject.CompareTag("Enemy"))
+            rigid.velocity = Vector3.zero;
     }
 
     public void Destroy()

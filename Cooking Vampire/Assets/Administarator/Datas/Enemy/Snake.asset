@@ -28,3 +28,7 @@ MonoBehaviour:
   - {fileID: 22100000, guid: 18dac623b27ad8a428b1cf863c3128a5, type: 2}
   - {fileID: 22100000, guid: 59072c5161574e8448d6dd2b79f42ab0, type: 2}
   - {fileID: 22100000, guid: 556434007c9371c439b8c11d02355648, type: 2}
+  colSetting:
+    colOff: {x: 0.05, y: 0.4}
+    colSize: {x: 0.6, y: 0.8}
+    direction: 0

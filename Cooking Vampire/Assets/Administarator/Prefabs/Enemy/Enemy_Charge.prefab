@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 361496679, guid: 33e99abf7fceac2499ab5b2d15df6274, type: 3}
+  m_Sprite: {fileID: 2140698323, guid: 06d72d2c46ceec042b970182cddb2e5b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -169,6 +169,9 @@ MonoBehaviour:
   rigid: {fileID: 0}
   sr: {fileID: 0}
   gm: {fileID: 0}
+  dataManager: {fileID: 0}
+  spawnManager: {fileID: 0}
+  spriteData: {fileID: 0}
 --- !u!114 &-3486933505029272445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,4 +187,5 @@ MonoBehaviour:
   target: {fileID: 0}
   isStop: 0
   isForceStop: 0
+  isPattern: 0
   isCharge: 0

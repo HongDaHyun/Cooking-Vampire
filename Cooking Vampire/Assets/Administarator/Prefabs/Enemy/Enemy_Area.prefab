@@ -99,7 +99,7 @@ Animator:
   m_GameObject: {fileID: 3918482349272054115}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 13aa6d9986e84934cae889f1dae04a96, type: 2}
+  m_Controller: {fileID: 22100000, guid: 96f72a00796fea24a90457eec9c9564c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -169,6 +169,7 @@ MonoBehaviour:
   rigid: {fileID: 0}
   sr: {fileID: 0}
   gm: {fileID: 0}
+  dataManager: {fileID: 0}
   spawnManager: {fileID: 0}
   spriteData: {fileID: 0}
 --- !u!114 &-3877820322679074352

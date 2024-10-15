@@ -21,3 +21,7 @@ MonoBehaviour:
   eleType: 0
   animators:
   - {fileID: 9100000, guid: 8123f78345cbd444589896254fcd3c3e, type: 2}
+  colSetting:
+    colOff: {x: 0.05, y: 0.35}
+    colSize: {x: 1, y: 0.6}
+    direction: 1
