@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class EnemyMove_Boss_Shrew : EnemyMove_Boss
 {
+    LevelManager levelManager;
+
     static float distance = 5f;
     static float diagonalDistance = distance / Mathf.Sqrt(2);
     static Vector2[] diagonalDir = new Vector2[] { new Vector2(1, 1).normalized, new Vector2(-1, 1).normalized, new Vector2(1, -1).normalized, new Vector2(-1, -1).normalized };
     static Vector2[] udlrDir = new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
+
+    protected override void Start()
+    {
+        base.Start();
+        levelManager = LevelManager.Instance;
+    }
 
     protected override IEnumerator SpecialMoveRoutine()
     {
@@ -64,6 +72,27 @@ public class EnemyMove_Boss_Shrew : EnemyMove_Boss
 
     void Teleport()
     {
-        transform.position = player.transform.position;
+        Vector2 tarPos = target.transform.position;
+        Vector2 ranPos = new Vector2();
+        do
+        {
+            ranPos = tarPos - new Vector2(RanFloat(), RanFloat());
+        }
+        while (!IsBorder(ranPos));
+
+        transform.position = ranPos;
+    }
+    float RanFloat()
+    {
+        bool isFlip = System.Convert.ToBoolean(Random.Range(0, 2));
+        return isFlip ? Random.Range(-2f, -1f) : Random.Range(1f, 2f);
+    }
+    bool IsBorder(Vector2 pos)
+    {
+        int border = levelManager.BORDER - 1;
+
+        if (pos.x < -border || pos.x > border || pos.y < -border || pos.y > border)
+            return false;
+        return true;
     }
 }

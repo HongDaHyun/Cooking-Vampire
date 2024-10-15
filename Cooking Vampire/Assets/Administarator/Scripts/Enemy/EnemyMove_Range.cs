@@ -29,7 +29,6 @@ public class EnemyMove_Range : EnemyMove
                     isForceStop = true; isPattern = true;
 
                     enemy.anim.SetTrigger("Atk");
-                    ShootRange(target.transform.position);
                     atkCool = 0f;
 
                     yield return new WaitUntil(() => enemy.anim.GetCurrentAnimatorStateInfo(0).IsName("Atk"));
@@ -54,11 +53,11 @@ public class EnemyMove_Range : EnemyMove
         }
     }
 
-    public void ShootRange(Vector3 pos)
+    public void ShootRange()
     {
         Projectile_Enemy projectile = enemy.spawnManager.Spawn_Projectile_Enemy(projectileSprite.sprite, 1f, projectileSprite.anim, transform.position, 0f);
 
-        Vector3 dir = (pos - transform.position).normalized;
+        Vector3 dir = (target.transform.position - transform.position).normalized;
         projectile.SetDir(dir, 5f);
         projectile.SetRotation(dir);
     }

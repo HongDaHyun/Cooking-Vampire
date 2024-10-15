@@ -694,6 +694,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Wolf_27
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2545e37e33b3494fb711ba3802eefcc
+      internalID: 1600335916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wolf_28
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cff83d66229ef54d83c00f76513ce88
+      internalID: 1319421906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -711,6 +753,7 @@ TextureImporter:
       Wolf_21: 625581833
       Wolf_24: 45963166
       Wolf_20: 1779558561
+      Wolf_27: 1600335916
       Wolf_4: -723845581
       Wolf_1: -1462816584
       Wolf_26: 1241223691
@@ -732,6 +775,7 @@ TextureImporter:
       Wolf_23: -1396275156
       Wolf_7: 266281834
       Wolf_25: -814173769
+      Wolf_28: 1319421906
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
