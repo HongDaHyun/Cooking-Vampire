@@ -146,7 +146,7 @@ public class BossPannel
             .OnComplete(() => {
                 redPannel.gameObject.SetActive(false);
                 bm.Resume();
-                SpawnManager.Instance.Spawn_Effect_X(dm.Export_BossData(dm.curStage).title, lm.SpawnPoint_Ran(), 2f);
+                SpawnManager.Instance.Spawn_Effect_X(dm.Export_BossData(dm.curStage).title, lm.SpawnPoint_Ran(0), 2f);
             });
         foreach (Image img in warningImgs)
             warningSeq.Join(img.DOFade(0f, 1f));

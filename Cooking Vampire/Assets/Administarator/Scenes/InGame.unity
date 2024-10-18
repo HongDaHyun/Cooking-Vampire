@@ -26725,10 +26725,11 @@ MonoBehaviour:
   BORDER: 14
   spawnDatas:
   - spawnData_Details:
-    - name: "\uACE0\uBE14\uB9B0"
-      scale: 0.3
     - name: "\uC591"
-      scale: 0.7
+      scale: 1
+      amount: 2
+      isRanAmount: 0
+      isGether: 1
     spawnCool: 2
     spawnTime: 1
   level: 0

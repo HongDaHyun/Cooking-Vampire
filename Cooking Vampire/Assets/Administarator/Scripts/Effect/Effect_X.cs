@@ -49,7 +49,7 @@ public class Effect_X : Effect
                 if (!isTrigger)
                     spawnManager.Spawn_Enemy(spawnName, transform.position, transform.localScale.x);
                 else
-                    spawnManager.Spawn_Effect_X(spawnName, levelManager.SpawnPoint_Ran(), 1f);
+                    spawnManager.Spawn_Effect_X(spawnName, levelManager.SpawnPoint_Ran(0), 1f);
             });
     }
 }
