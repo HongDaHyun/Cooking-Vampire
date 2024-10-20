@@ -54,7 +54,7 @@ public class StatUpPannel : MonoBehaviour
         iconImg.sprite = spriteData.statSprites[id];
 
         titleTxt.text = bonusStat.Get_Name();
-        contentsTxt.text = $"{bonusStat.Get_Name()}이(가) {bonusStat.Get_Discription()}합니다.";
+        contentsTxt.text = $"{bonusStat.Get_Name()} {bonusStat.Get_Discription()}";
         levelTxt.color = spriteData.Export_TierColor(tier);
         levelTxt.text = dataManager.Get_Tier_Name(tier);
     }

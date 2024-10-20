@@ -116,7 +116,7 @@ public class Enemy : MonoBehaviour, IPoolObject
 
             // 데이터 처리
             gm.killCount++;
-            spawnManager.Spawn_Gems(difficult, transform.position);
+            spawnManager.Spawn_Gems(Random.Range(data.gemAmount, data.gemAmount + gm.stat.Get_Value(StatType.LUCK) / 10), transform.position);
         }
     }
 

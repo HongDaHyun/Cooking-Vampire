@@ -225,15 +225,23 @@ MonoBehaviour:
   - bonusStats:
     - type: 14
       amount: 1
+    - type: 9
+      amount: -20
   - bonusStats:
     - type: 14
       amount: 1
+    - type: 0
+      amount: 50
+  - bonusStats:
+    - type: 14
+      amount: 2
   - bonusStats:
     - type: 14
       amount: 1
-  - bonusStats:
-    - type: 14
-      amount: 1
+    - type: 0
+      amount: 100
+    - type: 13
+      amount: 30
   petName: Cat
   spawnCount: 0
 --- !u!1 &45026316
@@ -16909,17 +16917,29 @@ MonoBehaviour:
     - type: 14
       amount: 1
   - bonusStats:
+    - type: 12
+      amount: 30
+    - type: 0
+      amount: 10
+  - bonusStats:
     - type: 14
-      amount: 1
+      amount: 2
+    - type: 9
+      amount: -20
   - bonusStats:
     - type: 14
       amount: 1
+    - type: 0
+      amount: 30
+    - type: 12
+      amount: 50
   - bonusStats:
     - type: 14
       amount: 1
-  - bonusStats:
-    - type: 14
-      amount: 1
+    - type: 13
+      amount: 50
+    - type: 9
+      amount: -50
 --- !u!4 &291061501
 Transform:
   m_ObjectHideFlags: 0
@@ -18774,19 +18794,23 @@ MonoBehaviour:
   weaponPerLevels:
   - bonusStats:
     - type: 14
-      amount: 1
+      amount: 2
   - bonusStats:
     - type: 14
-      amount: 1
+      amount: 4
+    - type: 13
+      amount: 50
   - bonusStats:
     - type: 14
+      amount: 5
+    - type: 9
+      amount: -30
+  - bonusStats:
+    - type: 18
       amount: 1
   - bonusStats:
-    - type: 14
-      amount: 1
-  - bonusStats:
-    - type: 14
-      amount: 1
+    - type: 0
+      amount: 100
   coneAngle: 90
   maxCount: 9
 --- !u!4 &422487522
@@ -21467,15 +21491,25 @@ MonoBehaviour:
   - bonusStats:
     - type: 14
       amount: 1
+    - type: 9
+      amount: -20
   - bonusStats:
     - type: 14
       amount: 1
+    - type: 0
+      amount: 50
+    - type: 12
+      amount: 20
   - bonusStats:
     - type: 14
-      amount: 1
+      amount: 2
+    - type: 9
+      amount: -20
   - bonusStats:
-    - type: 14
-      amount: 1
+    - type: 0
+      amount: 100
+    - type: 12
+      amount: 30
   animator: {fileID: 22100000, guid: 6485cd94245d55245be8ea70cf9dc6e7, type: 2}
 --- !u!4 &470680544
 Transform:
@@ -26726,12 +26760,35 @@ MonoBehaviour:
   spawnDatas:
   - spawnData_Details:
     - name: "\uC591"
-      scale: 1
+      scale: 0.7
+      amount: 3
+      isRanAmount: 0
+      isGether: 1
+    - name: "\uACE0\uBE14\uB9B0"
+      scale: 0.3
       amount: 2
       isRanAmount: 0
       isGether: 1
     spawnCool: 2
-    spawnTime: 1
+    spawnTime: 10
+  - spawnData_Details:
+    - name: "\uBC15\uBE14\uB9B0"
+      scale: 0.1
+      amount: 1
+      isRanAmount: 0
+      isGether: 0
+    - name: "\uC591"
+      scale: 0.7
+      amount: 5
+      isRanAmount: 1
+      isGether: 1
+    - name: "\uC2AC\uB77C\uC784"
+      scale: 0.2
+      amount: 2
+      isRanAmount: 0
+      isGether: 0
+    spawnCool: 3
+    spawnTime: 20
   level: 0
 --- !u!1 &906458382
 GameObject:
@@ -27816,16 +27873,24 @@ MonoBehaviour:
       amount: 1
   - bonusStats:
     - type: 14
-      amount: 1
+      amount: 2
+  - bonusStats:
+    - type: 0
+      amount: 30
+    - type: 12
+      amount: 20
   - bonusStats:
     - type: 14
-      amount: 1
+      amount: 3
+    - type: 9
+      amount: -20
+    - type: 8
+      amount: 30
   - bonusStats:
-    - type: 14
-      amount: 1
-  - bonusStats:
-    - type: 14
-      amount: 1
+    - type: 13
+      amount: 30
+    - type: 0
+      amount: 50
 --- !u!1 &1045862638
 GameObject:
   m_ObjectHideFlags: 0
@@ -36715,18 +36780,30 @@ MonoBehaviour:
   weaponPerLevels:
   - bonusStats:
     - type: 14
+      amount: 2
+  - bonusStats:
+    - type: 0
+      amount: 50
+    - type: 13
+      amount: 20
+    - type: 9
+      amount: -10
+  - bonusStats:
+    - type: 14
+      amount: 1
+    - type: 18
       amount: 1
   - bonusStats:
     - type: 14
       amount: 1
+    - type: 0
+      amount: 100
+    - type: 9
+      amount: -30
   - bonusStats:
     - type: 14
-      amount: 1
-  - bonusStats:
-    - type: 14
-      amount: 1
-  - bonusStats:
-    - type: 14
+      amount: 4
+    - type: 18
       amount: 1
 --- !u!4 &1227791296
 Transform:
@@ -40884,19 +40961,25 @@ MonoBehaviour:
   weaponPerLevels:
   - bonusStats:
     - type: 14
-      amount: 1
+      amount: 2
   - bonusStats:
     - type: 14
-      amount: 1
+      amount: 2
+    - type: 0
+      amount: 50
+  - bonusStats:
+    - type: 9
+      amount: 50
   - bonusStats:
     - type: 14
-      amount: 1
+      amount: 2
+    - type: 0
+      amount: 100
   - bonusStats:
-    - type: 14
-      amount: 1
-  - bonusStats:
-    - type: 14
-      amount: 1
+    - type: 9
+      amount: 30
+    - type: 0
+      amount: 100
   trapAnim: {fileID: 9100000, guid: c67a28b3cb543804ea658454cd988880, type: 2}
 --- !u!1 &1386439757
 GameObject:
@@ -62690,17 +62773,25 @@ MonoBehaviour:
     - type: 14
       amount: 1
   - bonusStats:
-    - type: 14
-      amount: 1
+    - type: 12
+      amount: 50
+    - type: 9
+      amount: -20
   - bonusStats:
     - type: 14
-      amount: 1
+      amount: 2
+    - type: 9
+      amount: -20
+  - bonusStats:
+    - type: 12
+      amount: 50
+    - type: 0
+      amount: 50
   - bonusStats:
     - type: 14
-      amount: 1
-  - bonusStats:
-    - type: 14
-      amount: 1
+      amount: 2
+    - type: 0
+      amount: 100
   animators:
   - {fileID: 9100000, guid: f331db6e5b10a9f45875a5776005146e, type: 2}
   - {fileID: 22100000, guid: 46f4b2eefe5b83848abe9e21d157aa15, type: 2}

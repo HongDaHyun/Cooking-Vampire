@@ -178,9 +178,9 @@ public abstract class Weapon : MonoBehaviour
 
             for(int i = 0; i < updates.Length; i++)
             {
-                string element = updates[i].Get_Name() + "이(가) " + updates[i].Get_Discription();
+                string element = updates[i].Get_Name() + " " + updates[i].Get_Discription();
                 
-                element += i != updates.Length - 1 ? "하고, " : "합니다.";
+                element += i != updates.Length - 1 ? ", " : ".";
 
                 sum += element;
             }

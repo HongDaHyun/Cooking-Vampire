@@ -17,6 +17,7 @@ MonoBehaviour:
   stage: 00000000
   speed: 2
   hpScale: 0.7
+  gemAmount: 1
   atkType: 0
   eleType: 0
   animators:

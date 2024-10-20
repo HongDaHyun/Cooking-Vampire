@@ -47,7 +47,6 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         string enemyName = enemy.data.atkType == AtkType.Boss ? $"Enemy_{enemy.data.atkType}_{enemy.data.title}" : enemy.name;
 
-        Debug.Log(enemyName);
         PoolManager.Instance.TakeToPool<Enemy>(enemyName, enemy);
     }
     #endregion
@@ -120,6 +119,9 @@ public class SpawnManager : Singleton<SpawnManager>
     #region æ∆¿Ã≈€
     private Gem Spawn_Gem(int unit, Vector2 pos)
     {
+        if (unit <= 0)
+            return null;
+
         Gem gem = PoolManager.Instance.GetFromPool<Gem>("Gem");
 
         gem.SetGem(unit, pos);

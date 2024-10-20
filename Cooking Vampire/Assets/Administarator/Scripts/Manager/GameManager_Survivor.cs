@@ -50,23 +50,16 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
     public void Player_GainExp(int amount)
     {
         exp += stat.Get_Value(StatType.EXP, amount);
-
-        if(exp >= maxExp)
-            Player_LevelUp();
     }
-    private void Player_LevelUp()
+    public void Player_LevelUp()
     {
         UIManager um = UIManager.Instance;
         BtnManager bm = BtnManager.Instance;
 
-        do
-        {
-            playerLvCount++;
-            level++;
-            exp -= maxExp;
-            maxExp *= (int)Mathf.Pow(level, 2);
-        }
-        while (exp >= maxExp);
+        playerLvCount++;
+        level++;
+        exp -= maxExp;
+        maxExp = Mathf.RoundToInt(maxExp * 1.5f);
 
         bm.Tab(um.lvUpPannel);
         bm.Stop();

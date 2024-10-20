@@ -84,7 +84,11 @@ public struct BonusStat
     }
     public string Get_Discription()
     {
-        string output = Mathf.Abs(amount).ToString();
+        SpriteData sd = SpriteData.Instance;
+
+        bool isPlus = amount > 0;
+        string output = isPlus ? $"<color=#{ColorUtility.ToHtmlStringRGB(sd.Export_Pallate("Red"))}>" : $"<color=#{ColorUtility.ToHtmlStringRGB(sd.Export_Pallate("Blue"))}>";
+        output += Mathf.Abs(amount).ToString();
         switch (type)
         {
             case StatType.DMG:
@@ -97,7 +101,7 @@ public struct BonusStat
             case StatType.PRO_SIZE:
             case StatType.PRO_SPEED:
             case StatType.BACK:
-                output += "% ";
+                output += "%";
                 break;
             case StatType.DEF:
             case StatType.HP:
@@ -107,13 +111,11 @@ public struct BonusStat
             case StatType.ELE:
             case StatType.RANGE:
             case StatType.PER:
-                output += "만큼 ";
-                break;
             default:
-                output += "";
                 break;
         }
-        output += amount > 0 ? "증가" : "감소";
+        output += isPlus ? "증가" : "감소";
+        output += "</color>";
         return output;
     }
 

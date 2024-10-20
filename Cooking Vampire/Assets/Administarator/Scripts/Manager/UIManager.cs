@@ -9,6 +9,9 @@ using DG.Tweening;
 
 public class UIManager : Singleton<UIManager>
 {
+    GameManager_Survivor gm;
+    DataManager dm;
+
     [Title("°ø¿ë")]
     public GameObject raycastPannel;
 
@@ -20,6 +23,12 @@ public class UIManager : Singleton<UIManager>
     public RectTransform lvUpPannel;
     public BossPannel bossPannel;
 
+    private void Start()
+    {
+        gm = GameManager_Survivor.Instance;
+        dm = DataManager.Instance;
+    }
+
     private void LateUpdate()
     {
         Update_HUD();
@@ -27,15 +36,14 @@ public class UIManager : Singleton<UIManager>
 
     private void Update_HUD()
     {
-        GameManager_Survivor gm = GameManager_Survivor.Instance;
-        DataManager dm = DataManager.Instance;
-
         // EXP_SLIDER
         float cur = gm.exp;
         float max = gm.maxExp;
 
         float targetValue = cur / max;
         expSlider.value = Mathf.Lerp(expSlider.value, targetValue, Time.deltaTime * 5f);
+        if (expSlider.value >= 1 && gm.exp >= gm.maxExp)
+            gm.Player_LevelUp();
 
         // LV_TXT
         levelTxt.text = $"Lv.{gm.level:F0}";
@@ -70,7 +78,8 @@ public class UIManager : Singleton<UIManager>
     public void Set_StatUpPannels_Ran()
     {
         StatUpPannel[] pannels = lvUpPannel.GetComponentsInChildren<StatUpPannel>(true);
-        List<Weapon> weapons = GameManager_Survivor.Instance.player.weaponController.availWeapons.ToList().FindAll(data => !data.isMax);
+        List<Weapon> weapons = gm.player.weaponController.availWeapons.ToList().FindAll(data => !data.isMax);
+        List<int> stats = new List<int>();
 
         foreach (StatUpPannel pannel in pannels)
         {
@@ -91,7 +100,17 @@ public class UIManager : Singleton<UIManager>
                 pannel.SetUI(weapon);
             }
             else
-                pannel.SetUI(Random.Range(0, System.Enum.GetValues(typeof(StatType)).Length));
+            {
+                int ranID;
+                do
+                {
+                    ranID = Random.Range(0, System.Enum.GetValues(typeof(StatType)).Length);
+                }
+                while (stats.Contains(ranID));
+
+                stats.Add(ranID);
+                pannel.SetUI(ranID);
+            }
         }
     }
 }
