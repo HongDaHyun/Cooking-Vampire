@@ -25250,7 +25250,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12.171875
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -26770,7 +26770,7 @@ MonoBehaviour:
       isRanAmount: 0
       isGether: 1
     spawnCool: 2
-    spawnTime: 10
+    spawnTime: 20
   - spawnData_Details:
     - name: "\uBC15\uBE14\uB9B0"
       scale: 0.1
@@ -26789,6 +26789,45 @@ MonoBehaviour:
       isGether: 0
     spawnCool: 3
     spawnTime: 20
+  - spawnData_Details:
+    - name: "\uC2AC\uB77C\uC784"
+      scale: 0.4
+      amount: 3
+      isRanAmount: 0
+      isGether: 1
+    - name: "\uC591"
+      scale: 0.5
+      amount: 5
+      isRanAmount: 1
+      isGether: 1
+    - name: "\uBC15\uBE14\uB9B0"
+      scale: 0.1
+      amount: 2
+      isRanAmount: 0
+      isGether: 0
+    spawnCool: 1
+    spawnTime: 30
+  - spawnData_Details:
+    - name: "\uC591"
+      scale: 0.8
+      amount: 10
+      isRanAmount: 1
+      isGether: 1
+    - name: "\uBC15\uBE14\uB9B0"
+      scale: 0.2
+      amount: 1
+      isRanAmount: 0
+      isGether: 0
+    spawnCool: 0.5
+    spawnTime: 20
+  - spawnData_Details:
+    - name: "\uACE0\uBE14\uB9B0"
+      scale: 1
+      amount: 8
+      isRanAmount: 1
+      isGether: 1
+    spawnCool: 0.5
+    spawnTime: 10
   level: 0
 --- !u!1 &906458382
 GameObject:
