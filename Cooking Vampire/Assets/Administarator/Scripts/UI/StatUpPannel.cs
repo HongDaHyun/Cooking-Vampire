@@ -8,7 +8,7 @@ public class StatUpPannel : MonoBehaviour
 {
     int id;
     public Image iconImg;
-    public TextMeshProUGUI titleTxt, contentsTxt, levelTxt;
+    public TextMeshProUGUI titleTxt, contentsTxt, levelTxt, classTxt;
     private BonusStat bonusStat;
     private bool isWeapon;
 
@@ -40,6 +40,7 @@ public class StatUpPannel : MonoBehaviour
         contentsTxt.text = weapon.Export_LevelDiscription();
         levelTxt.color = spriteData.pallates[weapon.lv].color;
         levelTxt.text = $"Lv.{weapon.lv}";
+        classTxt.text = "¹«±â";
     }
     public void SetUI(int statID)
     {
@@ -57,6 +58,7 @@ public class StatUpPannel : MonoBehaviour
         contentsTxt.text = $"{bonusStat.Get_Name()} {bonusStat.Get_Discription()}";
         levelTxt.color = spriteData.Export_TierColor(tier);
         levelTxt.text = dataManager.Get_Tier_Name(tier);
+        classTxt.text = "½ºÅÈ";
     }
 
     public void OnClick()
