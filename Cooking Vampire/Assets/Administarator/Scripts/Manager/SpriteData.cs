@@ -12,6 +12,7 @@ public class SpriteData : Singleton<SpriteData>
     public RuntimeAnimatorController[] effects;
     public Pallate[] pallates;
     public Sprite[] statSprites;
+    public StatSprite_Player[] statSprite_Players;
     public Enemy_Projectile_Sprite[] enemyProjectile_Sprites;
     public Area_Sprite[] area_Sprites;
 
@@ -48,6 +49,11 @@ public class SpriteData : Singleton<SpriteData>
         }
     }
 
+    public Sprite Export_StatSprite_Player(StatID_Player id)
+    {
+        return Array.Find(statSprite_Players, data => data.id == id).sprite;
+    }
+
     public Enemy_Projectile_Sprite Export_Enemy_Projectile_Sprite(string name)
     {
         return Array.Find(enemyProjectile_Sprites, data => data.name == name);
@@ -80,6 +86,13 @@ public struct Pallate
 {
     public string colorName;
     public Color color;
+}
+
+[Serializable]
+public struct StatSprite_Player
+{
+    public StatID_Player id;
+    public Sprite sprite;
 }
 
 [Serializable]

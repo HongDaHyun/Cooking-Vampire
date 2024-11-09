@@ -72,11 +72,11 @@ public class StatUpPannel : MonoBehaviour
 
         if (gm.playerLvCount <= 0)
         {
-            btnManager.Tab(uiManager.lvUpPannel);
+            btnManager.Tab(uiManager.lvUpPannel.transform);
             btnManager.Resume();
         }
         else
-            uiManager.Set_StatUpPannels_Ran();
+            uiManager.lvUpPannel.Set_StatUpPannels_Ran();
 
     }
 }

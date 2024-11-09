@@ -20,13 +20,15 @@ public class UIManager : Singleton<UIManager>
     public Slider hpSlider;
     public TextMeshProUGUI levelTxt, killTxt, timeTxt, coinTxt;
     public TextMeshProUGUI[] weaponTest_Btn;
-    public RectTransform lvUpPannel;
+    public LvUpPannel lvUpPannel;
     public BossPannel bossPannel;
 
     private void Start()
     {
         gm = GameManager_Survivor.Instance;
         dm = DataManager.Instance;
+
+        lvUpPannel.Set_StatUI_Player();
     }
 
     private void LateUpdate()
@@ -74,17 +76,24 @@ public class UIManager : Singleton<UIManager>
                 $"Weapon {i}\nLv.MAX" : $"Weapon {i}\nLv.{gm.player.weaponController.availWeapons[i].lv}";
         }
     }
+}
+
+[System.Serializable]
+public class LvUpPannel
+{
+    public RectTransform transform;
+    public StatUpPannel[] statUpPannels;
+    public StatUI_Player[] statUI_Players;
 
     public void Set_StatUpPannels_Ran()
     {
-        StatUpPannel[] pannels = lvUpPannel.GetComponentsInChildren<StatUpPannel>(true);
-        List<Weapon> weapons = gm.player.weaponController.availWeapons.ToList().FindAll(data => !data.isMax);
+        List<Weapon> weapons = GameManager_Survivor.Instance.player.weaponController.availWeapons.ToList().FindAll(data => !data.isMax);
         List<int> stats = new List<int>();
 
-        foreach (StatUpPannel pannel in pannels)
-        {
-            bool isWeapon = Random.Range(0, 2) == 0; // 0 -> Weapon / 1 -> Etc...
+        bool isWeapon = Random.Range(0, 2) == 0; // 0 -> Weapon / 1 -> Stat
 
+        foreach (StatUpPannel pannel in statUpPannels)
+        {
             if (isWeapon)
             {
                 if (weapons.Count == 0 || weapons == null)
@@ -112,6 +121,25 @@ public class UIManager : Singleton<UIManager>
                 pannel.SetUI(ranID);
             }
         }
+    }
+    public void Set_StatUI_Player()
+    {
+        CSVManager cm = CSVManager.Instance;
+        SpawnManager sm = SpawnManager.Instance;
+
+        StatData_Player[] datas = cm.csvList.statDatas_Player;
+        statUI_Players = new StatUI_Player[datas.Length];
+
+        int count = 0;
+        foreach(StatData_Player data in datas)
+        {
+            statUI_Players[count] = sm.Spawn_StatUI_Player(data);
+            count++;
+        }
+    }
+    public void Adjust_StatUI_Player(StatID_Player id, int value)
+    {
+        System.Array.Find(statUI_Players, ui => ui.statID == id).AdjustUI(value);
     }
 }
 

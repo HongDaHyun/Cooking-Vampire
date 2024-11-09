@@ -61,9 +61,9 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
         exp -= maxExp;
         maxExp = Mathf.RoundToInt(maxExp * 1.5f);
 
-        bm.Tab(um.lvUpPannel);
+        bm.Tab(um.lvUpPannel.transform);
         bm.Stop();
-        um.Set_StatUpPannels_Ran();
+        um.lvUpPannel.Set_StatUpPannels_Ran();
     }
     public void Player_UpStat(StatType statType, int amount)
     {

@@ -29,6 +29,7 @@ public class PlayerData : ScriptableObject
 
 public enum PlayerType { Knight = 0, Archer, Ninja, Magician }
 public enum StatType { DMG = 0, DEF, HP, SPEED, MISS, CRIT, LUCK, EXP, ACTIVE, COOL, HEAL, DRAIN, PRO_SIZE, PRO_SPEED, COUNT, ELE, RANGE, BACK, PER }
+public enum StatID_Player { HP, HPREG, DRA, DEF, DMG, ELE, AS, AT, CRIT, CRIT_DMG, RAN, MIS, SPE, LUK, AMT, PER, BAK, EXP }
 
 [Serializable]
 public struct BonusStat

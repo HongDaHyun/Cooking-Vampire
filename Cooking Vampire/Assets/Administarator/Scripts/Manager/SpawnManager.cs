@@ -221,4 +221,13 @@ public class SpawnManager : Singleton<SpawnManager>
         PoolManager.Instance.TakeToPool<Effect>(effect);
     }
     #endregion
+    #region UI
+    public StatUI_Player Spawn_StatUI_Player(StatData_Player statData_Player)
+    {
+        StatUI_Player statUI = PoolManager.Instance.GetFromPool<StatUI_Player>("StatUI_Player");
+        statUI.SetUI(statData_Player);
+
+        return statUI;
+    }
+    #endregion
 }
