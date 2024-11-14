@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    public const int MAX_LV = 5;
     public int ID;
 
     [Title("UI")]
@@ -20,7 +21,7 @@ public abstract class Weapon : MonoBehaviour
     public bool isPet;
 
     [Title("레벨")]
-    public WeaponLevel[] weaponPerLevels;
+    public WeaponLevel[] weaponPerLevels = new WeaponLevel[MAX_LV];
 
     protected GameManager_Survivor gm;
     protected UIManager uiManager;
@@ -62,10 +63,11 @@ public abstract class Weapon : MonoBehaviour
 
     public virtual void LevelUp()
     {
-        if(lv >=  weaponPerLevels.Length + 1)
+        if(lv >=  MAX_LV)
         {
             isMax = true;
             MaxLevel();
+            uiManager.weaponUIs[ID].SetBattery(lv);
             return;
         }
 
@@ -73,6 +75,7 @@ public abstract class Weapon : MonoBehaviour
             Weapon_UpStat(bonus.type, (int)bonus.amount);
 
         lv++;
+        uiManager.weaponUIs[ID].SetBattery(lv);
     }
     private void Weapon_UpStat(StatType statType, int amount)
     {

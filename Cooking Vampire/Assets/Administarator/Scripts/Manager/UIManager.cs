@@ -20,6 +20,7 @@ public class UIManager : Singleton<UIManager>
     public Slider hpSlider;
     public TextMeshProUGUI levelTxt, killTxt, timeTxt, coinTxt;
     public TextMeshProUGUI[] weaponTest_Btn;
+    public WeaponUI[] weaponUIs;
     public LvUpPannel lvUpPannel;
     public BossPannel bossPannel;
 
@@ -90,18 +91,12 @@ public class LvUpPannel
         List<Weapon> weapons = GameManager_Survivor.Instance.player.weaponController.availWeapons.ToList().FindAll(data => !data.isMax);
         List<int> stats = new List<int>();
 
-        bool isWeapon = Random.Range(0, 2) == 0; // 0 -> Weapon / 1 -> Stat
+        bool isWeapon = weapons.Count < 3 || weapons == null ? true : Random.Range(0, 2) == 0; // 0 -> Weapon / 1 -> Stat
 
         foreach (StatUpPannel pannel in statUpPannels)
         {
             if (isWeapon)
             {
-                if (weapons.Count == 0 || weapons == null)
-                {
-                    pannel.SetUI(Random.Range(0, System.Enum.GetValues(typeof(StatType)).Length));
-                    continue;
-                }
-
                 int ranIndex = Random.Range(0, weapons.Count);
                 Weapon weapon = weapons[ranIndex];
                 weapons.RemoveAt(ranIndex);

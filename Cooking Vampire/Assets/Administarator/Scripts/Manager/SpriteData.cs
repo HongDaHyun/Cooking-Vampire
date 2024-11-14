@@ -15,6 +15,7 @@ public class SpriteData : Singleton<SpriteData>
     public StatSprite_Player[] statSprite_Players;
     public Enemy_Projectile_Sprite[] enemyProjectile_Sprites;
     public Area_Sprite[] area_Sprites;
+    public Sprite[] battery_Sprites;
 
     public Sprite[] Export_StageSprites(StageType type)
     {

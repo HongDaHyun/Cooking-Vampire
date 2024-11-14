@@ -56,6 +56,7 @@ public class WeaponController : MonoBehaviour
         if(weapon.lv == 0)
         {
             weapon.lv = 1;
+            UIManager.Instance.weaponUIs[ID].SetUI(weapon.icon, 1);
             StartCoroutine(WeaponRoutine(weapon));
 
             return;
