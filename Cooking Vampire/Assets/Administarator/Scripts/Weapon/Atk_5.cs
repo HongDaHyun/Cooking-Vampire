@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon_5 : Weapon
+public class Atk_5 : Atk
 {
     [Title("�߻簢")]
     public float coneAngle;

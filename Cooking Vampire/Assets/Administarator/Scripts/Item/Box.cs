@@ -30,8 +30,7 @@ public class Box : Item
         if (!collision.CompareTag("Projectile"))
             return;
 
-        int trueDmg = Mathf.Min(curHp, gm.stat.Get_Value(StatType.DMG, collision.GetComponent<Projectile>().stat.damage));
-        Hit(trueDmg);
+        Hit(collision.GetComponent<Projectile>().stat.dmg);
     }
 
     protected override void Destroy()
@@ -49,10 +48,17 @@ public class Box : Item
     {
         anim.SetTrigger("Hit");
 
-        curHp -= dmg;
-        spawnManager.Spawn_PopUpTxt(dmg.ToString(), PopUpType.Deal, transform.position);
+        dmg = gm.stat.Cal_DMG(dmg);
 
-        if(curHp > 0)
+        // 크리티컬
+        bool isCrit = gm.stat.Cal_CRIT_Percent();
+        if (isCrit)
+            gm.stat.Cal_CRIT_DMG(dmg);
+
+        curHp -= Mathf.Min(curHp, dmg);
+        spawnManager.Spawn_PopUpTxt(dmg.ToString(), isCrit ? PopUpType.Deal_Crit : PopUpType.Deal, transform.position);
+
+        if (curHp > 0)
         {
             anim.SetTrigger("Hit");
         }

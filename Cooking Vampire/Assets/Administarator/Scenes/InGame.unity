@@ -281,10 +281,10 @@ RectTransform:
   m_Father: {fileID: 619606318}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 75, y: -90}
-  m_SizeDelta: {x: 150, y: 180}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 150, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &37667999
 MonoBehaviour:
@@ -1919,8 +1919,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textAssets:
-  - {fileID: 4900000, guid: 49bb7d59084f19f48b4b08f6f92cfc6a, type: 3}
   - {fileID: 4900000, guid: 940ed985ed8b47e41a59841912b7d338, type: 3}
+  - {fileID: 4900000, guid: 621e33db4196b9141a179f90a09e74be, type: 3}
+  - {fileID: 4900000, guid: 868a8ad0d8206f04b9fc14d7df203036, type: 3}
   csvList:
     statDatas: []
     statDatas_Player: []
@@ -17919,10 +17920,10 @@ RectTransform:
   m_Father: {fileID: 619606318}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 230, y: -90}
-  m_SizeDelta: {x: 150, y: 180}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 150, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &305491522
 MonoBehaviour:
@@ -38874,10 +38875,10 @@ RectTransform:
   m_Father: {fileID: 619606318}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 385, y: -90}
-  m_SizeDelta: {x: 150, y: 180}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 150, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1139952697
 MonoBehaviour:
@@ -43400,7 +43401,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "- \uACF5\uACA9\uB825 10% \uC99D\uAC00\n- \uC548\uB155\uD558\uC138\uC6A9"
+  m_text: "-> +10% \uACF5\uACA9 \uC18D\uB3C4\n-> -5% \uB370\uBBF8\uC9C0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ab964510eab177444b9bf9ff1c79c619, type: 2}
   m_sharedMaterial: {fileID: -416383890573733862, guid: ab964510eab177444b9bf9ff1c79c619, type: 2}
@@ -43595,7 +43596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1344845774
 RectTransform:
   m_ObjectHideFlags: 0
@@ -52378,8 +52379,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5, y: 0}
-  m_SizeDelta: {x: 150, y: -20}
+  m_AnchoredPosition: {x: -5, y: 32.5}
+  m_SizeDelta: {x: 150, y: -75}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1594946124
 MonoBehaviour:
@@ -52812,7 +52813,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 3.5, y: 0}
-  m_SizeDelta: {x: -52, y: -114}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1621714872
 MonoBehaviour:
@@ -67000,7 +67001,7 @@ GameObject:
   - component: {fileID: 1795867283}
   - component: {fileID: 1795867284}
   m_Layer: 0
-  m_Name: WeaponController
+  m_Name: AtkController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71309,7 +71310,7 @@ GameObject:
   - component: {fileID: 2004054583}
   - component: {fileID: 2004054582}
   m_Layer: 5
-  m_Name: WeaponPannel
+  m_Name: AtkPannel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

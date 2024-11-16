@@ -1,0 +1,8 @@
+﻿StatID,Name,IsPercent
+DMG,대미지,TRUE
+AS,공격 속도,TRUE
+AT,지속 시간,TRUE
+SPE,투사체 속도,TRUE
+AMT,투사체 개수,FALSE
+PER,관통,FALSE
+SIZE,투사체 크기,TRUE

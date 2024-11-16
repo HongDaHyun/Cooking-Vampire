@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [HideInInspector] public MoveController moveController;
-    [HideInInspector] public WeaponController weaponController;
+    [HideInInspector] public AtkController atkController;
     [HideInInspector] public Scanner scanner;
     [HideInInspector] public Animator anim;
     [HideInInspector] public SpriteRenderer sr;
@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         moveController = GetComponent<MoveController>();
-        weaponController = GetComponentInChildren<WeaponController>();
+        atkController = GetComponentInChildren<AtkController>();
         scanner = GetComponent<Scanner>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
         hitRoutine = StartCoroutine(HitRoutine());
 
         // È¸ÇÇ
-        if (dataManager.Get_Ran(gm.stat.Get_Value(StatType.MISS)))
+        if (gm.stat.Cal_MIS_PERCENT())
             return;
 
         if(shieldCount > 0)
@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        int defendDmg = Mathf.RoundToInt(dmg * (1 - gm.stat.Cal_Defense()));
+        int defendDmg = Mathf.RoundToInt(dmg * (1 - gm.stat.Cal_DEF()));
         gm.health -= Mathf.Min(gm.health, defendDmg);
 
         if(gm.health <= 0)
@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
         rigid.simulated = false;
         sr.sortingOrder += 1;
 
-        weaponController.gameObject.SetActive(false);
+        atkController.gameObject.SetActive(false);
 
         anim.SetTrigger("Dead");
     }
@@ -119,15 +119,13 @@ public class Player : MonoBehaviour
     {
         while(!isDead)
         {
-            int amount = gm.stat.Get_Value(StatType.HEAL);
-
-            if (amount <= 0)
-                yield return new WaitForSeconds(1f);
-            else
+            if (gm.stat.HPREG > 0)
             {
                 gm.Player_HealHP(1);
-                yield return new WaitForSeconds(5f / (1 + (amount - 1) / 2.25f));
+                yield return new WaitForSeconds(gm.stat.Cal_HPREG_Cool());
             }
+            else
+                yield return new WaitForSeconds(1f);
         }
     }
 
@@ -148,264 +146,5 @@ public class Player : MonoBehaviour
             shieldCount = 0;
             shield_Effect.SetActive(false);
         }
-    }
-}
-
-[System.Serializable]
-public struct PlayerStat
-{
-    public int dmg_p;
-    public int defense;
-    public int maxHealth;
-    public int speed_p;
-    public int miss_p;
-    public int crit_p;
-    public int luck;
-    public int expBonus_p;
-    public int active_p;
-    public int cool_p;
-    public int heal;
-    public int drain_p;
-    public int proSize_p;
-    public int proSpeed_p;
-    public int count;
-    public int element;
-    public int range;
-    public int knockBack;
-    public int per;
-
-    public int Get_Value(StatType type, int def)
-    {
-        StatData data = CSVManager.Instance.Find_StatCSV(type);
-
-        int upValue = 0;
-
-        switch(type)
-        {
-            case StatType.DMG:
-                upValue = dmg_p;
-                break;
-            case StatType.DEF:
-                upValue = defense;
-                break;
-            case StatType.HP:
-                upValue = maxHealth;
-                break;
-            case StatType.SPEED:
-                upValue = speed_p;
-                break;
-            case StatType.MISS:
-                upValue = miss_p;
-                break;
-            case StatType.CRIT:
-                upValue = crit_p;
-                break;
-            case StatType.LUCK:
-                upValue = luck;
-                break;
-            case StatType.EXP:
-                upValue = expBonus_p;
-                break;
-            case StatType.ACTIVE:
-                upValue = active_p;
-                break;
-            case StatType.COOL:
-                upValue = cool_p;
-                break;
-            case StatType.HEAL:
-                upValue = heal;
-                break;
-            case StatType.DRAIN:
-                upValue = drain_p;
-                break;
-            case StatType.PRO_SIZE:
-                upValue = proSize_p;
-                break;
-            case StatType.PRO_SPEED:
-                upValue = proSpeed_p;
-                break;
-            case StatType.COUNT:
-                upValue = count;
-                break;
-            case StatType.ELE:
-                upValue = element;
-                break;
-            case StatType.RANGE:
-                upValue = range;
-                break;
-            case StatType.BACK:
-                upValue = knockBack;
-                break;
-            case StatType.PER:
-                upValue = per;
-                break;
-        }
-
-        def = data.isPercent ? def + Mathf.RoundToInt(def * upValue / 100f) : def + upValue;
-        Limit_Value(data, ref def);
-        return def;
-    }
-    public float Get_Value(StatType type, float def)
-    {
-        StatData data = CSVManager.Instance.Find_StatCSV(type);
-
-        int upValue = 0;
-
-        switch (type)
-        {
-            case StatType.DMG:
-                upValue = dmg_p;
-                break;
-            case StatType.DEF:
-                upValue = defense;
-                break;
-            case StatType.HP:
-                upValue = maxHealth;
-                break;
-            case StatType.SPEED:
-                upValue = speed_p;
-                break;
-            case StatType.MISS:
-                upValue = miss_p;
-                break;
-            case StatType.CRIT:
-                upValue = crit_p;
-                break;
-            case StatType.LUCK:
-                upValue = luck;
-                break;
-            case StatType.EXP:
-                upValue = expBonus_p;
-                break;
-            case StatType.ACTIVE:
-                upValue = active_p;
-                break;
-            case StatType.COOL:
-                upValue = cool_p;
-                break;
-            case StatType.HEAL:
-                upValue = heal;
-                break;
-            case StatType.DRAIN:
-                upValue = drain_p;
-                break;
-            case StatType.PRO_SIZE:
-                upValue = proSize_p;
-                break;
-            case StatType.PRO_SPEED:
-                upValue = proSpeed_p;
-                break;
-            case StatType.COUNT:
-                upValue = count;
-                break;
-            case StatType.ELE:
-                upValue = element;
-                break;
-            case StatType.RANGE:
-                upValue = range;
-                break;
-            case StatType.BACK:
-                upValue = knockBack;
-                break;
-            case StatType.PER:
-                upValue = per;
-                break;
-        }
-
-        def = data.isPercent ? def + def * upValue / 100f : upValue;
-        Limit_Value(data, ref def);
-
-        return def;
-    }
-    public int Get_Value(StatType type)
-    {
-        StatData data = CSVManager.Instance.Find_StatCSV(type);
-
-        int def = 0;
-
-        switch (type)
-        {
-            case StatType.DMG:
-                def = dmg_p;
-                break;
-            case StatType.DEF:
-                def = defense;
-                break;
-            case StatType.HP:
-                def = maxHealth;
-                break;
-            case StatType.SPEED:
-                def = speed_p;
-                break;
-            case StatType.MISS:
-                def = miss_p;
-                break;
-            case StatType.CRIT:
-                def = crit_p;
-                break;
-            case StatType.LUCK:
-                def = luck;
-                break;
-            case StatType.EXP:
-                def = expBonus_p;
-                break;
-            case StatType.ACTIVE:
-                def = active_p;
-                break;
-            case StatType.COOL:
-                def = cool_p;
-                break;
-            case StatType.HEAL:
-                def = heal;
-                break;
-            case StatType.DRAIN:
-                def = drain_p;
-                break;
-            case StatType.PRO_SIZE:
-                def = proSize_p;
-                break;
-            case StatType.PRO_SPEED:
-                def = proSpeed_p;
-                break;
-            case StatType.COUNT:
-                def = count;
-                break;
-            case StatType.ELE:
-                def = element;
-                break;
-            case StatType.RANGE:
-                def = range;
-                break;
-            case StatType.BACK:
-                def = knockBack;
-                break;
-            case StatType.PER:
-                def = per;
-                break;
-        }
-
-        Limit_Value(data, ref def);
-        return def;
-    }
-    private void Limit_Value(StatData data, ref int def)
-    {
-        int NULL = CSVManager.NULL;
-        if (data.maxAmount != NULL)
-            Mathf.Min(def, data.maxAmount);
-        if (data.minAmount != NULL)
-            Mathf.Max(def, data.minAmount);
-    }
-    private void Limit_Value(StatData data, ref float def)
-    {
-        int NULL = CSVManager.NULL;
-        if (data.maxAmount != NULL)
-            Mathf.Min(def, data.maxAmount);
-        if (data.minAmount != NULL)
-            Mathf.Max(def, data.minAmount);
-    }
-
-    public float Cal_Defense()
-    {
-        return (float)defense / (Mathf.Abs(defense) + 15);
     }
 }

@@ -2,11 +2,12 @@ using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public abstract class Weapon : MonoBehaviour
+public abstract class Atk : MonoBehaviour
 {
-    public const int MAX_LV = 5;
     public int ID;
+    public const int MAX_LV = 5;
 
     [Title("UI")]
     public Sprite icon;
@@ -17,11 +18,11 @@ public abstract class Weapon : MonoBehaviour
     public List<Sprite> projectileSprite;
     [ReadOnly] public int lv;
     [ReadOnly] public bool isMax;
-    public WeaponStat stat;
+    public AtkStat stat;
     public bool isPet;
 
     [Title("레벨")]
-    public WeaponLevel[] weaponPerLevels = new WeaponLevel[MAX_LV];
+    public AtkStat_LevelUps[] atkStat_LvelUps = new AtkStat_LevelUps[MAX_LV];
 
     protected GameManager_Survivor gm;
     protected UIManager uiManager;
@@ -41,74 +42,35 @@ public abstract class Weapon : MonoBehaviour
 
         if (projectileSprite.Count == 0)
             projectileSprite.Add(dataManager.curWeapon.weaponSprite);
-
-        SetStat();
-    }
-    private void SetStat()
-    {
-        int bonus = dataManager.curWeapon.tier;
-
-        stat.damage += bonus;
-        stat.speed += bonus;
     }
     protected Sprite GetProjectileSprite()
     {
         if (projectileSprite.Count == 1)
             return projectileSprite[0];
 
-        return projectileSprite[Random.Range(0, projectileSprite.Count)];
+        return projectileSprite[UnityEngine.Random.Range(0, projectileSprite.Count)];
     }
 
     public abstract IEnumerator Active();
 
+    public void SetMax()
+    {
+        isMax = true;
+        MaxLevel();
+        uiManager.atkUIs[ID].SetBattery(lv);
+    }
+    public void SetEquip()
+    {
+        lv = 1;
+        uiManager.atkUIs[ID].SetUI(icon, 1);
+    }
     public virtual void LevelUp()
     {
-        if(lv >=  MAX_LV)
-        {
-            isMax = true;
-            MaxLevel();
-            uiManager.weaponUIs[ID].SetBattery(lv);
-            return;
-        }
-
-        foreach (BonusStat bonus in weaponPerLevels[lv - 1].bonusStats)
-            Weapon_UpStat(bonus.type, (int)bonus.amount);
+        foreach (AtkStat_LevelUp x in atkStat_LvelUps[lv - 1].atkPerLevels)
+            stat.SetStat(x.ID, x.amount);
 
         lv++;
-        uiManager.weaponUIs[ID].SetBattery(lv);
-    }
-    private void Weapon_UpStat(StatType statType, int amount)
-    {
-        if (player.data.IsExist(statType))
-            amount += Mathf.RoundToInt(player.data.Find_Bonus(statType).amount * amount);
-
-        switch(statType)
-        {
-            case StatType.COUNT:
-                stat.count += amount;
-                break;
-            case StatType.COOL:
-                stat.coolTime += stat.coolTime * amount / 100f;
-                break;
-            case StatType.ACTIVE:
-                stat.activeTime += stat.activeTime * amount / 100f;
-                break;
-            case StatType.DMG:
-                stat.damage += Mathf.RoundToInt(stat.damage * amount / 100f);
-                break;
-            case StatType.PRO_SPEED:
-                stat.speed += stat.speed * amount / 100f;
-                break;
-            case StatType.PRO_SIZE:
-                stat.size += stat.size * amount / 100f;
-                break;
-            case StatType.PER:
-                stat.per += amount;
-                break;
-            default:
-                break;
-        }
-
+        uiManager.atkUIs[ID].SetBattery(lv);
     }
     
     protected abstract void MaxLevel();
@@ -160,59 +122,64 @@ public abstract class Weapon : MonoBehaviour
     {
         Vector2 center = transform.position;
 
-        float angle = Random.Range(0f, Mathf.PI * 2);
-        float radius = gm.stat.Get_Value(StatType.RANGE, player.scanner.defRange);
+        float angle = UnityEngine.Random.Range(0f, Mathf.PI * 2);
+        float radius = gm.stat.Cal_RAN();
 
         float x = center.x + radius * Mathf.Cos(angle);
         float y = center.y + radius * Mathf.Sin(angle);
 
         return new Vector2(x, y);
     }
+}
 
-    public string Export_LevelDiscription()
+public enum StatID_Atk { DMG, AS, AT, SPE, AMT, PER, SIZE }
+
+[Serializable]
+public class AtkStat
+{
+    public const int X = -1;
+
+    public int dmg;
+    public float atkSpeed;
+    public float activeT;
+    public float speed;
+    public int amount;
+    public int per;
+    public float size;
+    private Dictionary<StatID_Atk, Action<int>> statActions;
+
+    public AtkStat()
     {
-        if (lv == 0)
-            return discription;
-        else if(lv < weaponPerLevels.Length + 1)
-        {
-            string sum = "";
+        statActions = new Dictionary<StatID_Atk, Action<int>>
+        { 
+            {StatID_Atk.DMG, x => dmg += Mathf.RoundToInt(dmg * x / 100f)},
+            {StatID_Atk.AS, x => { if(atkSpeed != X) atkSpeed += atkSpeed * x / 100f; } },
+            {StatID_Atk.AT, x => { if(activeT != X) activeT += activeT * x / 100f; } },
+            {StatID_Atk.SPE, x => speed += speed * x / 100f},
+            {StatID_Atk.AMT, x => amount += x},
+            {StatID_Atk.PER, x => { if(per != X) per += x; } },
+            {StatID_Atk.SIZE, x => size += size * x / 100f},
+        };
+    }
 
-            BonusStat[] updates = weaponPerLevels[lv - 1].bonusStats;
-
-            for(int i = 0; i < updates.Length; i++)
-            {
-                string element = updates[i].Get_Name() + " " + updates[i].Get_Discription();
-                
-                element += i != updates.Length - 1 ? ", " : ".";
-
-                sum += element;
-            }
-
-            return sum;
-        }
+    public void SetStat(StatID_Atk id, int amount)
+    {
+        if (statActions.TryGetValue(id, out Action<int> action))
+            action(amount);
         else
-        {
-            //Max
-            return "MAX";
-        }
+            throw new ArgumentException("Invalid StatID_Player", nameof(id));
     }
 }
-
-[System.Serializable]
-public struct WeaponStat
+[Serializable]
+public struct AtkStat_LevelUps
 {
-    public int count;
-    public float coolTime, activeTime;
-    public int damage;
-    public float speed;
-    public int per; // 관통력
-    public float size;
+    public AtkStat_LevelUp[] atkPerLevels;
 }
-
-[System.Serializable]
-public struct WeaponLevel
+[Serializable]
+public struct AtkStat_LevelUp
 {
-    public BonusStat[] bonusStats;
+    public StatID_Atk ID;
+    public int amount;
 }
 
 public enum WeaponSpriteType { Default, Projectile, Special }

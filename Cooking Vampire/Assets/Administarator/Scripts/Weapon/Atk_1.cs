@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Target_Shooting
-public class Weapon_1 : Weapon
+public class Atk_1 : Atk
 {
     public override IEnumerator Active()
     {
@@ -17,7 +17,7 @@ public class Weapon_1 : Weapon
     private IEnumerator FireRoutine()
     {
         Fire_Nearest();
-        for(int i = 1; i < gm.stat.Get_Value(StatType.COUNT, stat.count); i++)
+        for(int i = 1; i < gm.stat.Cal_AMT(stat.amount); i++)
         {
             yield return new WaitForSeconds(0.2f);
             Fire_Ran();

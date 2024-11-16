@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Surrorund
-public class Weapon_0 : Weapon
+public class Atk_0 : Atk
 {
     protected override void Awake()
     {
@@ -26,8 +26,8 @@ public class Weapon_0 : Weapon
 
     private void Batch()
     {
-        int count = gm.stat.Get_Value(StatType.COUNT, stat.count);
-        float range = (gm.stat.Get_Value(StatType.PRO_SIZE, stat.size) + gm.stat.Get_Value(StatType.RANGE, player.scanner.defRange)) / 4f;
+        int count = gm.stat.Cal_AMT(stat.amount);
+        float range = (stat.size + gm.stat.Cal_RAN()) / 4f;
         for (int i = 0; i < count; i++)
         {
             Transform projectTrans;
@@ -58,7 +58,7 @@ public class Weapon_0 : Weapon
 
     protected void Move()
     {
-        transform.Rotate(Vector3.back * gm.stat.Get_Value(StatType.PRO_SPEED, stat.speed) * Time.deltaTime);
+        transform.Rotate(Vector3.back * stat.speed * Time.deltaTime);
     }
 
     public override void LevelUp()

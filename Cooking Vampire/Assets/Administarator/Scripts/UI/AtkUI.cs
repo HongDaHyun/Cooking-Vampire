@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class WeaponUI : MonoBehaviour
+public class AtkUI : MonoBehaviour
 {
     public Image icon, lvBattery;
 

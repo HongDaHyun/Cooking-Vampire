@@ -23,7 +23,7 @@ public class Scanner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float range = player.gm.stat.Get_Value(StatType.RANGE, defRange);
+        float range = player.gm.stat.Cal_RAN();
 
         int targetCombineds = 0;
         foreach (LayerMask layer in atkLayers)

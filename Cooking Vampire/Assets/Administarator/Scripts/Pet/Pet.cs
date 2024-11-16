@@ -13,6 +13,7 @@ public abstract class Pet : MonoBehaviour, IPoolObject
     protected SpawnManager spawnManager;
     protected SpriteData spriteData;
 
+    public AtkStat stat;
     public PetState petState;
     public Sprite projectileSprite;
     public RuntimeAnimatorController projectileAnim;
@@ -73,6 +74,10 @@ public abstract class Pet : MonoBehaviour, IPoolObject
     {
         spriteRenderer.flipX = transform.position.x - target.position.x > 0;
     }
+    public void SetAtkStat(AtkStat _stat)
+    {
+        stat = _stat;
+    }
 
     protected IEnumerator ChangeStateRoutine()
     {
@@ -97,7 +102,7 @@ public abstract class Pet : MonoBehaviour, IPoolObject
             }
 
             curStateRoutine = StartCoroutine(LoopStateRoutine());
-            yield return new WaitForSeconds(player.weaponController.Find_Weapon_Pet().stat.coolTime * 4f);
+            yield return new WaitForSeconds(gm.stat.Cal_AS(stat.atkSpeed));
             StopCoroutine(curStateRoutine);
         }
     }

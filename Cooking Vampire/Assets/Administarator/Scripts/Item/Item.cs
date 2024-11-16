@@ -9,6 +9,7 @@ public abstract class Item : MonoBehaviour, IPoolObject
     protected SpriteRenderer sr;
 
     protected GameManager_Survivor gm;
+    protected DataManager dm;
     protected SpriteData spriteData;
     protected Player player;
     protected SpawnManager spawnManager;
@@ -21,6 +22,7 @@ public abstract class Item : MonoBehaviour, IPoolObject
 
         sr = GetComponent<SpriteRenderer>();
         gm = GameManager_Survivor.Instance;
+        dm = DataManager.Instance;
         spriteData = SpriteData.Instance;
         player = GameManager_Survivor.Instance.player;
         spawnManager = SpawnManager.Instance;
@@ -42,7 +44,7 @@ public abstract class Item : MonoBehaviour, IPoolObject
     protected virtual void Drain()
     {
         transform.position = 
-            Vector3.MoveTowards(transform.position, player.transform.position, gm.stat.Get_Value(StatType.SPEED, player.moveController.defSpeed) * 2f * Time.fixedDeltaTime);
+            Vector3.MoveTowards(transform.position, player.transform.position, player. gm.stat.Cal_SPE() * 2f * Time.fixedDeltaTime);
 
         if (Vector2.Distance(transform.position, player.transform.position) <= 0.1f)
             Destroy();

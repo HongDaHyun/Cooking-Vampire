@@ -36,7 +36,7 @@ public class Projectile_Rigid : Projectile
         }
     }
 
-    public override void SetProjectile(Sprite sprite, WeaponStat stat, Transform parent)
+    public override void SetProjectile(Sprite sprite, AtkStat stat, Transform parent)
     {
         base.SetProjectile(sprite, stat, parent);
         curPer = gm.stat.Get_Value(StatType.PER, stat.per);

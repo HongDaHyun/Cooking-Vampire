@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 
 public class Projectile : MonoBehaviour, IPoolObject
 {
-    [HideInInspector] public WeaponStat stat;
+    [HideInInspector] public AtkStat stat;
 
     protected Player player;
     protected SpawnManager spawnManager;
@@ -32,7 +32,7 @@ public class Projectile : MonoBehaviour, IPoolObject
         StopAllCoroutines();
     }
 
-    public virtual void SetProjectile(Sprite sprite, WeaponStat stat, Transform parent)
+    public virtual void SetProjectile(Sprite sprite, AtkStat stat, Transform parent)
     {
         this.stat = stat;
         transform.SetParent(parent);

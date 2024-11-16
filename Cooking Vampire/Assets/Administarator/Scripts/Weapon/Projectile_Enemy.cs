@@ -21,7 +21,7 @@ public class Projectile_Enemy : Projectile_Rigid
         spawnManager.Destroy_Projectile(this);
     }
 
-    public override void SetProjectile(Sprite sprite, WeaponStat stat, Transform parent)
+    public override void SetProjectile(Sprite sprite, AtkStat stat, Transform parent)
     {
         this.stat = stat;
         transform.SetParent(parent);

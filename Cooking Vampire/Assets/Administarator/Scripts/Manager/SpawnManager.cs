@@ -51,7 +51,7 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     #endregion
     #region ≈ıªÁ√º
-    public Projectile Spawn_Projectile(Sprite sprite, WeaponStat stat, Transform parent)
+    public Projectile Spawn_Projectile(Sprite sprite, AtkStat stat, Transform parent)
     {
         Projectile projectile = PoolManager.Instance.GetFromPool<Projectile>("Projectile");
 
@@ -59,7 +59,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
         return projectile;
     }
-    public Projectile_Rigid Spawn_Projectile_Rigid(Sprite sprite, WeaponStat stat, Transform parent, float gravity)
+    public Projectile_Rigid Spawn_Projectile_Rigid(Sprite sprite, AtkStat stat, Transform parent, float gravity)
     {
         Projectile_Rigid projectile = PoolManager.Instance.GetFromPool<Projectile_Rigid>("Projectile_Rigid");
 
@@ -72,7 +72,7 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         Projectile_Enemy projectile = PoolManager.Instance.GetFromPool<Projectile_Enemy>("Projectile_Enemy");
 
-        WeaponStat dummy = new WeaponStat();
+        AtkStat dummy = new AtkStat();
         dummy.size = size;
         projectile.SetProjectile(sprite, dummy, null);
         projectile.SetGravity(gravity);
@@ -81,7 +81,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
         return projectile;
     }
-    public Projectile_Animation Spawn_Projectile_Anim(Sprite sprite, WeaponStat stat, RuntimeAnimatorController anim, Transform parent)
+    public Projectile_Animation Spawn_Projectile_Anim(Sprite sprite, AtkStat stat, RuntimeAnimatorController anim, Transform parent)
     {
         Projectile_Animation projectile = PoolManager.Instance.GetFromPool<Projectile_Animation>("Projectile_Animation");
 
@@ -90,7 +90,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
         return projectile;
     }
-    public Projectile_Animation Spawn_Projectile_Trap(Sprite sprite, WeaponStat stat, RuntimeAnimatorController anim, Transform parent)
+    public Projectile_Animation Spawn_Projectile_Trap(Sprite sprite, AtkStat stat, RuntimeAnimatorController anim, Transform parent)
     {
         Projectile_Animation projectile = PoolManager.Instance.GetFromPool<Projectile_Animation>("Projectile_Trap");
 
@@ -103,7 +103,7 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         Projectile_Area projectile = PoolManager.Instance.GetFromPool<Projectile_Area>("Projectile_Area");
 
-        WeaponStat dummy = new WeaponStat();
+        AtkStat dummy = new AtkStat();
         dummy.size = size;
         projectile.SetProjectile(null, dummy, null);
         projectile.SetAnim(anim);

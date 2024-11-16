@@ -8,7 +8,6 @@ public class MoveController : MonoBehaviour
 {
     [ReadOnly] public Vector2 inputVec;
     [ReadOnly] public Vector2 inputLook;
-    public float defSpeed;
 
     Player player;
     GameManager_Survivor gm;
@@ -49,7 +48,7 @@ public class MoveController : MonoBehaviour
         if (player.isDead)
             return;
 
-        Vector2 nextVec = inputVec.normalized * gm.stat.Get_Value(StatType.SPEED, defSpeed) * Time.fixedDeltaTime;
+        Vector2 nextVec = inputVec.normalized * gm.stat.Cal_SPE() * Time.fixedDeltaTime;
 
         // 위치 이동
         rigid.MovePosition(rigid.position + nextVec);

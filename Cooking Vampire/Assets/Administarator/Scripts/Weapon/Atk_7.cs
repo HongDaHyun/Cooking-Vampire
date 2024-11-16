@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon_7 : Weapon
+public class Atk_7 : Atk
 {
     public RuntimeAnimatorController trapAnim;
     SpriteData spriteData;

@@ -77,7 +77,7 @@ public abstract class EnemyMove : MonoBehaviour
         Vector3 playerPos = player.transform.position;
         Vector3 dirVec = transform.position - playerPos;
         enemy.rigid.velocity = Vector2.zero;
-        enemy.rigid.AddForce(dirVec.normalized * player.gm.stat.Get_Value(StatType.BACK, 1), ForceMode2D.Impulse);
+        enemy.rigid.AddForce(dirVec.normalized * player.gm.stat.Cal_BAK(), ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(0.1f);
         enemy.rigid.velocity = Vector2.zero;

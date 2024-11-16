@@ -12,7 +12,7 @@ public class Projectile_Area : Projectile_Animation
         StartCoroutine(LifeRoutine());
     }
 
-    public override void SetProjectile(Sprite sprite, WeaponStat stat, Transform parent)
+    public override void SetProjectile(Sprite sprite, AtkStat stat, Transform parent)
     {
         this.stat = stat;
         transform.SetParent(parent);

@@ -8,12 +8,12 @@ public class Cat : Pet
     {
         isMove = true;
         if (target == null)
-            target = player.weaponController.Find_Weapon_Pet().transform;
+            target = player.transform;
 
         SetFlip(target);
         SetAnim(PetState.Walk);
-        float speed = gm.stat.Get_Value(StatType.PRO_SPEED, player.weaponController.Find_Weapon_Pet().stat.speed);
-        float range = gm.stat.Get_Value(StatType.RANGE, player.scanner.defRange) / 3f;
+        
+        float range = gm.stat.Cal_RAN() / 3f;
 
         while (Vector2.Distance(transform.position, target.position) > range && isMove)
         {
@@ -23,11 +23,11 @@ public class Cat : Pet
                 yield break;
             }
 
-            transform.position = Vector2.MoveTowards(transform.position, target.position, Time.fixedDeltaTime * speed);
+            transform.position = Vector2.MoveTowards(transform.position, target.position, Time.fixedDeltaTime * stat.speed);
             yield return new WaitForFixedUpdate();
         }
 
-        if(target == player.weaponController.Find_Weapon_Pet().transform)
+        if(target == player.transform)
         {
             SetAnim(PetState.Idle);
             yield return new WaitForSeconds(0.5f);
@@ -43,16 +43,15 @@ public class Cat : Pet
         if (ranTarget == null)
             yield break;
 
-        WeaponStat stat = player.weaponController.Find_Weapon_Pet().stat;
-        int projectileCount = gm.stat.Get_Value(StatType.COUNT, 1);
+        int projectileCount = gm.stat.Cal_AMT(stat.amount);
 
         for(int i = 0; i < projectileCount; i++)
         {
             SetAnim(PetState.Atk);
             Projectile_Animation projectile =
                 spawnManager.Spawn_Projectile_Anim(projectileSprite, stat, projectileAnim, transform);
-            float range = gm.stat.Get_Value(StatType.RANGE, player.scanner.defRange);
-            float proSize = gm.stat.Get_Value(StatType.PRO_SIZE, stat.size);
+            float range = gm.stat.Cal_RAN();
+            float proSize = stat.size;
 
             if (spriteRenderer.flipX)
             {
@@ -68,7 +67,7 @@ public class Cat : Pet
             SetAnim(PetState.Idle);
             yield return new WaitUntil(() => projectile.isFinish);
         }
-        yield return new WaitForSeconds(gm.stat.Get_Value(StatType.COOL, stat.coolTime));
+        yield return new WaitForSeconds(gm.stat.Cal_AS(stat.atkSpeed));
     }
 
     protected override IEnumerator DangerRoutine()
@@ -82,6 +81,6 @@ public class Cat : Pet
 
         SetAnim(PetState.Danger);
         SetAnim(PetState.Idle);
-        yield return new WaitForSeconds(gm.stat.Get_Value(StatType.COOL, player.weaponController.Find_Weapon_Pet().stat.coolTime));
+        yield return new WaitForSeconds(gm.stat.Cal_AS(stat.atkSpeed));
     }
 }

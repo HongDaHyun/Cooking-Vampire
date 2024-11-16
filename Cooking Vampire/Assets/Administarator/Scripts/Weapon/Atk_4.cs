@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon_4 : Weapon
+public class Atk_4 : Atk
 {
     [Title("애니메이션")]
     public RuntimeAnimatorController animator;

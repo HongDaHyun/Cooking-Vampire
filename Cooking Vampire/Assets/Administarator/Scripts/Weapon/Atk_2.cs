@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon_2 : Weapon
+public class Atk_2 : Atk
 {
     public override IEnumerator Active()
     {

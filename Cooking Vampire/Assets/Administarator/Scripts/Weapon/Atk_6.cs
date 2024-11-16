@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon_6 : Weapon
+public class Atk_6 : Atk
 {
     public string petName;
-    public int spawnCount;
+    public List<Pet> pets;
 
     public override IEnumerator Active()
     {
@@ -21,16 +21,18 @@ public class Weapon_6 : Weapon
     {
         base.LevelUp();
         SpawnPet();
+
+        foreach (Pet pet in pets)
+            pet.SetAtkStat(stat);
     }
 
     public void SpawnPet()
     {
-        int count = stat.count - spawnCount;
+        int count = stat.amount - pets.Count;
 
         for(int i = 0; i < count; i++)
         {
-            spawnManager.Spawn_Pet(petName);
-            spawnCount++;
+            pets.Add(spawnManager.Spawn_Pet(petName));
         }
     }
 }

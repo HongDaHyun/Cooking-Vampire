@@ -85,16 +85,18 @@ public class Enemy : MonoBehaviour, IPoolObject
         if (isDamaged)
             return;
 
+        dmg = gm.stat.Cal_DMG(dmg);
+
         // 크리티컬
-        bool isCrit = dataManager.Get_Ran(gm.stat.Get_Value(StatType.CRIT));
+        bool isCrit = gm.stat.Cal_CRIT_Percent();
         if (isCrit)
-            dmg *= 2;
+            gm.stat.Cal_CRIT_DMG(dmg);
 
         // 체력 흡수
-        if (dataManager.Get_Ran(gm.stat.Get_Value(StatType.DRAIN)))
+        if (gm.stat.Cal_DRA_Percent())
             gm.Player_HealHP(1);
 
-        stat.curHp -= dmg;
+        stat.curHp -= Mathf.Min(stat.curHp, dmg);
         spawnManager.Spawn_PopUpTxt(dmg.ToString(), isCrit ? PopUpType.Deal_Crit : PopUpType.Deal, transform.position);
         hitRoutine = StartCoroutine(DamagedRoutine());
         StartCoroutine(enemyMove.KnockBack());
@@ -116,7 +118,7 @@ public class Enemy : MonoBehaviour, IPoolObject
 
             // 데이터 처리
             gm.killCount++;
-            spawnManager.Spawn_Gems(Random.Range(data.gemAmount, data.gemAmount + gm.stat.Get_Value(StatType.LUCK) / 10), transform.position);
+            spawnManager.Spawn_Gems(Random.Range(data.gemAmount, data.gemAmount + gm.stat.LUK / 10), transform.position);
         }
     }
 
@@ -124,9 +126,7 @@ public class Enemy : MonoBehaviour, IPoolObject
     {
         if (!collision.CompareTag("Projectile") || isDead || isDamaged)
             return;
-
-        int trueDmg = Mathf.Min(stat.curHp , gm.stat.Get_Value(StatType.DMG, collision.GetComponent<Projectile>().stat.damage));
-        Damaged(trueDmg);
+        Damaged(collision.GetComponent<Projectile>().stat.dmg);
     }
     private void OnCollisionStay2D(Collision2D collision)
     {

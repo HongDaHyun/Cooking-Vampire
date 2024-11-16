@@ -20,7 +20,7 @@ public class UIManager : Singleton<UIManager>
     public Slider hpSlider;
     public TextMeshProUGUI levelTxt, killTxt, timeTxt, coinTxt;
     public TextMeshProUGUI[] weaponTest_Btn;
-    public WeaponUI[] weaponUIs;
+    public AtkUI[] atkUIs;
     public LvUpPannel lvUpPannel;
     public BossPannel bossPannel;
 
@@ -65,7 +65,7 @@ public class UIManager : Singleton<UIManager>
 
         // HP_SLIDER
         float curHp = gm.health;
-        float maxHp = gm.stat.maxHealth;
+        float maxHp = gm.stat.HP;
 
         float targetHP = curHp / maxHp;
         hpSlider.value = Mathf.Lerp(hpSlider.value, targetHP, Time.deltaTime * 5f);
@@ -73,8 +73,8 @@ public class UIManager : Singleton<UIManager>
         // TEST_BTN
         for (int i = 0; i < weaponTest_Btn.Length; i++)
         {
-            weaponTest_Btn[i].text = gm.player.weaponController.availWeapons[i].isMax ?
-                $"Weapon {i}\nLv.MAX" : $"Weapon {i}\nLv.{gm.player.weaponController.availWeapons[i].lv}";
+            weaponTest_Btn[i].text = gm.player.atkController.availAtks[i].isMax ?
+                $"Weapon {i}\nLv.MAX" : $"Weapon {i}\nLv.{gm.player.atkController.availAtks[i].lv}";
         }
     }
 }
@@ -88,27 +88,27 @@ public class LvUpPannel
 
     public void Set_StatUpPannels_Ran()
     {
-        List<Weapon> weapons = GameManager_Survivor.Instance.player.weaponController.availWeapons.ToList().FindAll(data => !data.isMax);
-        List<int> stats = new List<int>();
+        List<Atk> atks = GameManager_Survivor.Instance.player.atkController.availAtks.ToList().FindAll(data => !data.isMax);
+        List<StatID_Player> stats = new List<StatID_Player>();
 
-        bool isWeapon = weapons.Count < 3 || weapons == null ? true : Random.Range(0, 2) == 0; // 0 -> Weapon / 1 -> Stat
+        bool isAtk = atks.Count < 3 || atks == null ? true : Random.Range(0, 2) == 0; // 0 -> Weapon / 1 -> Stat
 
         foreach (StatUpPannel pannel in statUpPannels)
         {
-            if (isWeapon)
+            if (isAtk)
             {
-                int ranIndex = Random.Range(0, weapons.Count);
-                Weapon weapon = weapons[ranIndex];
-                weapons.RemoveAt(ranIndex);
+                int ranIndex = Random.Range(0, atks.Count);
+                Atk weapon = atks[ranIndex];
+                atks.RemoveAt(ranIndex);
 
                 pannel.SetUI(weapon);
             }
             else
             {
-                int ranID;
+                StatID_Player ranID;
                 do
                 {
-                    ranID = Random.Range(0, System.Enum.GetValues(typeof(StatType)).Length);
+                    ranID = (StatID_Player)Random.Range(0, CSVManager.Instance.csvList.statDatas_PlayerLvUp.Length);
                 }
                 while (stats.Contains(ranID));
 
