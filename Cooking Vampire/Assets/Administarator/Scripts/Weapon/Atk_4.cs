@@ -10,7 +10,7 @@ public class Atk_4 : Atk
 
     public override IEnumerator Active()
     {
-        for (int i = 1; i <= gm.stat.Get_Value(StatType.COUNT, stat.count); i++)
+        for (int i = 1; i <= gm.stat.Cal_AMT(stat.amount); i++)
             yield return Slash();
         yield return null;
     }

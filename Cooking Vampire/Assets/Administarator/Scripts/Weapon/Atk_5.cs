@@ -11,7 +11,7 @@ public class Atk_5 : Atk
 
     public override IEnumerator Active()
     {
-        int projectileCount = gm.stat.Get_Value(StatType.COUNT, stat.count);
+        int projectileCount = gm.stat.Cal_AMT(stat.amount);
 
         while(projectileCount > 0)
         {

@@ -39,12 +39,12 @@ public class Projectile_Rigid : Projectile
     public override void SetProjectile(Sprite sprite, AtkStat stat, Transform parent)
     {
         base.SetProjectile(sprite, stat, parent);
-        curPer = gm.stat.Get_Value(StatType.PER, stat.per);
+        curPer = gm.stat.Cal_PER(stat.per);
     }
 
     public void SetDir(Vector3 dir)
     {
-        rigid.velocity = dir * gm.stat.Get_Value(StatType.PRO_SPEED, stat.speed);
+        rigid.velocity = dir * stat.speed;
     }
     public void SetDir(Vector3 dir, float speed)
     {

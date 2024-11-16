@@ -9,9 +9,6 @@ using DG.Tweening;
 
 public class UIManager : Singleton<UIManager>
 {
-    GameManager_Survivor gm;
-    DataManager dm;
-
     [Title("°ø¿ë")]
     public GameObject raycastPannel;
 
@@ -26,9 +23,6 @@ public class UIManager : Singleton<UIManager>
 
     private void Start()
     {
-        gm = GameManager_Survivor.Instance;
-        dm = DataManager.Instance;
-
         lvUpPannel.Set_StatUI_Player();
     }
 
@@ -39,6 +33,9 @@ public class UIManager : Singleton<UIManager>
 
     private void Update_HUD()
     {
+        GameManager_Survivor gm = GameManager_Survivor.Instance;
+        DataManager dm = DataManager.Instance;
+
         // EXP_SLIDER
         float cur = gm.exp;
         float max = gm.maxExp;

@@ -10,16 +10,10 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (instance == null)
             {
-                GameObject obj;
-                obj = GameObject.Find(typeof(T).Name);
-                if (obj == null)
+                instance = FindObjectOfType<T>();
+                if (instance == null)
                 {
-                    obj = new GameObject(typeof(T).Name);
-                    instance = obj.AddComponent<T>();
-                }
-                else
-                {
-                    instance = obj.GetComponent<T>();
+                    Debug.LogError($"{typeof(T).Name} 인스턴스가 씬에 존재하지 않습니다. 미리 추가해주세요.");
                 }
             }
             return instance;
@@ -28,17 +22,15 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
     protected virtual void Awake()
     {
-        if (transform.parent == null)
+        if (instance == null)
         {
-            if (instance == null)
-            {
-                instance = this as T;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+            instance = this as T;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this)
+        {
+            Debug.LogWarning($"{typeof(T).Name}의 중복 인스턴스가 발견되어 삭제됩니다.");
+            Destroy(gameObject);
         }
     }
 }

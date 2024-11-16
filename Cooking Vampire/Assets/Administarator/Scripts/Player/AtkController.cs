@@ -22,7 +22,7 @@ public class AtkController : MonoBehaviour
     private void Start()
     {
         availAtks = typeTrans[(int)player.data.type].GetComponentsInChildren<Atk>(true);
-        EquipBasic();
+        // EquipBasic();
     }
 
     private void SetPivot()
@@ -57,22 +57,12 @@ public class AtkController : MonoBehaviour
         else if (atk.lv == 0)
         {
             availAtks[Find_Atk_Index(ID)].SetEquip();
-            StartCoroutine(WeaponRoutine(atk));
+            StartCoroutine(AtkRoutine(atk));
         }
         else
             availAtks[Find_Atk_Index(ID)].LevelUp();
-
-        if(atk.lv == 0)
-        {
-            atk.lv = 1;
-            UIManager.Instance.atkUIs[ID].SetUI(atk.icon, 1);
-            StartCoroutine(WeaponRoutine(atk));
-
-            return;
-        }
-        availAtks[Find_Atk_Index(ID)].LevelUp();
     }
-    private IEnumerator WeaponRoutine(Atk atk)
+    private IEnumerator AtkRoutine(Atk atk)
     {
         atk.gameObject.SetActive(true);
 

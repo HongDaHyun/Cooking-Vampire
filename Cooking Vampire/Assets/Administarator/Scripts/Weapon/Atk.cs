@@ -33,6 +33,7 @@ public abstract class Atk : MonoBehaviour
     protected virtual void Awake()
     {
         player = GetComponentInParent<Player>();
+
         gm = GameManager_Survivor.Instance;
         dataManager = DataManager.Instance;
         spawnManager = SpawnManager.Instance;
@@ -62,7 +63,6 @@ public abstract class Atk : MonoBehaviour
     public void SetEquip()
     {
         lv = 1;
-        uiManager.atkUIs[ID].SetUI(icon, 1);
     }
     public virtual void LevelUp()
     {

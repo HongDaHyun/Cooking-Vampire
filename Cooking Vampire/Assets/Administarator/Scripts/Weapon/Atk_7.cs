@@ -15,7 +15,7 @@ public class Atk_7 : Atk
 
     public override IEnumerator Active()
     {
-        int count = gm.stat.Get_Value(StatType.COUNT, stat.count);
+        int count = gm.stat.Cal_AMT(stat.amount);
         for (int i = 0; i < count; i++)
         {
             Trap();

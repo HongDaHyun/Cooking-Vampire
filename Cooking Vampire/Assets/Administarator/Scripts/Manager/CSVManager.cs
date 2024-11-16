@@ -59,7 +59,7 @@ public class CSVManager : Singleton<CSVManager>
                 isLegend = bool.Parse(data[size * k + 5])
             };
 
-            for (int j = 0; j < 4; i++)
+            for (int j = 0; j < 4; j++)
                 csvList.statDatas_PlayerLvUp[i].tierPer[j] = int.Parse(data[size * k + 1 + j]);
         }
     }

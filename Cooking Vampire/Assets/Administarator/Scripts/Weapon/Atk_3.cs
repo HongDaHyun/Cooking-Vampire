@@ -20,9 +20,9 @@ public class Atk_3 : Atk
     private IEnumerator Slash(int elementID)
     {
         bool playerFlip = player.sr.flipX;
-        float range = gm.stat.Get_Value(StatType.RANGE, player.scanner.defRange) / 3f + gm.stat.Get_Value(StatType.PRO_SIZE, stat.size) / 2f;
+        float range = gm.stat.Cal_RAN() / 3f + stat.size / 2f;
 
-        for (int i = 0; i < gm.stat.Get_Value(StatType.COUNT, stat.count); i++)
+        for (int i = 0; i < gm.stat.Cal_AMT(stat.amount); i++)
         {
             Projectile_Animation projectile = spawnManager.Spawn_Projectile_Anim(GetProjectileSprite(), stat, animators[elementID], transform);
 

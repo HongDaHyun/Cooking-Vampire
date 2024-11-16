@@ -48,6 +48,7 @@ public class MoveController : MonoBehaviour
         if (player.isDead)
             return;
 
+        Debug.Log(gm.stat.Cal_SPE());
         Vector2 nextVec = inputVec.normalized * gm.stat.Cal_SPE() * Time.fixedDeltaTime;
 
         // 위치 이동
