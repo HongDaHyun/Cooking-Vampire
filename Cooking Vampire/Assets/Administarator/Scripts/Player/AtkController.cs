@@ -9,12 +9,14 @@ public class AtkController : MonoBehaviour
     public Transform[] typeTrans;
     [ReadOnly] public Atk[] availAtks;
     DataManager dataManager;
+    UIManager uiManager;
     private Player player;
 
     private void Awake()
     {
         player = GetComponentInParent<Player>();
         dataManager = DataManager.Instance;
+        uiManager = UIManager.Instance;
 
         SetPivot();
     }
@@ -22,7 +24,7 @@ public class AtkController : MonoBehaviour
     private void Start()
     {
         availAtks = typeTrans[(int)player.data.type].GetComponentsInChildren<Atk>(true);
-        // EquipBasic();
+        EquipBasic();
     }
 
     private void SetPivot()
@@ -56,7 +58,7 @@ public class AtkController : MonoBehaviour
             availAtks[Find_Atk_Index(ID)].SetMax();
         else if (atk.lv == 0)
         {
-            availAtks[Find_Atk_Index(ID)].SetEquip();
+            availAtks[Find_Atk_Index(ID)].SetEquip(uiManager);
             StartCoroutine(AtkRoutine(atk));
         }
         else

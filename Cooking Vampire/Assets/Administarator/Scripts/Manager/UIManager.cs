@@ -41,7 +41,10 @@ public class UIManager : Singleton<UIManager>
         float max = gm.maxExp;
 
         float targetValue = cur / max;
-        expSlider.value = Mathf.Lerp(expSlider.value, targetValue, Time.deltaTime * 5f);
+        if (Mathf.Abs(expSlider.value - targetValue) < 0.0001f)
+            expSlider.value = targetValue; // 정확히 1로 설정
+        else
+            expSlider.value = Mathf.Lerp(expSlider.value, targetValue, Time.deltaTime * 10f);
         if (expSlider.value >= 1 && gm.exp >= gm.maxExp)
             gm.Player_LevelUp();
 
@@ -79,41 +82,76 @@ public class UIManager : Singleton<UIManager>
 [System.Serializable]
 public class LvUpPannel
 {
-    public RectTransform transform;
-    public StatUpPannel[] statUpPannels;
-    public StatUI_Player[] statUI_Players;
+    public RectTransform parentPannel, atkPannel, statPannel;
+    public AtkUP_Btn[] atkUps;
+    public StatUP_Btn[] statUps;
+    [HideInInspector] public StatUI_Player[] statUI_Players;
 
-    public void Set_StatUpPannels_Ran()
+    public void Tab(BtnManager bm)
     {
-        List<Atk> atks = GameManager_Survivor.Instance.player.atkController.availAtks.ToList().FindAll(data => !data.isMax);
+        bm.Tab(parentPannel);
+
+        Active_Stat();
+
+        bm.Stop();
+    }
+    public void UnTab(BtnManager bm)
+    {
+        bm.Tab(parentPannel);
+
+        bm.Resume();
+    }
+    public void Active_Atk()
+    {
+        atkPannel.gameObject.SetActive(true);
+        statPannel.gameObject.SetActive(false);
+
+        Reroll_AtkUPs();
+    }
+    public void Active_Stat()
+    {
+        atkPannel.gameObject.SetActive(false);
+        statPannel.gameObject.SetActive(true);
+
+        Reroll_StatUPs();
+    }
+
+    public void Reroll_StatUPs()
+    {
+        CSVManager cm = CSVManager.Instance;
         List<StatID_Player> stats = new List<StatID_Player>();
 
-        bool isAtk = atks.Count < 3 || atks == null ? true : Random.Range(0, 2) == 0; // 0 -> Weapon / 1 -> Stat
-
-        foreach (StatUpPannel pannel in statUpPannels)
+        foreach(StatUP_Btn btn in statUps)
         {
-            if (isAtk)
-            {
-                int ranIndex = Random.Range(0, atks.Count);
-                Atk weapon = atks[ranIndex];
-                atks.RemoveAt(ranIndex);
+            StatID_Player ranID;
+            do
+                ranID = cm.Find_StatData_PlayerLvUp_Ran().ID;
+            while (stats.Contains(ranID));
 
-                pannel.SetUI(weapon);
-            }
-            else
-            {
-                StatID_Player ranID;
-                do
-                {
-                    ranID = (StatID_Player)Random.Range(0, CSVManager.Instance.csvList.statDatas_PlayerLvUp.Length);
-                }
-                while (stats.Contains(ranID));
+            stats.Add(ranID);
 
-                stats.Add(ranID);
-                pannel.SetUI(ranID);
-            }
+            btn.SetBtn(ranID);
         }
     }
+    public void Reroll_AtkUPs()
+    {
+        foreach (AtkUP_Btn btn in atkUps)
+            btn.gameObject.SetActive(false);
+
+        List<Atk> atks = GameManager_Survivor.Instance.player.atkController.availAtks.ToList().FindAll(data => !data.isMax);
+        int maxLength = Mathf.Min(atks.Count, 3);
+
+        for (int i = 0; i < maxLength; i++)
+        {
+            int ranID = Random.Range(0, atks.Count);
+            Atk weapon = atks[ranID];
+            atks.RemoveAt(ranID);
+
+            atkUps[i].gameObject.SetActive(true);
+            atkUps[i].SetBtn(weapon);
+        }
+    }
+
     public void Set_StatUI_Player()
     {
         CSVManager cm = CSVManager.Instance;
@@ -129,9 +167,9 @@ public class LvUpPannel
             count++;
         }
     }
-    public void Adjust_StatUI_Player(StatID_Player id, int value)
+    public void Adjust_StatUI_Player(StatID_Player id)
     {
-        System.Array.Find(statUI_Players, ui => ui.statID == id).AdjustUI(value);
+        System.Array.Find(statUI_Players, ui => ui.statID == id).AdjustUI();
     }
 }
 

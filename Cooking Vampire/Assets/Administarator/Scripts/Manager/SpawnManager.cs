@@ -194,9 +194,10 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     #endregion
     #region Æê
-    public Pet Spawn_Pet(string name)
+    public Pet Spawn_Pet(string name, AtkStat _stat)
     {
         Pet pet = PoolManager.Instance.GetFromPool<Pet>(name);
+        pet.stat = _stat;
 
         return pet;
     }

@@ -36,8 +36,8 @@ public class CSVManager : Singleton<CSVManager>
                 ID = (StatID_Player)Enum.Parse(typeof(StatID_Player), data[size * k]),
                 name = data[size * k + 1],
                 explanation = data[size * k + 2],
-                min = -Filtering_int(data[size * k + 3]),
-                max = Filtering_int(data[size * k + 4]),
+                min = Filtering_int(data[size * k + 3], false),
+                max = Filtering_int(data[size * k + 4], true),
                 isPercent = bool.Parse(data[size * k + 5])
             };
         }
@@ -82,10 +82,10 @@ public class CSVManager : Singleton<CSVManager>
         }
     }
 
-    private int Filtering_int(string s)
+    private int Filtering_int(string s, bool isPlus)
     {
         if (s == "")
-            return NULL;
+            return isPlus ? NULL : -NULL;
         return int.Parse(s);
     }
     #endregion
@@ -98,6 +98,10 @@ public class CSVManager : Singleton<CSVManager>
     public int Find_StatData_PlayerLvUp(StatID_Player statID, TierType tier)
     {
         return Array.Find(csvList.statDatas_PlayerLvUp, data => data.ID == statID).tierPer[(int)tier];
+    }
+    public StatData_PlayerLvUp Find_StatData_PlayerLvUp_Ran()
+    {
+        return csvList.statDatas_PlayerLvUp[UnityEngine.Random.Range(0, csvList.statDatas_PlayerLvUp.Length)];
     }
     public StatData_Atk Find_StatData_Atk(StatID_Atk statID)
     {

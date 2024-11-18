@@ -5,6 +5,8 @@ using Redcode.Pools;
 
 public abstract class Pet : MonoBehaviour, IPoolObject
 {
+    public AtkStat stat;
+
     protected Animator anim;
     protected SpriteRenderer spriteRenderer;
 
@@ -13,7 +15,6 @@ public abstract class Pet : MonoBehaviour, IPoolObject
     protected SpawnManager spawnManager;
     protected SpriteData spriteData;
 
-    public AtkStat stat;
     public PetState petState;
     public Sprite projectileSprite;
     public RuntimeAnimatorController projectileAnim;
@@ -73,10 +74,6 @@ public abstract class Pet : MonoBehaviour, IPoolObject
     protected void SetFlip(Transform target)
     {
         spriteRenderer.flipX = transform.position.x - target.position.x > 0;
-    }
-    public void SetAtkStat(AtkStat _stat)
-    {
-        stat = _stat;
     }
 
     protected IEnumerator ChangeStateRoutine()

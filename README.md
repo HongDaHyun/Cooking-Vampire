@@ -209,4 +209,17 @@
 - 땃쥐(보스) 제작 완료<br/>
 - 투사체 스프라이트 (땃쥐) 추가<br/>
 
+<h3>[버전 0.19]</h3>
+<img src="https://github.com/user-attachments/assets/0b646968-fb39-4c5b-86d3-ece2ea06018a" width="640" alt="Alpha 0.19_1">
+<img src="https://github.com/user-attachments/assets/07247510-ec23-49ec-b347-0b40271d1f6d" width="640" alt="Alpha 0.19_2">
+<br/>
+- 적 콜라이더 동적 변경<br/>
+- 적 공격 표시 (붉은색)<br/>
+- 적 스폰 설정 추가 (무리, 동시)<br/>
+- 레벨업 스크롤바 부드럽게<br/>
+- 플랫폼 변경 (PC -> Mobile)<br/>
+- UI PC화<br/>
+- 스탯UI, 공격UI 제작<br/>
+- 모든 스탯(투사체, 플레이어) 최적화(재구축)<br/>
+- StatUpPannel -> AtkUp_Btn, StatUp_Btn으로 나눔 (스탯 업그레이드 후 무기 업그레이드)<br/>
 </details>

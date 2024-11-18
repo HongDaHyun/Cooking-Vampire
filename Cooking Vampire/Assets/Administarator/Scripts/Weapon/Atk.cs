@@ -60,9 +60,10 @@ public abstract class Atk : MonoBehaviour
         MaxLevel();
         uiManager.atkUIs[ID].SetBattery(lv);
     }
-    public void SetEquip()
+    public void SetEquip(UIManager um)
     {
         lv = 1;
+        um.atkUIs[ID].SetUI(icon, 1);
     }
     public virtual void LevelUp()
     {

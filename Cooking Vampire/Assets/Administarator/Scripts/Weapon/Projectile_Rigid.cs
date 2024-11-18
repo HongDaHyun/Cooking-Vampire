@@ -29,7 +29,7 @@ public class Projectile_Rigid : Projectile
         curPer--;
         spawnManager.Spawn_Effect(spriteData.effects[1], transform.position, 0.8f);
 
-        if (curPer == -1)
+        if (curPer == AtkStat.X)
         {
             rigid.velocity = Vector2.zero;
             spawnManager.Destroy_Projectile(this);

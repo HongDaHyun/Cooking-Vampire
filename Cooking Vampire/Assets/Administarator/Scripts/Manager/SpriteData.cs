@@ -49,9 +49,14 @@ public class SpriteData : Singleton<SpriteData>
                 return Export_Pallate("Gray");
         }
     }
-    public Color Export_SignColor(bool isPlus)
+    public Color Export_SignColor(int amount)
     {
-        return isPlus ? Export_Pallate("Bright_Green") : Export_Pallate("Red");
+        if (amount > 0)
+            return Export_Pallate("Red");
+        else if (amount < 0)
+            return Export_Pallate("Green");
+        else
+            return Export_Pallate("Brown");
     }
     public string Export_ColorTag(Color color)
     {

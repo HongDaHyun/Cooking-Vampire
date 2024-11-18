@@ -90,7 +90,7 @@ public class Enemy : MonoBehaviour, IPoolObject
         // 크리티컬
         bool isCrit = gm.stat.Cal_CRIT_Percent();
         if (isCrit)
-            gm.stat.Cal_CRIT_DMG(dmg);
+            dmg = gm.stat.Cal_CRIT_DMG(dmg);
 
         // 체력 흡수
         if (gm.stat.Cal_DRA_Percent())
@@ -126,6 +126,7 @@ public class Enemy : MonoBehaviour, IPoolObject
     {
         if (!collision.CompareTag("Projectile") || isDead || isDamaged)
             return;
+
         Damaged(collision.GetComponent<Projectile>().stat.dmg);
     }
     private void OnCollisionStay2D(Collision2D collision)

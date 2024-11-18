@@ -23,7 +23,7 @@ public class Atk_6 : Atk
         SpawnPet();
 
         foreach (Pet pet in pets)
-            pet.SetAtkStat(stat);
+            pet.stat = stat;
     }
 
     public void SpawnPet()
@@ -32,7 +32,7 @@ public class Atk_6 : Atk
 
         for(int i = 0; i < count; i++)
         {
-            pets.Add(spawnManager.Spawn_Pet(petName));
+            pets.Add(spawnManager.Spawn_Pet(petName, stat));
         }
     }
 }

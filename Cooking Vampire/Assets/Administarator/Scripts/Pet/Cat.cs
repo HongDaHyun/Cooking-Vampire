@@ -43,30 +43,26 @@ public class Cat : Pet
         if (ranTarget == null)
             yield break;
 
-        int projectileCount = gm.stat.Cal_AMT(stat.amount);
+        SetAnim(PetState.Atk);
+        Projectile_Animation projectile =
+            spawnManager.Spawn_Projectile_Anim(projectileSprite, stat, projectileAnim, transform);
+        float range = gm.stat.Cal_RAN();
+        float proSize = stat.size;
 
-        for(int i = 0; i < projectileCount; i++)
+        if (spriteRenderer.flipX)
         {
-            SetAnim(PetState.Atk);
-            Projectile_Animation projectile =
-                spawnManager.Spawn_Projectile_Anim(projectileSprite, stat, projectileAnim, transform);
-            float range = gm.stat.Cal_RAN();
-            float proSize = stat.size;
-
-            if (spriteRenderer.flipX)
-            {
-                projectile.transform.localPosition = new Vector2(-(range + proSize) / 3f, 0);
-                projectile.sr.flipX = true;
-            }
-            else
-            {
-                projectile.transform.localPosition = new Vector2((range + proSize) / 3f, 0);
-                projectile.sr.flipX = false;
-            }
-
-            SetAnim(PetState.Idle);
-            yield return new WaitUntil(() => projectile.isFinish);
+            projectile.transform.localPosition = new Vector2(-(range + proSize) / 3f, 0);
+            projectile.sr.flipX = true;
         }
+        else
+        {
+            projectile.transform.localPosition = new Vector2((range + proSize) / 3f, 0);
+            projectile.sr.flipX = false;
+        }
+
+        SetAnim(PetState.Idle);
+        yield return new WaitUntil(() => projectile.isFinish);
+
         yield return new WaitForSeconds(gm.stat.Cal_AS(stat.atkSpeed));
     }
 

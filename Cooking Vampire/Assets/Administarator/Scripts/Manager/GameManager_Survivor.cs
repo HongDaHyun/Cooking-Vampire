@@ -22,7 +22,7 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
     [Title("플레이어 스탯")]
     public PlayerStat stat;
 
-    [ReadOnly] public int exp;
+    public int exp;
     [ReadOnly] public int health;
 
     private void Start()
@@ -62,9 +62,7 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
         exp -= maxExp;
         maxExp = Mathf.RoundToInt(maxExp * 1.5f);
 
-        bm.Tab(um.lvUpPannel.transform);
-        bm.Stop();
-        um.lvUpPannel.Set_StatUpPannels_Ran();
+        um.lvUpPannel.Tab(bm);
     }
     public TierType Get_Tier()
     {
@@ -125,6 +123,7 @@ public class PlayerStat
     public int back;
     public int exp;
     private Dictionary<StatID_Player, Action<int>> statActions;
+    private Dictionary<StatID_Player, Func<int>> statGetters;
 
     public PlayerStat()
     {
@@ -149,13 +148,34 @@ public class PlayerStat
             {StatID_Player.BAK, x => BAK += x },
             {StatID_Player.EXP, x => EXP += x }
         };
+        statGetters = new Dictionary<StatID_Player, Func<int>>
+        {
+            {StatID_Player.HP, () => HP },
+            {StatID_Player.HPREG, () => HPREG },
+            {StatID_Player.DRA, () => DRA },
+            {StatID_Player.DEF, () => DEF },
+            {StatID_Player.DMG, () => DMG },
+            {StatID_Player.ELE, () => ELE },
+            {StatID_Player.AS, () => AS },
+            {StatID_Player.AT, () => AT },
+            {StatID_Player.CRIT, () => CRIT },
+            {StatID_Player.CRIT_DMG, () => CRIT_DMG },
+            {StatID_Player.RAN, () => RAN },
+            {StatID_Player.MIS, () => MIS },
+            {StatID_Player.SPE, () => SPE },
+            {StatID_Player.LUK, () => LUK },
+            {StatID_Player.AMT, () => AMT },
+            {StatID_Player.PER, () => PER },
+            {StatID_Player.BAK, () => BAK },
+            {StatID_Player.EXP, () => EXP }
+        };
     }
     public int HP
     {
         get
         {
             StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.HP);
-            return Mathf.Clamp(hp, statData.max, statData.min);
+            return Mathf.Clamp(hp, statData.min, statData.max);
         }
         set { hp = value; }
     }
@@ -164,7 +184,7 @@ public class PlayerStat
         get
         {
             StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.HPREG);
-            return Mathf.Clamp(hpReg, statData.max, statData.min);
+            return Mathf.Clamp(hpReg, statData.min, statData.max);
         }
         set { hpReg = value; }
     }
@@ -173,7 +193,7 @@ public class PlayerStat
         get
         {
             StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.DRA);
-            return Mathf.Clamp(drain, statData.max, statData.min);
+            return Mathf.Clamp(drain, statData.min, statData.max);
         }
         set { drain = value; }
     }
@@ -182,7 +202,7 @@ public class PlayerStat
         get
         {
             StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.DEF);
-            return Mathf.Clamp(def, statData.max, statData.min);
+            return Mathf.Clamp(def, statData.min, statData.max);
         }
         set { def = value; }
     }
@@ -191,7 +211,7 @@ public class PlayerStat
         get
         {
             StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.DMG);
-            return Mathf.Clamp(dmg, statData.max, statData.min);
+            return Mathf.Clamp(dmg, statData.min, statData.max);
         }
         set { dmg = value; }
     }
@@ -200,7 +220,7 @@ public class PlayerStat
         get
         {
             StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.ELE);
-            return Mathf.Clamp(ele, statData.max, statData.min);
+            return Mathf.Clamp(ele, statData.min, statData.max);
         }
         set { ele = value; }
     }
@@ -209,7 +229,7 @@ public class PlayerStat
         get
         {
             StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.AS);
-            return Mathf.Clamp(atkSpeed, statData.max, statData.min);
+            return Mathf.Clamp(atkSpeed, statData.min, statData.max);
         }
         set { atkSpeed = value; }
     }
@@ -218,7 +238,7 @@ public class PlayerStat
         get
         {
             StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.AT);
-            return Mathf.Clamp(activeT, statData.max, statData.min);
+            return Mathf.Clamp(activeT, statData.min, statData.max);
         }
         set { activeT = value; }
     }
@@ -227,7 +247,7 @@ public class PlayerStat
         get
         {
             StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.CRIT);
-            return Mathf.Clamp(crit, statData.max, statData.min);
+            return Mathf.Clamp(crit, statData.min, statData.max);
         }
         set { crit = value; }
     }
@@ -236,7 +256,7 @@ public class PlayerStat
         get
         {
             StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.CRIT_DMG);
-            return Mathf.Clamp(critDmg, statData.max, statData.min);
+            return Mathf.Clamp(critDmg, statData.min, statData.max);
         }
         set { critDmg = value; }
     }
@@ -245,7 +265,7 @@ public class PlayerStat
         get
         {
             StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.RAN);
-            return Mathf.Clamp(ran, statData.max, statData.min);
+            return Mathf.Clamp(ran, statData.min, statData.max);
         }
         set { ran = value; }
     }
@@ -254,7 +274,7 @@ public class PlayerStat
         get
         {
             StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.MIS);
-            return Mathf.Clamp(miss, statData.max, statData.min);
+            return Mathf.Clamp(miss, statData.min, statData.max);
         }
         set { miss = value; }
     }
@@ -263,7 +283,7 @@ public class PlayerStat
         get
         {
             StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.SPE);
-            return Mathf.Clamp(speed, statData.max, statData.min);
+            return Mathf.Clamp(speed, statData.min, statData.max);
         }
         set { speed = value; } // Def MoveController 스크립트에 존재
     }
@@ -272,7 +292,7 @@ public class PlayerStat
         get
         {
             StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.LUK);
-            return Mathf.Clamp(luk, statData.max, statData.min);
+            return Mathf.Clamp(luk, statData.min, statData.max);
         }
         set { luk = value; }
     }
@@ -281,7 +301,7 @@ public class PlayerStat
         get
         {
             StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.AMT);
-            return Mathf.Clamp(amount, statData.max, statData.min);
+            return Mathf.Clamp(amount, statData.min, statData.max);
         }
         set { amount = value; }
     }
@@ -290,7 +310,7 @@ public class PlayerStat
         get
         {
             StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.PER);
-            return Mathf.Clamp(per, statData.max, statData.min);
+            return Mathf.Clamp(per, statData.min, statData.max);
         }
         set { per = value; }
     }
@@ -299,7 +319,7 @@ public class PlayerStat
         get
         {
             StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.BAK);
-            return Mathf.Clamp(back, statData.max, statData.min);
+            return Mathf.Clamp(back, statData.min, statData.max);
         }
         set { back = value; }
     }
@@ -308,7 +328,7 @@ public class PlayerStat
         get
         {
             StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.EXP);
-            return Mathf.Clamp(exp, statData.max, statData.min);
+            return Mathf.Clamp(exp, statData.min, statData.max);
         }
         set { exp = value; }
     }
@@ -316,7 +336,17 @@ public class PlayerStat
     public void SetStat(StatID_Player id, int amount)
     {
         if (statActions.TryGetValue(id, out Action<int> action))
+        {
             action(amount);
+            UIManager.Instance.lvUpPannel.Adjust_StatUI_Player(id);
+        }
+        else
+            throw new ArgumentException("Invalid StatID_Player", nameof(id));
+    }
+    public int GetStat(StatID_Player id)
+    {
+        if (statGetters.TryGetValue(id, out Func<int> getter))
+            return getter();
         else
             throw new ArgumentException("Invalid StatID_Player", nameof(id));
     }
