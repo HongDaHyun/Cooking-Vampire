@@ -16,13 +16,13 @@ public abstract class Atk : MonoBehaviour
 
     [Title("스탯")]
     public List<Sprite> projectileSprite;
-    [ReadOnly] public int lv;
+    [ReadOnly] public int lv = 0;
     [ReadOnly] public bool isMax;
     public AtkStat stat;
     public bool isPet;
 
     [Title("레벨")]
-    public AtkStat_LevelUps[] atkStat_LvelUps = new AtkStat_LevelUps[MAX_LV];
+    public AtkStat_LevelUps[] atkStat_LevelUps = new AtkStat_LevelUps[MAX_LV];
 
     protected GameManager_Survivor gm;
     protected UIManager uiManager;
@@ -57,17 +57,18 @@ public abstract class Atk : MonoBehaviour
     public void SetMax()
     {
         isMax = true;
+        lv = MAX_LV;
         MaxLevel();
         uiManager.atkUIs[ID].SetBattery(lv);
     }
     public void SetEquip(UIManager um)
     {
         lv = 1;
-        um.atkUIs[ID].SetUI(icon, 1);
+        um.atkUIs[ID].SetUI(icon, 0);
     }
     public virtual void LevelUp()
     {
-        foreach (AtkStat_LevelUp x in atkStat_LvelUps[lv - 1].atkPerLevels)
+        foreach (AtkStat_LevelUp x in atkStat_LevelUps[lv - 1].atkPerLevels)
             stat.SetStat(x.ID, x.amount);
 
         lv++;

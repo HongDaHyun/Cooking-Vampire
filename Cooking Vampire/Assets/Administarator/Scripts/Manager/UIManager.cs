@@ -83,8 +83,10 @@ public class UIManager : Singleton<UIManager>
 public class LvUpPannel
 {
     public RectTransform parentPannel, atkPannel, statPannel;
+    public GameObject atkPannel_Atk, atkPannel_Stat;
     public AtkUP_Btn[] atkUps;
     public StatUP_Btn[] statUps;
+    public StatUP_Btn[] atkUps_Stats;
     [HideInInspector] public StatUI_Player[] statUI_Players;
 
     public void Tab(BtnManager bm)
@@ -113,15 +115,15 @@ public class LvUpPannel
         atkPannel.gameObject.SetActive(false);
         statPannel.gameObject.SetActive(true);
 
-        Reroll_StatUPs();
+        Reroll_StatUPs(statUps);
     }
 
-    public void Reroll_StatUPs()
+    public void Reroll_StatUPs(StatUP_Btn[] btns)
     {
         CSVManager cm = CSVManager.Instance;
         List<StatID_Player> stats = new List<StatID_Player>();
 
-        foreach(StatUP_Btn btn in statUps)
+        foreach(StatUP_Btn btn in btns)
         {
             StatID_Player ranID;
             do
@@ -135,20 +137,35 @@ public class LvUpPannel
     }
     public void Reroll_AtkUPs()
     {
-        foreach (AtkUP_Btn btn in atkUps)
-            btn.gameObject.SetActive(false);
-
         List<Atk> atks = GameManager_Survivor.Instance.player.atkController.availAtks.ToList().FindAll(data => !data.isMax);
         int maxLength = Mathf.Min(atks.Count, 3);
 
-        for (int i = 0; i < maxLength; i++)
+        // atkUps 리롤 (업그레이드 할 공격이 남아 있을 때)
+        if(maxLength > 0)
         {
-            int ranID = Random.Range(0, atks.Count);
-            Atk weapon = atks[ranID];
-            atks.RemoveAt(ranID);
+            atkPannel_Atk.SetActive(true);
+            atkPannel_Stat.SetActive(false);
 
-            atkUps[i].gameObject.SetActive(true);
-            atkUps[i].SetBtn(weapon);
+            foreach (AtkUP_Btn btn in atkUps)
+                btn.gameObject.SetActive(false);
+
+            for (int i = 0; i < maxLength; i++)
+            {
+                int ranID = Random.Range(0, atks.Count);
+                Atk weapon = atks[ranID];
+                atks.RemoveAt(ranID);
+
+                atkUps[i].gameObject.SetActive(true);
+                atkUps[i].SetBtn(weapon);
+            }
+        }
+        // atkUps_Stats 리롤 (모든 공격을 업그레이드 했을 때)
+        else
+        {
+            atkPannel_Atk.SetActive(false);
+            atkPannel_Stat.SetActive(true);
+
+            Reroll_StatUPs(atkUps_Stats);
         }
     }
 

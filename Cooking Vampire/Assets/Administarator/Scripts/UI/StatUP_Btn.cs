@@ -17,7 +17,7 @@ public class StatUP_Btn : UP_Btn
         amount = cm.Find_StatData_PlayerLvUp(statID, tier);
 
         // UI ¼³Á¤
-        SetUI(spriteData.statSprites[(int)ID],
+        SetUI(spriteData.Export_StatSprite_Player(ID),
             statData.name,
             GetContent(amount, statData.name, statData.isPercent),
             dm.Get_Tier_Name(tier),
@@ -34,6 +34,6 @@ public class StatUP_Btn : UP_Btn
         if (gm.playerLvCount <= 0)
             um.lvUpPannel.Active_Atk();
         else
-            um.lvUpPannel.Reroll_StatUPs();
+            um.lvUpPannel.Reroll_StatUPs(um.lvUpPannel.statUps);
     }
 }

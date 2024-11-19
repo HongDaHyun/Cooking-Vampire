@@ -175,9 +175,16 @@ public class PlayerStat
         get
         {
             StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.HP);
+            
             return Mathf.Clamp(hp, statData.min, statData.max);
         }
-        set { hp = value; }
+        set 
+        {
+            hp = value;
+            float crystalIncrease = GameManager_Survivor.Instance.player.data.GetCrystal(StatID_Player.HP).GetAmount();
+
+            hp = crystalIncrease != 0f ? value + Mathf.RoundToInt((value - hp) * crystalIncrease) : value;
+        }
     }
     public int HPREG
     {
@@ -337,6 +344,9 @@ public class PlayerStat
     {
         if (statActions.TryGetValue(id, out Action<int> action))
         {
+            float crystalIncrease = GameManager_Survivor.Instance.player.data.GetCrystal(id).GetAmount();
+            amount = crystalIncrease != 0f ? amount + Mathf.RoundToInt(amount * crystalIncrease) : amount;
+
             action(amount);
             UIManager.Instance.lvUpPannel.Adjust_StatUI_Player(id);
         }
@@ -414,5 +424,25 @@ public class PlayerStat
     public int Cal_EXP(int defExp)
     {
         return defExp + Mathf.RoundToInt(defExp * EXP / 100f);
+    }
+}
+
+[Serializable]
+public struct PlayerStat_Crystal
+{
+    public StatID_Player ID;
+    public int increaseAmount;
+
+    public string Export_Explain()
+    {
+        StatData_Player statData = CSVManager.Instance.Find_StatData_Player(ID);
+        SpriteData spriteData = SpriteData.Instance;
+        bool isPlus = increaseAmount >= 0;
+
+        return $"{statData.name} ¼öÁ¤ <color={spriteData.Export_SignColor(increaseAmount)}>{(isPlus ? "+" : "-")}{increaseAmount}%";
+    }
+    public float GetAmount()
+    {
+        return increaseAmount / 100f;
     }
 }

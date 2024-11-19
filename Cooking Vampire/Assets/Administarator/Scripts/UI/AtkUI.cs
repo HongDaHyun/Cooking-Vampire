@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class AtkUI : MonoBehaviour
 {
@@ -18,6 +17,6 @@ public class AtkUI : MonoBehaviour
 
     public void SetBattery(int level)
     {
-        lvBattery.sprite = SpriteData.Instance.battery_Sprites[level - 1];
+        lvBattery.sprite = SpriteData.Instance.battery_Sprites[level];
     }
 }

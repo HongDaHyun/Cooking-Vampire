@@ -93,5 +93,5 @@ public class DataManager : Singleton<DataManager>
     #endregion
 }
 
-public enum TierType { Common = 1, Rare = 2, Epic = 4, Legend = 8 }
+public enum TierType { Common = 0, Rare, Epic, Legend }
 public enum StageType { Grass = 0, Cave, Swarm, Forest }

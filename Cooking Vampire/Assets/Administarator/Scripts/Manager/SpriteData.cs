@@ -11,7 +11,6 @@ public class SpriteData : Singleton<SpriteData>
     public GemSprite[] gemSprites;
     public RuntimeAnimatorController[] effects;
     public Pallate[] pallates;
-    public Sprite[] statSprites;
     public StatSprite_Player[] statSprite_Players;
     public Enemy_Projectile_Sprite[] enemyProjectile_Sprites;
     public Area_Sprite[] area_Sprites;

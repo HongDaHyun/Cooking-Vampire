@@ -20,9 +20,17 @@ public class AtkUP_Btn : UP_Btn
     {
         ID = atk.ID;
 
+        string content = "";
+        if (atk.lv == Atk.MAX_LV)
+            Debug.Log("MAX 텍스트 출력 미구현");
+        else if (atk.lv == 0)
+            content = atk.discription;
+        else
+            content = GetContent(atk.atkStat_LevelUps[atk.lv - 1].atkPerLevels);
+
         SetUI(atk.icon,
             atk.title,
-            GetContent(atk.atkStat_LvelUps[atk.lv].atkPerLevels),
+            content,
             $"Lv.{atk.lv}",
             "무기",
             spriteData.pallates[atk.lv].color);
