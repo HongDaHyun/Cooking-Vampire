@@ -15,6 +15,8 @@ MonoBehaviour:
   title: "\uAE30\uC0AC"
   discription: "\uC815\uC758\uC640 \uBA85\uC608\uB97C \uC911\uC2DC\uD558\uB294 \uAE30\uC0AC\uB85C\uC11C,
     \uC6A9\uAE30\uC640 \uD798, \uBBFF\uC74C\uC744 \uC911\uC2DC\uD569\uB2C8\uB2E4."
+  personalColor: {r: 0.29803923, g: 0.34901962, b: 0.5254902, a: 1}
+  icon: {fileID: 138476465, guid: fa0baed6a04d476408b93e1056a88bf3, type: 3}
   type: 0
   animator: {fileID: 9100000, guid: 96de082ba1066c54dbe89106fa407b1e, type: 2}
   baseWeaponID: 0

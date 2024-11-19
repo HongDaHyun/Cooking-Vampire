@@ -17,7 +17,9 @@ MonoBehaviour:
     \uC5C6\uB294 \uC778\uBB3C\uB85C, \uD56D\uC0C1 \uC5B4\uB460\uACFC \uD568\uAED8\uD574
     \uADF8\uC758 \uB9E8\uC5BC\uAD74\uC744 \uC9C1\uC811 \uBCF8 \uC790\uB294 \uC874\uC7AC\uD558\uC9C0
     \uC54A\uC2B5\uB2C8\uB2E4."
+  personalColor: {r: 0.14901961, g: 0.16862746, b: 0.26666668, a: 1}
+  icon: {fileID: 2035207724, guid: fa0baed6a04d476408b93e1056a88bf3, type: 3}
   type: 2
   animator: {fileID: 22100000, guid: a61fe6103876a784bafeabe6a8eaab0a, type: 2}
   baseWeaponID: 0
-  bonusStats: []
+  crystals: []

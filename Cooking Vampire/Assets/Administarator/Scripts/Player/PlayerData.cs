@@ -10,6 +10,8 @@ public class PlayerData : ScriptableObject
     [Title("UI")]
     public string title;
     [TextArea] public string discription;
+    public Color personalColor;
+    public Sprite icon;
 
     [Title("ตฅภฬลอ")]
     public PlayerType type;

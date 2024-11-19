@@ -80,13 +80,14 @@ public class UIManager : Singleton<UIManager>
 }
 
 [System.Serializable]
-public class LvUpPannel
+public struct LvUpPannel
 {
     public RectTransform parentPannel, atkPannel, statPannel;
     public GameObject atkPannel_Atk, atkPannel_Stat;
     public AtkUP_Btn[] atkUps;
     public StatUP_Btn[] statUps;
     public StatUP_Btn[] atkUps_Stats;
+
     [HideInInspector] public StatUI_Player[] statUI_Players;
 
     public void Tab(BtnManager bm)
@@ -102,6 +103,7 @@ public class LvUpPannel
         bm.Tab(parentPannel);
 
         bm.Resume();
+        GameManager_Survivor.Instance.SetCamZoom();
     }
     public void Active_Atk()
     {

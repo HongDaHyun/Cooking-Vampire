@@ -15,21 +15,9 @@ MonoBehaviour:
   title: "\uAD81\uC218"
   discription: "\uB9E4\uC6B0 \uBBFC\uCCA9\uD55C \uC0AC\uB0E5\uAFBC\uC73C\uB85C, \uBC1C\uACAC\uD55C
     \uC0AC\uB0E5\uAC10\uC740 \uB05D\uAE4C\uC9C0 \uCD94\uC801\uD569\uB2C8\uB2E4."
+  personalColor: {r: 0, g: 0.58431375, b: 0.015686275, a: 1}
+  icon: {fileID: 1102206425, guid: fa0baed6a04d476408b93e1056a88bf3, type: 3}
   type: 1
   animator: {fileID: 22100000, guid: f84ad29a41089244b8f51c33477d850e, type: 2}
   baseWeaponID: 1
-  bonusStats:
-  - type: 0
-    amount: 0.5
-  - type: 16
-    amount: 0.5
-  - type: 5
-    amount: 0.5
-  - type: 13
-    amount: 0.3
-  - type: 4
-    amount: 0.2
-  - type: 2
-    amount: -0.5
-  - type: 1
-    amount: -0.5
+  crystals: []

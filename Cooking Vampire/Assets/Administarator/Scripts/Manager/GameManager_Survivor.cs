@@ -1,9 +1,9 @@
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System;
 using UnityEngine;
+using Com.LuisPedroFonseca.ProCamera2D;
 
 public class GameManager_Survivor : Singleton<GameManager_Survivor>
 {
@@ -29,6 +29,8 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
     {
         health = stat.HP;
         tileMaps[(int)DataManager.Instance.curStage].gameObject.SetActive(true);
+
+        SetCamZoom();
     }
 
     private void Update()
@@ -97,6 +99,12 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
     public int Get_TimeDifficult()
     {
         return Mathf.Max(1, Mathf.RoundToInt(curGameTime / 10));
+    }
+    public void SetCamZoom()
+    {
+        ProCamera2DPixelPerfect cam = Camera.main.GetComponent<ProCamera2DPixelPerfect>();
+
+        cam.Zoom = Mathf.RoundToInt(Mathf.Lerp(4f, 1f, Mathf.Clamp01(stat.RAN / 300f)));
     }
 }
 
@@ -274,7 +282,10 @@ public class PlayerStat
             StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.RAN);
             return Mathf.Clamp(ran, statData.min, statData.max);
         }
-        set { ran = value; }
+        set 
+        { 
+            ran = value;
+        }
     }
     public int MIS
     {
