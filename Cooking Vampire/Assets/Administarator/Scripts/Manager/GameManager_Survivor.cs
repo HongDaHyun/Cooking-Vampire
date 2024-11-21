@@ -10,24 +10,18 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
     [Title("게임 관리")]
     public float MAX_GAMETIME;
     [ReadOnly] public float curGameTime;
-    [ReadOnly] public int playerLvCount;
     public GameObject[] tileMaps;
 
     [Title("플레이어 정보")]
     public Player player;
-    public int level;
     public int killCount;
-    public int maxExp;
 
     [Title("플레이어 스탯")]
     public PlayerStat stat;
 
-    public int exp;
-    [ReadOnly] public int health;
-
     private void Start()
     {
-        health = stat.HP;
+        stat.curHP = stat.HP;
         tileMaps[(int)DataManager.Instance.curStage].gameObject.SetActive(true);
 
         SetCamZoom();
@@ -44,28 +38,6 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
         }    
     }
 
-    public void Player_HealHP(int amount)
-    {
-        int healedAmount = Mathf.Min(amount, stat.HP - health);
-        health += healedAmount;
-        SpawnManager.Instance.Spawn_PopUpTxt(healedAmount.ToString(), PopUpType.Heal, player.transform.position);
-    }
-    public void Player_GainExp(int amount)
-    {
-        exp += stat.Cal_EXP(amount);
-    }
-    public void Player_LevelUp()
-    {
-        UIManager um = UIManager.Instance;
-        BtnManager bm = BtnManager.Instance;
-
-        playerLvCount++;
-        level++;
-        exp -= maxExp;
-        maxExp = Mathf.RoundToInt(maxExp * 1.5f);
-
-        um.lvUpPannel.Tab(bm);
-    }
     public TierType Get_Tier()
     {
         int weightedLuck = UnityEngine.Random.Range(0, 100 + stat.LUK) + Get_TimeDifficult();
@@ -111,6 +83,16 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
 [Serializable]
 public class PlayerStat
 {
+    [Title("정보")]
+    [ReadOnly] public int curHP;
+    [ReadOnly] public int curExp;
+    [ReadOnly] public int playerLvCount;
+    [ReadOnly] public int level = 1;
+    public int maxExp;
+    public float defRan;
+    public float defSpeed;
+    public float defBack;
+
     [Title("증가폭")]
     public int hp;
     public int hpReg;
@@ -177,6 +159,8 @@ public class PlayerStat
             {StatID_Player.BAK, () => BAK },
             {StatID_Player.EXP, () => EXP }
         };
+
+        level = 1;
     }
     public int HP
     {
@@ -188,10 +172,10 @@ public class PlayerStat
         }
         set 
         {
-            hp = value;
-            float crystalIncrease = GameManager_Survivor.Instance.player.data.GetCrystal(StatID_Player.HP).GetAmount();
+            int memoryHP = hp;
 
-            hp = crystalIncrease != 0f ? value + Mathf.RoundToInt((value - hp) * crystalIncrease) : value;
+            hp = value;
+            HealHP(value - memoryHP);
         }
     }
     public int HPREG
@@ -372,9 +356,29 @@ public class PlayerStat
             throw new ArgumentException("Invalid StatID_Player", nameof(id));
     }
 
+    public void HealHP(int amount)
+    {
+        if (curHP >= HP)
+            return;
+
+        int healedAmount = Mathf.Min(amount, HP - curHP);
+        curHP += healedAmount;
+        SpawnManager.Instance.Spawn_PopUpTxt(healedAmount.ToString(), PopUpType.Heal, GameManager_Survivor.Instance.player.transform.position);
+    }
+    public void LevelUp()
+    {
+        playerLvCount++;
+        level++;
+        SetStat(StatID_Player.HP, 1);
+        curExp -= maxExp;
+        maxExp = Mathf.RoundToInt(maxExp * 1.5f);
+
+        UIManager.Instance.lvUpPannel.Tab(BtnManager.Instance);
+    }
+
     public float Cal_HPREG_Cool()
     {
-        return 5f / (1 + (amount - 1) / 2.25f);
+        return 5f / (1 + (HPREG - 1) / 2.25f);
     }
     public bool Cal_DRA_Percent()
     {
@@ -408,17 +412,17 @@ public class PlayerStat
     {
         return defDmg + Mathf.RoundToInt(defDmg * CRIT_DMG / 100f);
     }
-    public float Cal_RAN() // 기본값 5
+    public float Cal_RAN()
     {
-        return 5 + 5 * RAN / 100f;
+        return defRan + defRan * RAN / 100f;
     }
     public bool Cal_MIS_PERCENT()
     {
         return DataManager.Instance.Get_Ran(MIS);
     }
-    public float Cal_SPE() // 기본값 2.5
+    public float Cal_SPE()
     {
-        return 2.5f + 2.5f * SPE / 100f;
+        return defSpeed + defSpeed * SPE / 100f;
     }
     public int Cal_AMT(int defAmount)
     {
@@ -430,7 +434,7 @@ public class PlayerStat
     }
     public float Cal_BAK() // 기본값 1
     {
-        return 1f + BAK / 100f;
+        return defBack + BAK / 100f;
     }
     public int Cal_EXP(int defExp)
     {

@@ -94,7 +94,7 @@ public class Enemy : MonoBehaviour, IPoolObject
 
         // Ã¼·Â Èí¼ö
         if (gm.stat.Cal_DRA_Percent())
-            gm.Player_HealHP(1);
+            gm.stat.HealHP(1);
 
         stat.curHp -= Mathf.Min(stat.curHp, dmg);
         spawnManager.Spawn_PopUpTxt(dmg.ToString(), isCrit ? PopUpType.Deal_Crit : PopUpType.Deal, transform.position);

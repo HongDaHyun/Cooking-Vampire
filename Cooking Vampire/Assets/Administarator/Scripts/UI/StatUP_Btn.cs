@@ -27,11 +27,11 @@ public class StatUP_Btn : UP_Btn
 
     public override void OnClick()
     {
-        gm.playerLvCount--;
+        gm.stat.playerLvCount--;
 
         gm.stat.SetStat(ID, amount);
 
-        if (gm.playerLvCount <= 0)
+        if (gm.stat.playerLvCount <= 0)
             um.lvUpPannel.Active_Atk();
         else
             um.lvUpPannel.Reroll_StatUPs(um.lvUpPannel.statUps);

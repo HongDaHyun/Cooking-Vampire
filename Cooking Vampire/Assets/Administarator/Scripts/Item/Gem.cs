@@ -44,7 +44,7 @@ public class Gem : Item
 
     protected override void Destroy()
     {
-        gm.Player_GainExp(amount);
+        gm.stat.curExp += gm.stat.Cal_EXP(amount);
         spawnManager.Destroy_Gem(this);
     }
 }

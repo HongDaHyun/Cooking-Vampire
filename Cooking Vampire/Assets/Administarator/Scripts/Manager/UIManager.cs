@@ -14,7 +14,7 @@ public class UIManager : Singleton<UIManager>
 
     [Title("서바이벌")]
     public Slider expSlider;
-    public Slider hpSlider;
+    public Slider hpSlider, healSlider;
     public TextMeshProUGUI levelTxt, killTxt, timeTxt, coinTxt;
     public TextMeshProUGUI[] weaponTest_Btn;
     public AtkUI[] atkUIs;
@@ -26,7 +26,7 @@ public class UIManager : Singleton<UIManager>
         lvUpPannel.Set_StatUI_Player();
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         Update_HUD();
     }
@@ -37,19 +37,19 @@ public class UIManager : Singleton<UIManager>
         DataManager dm = DataManager.Instance;
 
         // EXP_SLIDER
-        float cur = gm.exp;
-        float max = gm.maxExp;
+        float cur = gm.stat.curExp;
+        float max = gm.stat.maxExp;
 
         float targetValue = cur / max;
         if (Mathf.Abs(expSlider.value - targetValue) < 0.0001f)
             expSlider.value = targetValue; // 정확히 1로 설정
         else
             expSlider.value = Mathf.Lerp(expSlider.value, targetValue, Time.deltaTime * 10f);
-        if (expSlider.value >= 1 && gm.exp >= gm.maxExp)
-            gm.Player_LevelUp();
+        if (expSlider.value >= 1 && gm.stat.curExp >= gm.stat.maxExp)
+            gm.stat.LevelUp();
 
         // LV_TXT
-        levelTxt.text = $"Lv.{gm.level:F0}";
+        levelTxt.text = $"Lv.{gm.stat.level:F0}";
 
         // KILL_TXT
         killTxt.text = $"x{gm.killCount:F0}";
@@ -64,10 +64,11 @@ public class UIManager : Singleton<UIManager>
         coinTxt.text = dm.coin.ToString();
 
         // HP_SLIDER
-        float curHp = gm.health;
+        float curHp = gm.stat.curHP;
         float maxHp = gm.stat.HP;
 
         float targetHP = curHp / maxHp;
+        healSlider.value = targetHP;
         hpSlider.value = Mathf.Lerp(hpSlider.value, targetHP, Time.deltaTime * 5f);
 
         // TEST_BTN

@@ -86,9 +86,9 @@ public class Player : MonoBehaviour
         }
 
         int defendDmg = Mathf.RoundToInt(dmg * (1 - gm.stat.Cal_DEF()));
-        gm.health -= Mathf.Min(gm.health, defendDmg);
+        gm.stat.curHP -= Mathf.Min(gm.stat.curHP, defendDmg);
 
-        if(gm.health <= 0)
+        if(gm.stat.curHP <= 0)
             Dead();
         else
             anim.SetTrigger("Damaged");
@@ -121,7 +121,7 @@ public class Player : MonoBehaviour
         {
             if (gm.stat.HPREG > 0)
             {
-                gm.Player_HealHP(1);
+                gm.stat.HealHP(1);
                 yield return new WaitForSeconds(gm.stat.Cal_HPREG_Cool());
             }
             else

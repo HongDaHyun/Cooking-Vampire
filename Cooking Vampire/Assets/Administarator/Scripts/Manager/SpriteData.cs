@@ -51,9 +51,9 @@ public class SpriteData : Singleton<SpriteData>
     public Color Export_SignColor(int amount)
     {
         if (amount > 0)
-            return Export_Pallate("Red");
-        else if (amount < 0)
             return Export_Pallate("Green");
+        else if (amount < 0)
+            return Export_Pallate("Red");
         else
             return Export_Pallate("Brown");
     }

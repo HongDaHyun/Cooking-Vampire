@@ -33,7 +33,7 @@ public class Droptem : Item
                 dataManager.EarnCoin(50);
                 break;
             case "포션":
-                gm.Player_HealHP(5);
+                gm.stat.HealHP(5);
                 break;
             case "보호막":
                 player.GetShield(1);
