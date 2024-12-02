@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,10 +8,14 @@ public class PlayerIcon_Btn : MonoBehaviour
 {
     public Image bg, icon;
 
+    SpawnManager sm;
+    RectTransform rect;
     PlayerData playerData;
 
     private void Awake()
     {
+        sm = SpawnManager.Instance;
+        rect = GetComponent<RectTransform>();
         SetUI();
     }
 
@@ -27,6 +32,13 @@ public class PlayerIcon_Btn : MonoBehaviour
 
     public void OnClick()
     {
+        string contents = string.Join("\n", playerData.crystals.Select(crystal => crystal.Export_Explain()));
 
+        sm.Spawn_InfoTxt(
+            playerData.title,
+            "Á÷¾÷",
+            contents,
+            rect
+            );
     }
 }

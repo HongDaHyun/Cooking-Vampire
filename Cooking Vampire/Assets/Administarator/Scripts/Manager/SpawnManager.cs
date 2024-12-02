@@ -230,6 +230,24 @@ public class SpawnManager : Singleton<SpawnManager>
 
         return statUI;
     }
-    public 
+    public InfoTxt Spawn_InfoTxt(string title, string subTitle, string contents, RectTransform rect)
+    {
+        InfoTxt childInfo = rect.GetComponentInChildren<InfoTxt>();
+        if (childInfo)
+        {
+            childInfo.SetText(title, subTitle, contents, rect);
+            childInfo.gameObject.SetActive(true);
+            return childInfo;
+        }
+
+        InfoTxt text = PoolManager.Instance.GetFromPool<InfoTxt>("InfoTxt");
+        text.SetText(title, subTitle, contents, rect);
+
+        return text;
+    }
+    public void Destroy_InfoTxt(InfoTxt txt)
+    {
+        PoolManager.Instance.TakeToPool<InfoTxt>(txt);
+    }
     #endregion
 }

@@ -454,7 +454,7 @@ public struct PlayerStat_Crystal
         SpriteData spriteData = SpriteData.Instance;
         bool isPlus = increaseAmount >= 0;
 
-        return $"{statData.name} 수정 <color={spriteData.Export_SignColor(increaseAmount)}>{(isPlus ? "+" : "-")}{increaseAmount}%";
+        return $"{statData.name} 수정 <color={spriteData.Export_ColorTag(spriteData.Export_SignColor(increaseAmount))}>{(isPlus ? "+" : "-")}{Mathf.Abs(increaseAmount)}%</color>";
     }
     public float GetAmount()
     {
