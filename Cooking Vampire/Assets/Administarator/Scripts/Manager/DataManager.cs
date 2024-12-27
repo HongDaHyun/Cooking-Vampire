@@ -11,12 +11,14 @@ public class DataManager : Singleton<DataManager>
     public PlayerType curPlayer;
     public WeaponData curWeapon;
     public int coin;
+    public List<int> relicCollectors;
 
     [Title("정적 데이터")]
     public PlayerData[] playerDatas;
     public EnemyData[] enemyDatas;
     public WeaponData[] weaponDatas;
     public DroptemData[] droptemDatas;
+    public RelicData[] relicDatas;
 
     public void EarnCoin(int amount)
     {
@@ -61,6 +63,12 @@ public class DataManager : Singleton<DataManager>
             return droptemDatas[0];
 
         return dropArray[UnityEngine.Random.Range(0, dropArray.Length)];
+    }
+    #endregion
+    #region 유물
+    public RelicData Export_RelicData(int ID)
+    {
+        return Array.Find(relicDatas, data => data.ID == ID);
     }
     #endregion
 

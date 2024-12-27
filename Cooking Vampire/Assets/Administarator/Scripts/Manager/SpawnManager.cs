@@ -4,9 +4,16 @@ using UnityEngine;
 using Redcode.Pools;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class SpawnManager : Singleton<SpawnManager>
 {
+    private void Start()
+    {
+        Spawn_Relic(DataManager.Instance.relicDatas[0], new Vector2(10, 0));
+        Spawn_Gem(10, new Vector2(9, 0));
+    }
+
     #region 타일
     public SpriteRenderer Spawn_TileObj(Transform parentTrans)
     {
@@ -178,6 +185,14 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         PoolManager.Instance.TakeToPool<Item>(item.name, item);
     }
+    public Relic Spawn_Relic(RelicData data, Vector2 pos)
+    {
+        Relic relic = PoolManager.Instance.GetFromPool<Relic>("Relic");
+
+        relic.SetRelic(data, pos);
+
+        return relic;
+    }
     #endregion
     #region 팝업텍스트
     public PopUpTxt Spawn_PopUpTxt(string contents, PopUpType type, Vector2 pos)
@@ -248,6 +263,13 @@ public class SpawnManager : Singleton<SpawnManager>
     public void Destroy_InfoTxt(InfoTxt txt)
     {
         PoolManager.Instance.TakeToPool<InfoTxt>(txt);
+    }
+    public Image Spawn_RelicUI(Sprite sprite)
+    {
+        Image relicImg = PoolManager.Instance.GetFromPool<Image>("RelicUI");
+        relicImg.transform.GetChild(0).GetComponent<Image>().sprite = sprite;
+
+        return relicImg;
     }
     #endregion
 }

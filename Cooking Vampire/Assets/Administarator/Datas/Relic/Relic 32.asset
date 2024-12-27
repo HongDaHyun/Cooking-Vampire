@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a909715c87cf4a94b95db1240ab5f2e6, type: 3}
+  m_Name: Relic 32
+  m_EditorClassIdentifier: 
+  ID: 32
+  tierType: 0
+  relicName: "\uBB20\uB2C8\uB974"
+  contents: 
+  sprites:
+  - {fileID: -1287494752, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
+  - {fileID: -62546477, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
+  - {fileID: 1499600122, guid: 6e88380f59a9c1144bf878272d2a20d4, type: 3}
