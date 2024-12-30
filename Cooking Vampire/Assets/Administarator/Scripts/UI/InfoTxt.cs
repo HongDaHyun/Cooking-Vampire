@@ -24,16 +24,11 @@ public class InfoTxt : MonoBehaviour, IPoolObject
 
     public void OnGettingFromPool()
     {
-        Sequence seq = DOTween.Sequence().SetUpdate(true);
-        seq.OnStart(() => rect.localScale = new Vector3(1f, 0f, 1f));
-        seq.Append(rect.DOScaleY(1f, 0.3f).SetEase(Ease.InExpo).SetEase(Ease.OutBounce))
-            .AppendInterval(3f)
-            .Append(rect.DOScaleY(0f, 0.3f).SetEase(Ease.InOutExpo))
-            .OnComplete(() => sm.Destroy_InfoTxt(this));
     }
 
-    public void SetText(string title, string subTitle, string contents, RectTransform _rect)
+    public void SetText(string title, string subTitle, string contents, RectTransform _rect, InfoTxtController controller)
     {
+        controller.isInfoing = true;
         titleTxt.text = title;
         subTitleTxt.text = subTitle;
         contentsTxt.text = contents;
@@ -42,5 +37,16 @@ public class InfoTxt : MonoBehaviour, IPoolObject
         rect.localScale = Vector3.one;
         float parentHeight = _rect.rect.height;
         rect.anchoredPosition = new Vector2(0, parentHeight / 4f);
+
+        // ½ÃÄö½º
+        Sequence seq = DOTween.Sequence().SetUpdate(true);
+        seq.OnStart(() => rect.localScale = new Vector3(1f, 0f, 1f));
+        seq.Append(rect.DOScaleY(1f, 0.3f).SetEase(Ease.InExpo).SetEase(Ease.OutBounce))
+            .AppendInterval(3f)
+            .Append(rect.DOScaleY(0f, 0.3f).SetEase(Ease.InOutExpo))
+            .OnComplete(() => {
+                sm.Destroy_InfoTxt(this);
+                controller.isInfoing = false;
+            });
     }
 }

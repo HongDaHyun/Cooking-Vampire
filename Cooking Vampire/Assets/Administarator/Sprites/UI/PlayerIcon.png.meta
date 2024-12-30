@@ -265,6 +265,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: PlayerIcon_6
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 0
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36769320f3418024694a4548f76b2397
+      internalID: 440062473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -280,6 +301,7 @@ TextureImporter:
       PlayerIcon_2: 1102206425
       PlayerIcon_0: 1824547434
       PlayerIcon_1: 138476465
+      PlayerIcon_6: 440062473
       PlayerIcon_3: 2035207724
       PlayerIcon_5: -1851630840
   spritePackingTag: 

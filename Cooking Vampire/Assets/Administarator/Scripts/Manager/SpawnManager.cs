@@ -11,7 +11,7 @@ public class SpawnManager : Singleton<SpawnManager>
     private void Start()
     {
         Spawn_Relic(DataManager.Instance.relicDatas[0], new Vector2(10, 0));
-        Spawn_Gem(10, new Vector2(9, 0));
+        Spawn_Gem(10, new Vector2(0, -10));
     }
 
     #region 타일
@@ -193,6 +193,10 @@ public class SpawnManager : Singleton<SpawnManager>
 
         return relic;
     }
+    public void Destroy_Relic(Relic relic)
+    {
+        PoolManager.Instance.TakeToPool<Relic>("Relic", relic);
+    }
     #endregion
     #region 팝업텍스트
     public PopUpTxt Spawn_PopUpTxt(string contents, PopUpType type, Vector2 pos)
@@ -245,31 +249,26 @@ public class SpawnManager : Singleton<SpawnManager>
 
         return statUI;
     }
-    public InfoTxt Spawn_InfoTxt(string title, string subTitle, string contents, RectTransform rect)
+    public InfoTxt Spawn_InfoTxt(string title, string subTitle, string contents, RectTransform rect, InfoTxtController controller)
     {
-        InfoTxt childInfo = rect.GetComponentInChildren<InfoTxt>();
-        if (childInfo)
-        {
-            childInfo.SetText(title, subTitle, contents, rect);
-            childInfo.gameObject.SetActive(true);
-            return childInfo;
-        }
-
+        if (controller.isInfoing)
+            return null;
         InfoTxt text = PoolManager.Instance.GetFromPool<InfoTxt>("InfoTxt");
-        text.SetText(title, subTitle, contents, rect);
+        text.SetText(title, subTitle, contents, rect, controller);
 
         return text;
     }
     public void Destroy_InfoTxt(InfoTxt txt)
     {
+        txt.transform.SetParent(null);
         PoolManager.Instance.TakeToPool<InfoTxt>(txt);
     }
-    public Image Spawn_RelicUI(Sprite sprite)
+    public RelicUI Spawn_RelicUI(RelicData data)
     {
-        Image relicImg = PoolManager.Instance.GetFromPool<Image>("RelicUI");
-        relicImg.transform.GetChild(0).GetComponent<Image>().sprite = sprite;
+        RelicUI relicUI = PoolManager.Instance.GetFromPool<RelicUI>("RelicUI");
+        relicUI.SetUI(data);
 
-        return relicImg;
+        return relicUI;
     }
     #endregion
 }

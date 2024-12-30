@@ -15,8 +15,9 @@ MonoBehaviour:
   ID: 0
   tierType: 0
   relicName: "\uC218\uBC15"
-  contents: 
+  contents: "\uCD5C\uB300 HP +5\n\uB300\uBBF8\uC9C0 +5%"
   sprites:
   - {fileID: -1734891042, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: -294708848, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: -15700054, guid: 6e88380f59a9c1144bf878272d2a20d4, type: 3}
+  - {fileID: -1734891042, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}

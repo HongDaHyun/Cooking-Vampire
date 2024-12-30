@@ -17,17 +17,18 @@ public class Relic : Item, IPoolObject
 
     protected override void Drain()
     {
-        sr.sprite = data.sprites[0];
+        sr.sprite = data.sprites[1];
         base.Drain();
     }
 
     protected override void Drop(Vector2 pos)
     {
-        DropRanPos(pos, data.sprites[0], data.sprites[1]);
+        DropRanPos(pos, data.sprites[1], data.sprites[0]);
     }
 
     protected override void Destroy()
     {
         data.Collect();
+        spawnManager.Destroy_Relic(this);
     }
 }

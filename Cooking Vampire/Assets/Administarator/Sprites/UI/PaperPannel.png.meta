@@ -379,6 +379,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: PaperPannel_12
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 41
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99e182f5b1b0ce442b49c0d694ca8c19
+      internalID: 1039720621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -400,6 +421,7 @@ TextureImporter:
       PaperPannel_4: -957191560
       PaperPannel_2: 1750226684
       PaperPannel_5: 1950944416
+      PaperPannel_12: 1039720621
       PaperPannel_9: 47997861
       PaperPannel_0: 1752198066
   spritePackingTag: 

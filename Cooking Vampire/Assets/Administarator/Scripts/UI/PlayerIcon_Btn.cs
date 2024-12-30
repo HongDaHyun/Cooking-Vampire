@@ -10,12 +10,14 @@ public class PlayerIcon_Btn : MonoBehaviour
 
     SpawnManager sm;
     RectTransform rect;
+    InfoTxtController controller;
     PlayerData playerData;
 
     private void Awake()
     {
         sm = SpawnManager.Instance;
         rect = GetComponent<RectTransform>();
+        controller = GetComponent<InfoTxtController>();
         SetUI();
     }
 
@@ -38,7 +40,8 @@ public class PlayerIcon_Btn : MonoBehaviour
             playerData.title,
             "Á÷¾÷",
             contents,
-            rect
+            rect,
+            controller
             );
     }
 }

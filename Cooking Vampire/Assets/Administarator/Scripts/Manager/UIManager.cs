@@ -45,7 +45,7 @@ public class UIManager : Singleton<UIManager>
             expSlider.value = targetValue; // 정확히 1로 설정
         else
             expSlider.value = Mathf.Lerp(expSlider.value, targetValue, Time.deltaTime * 10f);
-        if (expSlider.value >= 1 && gm.stat.curExp >= gm.stat.maxExp)
+        if (expSlider.value >= 0.9f && gm.stat.curExp >= gm.stat.maxExp)
             gm.stat.LevelUp();
 
         // LV_TXT

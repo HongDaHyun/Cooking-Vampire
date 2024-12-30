@@ -70,7 +70,9 @@ public class Scanner : MonoBehaviour
         foreach(RaycastHit2D target in itemTargets)
         {
             Item item = target.transform.GetComponent<Item>();
-            item.isDrain = true;
+
+            if(item.isActive)
+                item.isDrain = true;
         }
     }
 }

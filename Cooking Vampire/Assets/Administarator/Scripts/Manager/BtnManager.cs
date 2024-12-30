@@ -5,13 +5,8 @@ using DG.Tweening;
 
 public class BtnManager : Singleton<BtnManager>
 {
-    private bool isTouching;
-
     public void Tab(RectTransform rect)
     {
-        if (isTouching)
-            return;
-
         if (!rect.gameObject.activeSelf)
         {
             rect.gameObject.SetActive(true);
@@ -27,9 +22,6 @@ public class BtnManager : Singleton<BtnManager>
     }
     public void Tab_NoRayCast(RectTransform rect)
     {
-        if (isTouching)
-            return;
-
         if (!rect.gameObject.activeSelf)
         {
             rect.gameObject.SetActive(true);

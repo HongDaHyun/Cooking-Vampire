@@ -14,6 +14,6 @@ public class RelicData : ScriptableObject
     public void Collect()
     {
         DataManager.Instance.relicCollectors.Add(ID);
-        SpawnManager.Instance.Spawn_RelicUI(sprites[2]);
+        SpawnManager.Instance.Spawn_RelicUI(this);
     }
 }
