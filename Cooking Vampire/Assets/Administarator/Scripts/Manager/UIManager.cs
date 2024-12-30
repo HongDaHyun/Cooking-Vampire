@@ -88,6 +88,7 @@ public struct LvUpPannel
     public AtkUP_Btn[] atkUps;
     public StatUP_Btn[] statUps;
     public StatUP_Btn[] atkUps_Stats;
+    public RelicTooltip relicToolTip;
 
     [HideInInspector] public StatUI_Player[] statUI_Players;
 
@@ -190,6 +191,48 @@ public struct LvUpPannel
     public void Adjust_StatUI_Player(StatID_Player id)
     {
         System.Array.Find(statUI_Players, ui => ui.statID == id).AdjustUI();
+    }
+}
+[System.Serializable]
+public struct RelicTooltip
+{
+    public CanvasGroup group;
+    public Image icon;
+    public TextMeshProUGUI nameTxt, tierTxt, contentsTxt, explainTxt;
+
+    private void SetTooltip(RelicData data)
+    {
+        SpriteData spriteData = SpriteData.Instance;
+
+        icon.sprite = data.sprites[2];
+
+        nameTxt.text = data.relicName;
+        tierTxt.text = spriteData.Export_TierKO(data.tierType);
+        tierTxt.color = spriteData.Export_TierColor(data.tierType);
+        contentsTxt.text = data.contents;
+        explainTxt.text = data.explain;
+    }
+    public void Tab(RelicData data)
+    {
+        // 첫 등장
+        if (!group.gameObject.activeSelf)
+        {
+            SetTooltip(data);
+            group.gameObject.SetActive(true);
+            group.alpha = 0f;
+
+            group.DOFade(1f, 0.5f).SetUpdate(true);
+        }
+        // 두 번째 등장
+        else
+        {
+            RelicTooltip tip = this;
+            Sequence seq = DOTween.Sequence().SetUpdate(true);
+
+            seq.Append(group.DOFade(0f, 0.3f))
+                .AppendCallback(() => tip.SetTooltip(data))
+                .Append(group.DOFade(1f, 0.5f));
+        }
     }
 }
 

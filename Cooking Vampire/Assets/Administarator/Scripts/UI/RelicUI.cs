@@ -8,19 +8,15 @@ public class RelicUI : MonoBehaviour, IPoolObject
 {
     private RelicData relicData;
     private Image iconImg;
-    private RectTransform rect;
-    private InfoTxtController controller;
 
-    SpawnManager sm;
+    UIManager um;
 
     public void OnCreatedInPool()
     {
         name = name.Replace("(Clone)", "");
 
-        sm = SpawnManager.Instance;
+        um = UIManager.Instance;
         iconImg = transform.GetChild(0).GetComponent<Image>();
-        rect = GetComponent<RectTransform>();
-        controller = GetComponent<InfoTxtController>();
     }
 
     public void OnGettingFromPool()
@@ -36,15 +32,6 @@ public class RelicUI : MonoBehaviour, IPoolObject
 
     public void OnClick()
     {
-        InfoTxt txt = sm.Spawn_InfoTxt(
-            relicData.relicName,
-            "À¯¹°",
-            relicData.contents,
-            rect,
-            controller
-            );
-
-        if(txt != null)
-            txt.transform.SetParent(txt.transform.parent?.parent?.parent?.parent);
+        um.lvUpPannel.relicToolTip.Tab(relicData);
     }
 }
