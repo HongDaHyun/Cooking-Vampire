@@ -154,7 +154,7 @@ public class AtkStat
     {
         statActions = new Dictionary<StatID_Atk, Action<int>>
         { 
-            {StatID_Atk.DMG, x => dmg += Mathf.RoundToInt(dmg * x / 100f)},
+            {StatID_Atk.DMG, x => dmg += Mathf.CeilToInt(dmg * x / 100f)},
             {StatID_Atk.AS, x => { if(atkSpeed != X) atkSpeed += atkSpeed * x / 100f; } },
             {StatID_Atk.AT, x => { if(activeT != X) activeT += activeT * x / 100f; } },
             {StatID_Atk.SPE, x => speed += speed * x / 100f},

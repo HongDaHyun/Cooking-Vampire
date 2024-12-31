@@ -19,7 +19,7 @@ public class StatUP_Btn : UP_Btn
         // UI º≥¡§
         SetUI(spriteData.Export_StatSprite_Player(ID),
             statData.name,
-            GetContent(amount, statData.name, statData.isPercent),
+            cm.Find_StatData_ContentText(amount, statData.name, statData.isPercent),
             dm.Get_Tier_Name(tier),
             "Ω∫≈»",
             spriteData.Export_TierColor(tier));

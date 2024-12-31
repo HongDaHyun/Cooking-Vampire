@@ -99,6 +99,12 @@ public class CSVManager : Singleton<CSVManager>
     {
         return Array.Find(csvList.statDatas_PlayerLvUp, data => data.ID == statID).tierPer[(int)tier];
     }
+    public string Find_StatData_ContentText(int amount, string statName, bool isPercent)
+    {
+        SpriteData spriteData = SpriteData.Instance;
+
+        return $"-> <color={spriteData.Export_ColorTag(spriteData.Export_SignColor(amount))}>{(amount >= 0 ? "+" : "-")}{Mathf.Abs(amount)}{(isPercent ? "%" : "")}</color> {statName}";
+    }
     public StatData_PlayerLvUp Find_StatData_PlayerLvUp_Ran()
     {
         return csvList.statDatas_PlayerLvUp[UnityEngine.Random.Range(0, csvList.statDatas_PlayerLvUp.Length)];

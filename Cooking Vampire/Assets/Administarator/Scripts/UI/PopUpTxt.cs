@@ -56,6 +56,9 @@ public class PopUpTxt : MonoBehaviour, IPoolObject
                 textMeshPro.text = contents;
                 textMeshPro.color = spriteData.Export_Pallate("Blue");
                 break;
+            case PopUpType.StatUP:
+                textMeshPro.text = contents;
+                break;
         }
     }
 
@@ -68,4 +71,4 @@ public class PopUpTxt : MonoBehaviour, IPoolObject
     }
 }
 
-public enum PopUpType { Deal, Deal_Crit, Heal, Block }
+public enum PopUpType { Deal, Deal_Crit, Heal, Block, StatUP }

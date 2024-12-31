@@ -37,10 +37,5 @@ public abstract class UP_Btn : MonoBehaviour
         classTxt.text = classStr;
     }
 
-    protected string GetContent(int amount, string statName, bool isPercent)
-    {
-        return $"-> <color={spriteData.Export_ColorTag(spriteData.Export_SignColor(amount))}>{(amount >= 0 ? "+" : "-")}{Mathf.Abs(amount)}{(isPercent ? "%" : "")}</color> {statName}";
-    }
-
     public abstract void OnClick();
 }

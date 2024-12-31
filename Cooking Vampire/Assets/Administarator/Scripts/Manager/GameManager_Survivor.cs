@@ -172,10 +172,7 @@ public class PlayerStat
         }
         set 
         {
-            int memoryHP = hp;
-
             hp = value;
-            HealHP(value - memoryHP);
         }
     }
     public int HPREG

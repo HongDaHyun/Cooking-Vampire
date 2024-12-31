@@ -45,7 +45,7 @@ public class AtkUP_Btn : UP_Btn
         {
             AtkStat_LevelUp lvUp = atkStat_LevelUps[i];
             StatData_Atk atkData = cm.Find_StatData_Atk(lvUp.ID);
-            str += GetContent(lvUp.amount, atkData.name, atkData.isPercent);
+            str += cm.Find_StatData_ContentText(lvUp.amount, atkData.name, atkData.isPercent);
 
             if (i < length - 1)
                 str += "\n";

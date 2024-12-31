@@ -48,22 +48,6 @@ public class SpriteData : Singleton<SpriteData>
                 return Export_Pallate("Gray");
         }
     }
-    public string Export_TierKO(TierType tier)
-    {
-        switch (tier)
-        {
-            case TierType.Common:
-                return "일반";
-            case TierType.Rare:
-                return "레어";
-            case TierType.Epic:
-                return "에픽";
-            case TierType.Legend:
-                return "레전드";
-            default:
-                return "";
-        }
-    }
     public Color Export_SignColor(int amount)
     {
         if (amount > 0)

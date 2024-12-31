@@ -14,8 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 1
   tierType: 0
-  relicName: "\uACE0\uAE30 \uB369\uC5B4\uB9AC"
+  relicName: "\uB9CC\uD654 \uACE0\uAE30"
+  statContent:
+  - ID: 0
+    amount: 5
+  - ID: 4
+    amount: 3
+  - ID: 8
+    amount: -2
   contents: 
+  explain: 
   sprites:
   - {fileID: -962524310, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: -1238384969, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
