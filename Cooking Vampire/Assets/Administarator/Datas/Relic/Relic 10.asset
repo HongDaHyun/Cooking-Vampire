@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Relic 10
   m_EditorClassIdentifier: 
   ID: 10
-  tierType: 0
+  tierType: 2
   relicName: "\uD558\uD2B8 \uBC15\uC2A4"
-  contents: 
+  statContent: []
+  contents: "\uC544\uC774\uD15C\uC744 \uC5BB\uC744 \uB54C \uB9C8\uB2E4 \uB370\uBBF8\uC9C0\uB97C
+    1%\uC529 \uC99D\uAC00\uC2DC\uD0B5\uB2C8\uB2E4."
+  explain: 
   sprites:
   - {fileID: 862832664, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: -253792472, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}

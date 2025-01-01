@@ -60907,6 +60907,8 @@ MonoBehaviour:
     color: {r: 0, g: 1, b: 0.101067305, a: 1}
   - colorName: Brown
     color: {r: 0.43529412, g: 0.25490198, b: 0.14901961, a: 1}
+  - colorName: Bright_Brown
+    color: {r: 0.6784314, g: 0.46666667, b: 0.34117648, a: 1}
   statSprite_Players:
   - id: 0
     sprite: {fileID: -1982430584, guid: 3752fec1cdcacb740971aef8adb42168, type: 3}

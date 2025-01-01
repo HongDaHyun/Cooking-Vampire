@@ -13,9 +13,19 @@ MonoBehaviour:
   m_Name: Relic 11
   m_EditorClassIdentifier: 
   ID: 11
-  tierType: 0
+  tierType: 1
   relicName: VIP
+  statContent:
+  - ID: 13
+    amount: 10
+  - ID: 11
+    amount: 6
+  - ID: 3
+    amount: -1
+  - ID: 0
+    amount: -2
   contents: 
+  explain: 
   sprites:
   - {fileID: 478737542, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: -2121785654, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}

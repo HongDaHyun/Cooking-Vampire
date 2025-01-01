@@ -58,6 +58,7 @@ public class PopUpTxt : MonoBehaviour, IPoolObject
                 break;
             case PopUpType.StatUP:
                 textMeshPro.text = contents;
+                textMeshPro.color = spriteData.Export_Pallate("Bright_Brown");
                 break;
         }
     }
@@ -66,6 +67,7 @@ public class PopUpTxt : MonoBehaviour, IPoolObject
     {
         Sequence popSeq = DOTween.Sequence().SetUpdate(false);
         popSeq.Append(transform.DOMoveY(transform.position.y + 1f, 0.5f))
+            .AppendInterval(0.2f)
             .Join(textMeshPro.DOFade(0f, 1f).SetEase(Ease.InExpo))
             .OnComplete(() => spawnManager.Destroy_PopUpTxt(this));
     }

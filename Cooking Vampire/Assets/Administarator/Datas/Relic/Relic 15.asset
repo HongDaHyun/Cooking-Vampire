@@ -15,7 +15,15 @@ MonoBehaviour:
   ID: 15
   tierType: 0
   relicName: "\uB2F9\uAD6C\uACF5"
+  statContent:
+  - ID: 16
+    amount: 3
+  - ID: 12
+    amount: 3
+  - ID: 10
+    amount: -5
   contents: 
+  explain: 
   sprites:
   - {fileID: 1114240886, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: 199966941, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}

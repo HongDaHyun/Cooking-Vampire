@@ -17,13 +17,20 @@ public class RelicData : ScriptableObject
     {
         GameManager_Survivor gm = GameManager_Survivor.Instance;
         SpawnManager sm = SpawnManager.Instance;
+        CSVManager cm = CSVManager.Instance;
 
         DataManager.Instance.relicCollectors.Add(ID);
         sm.Spawn_RelicUI(this);
+        string popup = "";
         foreach (RelicContent content in statContent)
         {
+            StatData_Player playerData = cm.Find_StatData_Player(content.ID);
+
+            popup += cm.Find_StatData_ContentText(content.amount, playerData.name, playerData.isPercent) + "\n";
             gm.stat.SetStat(content.ID, content.amount);
         }
+
+        sm.Spawn_PopUpTxt(popup, PopUpType.StatUP, gm.player.transform.position);
     }
 }
 

@@ -13,9 +13,17 @@ MonoBehaviour:
   m_Name: Relic 12
   m_EditorClassIdentifier: 
   ID: 12
-  tierType: 0
+  tierType: 2
   relicName: VVIP
+  statContent:
+  - ID: 13
+    amount: 30
+  - ID: 17
+    amount: 30
+  - ID: 4
+    amount: -12
   contents: 
+  explain: 
   sprites:
   - {fileID: -1423481863, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: -1798787384, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
