@@ -15,7 +15,15 @@ MonoBehaviour:
   ID: 54
   tierType: 0
   relicName: "\uB9AC\uCE58"
-  contents: 
+  statContent:
+  - ID: 1
+    amount: 1
+  specialContent:
+    explain: "\uB808\uBCA8 \uC5C5 \uC2DC 20% \uD655\uB960\uB85C HP \uC7AC\uC0DD +1\uC744
+      \uC5BB\uC74C"
+    specialContents: []
+    amount: 0
+  explain: "\uB2EC\uCF64? \uD558\uB124\uC694."
   sprites:
   - {fileID: 1150494986, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: -838789172, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}

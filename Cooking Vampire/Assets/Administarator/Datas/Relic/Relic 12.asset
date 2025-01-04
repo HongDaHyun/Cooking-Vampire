@@ -23,7 +23,7 @@ MonoBehaviour:
   - ID: 4
     amount: -12
   contents: 
-  explain: 
+  explain: "\uACA9\uC2DD\uC744 \uCC28\uB9AC\uB3C4\uB85D"
   sprites:
   - {fileID: -1423481863, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: -1798787384, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}

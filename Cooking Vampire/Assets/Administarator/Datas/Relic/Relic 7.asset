@@ -21,7 +21,7 @@ MonoBehaviour:
   - ID: 13
     amount: -5
   contents: 
-  explain: 
+  explain: "\uB108 \uB208\uC744 \uC65C \uADF8\uB807\uAC8C \uB5A0?"
   sprites:
   - {fileID: 2031400571, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: -600997408, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}

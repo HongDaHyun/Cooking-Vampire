@@ -19,7 +19,7 @@ MonoBehaviour:
   - ID: 14
     amount: 1
   contents: 
-  explain: 
+  explain: "\uC3E0\uC464\uC774\uC368!"
   sprites:
   - {fileID: -486382762, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: 846283049, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}

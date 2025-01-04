@@ -13,13 +13,18 @@ MonoBehaviour:
   m_Name: Relic 6
   m_EditorClassIdentifier: 
   ID: 6
-  tierType: 0
+  tierType: 1
   relicName: "\uACE0\uC591\uC774 \uB208"
   statContent:
   - ID: 10
     amount: 15
+  - ID: 11
+    amount: 6
+  - ID: 0
+    amount: -3
   contents: 
-  explain: 
+  explain: "\uACE0\uC591\uC774\uC758 \uBC18\uC751\uC18D\uB3C4\uB294 0.025\uCD08\uB77C\uACE0
+    \uD569\uB2C8\uB2E4."
   sprites:
   - {fileID: -1012681908, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: -1447939045, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}

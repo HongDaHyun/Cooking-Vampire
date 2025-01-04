@@ -13,9 +13,21 @@ MonoBehaviour:
   m_Name: Relic 40
   m_EditorClassIdentifier: 
   ID: 40
-  tierType: 0
+  tierType: 1
   relicName: "\uACFC\uCDA9\uC804"
+  statContent:
+  - ID: 0
+    amount: 3
+  - ID: 4
+    amount: 3
+  - ID: 12
+    amount: 3
+  - ID: 3
+    amount: 1
+  - ID: 8
+    amount: -3
   contents: 
+  explain: "\uACE0\uC7A5\uB0A0 \uD655\uB960\uC774 \uC5C6\uC9C4 \uC54A\uC544."
   sprites:
   - {fileID: -1193170032, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: -1680163839, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}

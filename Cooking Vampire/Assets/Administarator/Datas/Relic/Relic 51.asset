@@ -15,7 +15,13 @@ MonoBehaviour:
   ID: 51
   tierType: 0
   relicName: "\uCF54\uC778 \uB354\uBBF8"
-  contents: 
+  statContent: []
+  specialContent:
+    explain: "\uBCF4\uC720\uD55C \uCF54\uC778\uC758 10% \uB9CC\uD07C \uB370\uBBF8\uC9C0\uAC00
+      \uC99D\uAC00\uD568"
+    specialContents: []
+    amount: 0
+  explain: "\uB09C \uBD80\uC790\uAC00 \uB420\uAEBC\uC57C!"
   sprites:
   - {fileID: -1597769856, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: -1737279955, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}

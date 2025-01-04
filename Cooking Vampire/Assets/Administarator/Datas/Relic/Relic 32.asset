@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: Relic 32
   m_EditorClassIdentifier: 
   ID: 32
-  tierType: 0
-  relicName: "\uBB20\uB2C8\uB974"
-  contents: 
+  tierType: 3
+  relicName: "\uBBAC\uB2C8\uB974"
+  statContent:
+  - ID: 5
+    amount: 2
+  specialContent:
+    explain: "\uBC88\uAC1C \uACF5\uACA9\uC744 \uD568"
+    specialContents: []
+    amount: 0
+  explain: "\uC544\uC544... \uB09C \uC774\uC81C \uBC18\uC2E0\uC774\uB2E4..."
   sprites:
   - {fileID: -1287494752, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: -62546477, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}

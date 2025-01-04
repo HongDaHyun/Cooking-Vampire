@@ -15,7 +15,16 @@ MonoBehaviour:
   ID: 44
   tierType: 0
   relicName: "\uBD89\uC740 \uBCF4\uC11D"
-  contents: 
+  statContent:
+  - ID: 2
+    amount: 3
+  - ID: 1
+    amount: -2
+  specialContent:
+    explain: 
+    specialContents: []
+    amount: 0
+  explain: "\uC801\uC0C9 \uBE5B\uC5D0 \uC544\uB984\uB2E4\uC6B4 \uD615\uC0C1\uC774\uB2E4."
   sprites:
   - {fileID: 331734834, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: -1147544799, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}

@@ -13,9 +13,18 @@ MonoBehaviour:
   m_Name: Relic 20
   m_EditorClassIdentifier: 
   ID: 20
-  tierType: 0
+  tierType: 3
   relicName: "\uBCC4"
-  contents: 
+  statContent:
+  - ID: 13
+    amount: 30
+  - ID: 8
+    amount: -8
+  specialContent:
+    explain: "\uD589\uC6B4\uC758 10%\uB9CC\uD07C \uCE58\uBA85\uD0C0\uC728\uC774 \uC99D\uAC00\uD568"
+    specialContents: []
+    amount: 0
+  explain: "\uBC24\uD558\uB298 \uBC1D\uAC8C \uBE5B\uB098\uB294 \uBCC4"
   sprites:
   - {fileID: -195672973, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: -89693388, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}

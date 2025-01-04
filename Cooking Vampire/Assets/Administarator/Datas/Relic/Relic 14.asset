@@ -17,11 +17,11 @@ MonoBehaviour:
   relicName: "\uB3C5\uCEEC"
   statContent:
   - ID: 5
-    amount: 3
-  - ID: 0
-    amount: -2
+    amount: 2
+  - ID: 3
+    amount: -1
   contents: 
-  explain: 
+  explain: "\uC870\uAE08 \uC774\uC0C1\uD55C \uB0C4\uC0C8\uAC00 \uB09C\uB2E4."
   sprites:
   - {fileID: -1565601793, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: -261279638, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}

@@ -210,8 +210,8 @@ public struct RelicTooltip
         nameTxt.text = data.relicName;
         tierTxt.text = dm.Get_Tier_Name(data.tierType);
         tierTxt.color = spriteData.Export_TierColor(data.tierType);
-        if (data.contents != "")
-            contentsTxt.text = GetContent(data.statContent) + "\n-> " + data.contents;
+        if (data.specialContent.explain != "")
+            contentsTxt.text = GetContent(data.statContent) + "\n-> " + data.specialContent.explain;
         else
             contentsTxt.text = GetContent(data.statContent);
         explainTxt.text = "-> " + data.explain;

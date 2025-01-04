@@ -21,7 +21,7 @@ MonoBehaviour:
   - ID: 0
     amount: -2
   contents: 
-  explain: 
+  explain: "\uAF64\uB098 \uBB34\uAC81\uB2E4."
   sprites:
   - {fileID: -1365548823, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: -1517415743, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}

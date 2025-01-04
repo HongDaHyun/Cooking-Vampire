@@ -9,7 +9,7 @@ public class RelicData : ScriptableObject
     public TierType tierType;
     public string relicName;
     public RelicContent[] statContent;
-    [TextArea] public string contents;
+    public SpecialContent_Relic specialContent;
     [TextArea] public string explain;
     public Sprite[] sprites; // 0: Idle, 1: Drain, 2: Icon
 
@@ -39,4 +39,17 @@ public struct RelicContent
 {
     public StatID_Player ID;
     public int amount;
+}
+[System.Serializable]
+public struct SpecialContent_Relic
+{
+    [TextArea] public string explain;
+    public SpecialContent[] specialContents;
+    public int amount;
+}
+[System.Serializable]
+public struct SpecialContent
+{
+    public StatID_Player statID;
+    public int percent;
 }

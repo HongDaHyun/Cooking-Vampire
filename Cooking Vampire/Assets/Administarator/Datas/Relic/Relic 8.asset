@@ -18,8 +18,11 @@ MonoBehaviour:
   statContent:
   - ID: 13
     amount: 3
-  contents: "\uBCF4\uAE09\uD488\uC744 \uBD80\uB984"
-  explain: 
+  specialContent:
+    explain: "\uC18C\uBAA8\uD488 \uD558\uB098\uB97C \uB4DC\uB86D"
+    specialContents: []
+    amount: 0
+  explain: "\uB450\uADFC\uB450\uADFC~"
   sprites:
   - {fileID: 1156276934, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: -972464334, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}

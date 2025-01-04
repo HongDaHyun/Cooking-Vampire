@@ -23,7 +23,7 @@ MonoBehaviour:
   - ID: 8
     amount: -2
   contents: 
-  explain: 
+  explain: "\uC2E4\uC81C\uB85C \uBA39\uC5B4\uBCF4\uACE0 \uC2F6\uB2E4."
   sprites:
   - {fileID: -962524310, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: -1238384969, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}

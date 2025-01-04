@@ -13,9 +13,17 @@ MonoBehaviour:
   m_Name: Relic 29
   m_EditorClassIdentifier: 
   ID: 29
-  tierType: 0
+  tierType: 1
   relicName: "\uB9D0\uD48D\uC120"
+  statContent:
+  - ID: 7
+    amount: 10
+  - ID: 17
+    amount: 10
+  - ID: 11
+    amount: -3
   contents: 
+  explain: "\uBE14\uB77C\uBE14\uB77C\uBE14\uB77C"
   sprites:
   - {fileID: 1127550552, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
   - {fileID: -298669406, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}
