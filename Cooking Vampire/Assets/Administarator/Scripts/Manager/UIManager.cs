@@ -210,27 +210,26 @@ public struct RelicTooltip
         nameTxt.text = data.relicName;
         tierTxt.text = dm.Get_Tier_Name(data.tierType);
         tierTxt.color = spriteData.Export_TierColor(data.tierType);
-        if (data.specialContent.explain != "")
-            contentsTxt.text = GetContent(data.statContent) + "\n-> " + data.specialContent.explain;
-        else
-            contentsTxt.text = GetContent(data.statContent);
+        contentsTxt.text = GetContent(data);
         explainTxt.text = "-> " + data.explain;
     }
-    private string GetContent(RelicContent[] contents)
+    private string GetContent(RelicData data)
     {
         CSVManager cm = CSVManager.Instance;
 
         string str = "";
-        int length = contents.Length;
+        int length = data.statContent.Length;
 
         for (int i = 0; i < length; i++)
         {
-            RelicContent content = contents[i];
+            RelicContent content = data.statContent[i];
             StatData_Player playerData = cm.Find_StatData_Player(content.ID);
-            str += cm.Find_StatData_ContentText(content.amount, playerData.name, playerData.isPercent);
-
-            if (i < length - 1)
-                str += "\n";
+            str += cm.Find_StatData_ContentText(content.amount, playerData.name, playerData.isPercent) + "\n";
+        }
+        if(data.specialContent.explain != "")
+        {
+            str += "-> " + string.Format(data.specialContent.explain,
+                cm.Find_StatData_SpecialRelic_ContentText(data.specialContent.specialContents)) + "\n";
         }
 
         return str;

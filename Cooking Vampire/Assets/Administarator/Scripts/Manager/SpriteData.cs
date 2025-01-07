@@ -66,6 +66,10 @@ public class SpriteData : Singleton<SpriteData>
     {
         return Array.Find(statSprite_Players, data => data.id == id).sprite;
     }
+    public string Export_StatIcon_Player(StatID_Player id)
+    {
+        return $"<sprite={(int)id}>";
+    }
 
     public Enemy_Projectile_Sprite Export_Enemy_Projectile_Sprite(string name)
     {

@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public Animator anim;
     [HideInInspector] public SpriteRenderer sr;
     public GameObject shield_Effect;
+    public GameObject relic2;
     Rigidbody2D rigid;
 
     private Coroutine hitRoutine;

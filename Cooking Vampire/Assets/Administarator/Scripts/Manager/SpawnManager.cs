@@ -10,7 +10,7 @@ public class SpawnManager : Singleton<SpawnManager>
 {
     private void Start()
     {
-        Spawn_Relic(DataManager.Instance.relicDatas[0], new Vector2(5, 0));
+        Spawn_Relic(DataManager.Instance.relicDatas[2], new Vector2(5, 0));
         Spawn_Relic(DataManager.Instance.relicDatas[1], new Vector2(7, 0));
         Spawn_Gem(10, new Vector2(10, 0));
     }

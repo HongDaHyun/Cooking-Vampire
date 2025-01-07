@@ -105,6 +105,34 @@ public class CSVManager : Singleton<CSVManager>
 
         return $"-> <color={spriteData.Export_ColorTag(spriteData.Export_SignColor(amount))}>{(amount >= 0 ? "+" : "-")}{Mathf.Abs(amount)}{(isPercent ? "%" : "")}</color> {statName}";
     }
+    public string[] Find_StatData_SpecialRelic_ContentText(SpecialContent[] specialContents)
+    {
+        SpriteData spriteData = SpriteData.Instance;
+        int length = specialContents.Length;
+        string[] strArr = new string[length];
+
+        for(int i = 0; i < length; i++)
+        {
+            SpecialContent special = specialContents[i];
+
+            int statAmount = GameManager_Survivor.Instance.stat.GetStat(special.statID);
+
+            if(special.percent != 0)
+            {
+                strArr[i] = $"<color={spriteData.Export_ColorTag(spriteData.Export_SignColor(statAmount))}>" +
+                            $"{Mathf.RoundToInt(special.def + special.def * (statAmount * special.percent / 100f))}" +
+                            $"%</color>({spriteData.Export_StatIcon_Player(special.statID)})";
+            }
+            else
+            {
+                strArr[i] = $"<color={spriteData.Export_ColorTag(spriteData.Export_Pallate("Green"))}>" +
+                            $"{special.def}" +
+                            $"</color>({spriteData.Export_StatIcon_Player(special.statID)})";
+            }
+        }
+
+        return strArr;
+    }
     public StatData_PlayerLvUp Find_StatData_PlayerLvUp_Ran()
     {
         return csvList.statDatas_PlayerLvUp[UnityEngine.Random.Range(0, csvList.statDatas_PlayerLvUp.Length)];
