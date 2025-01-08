@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour, IPoolObject
     [HideInInspector] public DataManager dataManager;
     [HideInInspector] public SpawnManager spawnManager;
     [HideInInspector] public SpriteData spriteData;
+    RelicManager relicManager;
 
     public void OnCreatedInPool()
     {
@@ -31,6 +32,7 @@ public class Enemy : MonoBehaviour, IPoolObject
         gm = GameManager_Survivor.Instance;
         dataManager = DataManager.Instance;
         spriteData = SpriteData.Instance;
+        relicManager = RelicManager.Instance;
 
         col = GetComponent<CapsuleCollider2D>();
         rigid = GetComponent<Rigidbody2D>();
@@ -86,6 +88,15 @@ public class Enemy : MonoBehaviour, IPoolObject
             return;
 
         dmg = gm.stat.Cal_DMG(dmg);
+
+        // 유물 2
+        if(relicManager.IsHave(2))
+        {
+            RelicData relicData = dataManager.Export_RelicData(2);
+
+            if (Vector2.Distance(transform.position, gm.player.transform.position) <= relicData.specialContent.FindSpecialContent(StatID_Player.RAN).def)
+                dmg = relicData.specialContent.FindSpecialContent(StatID_Player.DMG).CalAmount(dmg);
+        }
 
         // 크리티컬
         bool isCrit = gm.stat.Cal_CRIT_Percent();

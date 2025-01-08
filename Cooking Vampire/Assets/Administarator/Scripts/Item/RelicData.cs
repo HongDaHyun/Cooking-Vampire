@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,8 +19,9 @@ public class RelicData : ScriptableObject
         GameManager_Survivor gm = GameManager_Survivor.Instance;
         SpawnManager sm = SpawnManager.Instance;
         CSVManager cm = CSVManager.Instance;
+        RelicManager rm = RelicManager.Instance;
 
-        DataManager.Instance.relicCollectors.Add(ID);
+        rm.relicCollectors.Add(ID);
         sm.Spawn_RelicUI(this);
         if(statContent.Length != 0)
         {
@@ -39,32 +41,52 @@ public class RelicData : ScriptableObject
         {
             sm.Spawn_PopUpTxt(string.Format(specialContent.explain, cm.Find_StatData_SpecialRelic_ContentText(specialContent.specialContents)),
                 PopUpType.StatUP, gm.player.transform.position);
-            switch(ID)
-            {
-                case 2:
-                    gm.player.relic2.SetActive(true);
-                    break;
-            }
+
+            rm.SpecialCollect(ID);
         }
     }
 }
 
-[System.Serializable]
+[Serializable]
 public struct RelicContent
 {
     public StatID_Player ID;
     public int amount;
 }
-[System.Serializable]
+[Serializable]
 public struct SpecialContent_Relic
 {
     [TextArea] public string explain;
     public SpecialContent[] specialContents;
     public int dealAmount;
+
+    public SpecialContent FindSpecialContent(StatID_Player statID)
+    {
+        return Array.Find(specialContents, content => content.statID == statID);
+    }
 }
-[System.Serializable]
+[Serializable]
 public struct SpecialContent
 {
     public StatID_Player statID;
     public int def, percent;
+
+    public int CalDef()
+    {
+        int statAmount = GameManager_Survivor.Instance.stat.GetStat(statID);
+
+        if(percent == 0)
+        {
+            return def;
+        }
+        else
+        {
+            return Mathf.RoundToInt(def + def * (statAmount * percent / 100f));
+        }
+    }
+
+    public int CalAmount(int amount)
+    {
+        return amount + Mathf.RoundToInt(amount * CalDef() / 100f);
+    }
 }

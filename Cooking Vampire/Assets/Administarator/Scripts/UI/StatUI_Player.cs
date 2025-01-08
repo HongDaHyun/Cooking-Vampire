@@ -38,8 +38,17 @@ public class StatUI_Player : MonoBehaviour, IPoolObject
     public void AdjustUI()
     {
         int value = gm.stat.GetStat(statID);
+        int defValue = gm.stat.GetStat_Def(statID);
 
-        valueTxt.color = spriteData.Export_SignColor(value);
-        valueTxt.text = gm.stat.GetStat(statID).ToString();
+        if(value == defValue)
+        {
+            valueTxt.color = spriteData.Export_SignColor(value);
+            valueTxt.text = value.ToString();
+        }
+        else
+        {
+            valueTxt.color = spriteData.Export_SignColor(defValue);
+            valueTxt.text = $"{defValue} | {value}";
+        }
     }
 }

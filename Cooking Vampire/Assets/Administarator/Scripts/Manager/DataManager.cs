@@ -11,7 +11,6 @@ public class DataManager : Singleton<DataManager>
     public PlayerType curPlayer;
     public WeaponData curWeapon;
     public int coin;
-    public List<int> relicCollectors;
 
     [Title("정적 데이터")]
     public PlayerData[] playerDatas;

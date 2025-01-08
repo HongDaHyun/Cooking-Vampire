@@ -114,6 +114,7 @@ public class PlayerStat
     public int exp;
     private Dictionary<StatID_Player, Action<int>> statActions;
     private Dictionary<StatID_Player, Func<int>> statGetters;
+    private Dictionary<StatID_Player, Func<int>> statGetters_def;
 
     public PlayerStat()
     {
@@ -158,6 +159,27 @@ public class PlayerStat
             {StatID_Player.PER, () => PER },
             {StatID_Player.BAK, () => BAK },
             {StatID_Player.EXP, () => EXP }
+        };
+        statGetters_def = new Dictionary<StatID_Player, Func<int>>
+        {
+            {StatID_Player.HP, () => hp },
+            {StatID_Player.HPREG, () => hpReg },
+            {StatID_Player.DRA, () => drain },
+            {StatID_Player.DEF, () => def },
+            {StatID_Player.DMG, () => dmg },
+            {StatID_Player.ELE, () => ele },
+            {StatID_Player.AS, () => atkSpeed },
+            {StatID_Player.AT, () => activeT },
+            {StatID_Player.CRIT, () => crit },
+            {StatID_Player.CRIT_DMG, () => critDmg },
+            {StatID_Player.RAN, () => ran },
+            {StatID_Player.MIS, () => miss },
+            {StatID_Player.SPE, () => speed },
+            {StatID_Player.LUK, () => luk },
+            {StatID_Player.AMT, () => amount },
+            {StatID_Player.PER, () => per },
+            {StatID_Player.BAK, () => back },
+            {StatID_Player.EXP, () => exp }
         };
 
         level = 1;
@@ -348,6 +370,13 @@ public class PlayerStat
     public int GetStat(StatID_Player id)
     {
         if (statGetters.TryGetValue(id, out Func<int> getter))
+            return getter();
+        else
+            throw new ArgumentException("Invalid StatID_Player", nameof(id));
+    }
+    public int GetStat_Def(StatID_Player id)
+    {
+        if (statGetters_def.TryGetValue(id, out Func<int> getter))
             return getter();
         else
             throw new ArgumentException("Invalid StatID_Player", nameof(id));

@@ -116,19 +116,28 @@ public class CSVManager : Singleton<CSVManager>
             SpecialContent special = specialContents[i];
 
             int statAmount = GameManager_Survivor.Instance.stat.GetStat(special.statID);
+            string colorTag = special.percent == 0 ? spriteData.Export_ColorTag(spriteData.Export_Pallate("Green")) : spriteData.Export_ColorTag(spriteData.Export_SignColor(statAmount));
 
-            if(special.percent != 0)
-            {
-                strArr[i] = $"<color={spriteData.Export_ColorTag(spriteData.Export_SignColor(statAmount))}>" +
-                            $"{Mathf.RoundToInt(special.def + special.def * (statAmount * special.percent / 100f))}" +
-                            $"%</color>({spriteData.Export_StatIcon_Player(special.statID)})";
-            }
+            StatData_Player statData = Find_StatData_Player(special.statID);
+            string unit;
+            if (statData.isPercent)
+                unit = "%";
             else
             {
-                strArr[i] = $"<color={spriteData.Export_ColorTag(spriteData.Export_Pallate("Green"))}>" +
-                            $"{special.def}" +
-                            $"</color>({spriteData.Export_StatIcon_Player(special.statID)})";
+                switch(statData.ID)
+                {
+                    case StatID_Player.RAN:
+                        unit = "m";
+                        break;
+                    default:
+                        unit = "";
+                        break;
+                }
             }
+
+            strArr[i] = $"<color={colorTag}>" +
+                        $"{special.CalDef()}" +
+                        $"{unit}</color>({spriteData.Export_StatIcon_Player(special.statID)})";
         }
 
         return strArr;
