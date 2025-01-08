@@ -20,6 +20,9 @@ public class RelicManager : Singleton<RelicManager>
 
                 relic2.DOFade(0.3f, 2f);
                 break;
+            case 8:
+                // GameManager에 플레이어 주위 소환으로 변경
+                break;
         }
     }
 

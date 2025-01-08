@@ -38,6 +38,12 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
         }    
     }
 
+    public Vector2 Get_Player_RoundPos(float noise)
+    {
+        Vector2 playerPos = player.transform.position;
+
+        return new Vector2(playerPos.x + UnityEngine.Random.Range(-noise, noise), playerPos.y + UnityEngine.Random.Range(-noise, noise));
+    }
     public TierType Get_Tier()
     {
         int weightedLuck = UnityEngine.Random.Range(0, 100 + stat.LUK) + Get_TimeDifficult();
