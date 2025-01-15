@@ -23,9 +23,10 @@ public class RelicData : ScriptableObject
 
         rm.relicCollectors.Add(ID);
         sm.Spawn_RelicUI(this);
+        string popup = "";
+
         if(statContent.Length != 0)
         {
-            string popup = "";
             foreach (RelicContent content in statContent)
             {
                 StatData_Player playerData = cm.Find_StatData_Player(content.ID);
@@ -33,17 +34,16 @@ public class RelicData : ScriptableObject
                 popup += cm.Find_StatData_ContentText(content.amount, playerData.name, playerData.isPercent) + "\n";
                 gm.stat.SetStat(content.ID, content.amount);
             }
-
-            sm.Spawn_PopUpTxt(popup, PopUpType.StatUP, gm.player.transform.position);
         }
 
         if(specialContent.explain != "")
         {
-            sm.Spawn_PopUpTxt(string.Format(specialContent.explain, cm.Find_StatData_SpecialRelic_ContentText(specialContent.specialContents)),
-                PopUpType.StatUP, gm.player.transform.position);
+            popup += string.Format(specialContent.explain, cm.Find_StatData_SpecialRelic_ContentText(specialContent.specialContents));
 
             rm.SpecialCollect(ID);
         }
+
+        sm.Spawn_PopUpTxt(popup, PopUpType.StatUP, gm.player.transform.position);
     }
 }
 

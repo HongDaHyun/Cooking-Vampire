@@ -937,48 +937,6 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Shrew_38
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 29fb47a924ffe124eb42a8a8f02af9c8
-      internalID: -1093604303
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Shrew_39
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4614c85ff58f762499ff947b77bbbb58
-      internalID: 1743483305
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -990,7 +948,6 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Shrew_38: -1093604303
       Shrew_35: 645806710
       Shrew_29: 1261505922
       Shrew_4: 1410909066
@@ -1003,7 +960,6 @@ TextureImporter:
       Shrew_33: -1415263284
       Shrew_18: -1840595515
       Shrew_28: -1299282945
-      Shrew_39: 1743483305
       Shrew_15: -1944639215
       Shrew_37: 638801616
       Shrew_3: -1898739156
@@ -1014,22 +970,24 @@ TextureImporter:
       Shrew_7: 1723952106
       Shrew_19: 1680409647
       Shrew_2: 445519594
-      Shrew_36: 164527662
-      Shrew_23: -345391799
+      Shrew_24: -1886103196
+      Shrew_39: 1743483305
       Shrew_17: -1014099520
+      Shrew_36: 164527662
       Shrew_1: -815637750
-      Shrew_10: -1082968956
-      Shrew_25: 2031931424
+      Shrew_23: -345391799
       Shrew_6: -1499397845
+      Shrew_25: 2031931424
       Shrew_20: 1669540587
       Shrew_0: 1417935687
       Shrew_9: -843447775
+      Shrew_10: -1082968956
       Shrew_32: 1803501084
       Shrew_11: -171778328
       Shrew_12: -833275762
       Shrew_5: -1239564887
       Shrew_16: -1319390486
-      Shrew_24: -1886103196
+      Shrew_38: -1093604303
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

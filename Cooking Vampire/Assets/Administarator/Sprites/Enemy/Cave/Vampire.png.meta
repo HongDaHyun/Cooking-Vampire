@@ -1240,48 +1240,6 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Vampire_53
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 0
-        width: 40
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.21875}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6ac15c2635e15464a82e5441b9808586
-      internalID: 1801584876
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Vampire_54
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 0
-        width: 40
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.21875}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2c47ddb3d3c5b0c4aba250ea2f1e32a9
-      internalID: -524750337
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1318,11 +1276,11 @@ TextureImporter:
       Vampire_0: 2104096103
       Vampire_51: -504833697
       Vampire_34: 1200123691
-      Vampire_26: 1310856665
+      Vampire_54: -524750337
       Vampire_39: -1800008643
+      Vampire_26: 1310856665
       Vampire_4: 884153957
       Vampire_31: 1326672551
-      Vampire_54: -524750337
       Vampire_18: -1791155216
       Vampire_52: -240323260
       Vampire_10: -2063501154

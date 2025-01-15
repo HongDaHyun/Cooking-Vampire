@@ -148,4 +148,11 @@ public class Player : MonoBehaviour
             shield_Effect.SetActive(false);
         }
     }
+
+    public Vector2 Get_Player_RoundPos(float noise)
+    {
+        Vector2 playerPos = transform.position;
+
+        return new Vector2(playerPos.x + Random.Range(-noise, noise), playerPos.y + Random.Range(-noise, noise));
+    }
 }

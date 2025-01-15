@@ -21,7 +21,7 @@ public class RelicManager : Singleton<RelicManager>
                 relic2.DOFade(0.3f, 2f);
                 break;
             case 8:
-                // GameManager에 플레이어 주위 소환으로 변경
+                SpawnManager.Instance.Spawn_Droptem_Ran(GameManager_Survivor.Instance.player.Get_Player_RoundPos(5f)); 
                 break;
         }
     }
