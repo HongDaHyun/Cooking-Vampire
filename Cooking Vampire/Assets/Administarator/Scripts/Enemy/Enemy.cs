@@ -122,6 +122,9 @@ public class Enemy : MonoBehaviour, IPoolObject
         // Á×À½
         else
         {
+            if (isCrit && relicManager.IsHave(39) && Random.Range(0, 100) < 3)
+                gm.stat.HealHP(1);
+
             isDead = true;
             col.enabled = false;
             rigid.simulated = false;

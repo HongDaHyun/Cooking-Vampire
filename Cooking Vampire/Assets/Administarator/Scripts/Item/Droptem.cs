@@ -40,6 +40,8 @@ public class Droptem : Item
                 break;
         }
 
+        if (rm.IsHave(10))
+            gm.stat.SetStat(StatID_Player.DMG, 1);
         spawnManager.Destroy_Item(this);
     }
 
@@ -55,6 +57,7 @@ public class Droptem : Item
     protected override void Drain()
     {
         anim.SetBool("IsMove", true);
+
         base.Drain();
     }
 }

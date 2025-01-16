@@ -25,6 +25,12 @@ public class RelicData : ScriptableObject
         sm.Spawn_RelicUI(this);
         string popup = "";
 
+        if (specialContent.explain != "")
+        {
+            rm.SpecialCollect(ID);
+            popup += string.Format(specialContent.explain, cm.Find_StatData_SpecialRelic_ContentText(specialContent.specialContents)) + "\n";
+        }
+
         if(statContent.Length != 0)
         {
             foreach (RelicContent content in statContent)
@@ -34,13 +40,7 @@ public class RelicData : ScriptableObject
                 popup += cm.Find_StatData_ContentText(content.amount, playerData.name, playerData.isPercent) + "\n";
                 gm.stat.SetStat(content.ID, content.amount);
             }
-        }
-
-        if(specialContent.explain != "")
-        {
-            popup += string.Format(specialContent.explain, cm.Find_StatData_SpecialRelic_ContentText(specialContent.specialContents));
-
-            rm.SpecialCollect(ID);
+            popup = popup.TrimEnd('\n');
         }
 
         sm.Spawn_PopUpTxt(popup, PopUpType.StatUP, gm.player.transform.position);
@@ -70,6 +70,7 @@ public struct SpecialContent
 {
     public StatID_Player statID;
     public int def, percent;
+    public string unit;
 
     public int CalDef()
     {

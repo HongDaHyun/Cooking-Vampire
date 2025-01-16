@@ -6,7 +6,15 @@ using DG.Tweening;
 
 public class Gem : Item
 {
+    DataManager dataManager;
+
     [ReadOnly] public int amount;
+
+    public override void OnCreatedInPool()
+    {
+        dataManager = DataManager.Instance;
+        base.OnCreatedInPool();
+    }
 
     public void SetGem(int unit, Vector2 pos)
     {
@@ -27,6 +35,20 @@ public class Gem : Item
     protected override void Destroy()
     {
         gm.stat.curExp += gm.stat.Cal_EXP(amount);
+
+        if(rm.IsHave(43) && Random.Range(0, 100) < 100)
+        {
+            RelicData relicData = dataManager.Export_RelicData(43);
+
+            SpecialContent special = relicData.specialContent.FindSpecialContent(StatID_Player.LUK);
+
+            int dmg = Mathf.Max(1, special.CalAmount(gm.stat.GetStat(special.statID)));
+            Enemy ranEnemy = spawnManager.Find_EnemyList_Ran();
+
+            if (ranEnemy != null)
+                ranEnemy.Damaged(dmg);
+        }
+
         spawnManager.Destroy_Gem(this);
     }
 }

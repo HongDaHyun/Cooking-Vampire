@@ -19,10 +19,14 @@ MonoBehaviour:
   - ID: 8
     amount: 3
   specialContent:
-    explain: "\uCE58\uBA85\uD0C0\uB85C \uC801\uC744 \uCC98\uCE58\uD558\uBA74 3% \uD655\uB960\uB85C
-      1HP \uD68C\uBCF5\uD568"
-    specialContents: []
-    amount: 0
+    explain: "\uCE58\uBA85\uD0C0\uB85C \uC801\uC744 \uCC98\uCE58\uD558\uBA74 {0}
+      \uD655\uB960\uB85C 1HP \uD68C\uBCF5\uD568"
+    specialContents:
+    - statID: 13
+      def: 3
+      percent: 7
+      unit: '%'
+    dealAmount: 0
   explain: "\uB5B4\uB2E4!! \uC7AD\uD31F!!"
   sprites:
   - {fileID: -162022534, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}

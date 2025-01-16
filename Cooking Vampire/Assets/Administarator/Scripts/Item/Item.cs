@@ -9,6 +9,7 @@ public abstract class Item : MonoBehaviour, IPoolObject
 {
     protected SpriteRenderer sr;
 
+    protected RelicManager rm;
     protected GameManager_Survivor gm;
     protected DataManager dm;
     protected SpriteData spriteData;
@@ -22,6 +23,7 @@ public abstract class Item : MonoBehaviour, IPoolObject
         name = name.Replace("(Clone)", "");
 
         sr = GetComponent<SpriteRenderer>();
+        rm = RelicManager.Instance;
         gm = GameManager_Survivor.Instance;
         dm = DataManager.Instance;
         spriteData = SpriteData.Instance;

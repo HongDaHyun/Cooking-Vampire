@@ -8,12 +8,23 @@ using UnityEngine.UI;
 
 public class SpawnManager : Singleton<SpawnManager>
 {
+    public List<Enemy> enemyList;
+
     private void Start()
     {
-        Spawn_Relic(DataManager.Instance.relicDatas[8], new Vector2(5, 0));
+        Spawn_Relic(DataManager.Instance.relicDatas[47], new Vector2(5, 0));
         Spawn_Gem(10, new Vector2(10, 0));
     }
 
+    #region enemyList
+    public Enemy Find_EnemyList_Ran()
+    {
+        if (enemyList.Count == 0)
+            return null;
+
+        return enemyList[Random.Range(0, enemyList.Count)];
+    }
+    #endregion
     #region ≈∏¿œ
     public SpriteRenderer Spawn_TileObj(Transform parentTrans)
     {
@@ -37,6 +48,7 @@ public class SpawnManager : Singleton<SpawnManager>
             enemyName += $"_{data.title}";
 
         Enemy enemy = PoolManager.Instance.GetFromPool<Enemy>(enemyName);
+        enemyList.Add(enemy);
 
         enemy.transform.position = position;
         enemy.SetEnemy(data, size);
@@ -53,6 +65,7 @@ public class SpawnManager : Singleton<SpawnManager>
     public void Destroy_Enemy(Enemy enemy)
     {
         string enemyName = enemy.data.atkType == AtkType.Boss ? $"Enemy_{enemy.data.atkType}_{enemy.data.title}" : enemy.name;
+        enemyList.Remove(enemy);
 
         PoolManager.Instance.TakeToPool<Enemy>(enemyName, enemy);
     }

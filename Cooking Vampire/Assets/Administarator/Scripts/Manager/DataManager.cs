@@ -69,6 +69,10 @@ public class DataManager : Singleton<DataManager>
     {
         return Array.Find(relicDatas, data => data.ID == ID);
     }
+    public ref RelicData Export_RelicData_Ref(int ID)
+    {
+        return ref relicDatas[Array.FindIndex(relicDatas, data => data.ID == ID)];
+    }
     #endregion
 
     #region ETC

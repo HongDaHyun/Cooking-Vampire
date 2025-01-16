@@ -22,9 +22,11 @@ MonoBehaviour:
     - statID: 10
       def: 3
       percent: 0
+      unit: m
     - statID: 4
       def: 20
       percent: 5
+      unit: 
     dealAmount: 0
   explain: "\uAC15\uCCA0\uC758 \uC8FC\uBA39!"
   sprites:

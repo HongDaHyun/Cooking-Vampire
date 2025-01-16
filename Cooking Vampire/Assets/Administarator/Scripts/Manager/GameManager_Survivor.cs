@@ -126,24 +126,32 @@ public class PlayerStat
     {
         statActions = new Dictionary<StatID_Player, Action<int>>
         {
-            {StatID_Player.HP, x => HP += x },
-            {StatID_Player.HPREG, x => HPREG += x },
-            {StatID_Player.DRA, x => DRA += x },
-            {StatID_Player.DEF, x => DEF += x },
-            {StatID_Player.DMG, x => DMG += x },
-            {StatID_Player.ELE, x => ELE += x },
-            {StatID_Player.AS, x => AS += x },
-            {StatID_Player.AT, x => AT += x },
-            {StatID_Player.CRIT, x => CRIT += x },
-            {StatID_Player.CRIT_DMG, x => CRIT_DMG += x },
-            {StatID_Player.RAN, x => RAN += x },
-            {StatID_Player.MIS, x => MIS += x },
-            {StatID_Player.SPE, x => SPE += x },
-            {StatID_Player.LUK, x => LUK += x },
-            {StatID_Player.AMT, x => AMT += x },
-            {StatID_Player.PER, x => PER += x },
-            {StatID_Player.BAK, x => BAK += x },
-            {StatID_Player.EXP, x => EXP += x }
+            {StatID_Player.HP, x => hp += x },
+            {StatID_Player.HPREG, x => hpReg += x },
+            {StatID_Player.DRA, x => drain += x },
+            {StatID_Player.DEF, x => def += x },
+            {StatID_Player.DMG, x => dmg += x },
+            {StatID_Player.ELE, x => ele += x },
+            {StatID_Player.AS, x => atkSpeed += x },
+            {StatID_Player.AT, x => activeT += x },
+            {StatID_Player.CRIT, x => crit += x },
+            {StatID_Player.CRIT_DMG, x => critDmg += x },
+            {StatID_Player.RAN, x => ran += x },
+            {StatID_Player.MIS, x => miss += x },
+            {StatID_Player.SPE, x => speed += x },
+            {StatID_Player.LUK, x => {
+                luk += x;
+                if(RelicManager.Instance.IsHave(20))
+                    SetStat(StatID_Player.CRIT, Mathf.RoundToInt(x / 10f));
+            } },
+            {StatID_Player.AMT, x => amount += x },
+            {StatID_Player.PER, x => per += x },
+            {StatID_Player.BAK, x => {
+                back += x;
+                if(RelicManager.Instance.IsHave(41))
+                    SetStat(StatID_Player.DMG, x);
+            } },
+            {StatID_Player.EXP, x => exp += x }
         };
         statGetters = new Dictionary<StatID_Player, Func<int>>
         {
