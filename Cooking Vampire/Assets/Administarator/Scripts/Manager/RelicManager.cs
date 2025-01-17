@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.Linq;
 
 public class RelicManager : Singleton<RelicManager>
 {
@@ -81,55 +82,105 @@ public class RelicManager : Singleton<RelicManager>
                 break;
             case 46:
                 int length = CSVManager.Instance.csvList.statDatas_PlayerLvUp.Length;
-                StatID_Player minStatID = StatID_Player.HP;
-                int minStat = 999999;
+                List<StatID_Player> min1List = new List<StatID_Player>();
+                int min1 = int.MaxValue; // 최솟값 초기화
 
-                for(int i = 0; i < length; i++)
+                for (int i = 0; i < length; i++)
                 {
+                    // 현재 ID와 Stat 값 가져오기
                     StatID_Player curID = CSVManager.Instance.csvList.statDatas_PlayerLvUp[i].ID;
+                    int statValue = GameManager_Survivor.Instance.stat.GetStat_Def(curID);
 
-                    int curStat = GameManager_Survivor.Instance.stat.GetStat_Def(curID);
-                    if (curStat <= minStat)
+                    // 새로운 최솟값 발견
+                    if (statValue < min1)
                     {
-                        minStatID = curID;
-                        minStat = curStat;
+                        min1 = statValue;
+                        min1List.Clear(); // 이전 최솟값 리스트 제거
+                        min1List.Add(curID);
+                    }
+                    // 최솟값과 동일한 값 발견
+                    else if (statValue == min1)
+                    {
+                        min1List.Add(curID);
                     }
                 }
 
-                newContent.ID = minStatID;
-                newContent.amount = CSVManager.Instance.Find_StatData_PlayerLvUp(minStatID, TierType.Common);
+                // 랜덤 선택
+                newContent.ID = min1List[Random.Range(0, min1List.Count)];
+                newContent.amount = CSVManager.Instance.Find_StatData_PlayerLvUp(newContent.ID, TierType.Common);
                 DataManager.Instance.Export_RelicData_Ref(id).statContent = new RelicContent[1] { newContent };
                 break;
             case 47:
-                // 고치기 (랜덤하게) 위도 마찬가지
-                contentList = new List<RelicContent>();
                 length = CSVManager.Instance.csvList.statDatas_PlayerLvUp.Length;
-                int dupliI = 0;
+                min1List = new List<StatID_Player>();
+                List<StatID_Player> min2List = new List<StatID_Player>();
+                min1 = int.MaxValue; // 최솟값
+                int min2 = int.MaxValue; // 두 번째 최솟값
 
-                for(int j = 0; j < 2; j++)
+                // 첫 번째 최솟값 탐색 및 리스트 생성
+                for (int i = 0; i < length; i++)
                 {
-                    minStatID = StatID_Player.HP;
-                    minStat = 999999;
+                    StatID_Player curID = CSVManager.Instance.csvList.statDatas_PlayerLvUp[i].ID;
+                    int statValue = GameManager_Survivor.Instance.stat.GetStat_Def(curID);
 
-                    for (int i = 0; i < length; i++)
+                    if (statValue < min1)
                     {
-                        if (dupliI == i && j == 1)
-                            continue;
-                        StatID_Player curID = CSVManager.Instance.csvList.statDatas_PlayerLvUp[i].ID;
-
-                        int curStat = GameManager_Survivor.Instance.stat.GetStat_Def(curID);
-                        if (curStat <= minStat)
-                        {
-                            minStatID = curID;
-                            minStat = curStat;
-                            dupliI = i;
-                        }
+                        // 새로운 최솟값 발견: 업데이트 및 기존 리스트 초기화
+                        min2 = min1;
+                        min2List = new List<StatID_Player>(min1List);
+                        min1 = statValue;
+                        min1List.Clear();
+                        min1List.Add(curID);
                     }
-                    newContent.ID = minStatID;
-                    newContent.amount = CSVManager.Instance.Find_StatData_PlayerLvUp(minStatID, TierType.Common);
-                    contentList.Add(newContent);
+                    else if (statValue == min1)
+                    {
+                        // 동일한 최솟값 추가
+                        min1List.Add(curID);
+                    }
+                    else if (statValue > min1 && statValue < min2)
+                    {
+                        // 두 번째 최솟값 발견: 업데이트
+                        min2 = statValue;
+                        min2List.Clear();
+                        min2List.Add(curID);
+                    }
+                    else if (statValue == min2)
+                    {
+                        // 동일한 두 번째 최솟값 추가
+                        min2List.Add(curID);
+                    }
                 }
 
+                // 랜덤 선택 로직
+                List<StatID_Player> resultList = new List<StatID_Player>();
+
+                if (min1List.Count >= 2)
+                {
+                    // 최솟값 리스트에서 2개 랜덤 선택
+                    while (resultList.Count < 2)
+                    {
+                        StatID_Player randomID = min1List[Random.Range(0, min1List.Count)];
+                        if (!resultList.Contains(randomID))
+                            resultList.Add(randomID);
+                    }
+                }
+                else
+                {
+                    // 최솟값 하나와 두 번째 최솟값 하나 선택
+                    if (min1List.Count == 1)
+                        resultList.Add(min1List[0]);
+                    if (min2List.Count > 0)
+                        resultList.Add(min2List[Random.Range(0, min2List.Count)]);
+                }
+
+                contentList = new List<RelicContent>();
+                // 결과 설정
+                for(int i = 0; i < 2; i++)
+                {
+                    newContent.ID = resultList[i];
+                    newContent.amount = CSVManager.Instance.Find_StatData_PlayerLvUp(newContent.ID, TierType.Common);
+                    contentList.Add(newContent);
+                }
                 DataManager.Instance.Export_RelicData_Ref(id).statContent = contentList.ToArray();
                 break;
         }
