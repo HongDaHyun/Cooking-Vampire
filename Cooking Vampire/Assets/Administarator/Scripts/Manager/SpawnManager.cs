@@ -13,9 +13,9 @@ public class SpawnManager : Singleton<SpawnManager>
     private void Start()
     {
         // Spawn_Droptem(DataManager.Instance.droptemDatas[2], new Vector2(4, 0));
-        // Spawn_Relic(DataManager.Instance.relicDatas[2], new Vector2(4, 0));
+         Spawn_Relic(DataManager.Instance.relicDatas[61], new Vector2(4, 0));
         // Spawn_Relic(DataManager.Instance.relicDatas[47], new Vector2(7, 0));
-        // Spawn_Gem(10, new Vector2(10, 0));
+         Spawn_Gem(10, new Vector2(10, 0));
     }
 
     #region enemyList

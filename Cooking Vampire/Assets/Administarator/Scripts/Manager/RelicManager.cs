@@ -29,24 +29,18 @@ public class RelicManager : Singleton<RelicManager>
                 StatID_Player ranID = CSVManager.Instance.Find_StatData_PlayerLvUp_Ran().ID; ;
                 int amount = CSVManager.Instance.Find_StatData_PlayerLvUp(ranID, TierType.Common);
 
-                RelicContent newContent;
-                newContent.ID = ranID;
-                newContent.amount = amount;
+                RelicContent newContent = new RelicContent(ranID, amount);
                 DataManager.Instance.Export_RelicData_Ref(id).statContent = new RelicContent[1] { newContent };
                 break;
             case 17:
                 ranID = CSVManager.Instance.Find_StatData_PlayerLvUp_Ran().ID;
                 amount = CSVManager.Instance.Find_StatData_PlayerLvUp(ranID, TierType.Epic);
 
-                newContent.ID = ranID;
-                newContent.amount = amount;
+                newContent = new RelicContent(ranID, amount);
                 DataManager.Instance.Export_RelicData_Ref(id).statContent = new RelicContent[1] { newContent };
                 break;
             case 18:
                 GameManager_Survivor.Instance.stat.LevelUp();
-                break;
-            case 20:
-                GameManager_Survivor.Instance.stat.SetStat(StatID_Player.CRIT, Mathf.RoundToInt(GameManager_Survivor.Instance.stat.GetStat_Def(StatID_Player.LUK) / 10f));
                 break;
             case 30:
                 List<RelicContent> contentList = new List<RelicContent>();
@@ -62,13 +56,10 @@ public class RelicManager : Singleton<RelicManager>
 
                     amount = CSVManager.Instance.Find_StatData_PlayerLvUp(ranID, TierType.Common);
 
-                    newContent.ID = ranID;
-                    newContent.amount = amount;
-
+                    newContent = new RelicContent(ranID, amount);
                     contentList.Add(newContent);
                 }
                 DataManager.Instance.Export_RelicData_Ref(id).statContent = contentList.ToArray();
-
                 SpawnManager.Instance.Spawn_Droptem_Ran(GameManager_Survivor.Instance.player.Get_Player_RoundPos(5f));
                 break;
             case 32:
@@ -76,9 +67,6 @@ public class RelicManager : Singleton<RelicManager>
                 break;
             case 37:
                 // 독성 공격 주변에 옮겨붙음
-                break;
-            case 41:
-                GameManager_Survivor.Instance.stat.SetStat(StatID_Player.DMG, GameManager_Survivor.Instance.stat.GetStat_Def(StatID_Player.BAK));
                 break;
             case 46:
                 int length = CSVManager.Instance.csvList.statDatas_PlayerLvUp.Length;
@@ -89,7 +77,7 @@ public class RelicManager : Singleton<RelicManager>
                 {
                     // 현재 ID와 Stat 값 가져오기
                     StatID_Player curID = CSVManager.Instance.csvList.statDatas_PlayerLvUp[i].ID;
-                    int statValue = GameManager_Survivor.Instance.stat.GetStat_Def(curID);
+                    int statValue = GameManager_Survivor.Instance.stat.GetStat(curID, true);
 
                     // 새로운 최솟값 발견
                     if (statValue < min1)
@@ -106,8 +94,8 @@ public class RelicManager : Singleton<RelicManager>
                 }
 
                 // 랜덤 선택
-                newContent.ID = min1List[Random.Range(0, min1List.Count)];
-                newContent.amount = CSVManager.Instance.Find_StatData_PlayerLvUp(newContent.ID, TierType.Common);
+                ranID = min1List[Random.Range(0, min1List.Count)];
+                newContent = new RelicContent(ranID, CSVManager.Instance.Find_StatData_PlayerLvUp(ranID, TierType.Common));
                 DataManager.Instance.Export_RelicData_Ref(id).statContent = new RelicContent[1] { newContent };
                 break;
             case 47:
@@ -121,7 +109,7 @@ public class RelicManager : Singleton<RelicManager>
                 for (int i = 0; i < length; i++)
                 {
                     StatID_Player curID = CSVManager.Instance.csvList.statDatas_PlayerLvUp[i].ID;
-                    int statValue = GameManager_Survivor.Instance.stat.GetStat_Def(curID);
+                    int statValue = GameManager_Survivor.Instance.stat.GetStat(curID, true);
 
                     if (statValue < min1)
                     {
@@ -177,11 +165,38 @@ public class RelicManager : Singleton<RelicManager>
                 // 결과 설정
                 for(int i = 0; i < 2; i++)
                 {
-                    newContent.ID = resultList[i];
-                    newContent.amount = CSVManager.Instance.Find_StatData_PlayerLvUp(newContent.ID, TierType.Common);
+                    newContent = new RelicContent(resultList[i], CSVManager.Instance.Find_StatData_PlayerLvUp(resultList[i], TierType.Common));
                     contentList.Add(newContent);
                 }
                 DataManager.Instance.Export_RelicData_Ref(id).statContent = contentList.ToArray();
+                break;
+            case 49:
+                contentList = new List<RelicContent>();
+
+                for(int i = 0; i < 2; i++)
+                {
+                    ranID = CSVManager.Instance.Find_StatData_PlayerLvUp_Ran().ID;
+
+                    if (i == 1 && contentList[0].ID == ranID)
+                    {
+                        i--;
+                        continue;
+                    }
+
+                    newContent = new RelicContent(ranID, (i == 1) ? 
+                        CSVManager.Instance.Find_StatData_PlayerLvUp(ranID, TierType.Epic) : -CSVManager.Instance.Find_StatData_PlayerLvUp(ranID, TierType.Common));
+                    contentList.Add(newContent);
+                }
+                DataManager.Instance.Export_RelicData_Ref(id).statContent = contentList.ToArray();
+                break;
+            case 59:
+                Player player = GameManager_Survivor.Instance.player;
+
+                int curHP = GameManager_Survivor.Instance.stat.curHP;
+                player.Hitted(curHP / 2);
+                break;
+            case 61:
+                DataManager.Instance.EarnCoin(100);
                 break;
         }
     }

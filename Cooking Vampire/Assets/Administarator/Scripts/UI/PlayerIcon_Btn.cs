@@ -9,8 +9,8 @@ public class PlayerIcon_Btn : MonoBehaviour
     public Image bg, icon;
 
     SpawnManager sm;
-    RectTransform rect;
-    InfoTxtController controller;
+    [HideInInspector] public RectTransform rect;
+    [HideInInspector] public InfoTxtController controller;
     PlayerData playerData;
 
     private void Awake()

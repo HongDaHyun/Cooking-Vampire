@@ -52,6 +52,12 @@ public struct RelicContent
 {
     public StatID_Player ID;
     public int amount;
+
+    public RelicContent(StatID_Player _id, int amt)
+    {
+        ID = _id;
+        amount = amt;
+    }
 }
 [Serializable]
 public struct SpecialContent_Relic
@@ -74,7 +80,7 @@ public struct SpecialContent
 
     public int CalDef()
     {
-        int statAmount = GameManager_Survivor.Instance.stat.GetStat(statID);
+        int statAmount = GameManager_Survivor.Instance.stat.GetStat(statID, false);
 
         if(percent == 0)
         {

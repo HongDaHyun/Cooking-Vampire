@@ -17,9 +17,9 @@ MonoBehaviour:
   relicName: "\uD3ED\uD0C4"
   statContent: []
   specialContent:
-    explain: "\uC18C\uBAA8\uD488 \uD68D\uB4DD \uC2DC 20% \uD655\uB960\uB85C \uD3ED\uBC1C\uD568"
+    explain: "\uC544\uC774\uD15C \uD68D\uB4DD \uC2DC 20% \uD655\uB960\uB85C \uD3ED\uBC1C\uD568"
     specialContents: []
-    amount: 0
+    dealAmount: 0
   explain: "\uBD90!"
   sprites:
   - {fileID: 783279000, guid: 4328733c444b3484f8cd00f094c8b424, type: 3}

@@ -115,7 +115,7 @@ public class CSVManager : Singleton<CSVManager>
         {
             SpecialContent special = specialContents[i];
 
-            int statAmount = GameManager_Survivor.Instance.stat.GetStat(special.statID);
+            int statAmount = GameManager_Survivor.Instance.stat.GetStat(special.statID, true);
             string colorTag = special.percent == 0 ? spriteData.Export_ColorTag(spriteData.Export_Pallate("Green")) : spriteData.Export_ColorTag(spriteData.Export_SignColor(statAmount));
 
             strArr[i] = $"<color={colorTag}>" +

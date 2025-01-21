@@ -120,7 +120,6 @@ public class PlayerStat
     public int exp;
     private Dictionary<StatID_Player, Action<int>> statActions;
     private Dictionary<StatID_Player, Func<int>> statGetters;
-    private Dictionary<StatID_Player, Func<int>> statGetters_def;
 
     public PlayerStat()
     {
@@ -139,18 +138,10 @@ public class PlayerStat
             {StatID_Player.RAN, x => ran += x },
             {StatID_Player.MIS, x => miss += x },
             {StatID_Player.SPE, x => speed += x },
-            {StatID_Player.LUK, x => {
-                luk += x;
-                if(RelicManager.Instance.IsHave(20))
-                    SetStat(StatID_Player.CRIT, Mathf.RoundToInt(x / 10f));
-            } },
+            {StatID_Player.LUK, x => luk += x},
             {StatID_Player.AMT, x => amount += x },
             {StatID_Player.PER, x => per += x },
-            {StatID_Player.BAK, x => {
-                back += x;
-                if(RelicManager.Instance.IsHave(41))
-                    SetStat(StatID_Player.DMG, x);
-            } },
+            {StatID_Player.BAK, x => back += x},
             {StatID_Player.EXP, x => exp += x }
         };
         statGetters = new Dictionary<StatID_Player, Func<int>>
@@ -174,27 +165,6 @@ public class PlayerStat
             {StatID_Player.BAK, () => BAK },
             {StatID_Player.EXP, () => EXP }
         };
-        statGetters_def = new Dictionary<StatID_Player, Func<int>>
-        {
-            {StatID_Player.HP, () => hp },
-            {StatID_Player.HPREG, () => hpReg },
-            {StatID_Player.DRA, () => drain },
-            {StatID_Player.DEF, () => def },
-            {StatID_Player.DMG, () => dmg },
-            {StatID_Player.ELE, () => ele },
-            {StatID_Player.AS, () => atkSpeed },
-            {StatID_Player.AT, () => activeT },
-            {StatID_Player.CRIT, () => crit },
-            {StatID_Player.CRIT_DMG, () => critDmg },
-            {StatID_Player.RAN, () => ran },
-            {StatID_Player.MIS, () => miss },
-            {StatID_Player.SPE, () => speed },
-            {StatID_Player.LUK, () => luk },
-            {StatID_Player.AMT, () => amount },
-            {StatID_Player.PER, () => per },
-            {StatID_Player.BAK, () => back },
-            {StatID_Player.EXP, () => exp }
-        };
 
         level = 1;
     }
@@ -202,9 +172,7 @@ public class PlayerStat
     {
         get
         {
-            StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.HP);
-            
-            return Mathf.Clamp(hp, statData.min, statData.max);
+            return hp;
         }
         set 
         {
@@ -215,8 +183,7 @@ public class PlayerStat
     {
         get
         {
-            StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.HPREG);
-            return Mathf.Clamp(hpReg, statData.min, statData.max);
+            return hpReg;
         }
         set { hpReg = value; }
     }
@@ -224,8 +191,7 @@ public class PlayerStat
     {
         get
         {
-            StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.DRA);
-            return Mathf.Clamp(drain, statData.min, statData.max);
+            return drain;
         }
         set { drain = value; }
     }
@@ -233,8 +199,7 @@ public class PlayerStat
     {
         get
         {
-            StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.DEF);
-            return Mathf.Clamp(def, statData.min, statData.max);
+            return def;
         }
         set { def = value; }
     }
@@ -242,8 +207,16 @@ public class PlayerStat
     {
         get
         {
-            StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.DMG);
-            return Mathf.Clamp(dmg, statData.min, statData.max);
+            RelicManager rm = RelicManager.Instance;
+
+            int value = dmg;
+
+            if (rm.IsHave(41))
+                value += GetStat(StatID_Player.BAK, true);
+            if (rm.IsHave(51))
+                value += Mathf.RoundToInt(DataManager.Instance.coin / 20f);
+
+            return value;
         }
         set { dmg = value; }
     }
@@ -251,8 +224,7 @@ public class PlayerStat
     {
         get
         {
-            StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.ELE);
-            return Mathf.Clamp(ele, statData.min, statData.max);
+            return ele;
         }
         set { ele = value; }
     }
@@ -260,8 +232,7 @@ public class PlayerStat
     {
         get
         {
-            StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.AS);
-            return Mathf.Clamp(atkSpeed, statData.min, statData.max);
+            return atkSpeed;
         }
         set { atkSpeed = value; }
     }
@@ -269,8 +240,7 @@ public class PlayerStat
     {
         get
         {
-            StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.AT);
-            return Mathf.Clamp(activeT, statData.min, statData.max);
+            return activeT;
         }
         set { activeT = value; }
     }
@@ -278,8 +248,12 @@ public class PlayerStat
     {
         get
         {
-            StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.CRIT);
-            return Mathf.Clamp(crit, statData.min, statData.max);
+            int value = crit;
+
+            if (RelicManager.Instance.IsHave(20))
+                value += Mathf.RoundToInt(GetStat(StatID_Player.LUK, true) / 10f);
+
+            return value;
         }
         set { crit = value; }
     }
@@ -287,8 +261,7 @@ public class PlayerStat
     {
         get
         {
-            StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.CRIT_DMG);
-            return Mathf.Clamp(critDmg, statData.min, statData.max);
+            return critDmg;
         }
         set { critDmg = value; }
     }
@@ -296,8 +269,7 @@ public class PlayerStat
     {
         get
         {
-            StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.RAN);
-            return Mathf.Clamp(ran, statData.min, statData.max);
+            return ran;
         }
         set 
         { 
@@ -308,8 +280,7 @@ public class PlayerStat
     {
         get
         {
-            StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.MIS);
-            return Mathf.Clamp(miss, statData.min, statData.max);
+            return miss;
         }
         set { miss = value; }
     }
@@ -317,8 +288,7 @@ public class PlayerStat
     {
         get
         {
-            StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.SPE);
-            return Mathf.Clamp(speed, statData.min, statData.max);
+            return speed;
         }
         set { speed = value; } // Def MoveController 스크립트에 존재
     }
@@ -326,8 +296,7 @@ public class PlayerStat
     {
         get
         {
-            StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.LUK);
-            return Mathf.Clamp(luk, statData.min, statData.max);
+            return luk;
         }
         set { luk = value; }
     }
@@ -335,8 +304,7 @@ public class PlayerStat
     {
         get
         {
-            StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.AMT);
-            return Mathf.Clamp(amount, statData.min, statData.max);
+            return amount;
         }
         set { amount = value; }
     }
@@ -344,8 +312,7 @@ public class PlayerStat
     {
         get
         {
-            StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.PER);
-            return Mathf.Clamp(per, statData.min, statData.max);
+            return per;
         }
         set { per = value; }
     }
@@ -353,8 +320,7 @@ public class PlayerStat
     {
         get
         {
-            StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.BAK);
-            return Mathf.Clamp(back, statData.min, statData.max);
+            return back;
         }
         set { back = value; }
     }
@@ -362,8 +328,7 @@ public class PlayerStat
     {
         get
         {
-            StatData_Player statData = CSVManager.Instance.Find_StatData_Player(StatID_Player.EXP);
-            return Mathf.Clamp(exp, statData.min, statData.max);
+            return exp;
         }
         set { exp = value; }
     }
@@ -376,22 +341,22 @@ public class PlayerStat
             amount = crystalIncrease != 0f ? amount + Mathf.RoundToInt(amount * crystalIncrease) : amount;
 
             action(amount);
-            UIManager.Instance.lvUpPannel.Adjust_StatUI_Player(id);
         }
         else
             throw new ArgumentException("Invalid StatID_Player", nameof(id));
     }
-    public int GetStat(StatID_Player id)
+    public int GetStat(StatID_Player id, bool isDefault)
     {
         if (statGetters.TryGetValue(id, out Func<int> getter))
-            return getter();
-        else
-            throw new ArgumentException("Invalid StatID_Player", nameof(id));
-    }
-    public int GetStat_Def(StatID_Player id)
-    {
-        if (statGetters_def.TryGetValue(id, out Func<int> getter))
-            return getter();
+        {
+            if (!isDefault)
+            {
+                StatData_Player statData = CSVManager.Instance.Find_StatData_Player(id);
+                return Mathf.Clamp(getter(), statData.min, statData.max);
+            }
+            else
+                return getter();
+        }
         else
             throw new ArgumentException("Invalid StatID_Player", nameof(id));
     }
@@ -410,6 +375,9 @@ public class PlayerStat
         playerLvCount++;
         level++;
         SetStat(StatID_Player.HP, 1);
+        if (RelicManager.Instance.IsHave(54) && DataManager.Instance.Get_Ran(20))
+            SetStat(StatID_Player.HPREG, 1);
+
         curExp -= maxExp;
         maxExp = Mathf.RoundToInt(maxExp * 1.5f);
 
@@ -418,67 +386,68 @@ public class PlayerStat
 
     public float Cal_HPREG_Cool()
     {
-        return 5f / (1 + (HPREG - 1) / 2.25f);
+        return 5f / (1 + (GetStat(StatID_Player.HPREG, true) - 1) / 2.25f);
     }
     public bool Cal_DRA_Percent()
     {
-        return DataManager.Instance.Get_Ran(DRA);
+        return DataManager.Instance.Get_Ran(GetStat(StatID_Player.DRA, true));
     }
     public float Cal_DEF()
     {
-        return (float)DEF / (Mathf.Abs(DEF) + 15);
+        int defend = GetStat(StatID_Player.DEF, true);
+        return (float)defend / (Mathf.Abs(defend) + 15);
     }
     public int Cal_DMG(int defDmg)
     {
-        return defDmg + Mathf.RoundToInt(defDmg * DMG / 100f);
+        return defDmg + Mathf.RoundToInt(defDmg * GetStat(StatID_Player.DMG, true) / 100f);
     }
     public int Cal_Ele(int defDmg)
     {
-        return defDmg + Mathf.RoundToInt(defDmg * ELE / 100f);
+        return defDmg + Mathf.RoundToInt(defDmg * GetStat(StatID_Player.ELE, true) / 100f);
     }
     public float Cal_AS(float defAtkSpeed)
     {
-        return defAtkSpeed - defAtkSpeed * AS / 100f;
+        return defAtkSpeed - defAtkSpeed * GetStat(StatID_Player.AS, true) / 100f;
     }
     public float Cal_AT(float defActiveT)
     {
-        return defActiveT + defActiveT * AT / 100f;
+        return defActiveT + defActiveT * GetStat(StatID_Player.AT, true) / 100f;
     }
     public bool Cal_CRIT_Percent()
     {
-        return DataManager.Instance.Get_Ran(CRIT);
+        return DataManager.Instance.Get_Ran(GetStat(StatID_Player.CRIT, true));
     }
     public int Cal_CRIT_DMG(int defDmg)
     {
-        return defDmg + Mathf.RoundToInt(defDmg * CRIT_DMG / 100f);
+        return defDmg + Mathf.RoundToInt(defDmg * GetStat(StatID_Player.CRIT_DMG, true) / 100f);
     }
     public float Cal_RAN()
     {
-        return defRan + defRan * RAN / 100f;
+        return defRan + defRan * GetStat(StatID_Player.RAN, true) / 100f;
     }
     public bool Cal_MIS_PERCENT()
     {
-        return DataManager.Instance.Get_Ran(MIS);
+        return DataManager.Instance.Get_Ran(GetStat(StatID_Player.MIS, true));
     }
     public float Cal_SPE()
     {
-        return defSpeed + defSpeed * SPE / 100f;
+        return defSpeed + defSpeed * GetStat(StatID_Player.SPE, true) / 100f;
     }
     public int Cal_AMT(int defAmount)
     {
-        return defAmount + AMT;
+        return defAmount + GetStat(StatID_Player.AMT, true);
     }
     public int Cal_PER(int defPer)
     {
-        return defPer + PER;
+        return defPer + GetStat(StatID_Player.PER, true);
     }
     public float Cal_BAK() // 기본값 1
     {
-        return defBack + BAK / 100f;
+        return defBack + GetStat(StatID_Player.BAK, true) / 100f;
     }
     public int Cal_EXP(int defExp)
     {
-        return defExp + Mathf.RoundToInt(defExp * EXP / 100f);
+        return defExp + Mathf.RoundToInt(defExp * GetStat(StatID_Player.EXP, true) / 100f);
     }
 }
 

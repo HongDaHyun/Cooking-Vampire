@@ -36,13 +36,13 @@ public class Gem : Item
     {
         gm.stat.curExp += gm.stat.Cal_EXP(amount);
 
-        if(rm.IsHave(43) && Random.Range(0, 100) < 100)
+        if(rm.IsHave(43) && dataManager.Get_Ran(8))
         {
             RelicData relicData = dataManager.Export_RelicData(43);
 
             SpecialContent special = relicData.specialContent.FindSpecialContent(StatID_Player.LUK);
 
-            int dmg = Mathf.Max(1, special.CalAmount(gm.stat.GetStat(special.statID)));
+            int dmg = Mathf.Max(1, special.CalAmount(gm.stat.GetStat(special.statID, false)));
             Enemy ranEnemy = spawnManager.Find_EnemyList_Ran();
 
             if (ranEnemy != null)

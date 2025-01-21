@@ -20119,6 +20119,7 @@ MonoBehaviour:
     statUI_Players: []
   bossPannel:
     redPannel: {fileID: 637384212}
+  playerIcon: {fileID: 1323693282}
 --- !u!1 &367910570
 GameObject:
   m_ObjectHideFlags: 0
@@ -46527,6 +46528,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bg: {fileID: 1323693280}
   icon: {fileID: 1907854262}
+  rect: {fileID: 0}
+  controller: {fileID: 0}
 --- !u!114 &1323693283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81058,7 +81061,7 @@ MonoBehaviour:
     ele: 0
     atkSpeed: 0
     activeT: 0
-    crit: 0
+    crit: -10
     critDmg: 100
     ran: 0
     miss: 0

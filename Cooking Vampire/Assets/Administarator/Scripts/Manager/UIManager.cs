@@ -20,6 +20,7 @@ public class UIManager : Singleton<UIManager>
     public AtkUI[] atkUIs;
     public LvUpPannel lvUpPannel;
     public BossPannel bossPannel;
+    public PlayerIcon_Btn playerIcon;
 
     private void Start()
     {
@@ -112,6 +113,8 @@ public struct LvUpPannel
         atkPannel.gameObject.SetActive(true);
         statPannel.gameObject.SetActive(false);
 
+        Adjust_StatUI_Player();
+
         Reroll_AtkUPs();
     }
     public void Active_Stat()
@@ -188,9 +191,10 @@ public struct LvUpPannel
             count++;
         }
     }
-    public void Adjust_StatUI_Player(StatID_Player id)
+    public void Adjust_StatUI_Player()
     {
-        System.Array.Find(statUI_Players, ui => ui.statID == id).AdjustUI();
+        foreach (StatUI_Player ui in statUI_Players)
+            ui.AdjustUI();
     }
 }
 [System.Serializable]
