@@ -1134,6 +1134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9888dc8ca7ffb04d880bc446433b817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyList: []
 --- !u!4 &70239731
 Transform:
   m_ObjectHideFlags: 0
@@ -33769,13 +33770,21 @@ MonoBehaviour:
   BORDER: 14
   spawnDatas:
   - spawnData_Details:
+    - name: "\uC591"
+      scale: 1
+      amount: 5
+      isRanAmount: 0
+      isGether: 1
+    spawnCool: 2
+    spawnTime: 20
+  - spawnData_Details:
     - name: "\uC2AC\uB77C\uC784"
       scale: 0.7
       amount: 1
       isRanAmount: 0
       isGether: 0
     spawnCool: 2
-    spawnTime: 20
+    spawnTime: 6
   - spawnData_Details:
     - name: "\uBC15\uBE14\uB9B0"
       scale: 0.1
