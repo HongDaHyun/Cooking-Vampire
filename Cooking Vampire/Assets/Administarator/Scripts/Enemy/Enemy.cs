@@ -97,6 +97,8 @@ public class Enemy : MonoBehaviour, IPoolObject
             if (Vector2.Distance(transform.position, gm.player.transform.position) <= relicData.specialContent.FindSpecialContent(StatID_Player.RAN).def)
                 dmg = relicData.specialContent.FindSpecialContent(StatID_Player.DMG).CalAmount(dmg);
         }
+        if(relicManager.IsHave(32))
+            spawnManager.Spawn_ChainThunder(3, transform.position);
 
         // 크리티컬
         bool isCrit = gm.stat.Cal_CRIT_Percent();

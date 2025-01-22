@@ -42,7 +42,7 @@ public class InfoTxt : MonoBehaviour, IPoolObject
         Sequence seq = DOTween.Sequence().SetUpdate(true);
         seq.OnStart(() => rect.localScale = new Vector3(1f, 0f, 1f));
         seq.Append(rect.DOScaleY(1f, 0.3f).SetEase(Ease.InExpo).SetEase(Ease.OutBounce))
-            .AppendInterval(3f)
+            .AppendInterval(1f)
             .Append(rect.DOScaleY(0f, 0.3f).SetEase(Ease.InOutExpo))
             .OnComplete(() => {
                 sm.Destroy_InfoTxt(this);

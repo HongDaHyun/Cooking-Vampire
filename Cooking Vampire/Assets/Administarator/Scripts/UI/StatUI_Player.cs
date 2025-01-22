@@ -14,10 +14,9 @@ public class StatUI_Player : MonoBehaviour, IPoolObject
 
     public Image statIcon;
     public TextMeshProUGUI nameTxt, valueTxt;
-    public StatID_Player statID;
 
-    string explain;
-    int min, max;
+    StatData_Player data;
+    string explainTxt;
 
     public void OnCreatedInPool()
     {
@@ -31,26 +30,24 @@ public class StatUI_Player : MonoBehaviour, IPoolObject
     {
     }
 
-    public void SetUI(StatData_Player data)
+    public void SetUI(StatData_Player _data)
     {
-        statID = data.ID;
+        data = _data;
 
         statIcon.sprite = spriteData.Export_StatSprite_Player(data.ID);
         nameTxt.text = $"{(data.isPercent ? "% " : "")}{data.name}";
-
-        min = data.min;
-        max = data.max;
-        explain = data.explanation;
 
         AdjustUI();
     }
 
     public void AdjustUI()
     {
-        int value = gm.stat.GetStat(statID, false);
-        int defValue = gm.stat.GetStat(statID, true);
+        int value = gm.stat.GetStat(data.ID, false);
+        int defValue = gm.stat.GetStat(data.ID, true);
 
-        if (defValue <= max && defValue >= min)
+        AdjustExplain(value);
+
+        if (defValue <= data.max && defValue >= data.min)
         {
             valueTxt.color = spriteData.Export_SignColor(value);
             valueTxt.text = value.ToString();
@@ -61,13 +58,30 @@ public class StatUI_Player : MonoBehaviour, IPoolObject
             valueTxt.text = $"{value} | {defValue}";
         }
     }
+    public void AdjustExplain(int value)
+    {
+        string colorTag = spriteData.Export_ColorTag(spriteData.Export_SignColor(value));
+        string percent = data.isPercent ? "%" : "";
+
+        switch (data.ID)
+        {
+            default:
+                string value1 = $"<color={colorTag}>{value}{percent}</color>";
+                explainTxt = string.Format(data.explanation, value1);
+                break;
+            case StatID_Player.HPREG:
+                value1 = $"<color={colorTag}>{gm.stat.Cal_HPREG_Cool()}</color>";
+                explainTxt = string.Format(data.explanation, value1);
+                break;
+        }
+    }
 
     public void OnClick()
     {
         sm.Spawn_InfoTxt(
             "",
             "",
-            string.Format(explain, gm.stat.GetStat(statID, false)),
+            explainTxt,
             um.playerIcon.rect,
             um.playerIcon.controller);
     }

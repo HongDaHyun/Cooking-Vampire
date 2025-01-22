@@ -255,6 +255,19 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         PoolManager.Instance.TakeToPool<Effect>(effect);
     }
+    public ChainThunder Spawn_ChainThunder(int amountToChain, Vector2 pos)
+    {
+        if (amountToChain <= 0)
+            return null;
+        ChainThunder thunder = PoolManager.Instance.GetFromPool<ChainThunder>("Effect_ChainThunder");
+        thunder.SetChainThunder(amountToChain, pos);
+
+        return thunder;
+    }
+    public void Destroy_ChainThunder(ChainThunder chainThunder)
+    {
+        PoolManager.Instance.TakeToPool<ChainThunder>(chainThunder);
+    }
     #endregion
     #region UI
     public StatUI_Player Spawn_StatUI_Player(StatData_Player statData_Player)
