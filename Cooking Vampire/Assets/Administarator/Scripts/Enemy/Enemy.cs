@@ -7,12 +7,13 @@ using Sirenix.OdinInspector;
 public class Enemy : MonoBehaviour, IPoolObject
 {
     [ReadOnly] public bool isDead, isDamaged;
+    [ReadOnly] public EnemyEleHit[] enemyEleHits;
     private int difficult;
     public EnemyStat stat;
     public EnemyData data;
     private Coroutine hitRoutine;
 
-    EnemyMove enemyMove;
+    [HideInInspector] public EnemyMove enemyMove;
     [HideInInspector] public Animator anim;
     CapsuleCollider2D col;
     [HideInInspector] public Rigidbody2D rigid;
@@ -43,6 +44,13 @@ public class Enemy : MonoBehaviour, IPoolObject
 
     public void OnGettingFromPool()
     {
+        enemyEleHits = new EnemyEleHit[4]
+        {
+            new EnemyEleHit(EleType.Fire),
+            new EnemyEleHit(EleType.Ice),
+            new EnemyEleHit(EleType.Poison),
+            new EnemyEleHit(EleType.Thunder),
+        };
     }
 
     public void SetEnemy(EnemyData data, float size)
@@ -97,8 +105,11 @@ public class Enemy : MonoBehaviour, IPoolObject
             if (Vector2.Distance(transform.position, gm.player.transform.position) <= relicData.specialContent.FindSpecialContent(StatID_Player.RAN).def)
                 dmg = relicData.specialContent.FindSpecialContent(StatID_Player.DMG).CalAmount(dmg);
         }
-        if(relicManager.IsHave(32))
+        if (relicManager.IsHave(32))
+        {
+            EleRoutine(EleType.Thunder, 1);
             spawnManager.Spawn_ChainThunder(3, transform.position);
+        }
 
         // 农府萍拿
         bool isCrit = gm.stat.Cal_CRIT_Percent();
@@ -127,15 +138,31 @@ public class Enemy : MonoBehaviour, IPoolObject
             if (isCrit && relicManager.IsHave(39) && dataManager.Get_Ran(3))
                 gm.stat.HealHP(1);
 
-            isDead = true;
-            col.enabled = false;
-            rigid.simulated = false;
-            anim.SetTrigger("Dead");
-
-            // 单捞磐 贸府
-            gm.killCount++;
-            spawnManager.Spawn_Gems(Random.Range(data.gemAmount, data.gemAmount + gm.stat.LUK / 10), transform.position);
+            Dead();
         }
+    }
+    public void DamagedEle(int dmg)
+    {
+        stat.curHp -= Mathf.Min(stat.curHp, dmg);
+        spawnManager.Spawn_PopUpTxt(dmg.ToString(), PopUpType.Deal, transform.position);
+        StartCoroutine(enemyMove.KnockBack());
+
+        // 磷澜
+        if (stat.curHp <= 0)
+        {
+            Dead();
+        }
+    }
+    private void Dead()
+    {
+        isDead = true;
+        col.enabled = false;
+        rigid.simulated = false;
+        anim.SetTrigger("Dead");
+
+        // 单捞磐 贸府
+        gm.killCount++;
+        spawnManager.Spawn_Gems(Random.Range(data.gemAmount, data.gemAmount + gm.stat.LUK / 10), transform.position);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -177,6 +204,22 @@ public class Enemy : MonoBehaviour, IPoolObject
         isDamaged = false;
         hitRoutine = null;
     }
+    public void EleRoutine(EleType type, int amount)
+    {
+        EnemyEleHit eleHit = Find_EleHit(type);
+        if (amount >= eleHit.amount)
+        {
+            if (eleHit.eleRoutine != null)
+                StopCoroutine(eleHit.eleRoutine);
+
+            eleHit.amount = amount;
+            eleHit.eleRoutine = StartCoroutine(eleHit.EleRoutine(this));
+        }
+    }
+    public EnemyEleHit Find_EleHit(EleType type)
+    {
+        return System.Array.Find(enemyEleHits, ele => ele.type == type);
+    }
 }
 
 [System.Serializable]
@@ -185,4 +228,61 @@ public struct EnemyStat
     public int curHp;
     public int maxHp;
     public float speed;
+}
+[System.Serializable]
+public class EnemyEleHit
+{
+    public EleType type;
+    public int amount;
+    public Coroutine eleRoutine;
+
+    public EnemyEleHit(EleType _type)
+    {
+        type = _type;
+        amount = 0;
+        eleRoutine = null;
+    }
+
+    public IEnumerator EleRoutine(Enemy enemy)
+    {
+        GameManager_Survivor gm = GameManager_Survivor.Instance;
+        float calAmount = gm.stat.Cal_Ele(amount, type);
+
+        switch(type)
+        {
+            case EleType.Fire:
+                for (int i = 0; i < 5; i++)
+                {
+                    if (calAmount <= 0)
+                        break;
+
+                    yield return new WaitForSeconds(1f);
+
+                    enemy.DamagedEle((int)calAmount);
+                    calAmount--;
+                }
+                break;
+            case EleType.Ice:
+                enemy.enemyMove.curSpeed = enemy.stat.speed / 80f;
+                yield return new WaitForSeconds(calAmount);
+                enemy.enemyMove.curSpeed = enemy.stat.speed;
+                break;
+            case EleType.Poison:
+                for (int i = 0; i < 4; i++)
+                {
+                    yield return new WaitForSeconds(1.2f);
+
+                    enemy.DamagedEle((int)calAmount);
+                }
+                break;
+            case EleType.Thunder:
+                enemy.DamagedEle((int)calAmount);
+                yield return new WaitForSeconds(1f);
+                break;
+        }
+
+        amount = 0;
+        eleRoutine = null;
+        yield break;
+    }
 }

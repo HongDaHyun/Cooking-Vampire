@@ -401,9 +401,18 @@ public class PlayerStat
     {
         return defDmg + Mathf.RoundToInt(defDmg * GetStat(StatID_Player.DMG, true) / 100f);
     }
-    public int Cal_Ele(int defDmg)
+    public float Cal_Ele(int defAmount, EleType type)
     {
-        return defDmg + Mathf.RoundToInt(defDmg * GetStat(StatID_Player.ELE, true) / 100f);
+        switch(type)
+        {
+            case EleType.Fire: // ´Ü¼ø µ¡¼À
+            case EleType.Poison:
+                return defAmount + GetStat(StatID_Player.ELE, true);
+            case EleType.Ice: // ÃÖ¼Ú°ªÀÌ 2, x°ªÀÌ Ä¿Áú¼ö·Ï 8¿¡ ¼ö·Å
+                return 8 - 6 * Mathf.Exp(-0.05f * defAmount);
+            default:
+                return defAmount;
+        }
     }
     public float Cal_AS(float defAtkSpeed)
     {

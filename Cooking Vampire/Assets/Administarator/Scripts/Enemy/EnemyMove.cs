@@ -7,6 +7,7 @@ public abstract class EnemyMove : MonoBehaviour
     public Rigidbody2D target;
     public bool isStop, isForceStop;
     public bool isPattern;
+    public float curSpeed;
     protected void IsStop()
     {
         isForceStop = true;
@@ -32,6 +33,7 @@ public abstract class EnemyMove : MonoBehaviour
     {
         isStop = false; isForceStop = false; isPattern = false;
         enemy.rigid.simulated = true;
+        curSpeed = enemy.stat.speed;
 
         StopAllCoroutines();
         StartCoroutine(SpecialMoveRoutine());
@@ -63,7 +65,7 @@ public abstract class EnemyMove : MonoBehaviour
     protected virtual void Track()
     {
         Vector2 dirVec = target.position - enemy.rigid.position;
-        Vector2 nextVec = dirVec.normalized * enemy.stat.speed * Time.fixedDeltaTime;
+        Vector2 nextVec = dirVec.normalized * curSpeed * Time.fixedDeltaTime;
         enemy.rigid.MovePosition(enemy.rigid.position + nextVec);
         enemy.rigid.velocity = Vector2.zero;
     }

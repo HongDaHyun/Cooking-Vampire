@@ -81,7 +81,7 @@ public class SpriteData : Singleton<SpriteData>
         return Array.Find(area_Sprites, data => data.eleType == type);
     }
 }
-public enum EleType { Normal, Fire, Ice, Poison }
+public enum EleType { Fire = 0, Ice, Poison, Thunder }
 
 [Serializable]
 public struct StageSprite
