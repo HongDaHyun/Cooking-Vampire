@@ -52,7 +52,7 @@ public abstract class Pet : MonoBehaviour, IPoolObject
 
         transform.position = ranPos;
         Vector2 effectPos = transform.position + new Vector3(0, 0.5f);
-        spawnManager.Spawn_Effect(spriteData.effects[0], effectPos, 1f);
+        spawnManager.Spawn_Effect_Anim(spriteData.effects[0], effectPos, 1f);
     }
 
     protected void SetAnim(PetState state)

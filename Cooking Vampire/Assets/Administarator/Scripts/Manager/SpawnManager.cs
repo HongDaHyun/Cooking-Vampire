@@ -12,8 +12,8 @@ public class SpawnManager : Singleton<SpawnManager>
 
     private void Start()
     {
-        // Spawn_Droptem(DataManager.Instance.droptemDatas[2], new Vector2(4, 0));
-         Spawn_Relic(DataManager.Instance.relicDatas[32], new Vector2(4, 0));
+        Spawn_Droptem(DataManager.Instance.droptemDatas[2], new Vector2(7, 0));
+         Spawn_Relic(DataManager.Instance.relicDatas[37], new Vector2(4, 0));
         // Spawn_Relic(DataManager.Instance.relicDatas[47], new Vector2(7, 0));
         Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(6, 1), 1f).enemyMove.enabled = false;
         Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(8, 0), 1f).enemyMove.enabled = false;
@@ -240,7 +240,14 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     #endregion
     #region ¿Ã∆Â∆Æ
-    public Effect_Anim Spawn_Effect(RuntimeAnimatorController anim, Vector2 pos, float size)
+    public Effect Spawn_Effect(string effectName, Vector2 pos, float size)
+    {
+        Effect effect = PoolManager.Instance.GetFromPool<Effect>($"Effect_{effectName}");
+        effect.SetTrans(pos, size);
+
+        return effect;
+    }
+    public Effect_Anim Spawn_Effect_Anim(RuntimeAnimatorController anim, Vector2 pos, float size)
     {
         Effect_Anim effect = PoolManager.Instance.GetFromPool<Effect_Anim>("Effect_Anim");
         effect.SetEffect(anim, pos, size);
@@ -256,7 +263,7 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     public void Destroy_Effect(Effect effect)
     {
-        PoolManager.Instance.TakeToPool<Effect>(effect);
+        PoolManager.Instance.TakeToPool<Effect>(effect.name, effect);
     }
     public ChainThunder Spawn_ChainThunder(int amountToChain, Vector2 pos)
     {

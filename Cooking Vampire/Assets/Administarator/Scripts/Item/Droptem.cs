@@ -42,8 +42,8 @@ public class Droptem : Item
 
         if (rm.IsHave(10))
             gm.stat.SetStat(StatID_Player.DMG, 1);
-        if(rm.IsHave(58) && dataManager.Get_Ran(20))
-            // ºÕ!
+        if (rm.IsHave(58) && dataManager.Get_Ran(100))
+            spawnManager.Spawn_Effect("Explosion", transform.position, 1f);
         spawnManager.Destroy_Item(this);
     }
 

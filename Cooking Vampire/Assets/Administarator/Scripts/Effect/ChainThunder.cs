@@ -11,14 +11,11 @@ public class ChainThunder : MonoBehaviour, IPoolObject
     public int amountToChain;
     public List<Enemy> nearEnemies;
 
-    TrailRenderer trail;
-    ParticleSystem particle;
+    public ParticleSystem particle;
 
     public void OnCreatedInPool()
     {
         sm = SpawnManager.Instance;
-        particle = GetComponent<ParticleSystem>();
-        trail = GetComponent<TrailRenderer>();
     }
 
     public void OnGettingFromPool()
@@ -49,7 +46,10 @@ public class ChainThunder : MonoBehaviour, IPoolObject
         }
 
         if (nearEnemies.Count == 0)
-            sm.Destroy_ChainThunder(this);
+        {
+            amountToChain = 0;
+            StartCoroutine(ShootRoutine(transform.position, transform.position));
+        }
         else
         {
             Enemy tarEnemy = nearEnemies[Random.Range(0, nearEnemies.Count)];
@@ -58,16 +58,22 @@ public class ChainThunder : MonoBehaviour, IPoolObject
 
             amountToChain--;
 
-            StartCoroutine(ShootRoutine(transform.position, tarEnemy));
+            Vector2 tarPos = tarEnemy.transform.position;
+            tarPos += Vector2.up * 0.5f;
+            StartCoroutine(ShootRoutine(transform.position, tarPos));
         }
     }
 
-    private IEnumerator ShootRoutine(Vector2 startPos, Enemy tarEnemy)
+    private IEnumerator ShootRoutine(Vector2 startPos, Vector2 tarPos)
     {
-        float lerpTime = 0f;
-        Vector2 tarPos = tarEnemy.transform.position;
+        if(startPos == tarPos)
+        {
+            yield return new WaitForSeconds(particle.main.duration);
+            sm.Destroy_ChainThunder(this);
+            yield break;
+        }
 
-        tarPos += Vector2.up * 0.5f;
+        float lerpTime = 0f;
 
         yield return new WaitForFixedUpdate();
 
@@ -77,13 +83,13 @@ public class ChainThunder : MonoBehaviour, IPoolObject
             lerpTime = Mathf.Clamp01(lerpTime + Time.fixedDeltaTime * 8f);
             // Lerp를 통한 위치 계산
             transform.position = Vector2.Lerp(startPos, tarPos, lerpTime);
-            Debug.Log(transform.position);
 
             yield return new WaitForFixedUpdate();
         }
 
         // 마지막 위치 보정
         transform.position = tarPos;
-        sm.Spawn_ChainThunder(amountToChain, tarEnemy.transform.position);
+        sm.Spawn_ChainThunder(amountToChain, tarPos);
+        sm.Destroy_ChainThunder(this);
     }
 }

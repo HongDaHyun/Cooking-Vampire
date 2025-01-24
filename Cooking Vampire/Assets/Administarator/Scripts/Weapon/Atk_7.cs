@@ -32,7 +32,7 @@ public class Atk_7 : Atk
 
     private void Trap()
     {
-        spawnManager.Spawn_Effect(spriteData.effects[0], player.transform.position, 1f);
+        spawnManager.Spawn_Effect_Anim(spriteData.effects[0], player.transform.position, 1f);
         Projectile projectile = spawnManager.Spawn_Projectile_Trap(GetProjectileSprite(), stat, trapAnim, null);
         projectile.transform.position = player.transform.position;
     }

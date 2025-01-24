@@ -20,7 +20,7 @@ public abstract class Effect : MonoBehaviour, IPoolObject
     {
     }
 
-    public void SetTrans(Vector2 pos, float size)
+    public virtual void SetTrans(Vector2 pos, float size)
     {
         transform.position = pos;
         transform.localScale = new Vector2(size, size);
