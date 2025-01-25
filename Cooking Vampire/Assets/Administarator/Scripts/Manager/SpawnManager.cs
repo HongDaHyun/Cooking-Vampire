@@ -13,11 +13,11 @@ public class SpawnManager : Singleton<SpawnManager>
     private void Start()
     {
         Spawn_Droptem(DataManager.Instance.droptemDatas[2], new Vector2(7, 0));
-         Spawn_Relic(DataManager.Instance.relicDatas[37], new Vector2(4, 0));
+        Spawn_Relic(DataManager.Instance.relicDatas[32], new Vector2(4, 0));
         // Spawn_Relic(DataManager.Instance.relicDatas[47], new Vector2(7, 0));
-        Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(6, 1), 1f).enemyMove.enabled = false;
-        Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(8, 0), 1f).enemyMove.enabled = false;
-        Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(10, 1), 1f).enemyMove.enabled = false;
+        // Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(6, 1), 1f).enemyMove.enabled = false;
+        // Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(8, 0), 1f).enemyMove.enabled = false;
+        // Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(10, 1), 1f).enemyMove.enabled = false;
         Spawn_Gem(10, new Vector2(10, 0));
     }
 

@@ -102,7 +102,7 @@ public class Enemy : MonoBehaviour, IPoolObject
         {
             RelicData relicData = dataManager.Export_RelicData(2);
 
-            if (Vector2.Distance(transform.position, gm.player.transform.position) <= relicData.specialContent.FindSpecialContent(StatID_Player.RAN).def)
+            if (Vector2.Distance(transform.position, gm.player.transform.position) <= relicData.specialContent.FindSpecialContent(StatID_Player.RAN).CalDef())
                 dmg = relicData.specialContent.FindSpecialContent(StatID_Player.DMG).CalAmount(dmg);
         }
         if (relicManager.IsHave(32))

@@ -17,8 +17,12 @@ MonoBehaviour:
   relicName: "\uD3ED\uD0C4"
   statContent: []
   specialContent:
-    explain: "\uC544\uC774\uD15C \uD68D\uB4DD \uC2DC 20% \uD655\uB960\uB85C \uD3ED\uBC1C\uD568"
-    specialContents: []
+    explain: "\uC544\uC774\uD15C \uD68D\uB4DD \uC2DC {0} \uD655\uB960\uB85C \uD3ED\uBC1C\uD568"
+    specialContents:
+    - statID: 13
+      def: 20
+      percent: 1
+      unit: '%'
     dealAmount: 0
   explain: "\uBD90!"
   sprites:

@@ -2,38 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Effect_Explosion : Effect
+public class Effect_Explosion : Effect_Particle
 {
     private CircleCollider2D col;
-    private ParticleSystem particle;
-    private AtkStat stat;
-
-    GameManager_Survivor gm;
+    private Projectile projectile;
 
     public override void OnCreatedInPool()
     {
         base.OnCreatedInPool();
         col = GetComponent<CircleCollider2D>();
         particle = GetComponent<ParticleSystem>();
-        gm = GameManager_Survivor.Instance;
-    }
+        projectile = GetComponent<Projectile>();
 
-    public override void OnGettingFromPool()
-    {
-        base.OnGettingFromPool();
-        stat.dmg = gm.stat.Cal_DMG(5);
-        StartCoroutine(LifeRoutine());
+        projectile.stat = new AtkStat();
+        projectile.stat.dmg = 5;
     }
 
     public override void SetTrans(Vector2 pos, float size)
     {
         base.SetTrans(pos, size);
         col.radius = particle.shape.radius;
-    }
-
-    private IEnumerator LifeRoutine()
-    {
-        yield return new WaitForSeconds(particle.main.duration);
-        spawnManager.Destroy_Effect(this);
+        col.enabled = true;
     }
 }

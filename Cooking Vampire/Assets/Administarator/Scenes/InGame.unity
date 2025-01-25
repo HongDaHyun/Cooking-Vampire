@@ -2246,6 +2246,11 @@ MonoBehaviour:
     _count: 0
     _container: {fileID: 774058395}
     _nonLazy: 0
+  - _name: Effect_Heal
+    _component: {fileID: 38382862262321412, guid: f48c560d3f9b3484dbde18c012a1e511, type: 3}
+    _count: 0
+    _container: {fileID: 774058395}
+    _nonLazy: 0
   - _name: StatUI_Player
     _component: {fileID: 3428559996763722253, guid: 8fa26124e7ba0fd4aba123f9bc4fd433, type: 3}
     _count: 0
@@ -2265,6 +2270,11 @@ MonoBehaviour:
     _component: {fileID: 5642844142748978314, guid: b14079795f568374898ffc65f9e27cc5, type: 3}
     _count: 0
     _container: {fileID: 983652939}
+    _nonLazy: 0
+  - _name: Effect_Reborn
+    _component: {fileID: -9128093287667705400, guid: 2b53430bdb658b847b5b64d28c344d58, type: 3}
+    _count: 0
+    _container: {fileID: 774058395}
     _nonLazy: 0
 --- !u!4 &98445037
 Transform:
@@ -81071,7 +81081,7 @@ MonoBehaviour:
     ele: 0
     atkSpeed: 0
     activeT: 0
-    crit: -10
+    crit: 0
     critDmg: 100
     ran: 0
     miss: 0

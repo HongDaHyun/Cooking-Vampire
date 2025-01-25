@@ -368,7 +368,11 @@ public class PlayerStat
 
         int healedAmount = Mathf.Min(amount, HP - curHP);
         curHP += healedAmount;
-        SpawnManager.Instance.Spawn_PopUpTxt(healedAmount.ToString(), PopUpType.Heal, GameManager_Survivor.Instance.player.transform.position);
+
+        SpawnManager sm = SpawnManager.Instance;
+        Vector2 pos = GameManager_Survivor.Instance.player.transform.position;
+        sm.Spawn_PopUpTxt(healedAmount.ToString(), PopUpType.Heal, pos);
+        sm.Spawn_Effect("Heal", pos, 1f);
     }
     public void LevelUp()
     {

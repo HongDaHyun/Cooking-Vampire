@@ -17,7 +17,7 @@ public class LevelManager : Singleton<LevelManager>
         spawnManager = SpawnManager.Instance;
         gm = GameManager_Survivor.Instance;
         // spawnManager.Spawn_Effect_X("∂£¡„", SpawnPoint_Ran(0), 2f);
-        // StartCoroutine(SpawnRoutine());
+        StartCoroutine(SpawnRoutine());
     }
 
     IEnumerator SpawnRoutine()

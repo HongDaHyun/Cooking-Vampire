@@ -23,7 +23,7 @@ public abstract class Effect : MonoBehaviour, IPoolObject
     public virtual void SetTrans(Vector2 pos, float size)
     {
         transform.position = pos;
-        transform.localScale = new Vector2(size, size);
+        transform.localScale = new Vector3(size, size, size);
 
         LimitBorder();
     }

@@ -17,9 +17,11 @@ public class Player : MonoBehaviour
     private Coroutine hitRoutine;
     private bool isHit;
     private int shieldCount;
+    [HideInInspector] public int rebornCount;
     public bool isDead;
 
     [HideInInspector] public GameManager_Survivor gm;
+    private RelicManager relicManager;
     private DataManager dataManager;
     private SpawnManager spawnManager;
     [ReadOnly] public PlayerData data;
@@ -38,6 +40,7 @@ public class Player : MonoBehaviour
     {
         dataManager = DataManager.Instance;
         spawnManager = SpawnManager.Instance;
+        relicManager = RelicManager.Instance;
         gm = GameManager_Survivor.Instance;
 
         data = dataManager.Export_PlayerData();
@@ -96,6 +99,14 @@ public class Player : MonoBehaviour
     }
     private void Dead()
     {
+        if (rebornCount > 0)
+        {
+            rebornCount--;
+            spawnManager.Spawn_Effect("Reborn", transform.position, 1f);
+            gm.stat.HealHP(gm.stat.GetStat(StatID_Player.HP, true));
+            return;
+        }
+
         isDead = true;
         rigid.simulated = false;
         sr.sortingOrder += 1;

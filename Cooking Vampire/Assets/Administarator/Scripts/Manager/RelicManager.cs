@@ -195,6 +195,9 @@ public class RelicManager : Singleton<RelicManager>
                 int curHP = GameManager_Survivor.Instance.stat.curHP;
                 player.Hitted(curHP / 2);
                 break;
+            case 60:
+                GameManager_Survivor.Instance.player.rebornCount++;
+                break;
             case 61:
                 DataManager.Instance.EarnCoin(100);
                 break;
