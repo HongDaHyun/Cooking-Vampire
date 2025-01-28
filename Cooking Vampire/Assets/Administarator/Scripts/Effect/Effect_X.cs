@@ -47,7 +47,10 @@ public class Effect_X : Effect
             .OnComplete(() =>
             {
                 if (!isTrigger)
+                {
                     spawnManager.Spawn_Enemy(spawnName, transform.position, transform.localScale.x);
+                    spawnManager.Destroy_Effect(this);
+                }
                 else
                     spawnManager.Spawn_Effect_X(spawnName, levelManager.SpawnPoint_Ran(0), 1f);
             });

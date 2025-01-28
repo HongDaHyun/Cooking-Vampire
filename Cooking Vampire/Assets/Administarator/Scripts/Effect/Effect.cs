@@ -40,9 +40,4 @@ public abstract class Effect : MonoBehaviour, IPoolObject
 
         transform.position = curPos;
     }
-
-    protected void Destroy()
-    {
-        spawnManager.Destroy_Effect(this);
-    }
 }

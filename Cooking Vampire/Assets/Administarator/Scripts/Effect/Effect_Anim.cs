@@ -17,4 +17,9 @@ public class Effect_Anim : Effect
         anim.runtimeAnimatorController = animatorController;
         SetTrans(pos, size);
     }
+
+    public void Destroy()
+    {
+        spawnManager.Destroy_Effect(this);
+    }
 }

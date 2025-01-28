@@ -13,7 +13,7 @@ public class SpawnManager : Singleton<SpawnManager>
     private void Start()
     {
         Spawn_Droptem(DataManager.Instance.droptemDatas[2], new Vector2(7, 0));
-        Spawn_Relic(DataManager.Instance.relicDatas[32], new Vector2(4, 0));
+        // Spawn_Relic(DataManager.Instance.relicDatas[32], new Vector2(4, 0));
         // Spawn_Relic(DataManager.Instance.relicDatas[47], new Vector2(7, 0));
         // Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(6, 1), 1f).enemyMove.enabled = false;
         // Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(8, 0), 1f).enemyMove.enabled = false;
@@ -277,6 +277,13 @@ public class SpawnManager : Singleton<SpawnManager>
     public void Destroy_ChainThunder(ChainThunder chainThunder)
     {
         PoolManager.Instance.TakeToPool<ChainThunder>(chainThunder);
+    }
+    public Effect_Particle_Loop Spawn_Effect_Loop(string effectName, Transform parent, float size, float lifeTime)
+    {
+        Effect_Particle_Loop effect = PoolManager.Instance.GetFromPool<Effect_Particle_Loop>($"Effect_{effectName}");
+        effect.SetEffect(parent, size, lifeTime);
+
+        return effect;
     }
     #endregion
     #region UI

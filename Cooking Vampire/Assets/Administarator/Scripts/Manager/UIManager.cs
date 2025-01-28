@@ -275,46 +275,8 @@ public class BossPannel
 
         bm.Stop(); // 정지
 
-        float delay = 1f; // 닷트윈 기본 딜레이
-        List<Image> warningImgs = redPannel.GetComponentsInChildren<Image>().ToList();
-        warningImgs.RemoveAt(0); // 부모 오브젝트 제거
-
-        // 닷트윈 시퀀스 시작
-        Sequence warningSeq = DOTween.Sequence().SetUpdate(true)
-            .OnStart(() => {
-                redPannel.gameObject.SetActive(true); // 붉은 배경 활성화
-                // 붉은 배경 초기 알파값 설정
-                Color red = redPannel.color;
-                red.a = 0.2f;
-                redPannel.color = red;
-                // 자식 이미지들 초기 알파값 0으로 지정
-                foreach (Image img in warningImgs)
-                    img.color = new Vector4(1, 1, 1, 0);
-            });
-        Tween redPannelFadeTween = redPannel.DOFade(0.5f, delay).SetLoops(-1, LoopType.Yoyo).SetUpdate(true); // 반복될 트윈(자식 이미지 FadeIn)
-        // 트윈 반복
-        for (int i = 0; i < warningImgs.Count; i++)
-        {
-            // 4번째 마다 FadeIn 속도 빨라짐
-            if (i % 4 == 0 && i != 0)
-            {
-                delay = Mathf.Max(0.1f, delay / 2f);
-                warningSeq.AppendCallback(() => {
-                    redPannelFadeTween.Kill();
-                    redPannelFadeTween = redPannel.DOFade(0.5f, delay).SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
-                });
-            }
-            warningSeq.Append(warningImgs[i].DOFade(1f, delay));
-        }
-        warningSeq.AppendCallback(() => redPannelFadeTween.Kill());
-        // 시퀀스 종료
-        warningSeq.Append(redPannel.DOFade(0f, 1f))
-            .OnComplete(() => {
-                redPannel.gameObject.SetActive(false);
-                bm.Resume();
-                SpawnManager.Instance.Spawn_Effect_X(dm.Export_BossData(dm.curStage).title, lm.SpawnPoint_Ran(0), 2f);
-            });
-        foreach (Image img in warningImgs)
-            warningSeq.Join(img.DOFade(0f, 1f));
+        redPannel.gameObject.SetActive(false);
+        bm.Resume();
+        SpawnManager.Instance.Spawn_Effect_X(dm.Export_BossData(dm.curStage).title, lm.SpawnPoint_Ran(0), 2f);
     }
 }

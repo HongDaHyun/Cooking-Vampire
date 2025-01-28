@@ -92,7 +92,7 @@ public class Enemy : MonoBehaviour, IPoolObject
 
     public void Damaged(int dmg)
     {
-        if (isDamaged)
+        if (isDamaged || isDead)
             return;
 
         dmg = gm.stat.Cal_DMG(dmg);
@@ -110,6 +110,7 @@ public class Enemy : MonoBehaviour, IPoolObject
             EleRoutine(EleType.Thunder, 1);
             spawnManager.Spawn_ChainThunder(3, transform.position);
         }
+        EleRoutine(EleType.Poison, 5);
 
         // 크리티컬
         bool isCrit = gm.stat.Cal_CRIT_Percent();
@@ -128,7 +129,7 @@ public class Enemy : MonoBehaviour, IPoolObject
         // 생존
         if (stat.curHp > 0)
         {
-            if(!enemyMove.isPattern)
+            if (!enemyMove.isPattern)
                 anim.SetTrigger("Damaged");
         }
 
@@ -143,6 +144,9 @@ public class Enemy : MonoBehaviour, IPoolObject
     }
     public void DamagedEle(int dmg)
     {
+        if (isDead)
+            return;
+
         stat.curHp -= Mathf.Min(stat.curHp, dmg);
         spawnManager.Spawn_PopUpTxt(dmg.ToString(), PopUpType.Deal, transform.position);
         StartCoroutine(enemyMove.KnockBack());
@@ -183,6 +187,10 @@ public class Enemy : MonoBehaviour, IPoolObject
     {
         if (data.atkType == AtkType.Box)
             spawnManager.Spawn_Box(transform.position);
+
+        Effect[] effects = GetComponentsInChildren<Effect>();
+        foreach (Effect effect in effects)
+            spawnManager.Destroy_Effect(effect);
 
         spawnManager.Destroy_Enemy(this);
     }
@@ -246,33 +254,41 @@ public class EnemyEleHit
     public IEnumerator EleRoutine(Enemy enemy)
     {
         GameManager_Survivor gm = GameManager_Survivor.Instance;
+        SpawnManager sm = SpawnManager.Instance;
         float calAmount = gm.stat.Cal_Ele(amount, type);
 
         switch(type)
         {
             case EleType.Fire:
+                sm.Spawn_Effect_Loop("Fire", enemy.transform, 1f, Mathf.Min(calAmount, 5f));
+
                 for (int i = 0; i < 5; i++)
                 {
                     if (calAmount <= 0)
                         break;
 
-                    yield return new WaitForSeconds(1f);
-
                     enemy.DamagedEle((int)calAmount);
                     calAmount--;
+
+                    yield return new WaitForSeconds(1f);
                 }
                 break;
             case EleType.Ice:
-                enemy.enemyMove.curSpeed = enemy.stat.speed / 80f;
+                sm.Spawn_Effect_Loop("Ice", enemy.transform, 1f, calAmount);
+                enemy.enemyMove.curSpeed = enemy.stat.speed * 0.8f;
                 yield return new WaitForSeconds(calAmount);
                 enemy.enemyMove.curSpeed = enemy.stat.speed;
                 break;
             case EleType.Poison:
+                sm.Spawn_Effect_Loop("Poison", enemy.transform, 1f, Mathf.Min(calAmount, 4.8f));
                 for (int i = 0; i < 4; i++)
                 {
-                    yield return new WaitForSeconds(1.2f);
+                    if (calAmount <= 0)
+                        break;
 
                     enemy.DamagedEle((int)calAmount);
+
+                    yield return new WaitForSeconds(1.2f);
                 }
                 break;
             case EleType.Thunder:
