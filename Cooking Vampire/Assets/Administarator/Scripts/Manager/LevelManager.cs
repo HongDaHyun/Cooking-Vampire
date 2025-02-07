@@ -8,6 +8,7 @@ public class LevelManager : Singleton<LevelManager>
     public SpawnData[] spawnDatas;
     public int level;
     float levelTime;
+    [HideInInspector] public Coroutine levelRoutine;
 
     SpawnManager spawnManager;
     GameManager_Survivor gm;
@@ -16,8 +17,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         spawnManager = SpawnManager.Instance;
         gm = GameManager_Survivor.Instance;
-        // spawnManager.Spawn_Effect_X("∂£¡„", SpawnPoint_Ran(0), 2f);
-        StartCoroutine(SpawnRoutine());
+        levelRoutine = StartCoroutine(SpawnRoutine());
     }
 
     IEnumerator SpawnRoutine()
@@ -25,7 +25,7 @@ public class LevelManager : Singleton<LevelManager>
         SpawnData curData = spawnDatas[0];
         levelTime = curData.spawnTime;
 
-        while (!gm.player.isDead)
+        while (!gm.player.isDead || !gm.timeEnd)
         {
             if(gm.curGameTime >= levelTime && level < spawnDatas.Length - 1)
             {

@@ -11,6 +11,7 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
     public float MAX_GAMETIME;
     [ReadOnly] public float curGameTime;
     public GameObject[] tileMaps;
+    public bool timeEnd;
 
     [Title("플레이어 정보")]
     public Player player;
@@ -31,10 +32,11 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
     {
         curGameTime += Time.deltaTime;
 
-        if(curGameTime > MAX_GAMETIME)
+        if(curGameTime > MAX_GAMETIME && !timeEnd)
         {
             curGameTime = MAX_GAMETIME;
-            // 클리어
+            timeEnd = true;
+            StartCoroutine(UIManager.Instance.bossPannel.CinematicSequence());
         }    
     }
 
@@ -90,7 +92,7 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
 public class PlayerStat
 {
     [Title("정보")]
-    [ReadOnly] public int curHP;
+    public int curHP;
     [ReadOnly] public int curExp;
     [ReadOnly] public int playerLvCount;
     [ReadOnly] public int level = 1;
@@ -407,16 +409,23 @@ public class PlayerStat
     }
     public float Cal_Ele(int defAmount, EleType type)
     {
+        float returnAmount = 0;
+
         switch(type)
         {
             case EleType.Fire: // 단순 덧셈
             case EleType.Poison:
-                return defAmount + GetStat(StatID_Player.ELE, true);
+                returnAmount = defAmount + GetStat(StatID_Player.ELE, true);
+                break;
             case EleType.Ice: // 최솟값이 2, x값이 커질수록 8에 수렴
-                return 8 - 6 * Mathf.Exp(-0.05f * defAmount);
-            default:
-                return defAmount;
+                returnAmount = 8 - 6 * Mathf.Exp(-0.05f * defAmount);
+                break;
+            case EleType.Thunder:
+                returnAmount = Mathf.Min(defAmount + GetStat(StatID_Player.ELE, true) / 10f, 6);
+                break;
         }
+
+        return Mathf.Max(1, returnAmount);
     }
     public float Cal_AS(float defAtkSpeed)
     {

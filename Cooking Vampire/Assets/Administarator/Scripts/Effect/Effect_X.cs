@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class Effect_X : Effect
 {
+    [HideInInspector] public Enemy spawnEnemy;
     string spawnName;
 
     SpriteRenderer sr;
@@ -21,6 +22,7 @@ public class Effect_X : Effect
     public override void OnGettingFromPool()
     {
         base.OnGettingFromPool();
+        spawnEnemy = null;
         isTrigger = false;
     }
 
@@ -48,7 +50,7 @@ public class Effect_X : Effect
             {
                 if (!isTrigger)
                 {
-                    spawnManager.Spawn_Enemy(spawnName, transform.position, transform.localScale.x);
+                    spawnEnemy = spawnManager.Spawn_Enemy(spawnName, transform.position, transform.localScale.x);
                     spawnManager.Destroy_Effect(this);
                 }
                 else

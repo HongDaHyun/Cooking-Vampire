@@ -37,7 +37,6 @@ public class BtnManager : Singleton<BtnManager>
     public void Stop()
     {
         Time.timeScale = 0;
-
     }
     public void Resume()
     {
@@ -45,6 +44,6 @@ public class BtnManager : Singleton<BtnManager>
     }
     public void TestBoss()
     {
-        UIManager.Instance.bossPannel.SetUI();
+        StartCoroutine(UIManager.Instance.bossPannel.CinematicSequence());
     }
 }

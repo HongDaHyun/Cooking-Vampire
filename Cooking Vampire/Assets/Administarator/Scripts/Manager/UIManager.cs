@@ -6,6 +6,7 @@ using TMPro;
 using System.Linq;
 using Sirenix.OdinInspector;
 using DG.Tweening;
+using Com.LuisPedroFonseca.ProCamera2D;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -22,8 +23,14 @@ public class UIManager : Singleton<UIManager>
     public BossPannel bossPannel;
     public PlayerIcon_Btn playerIcon;
 
+    GameManager_Survivor gm;
+    DataManager dm;
+
     private void Start()
     {
+        gm = GameManager_Survivor.Instance;
+        dm = DataManager.Instance;
+
         lvUpPannel.Set_StatUI_Player();
     }
 
@@ -34,9 +41,6 @@ public class UIManager : Singleton<UIManager>
 
     private void Update_HUD()
     {
-        GameManager_Survivor gm = GameManager_Survivor.Instance;
-        DataManager dm = DataManager.Instance;
-
         // EXP_SLIDER
         float cur = gm.stat.curExp;
         float max = gm.stat.maxExp;
@@ -265,18 +269,48 @@ public struct RelicTooltip
 [System.Serializable]
 public class BossPannel
 {
-    public Image redPannel;
+    public bool isCinematic;
+    public GameObject pannel;
+    public TextMeshProUGUI bossText;
 
-    public void SetUI()
+    public IEnumerator CinematicSequence()
     {
-        BtnManager bm = BtnManager.Instance;
+        isCinematic = true;
         DataManager dm = DataManager.Instance;
         LevelManager lm = LevelManager.Instance;
+        BtnManager bm = BtnManager.Instance;
+        SpawnManager sm = SpawnManager.Instance;
 
-        bm.Stop(); // 정지
+        // 1. 패널UI 설정
+        EnemyData bossData = dm.Export_BossData(dm.curStage);
+        Vector2 spawnPos = lm.SpawnPoint_Ran(0);
+        bossText.text = bossData.title;
+        pannel.SetActive(true);
 
-        redPannel.gameObject.SetActive(false);
-        bm.Resume();
-        SpawnManager.Instance.Spawn_Effect_X(dm.Export_BossData(dm.curStage).title, lm.SpawnPoint_Ran(0), 2f);
+        // 2. 모든 적 죽임
+        lm.StopCoroutine(lm.levelRoutine);
+        sm.KillAll_Enemy();
+
+        // 3. 카메라 시네마틱
+        ProCamera2DCinematics cinematic = Camera.main.GetComponent<ProCamera2DCinematics>();
+
+        Effect_X x = SpawnManager.Instance.Spawn_Effect_X(bossData.title, spawnPos, 2f);
+
+        cinematic.CinematicTargets.Clear();
+        cinematic.AddCinematicTarget(x.transform, 1f);
+        cinematic.Play();
+
+        yield return new WaitUntil(() => x.spawnEnemy != null);
+
+        cinematic.AddCinematicTarget(x.spawnEnemy.transform, 1f);
+        cinematic.GoToNextTarget();
+
+        yield return new WaitForSeconds(3f);
+
+        cinematic.Stop();
+        cinematic.CinematicTargets.Clear();
+
+        pannel.SetActive(false);
+        isCinematic = false;
     }
 }

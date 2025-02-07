@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour, IPoolObject
     [HideInInspector] public DataManager dataManager;
     [HideInInspector] public SpawnManager spawnManager;
     [HideInInspector] public SpriteData spriteData;
+    [HideInInspector] public UIManager uiManager;
     RelicManager relicManager;
 
     public void OnCreatedInPool()
@@ -34,6 +35,7 @@ public class Enemy : MonoBehaviour, IPoolObject
         dataManager = DataManager.Instance;
         spriteData = SpriteData.Instance;
         relicManager = RelicManager.Instance;
+        uiManager = UIManager.Instance;
 
         col = GetComponent<CapsuleCollider2D>();
         rigid = GetComponent<Rigidbody2D>();
@@ -59,6 +61,12 @@ public class Enemy : MonoBehaviour, IPoolObject
 
         SetStat(data, size);
         ReSet();
+
+        if (data.atkType != AtkType.Boss && uiManager.bossPannel.isCinematic)
+        {
+            Destroy();
+            return;
+        }
     }
 
     private void ReSet()
@@ -97,7 +105,6 @@ public class Enemy : MonoBehaviour, IPoolObject
 
         dmg = gm.stat.Cal_DMG(dmg);
 
-        // À¯¹° 2
         if(relicManager.IsHave(2))
         {
             RelicData relicData = dataManager.Export_RelicData(2);
@@ -107,17 +114,15 @@ public class Enemy : MonoBehaviour, IPoolObject
         }
         if (relicManager.IsHave(32))
         {
-            EleRoutine(EleType.Thunder, 1);
-            spawnManager.Spawn_ChainThunder(3, transform.position);
+            EleRoutine(EleType.Thunder, 3);
+            spawnManager.Spawn_ChainThunder(3, this);
         }
-        EleRoutine(EleType.Poison, 5);
+        EleRoutine(EleType.Fire, 3);
 
-        // Å©¸®Æ¼ÄÃ
         bool isCrit = gm.stat.Cal_CRIT_Percent();
         if (isCrit)
             dmg = gm.stat.Cal_CRIT_DMG(dmg);
 
-        // Ã¼·Â Èí¼ö
         if (gm.stat.Cal_DRA_Percent())
             gm.stat.HealHP(1);
 
@@ -126,47 +131,65 @@ public class Enemy : MonoBehaviour, IPoolObject
         hitRoutine = StartCoroutine(DamagedRoutine());
         StartCoroutine(enemyMove.KnockBack());
 
-        // »ýÁ¸
         if (stat.curHp > 0)
         {
             if (!enemyMove.isPattern)
                 anim.SetTrigger("Damaged");
         }
 
-        // Á×À½
         else
         {
             if (isCrit && relicManager.IsHave(39) && dataManager.Get_Ran(3))
                 gm.stat.HealHP(1);
 
-            Dead();
+            Dead(false);
         }
     }
-    public void DamagedEle(int dmg)
+    public void DamagedEle(int dmg, EleType eleType)
     {
         if (isDead)
             return;
 
         stat.curHp -= Mathf.Min(stat.curHp, dmg);
-        spawnManager.Spawn_PopUpTxt(dmg.ToString(), PopUpType.Deal, transform.position);
+
+        PopUpType popUpType = PopUpType.Deal;
+        switch(eleType)
+        {
+            case EleType.Fire:
+                popUpType = PopUpType.Ele_Fire;
+                break;
+            case EleType.Ice:
+                popUpType = PopUpType.Ele_Ice;
+                break;
+            case EleType.Poison:
+                popUpType = PopUpType.Ele_Poison;
+                break;
+            case EleType.Thunder:
+                popUpType = PopUpType.Ele_Thunder;
+                break;
+        }
+
+        spawnManager.Spawn_PopUpTxt(dmg.ToString(), popUpType, transform.position);
         StartCoroutine(enemyMove.KnockBack());
 
-        // Á×À½
+        // ï¿½ï¿½ï¿½ï¿½
         if (stat.curHp <= 0)
         {
-            Dead();
+            Dead(false);
         }
     }
-    private void Dead()
+    public void Dead(bool isForce)
     {
         isDead = true;
         col.enabled = false;
         rigid.simulated = false;
         anim.SetTrigger("Dead");
 
-        // µ¥ÀÌÅÍ Ã³¸®
-        gm.killCount++;
-        spawnManager.Spawn_Gems(Random.Range(data.gemAmount, data.gemAmount + gm.stat.LUK / 10), transform.position);
+        if(!isForce)
+        {
+            gm.killCount++;
+            spawnManager.Spawn_Gems(Random.Range(data.gemAmount, data.gemAmount + gm.stat.LUK / 10), transform.position);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -178,7 +201,7 @@ public class Enemy : MonoBehaviour, IPoolObject
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        // Ãæµ¹½Ã ¹°¸® ¿µÇâ ¹æÁö
+        // ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if(collision.gameObject.CompareTag("Enemy"))
             rigid.velocity = Vector3.zero;
     }
@@ -215,18 +238,38 @@ public class Enemy : MonoBehaviour, IPoolObject
     public void EleRoutine(EleType type, int amount)
     {
         EnemyEleHit eleHit = Find_EleHit(type);
-        if (amount >= eleHit.amount)
-        {
-            if (eleHit.eleRoutine != null)
-                StopCoroutine(eleHit.eleRoutine);
 
-            eleHit.amount = amount;
-            eleHit.eleRoutine = StartCoroutine(eleHit.EleRoutine(this));
-        }
+        eleHit.amount = amount;
+        eleHit.eleRoutine = StartCoroutine(eleHit.EleRoutine(this));
     }
     public EnemyEleHit Find_EleHit(EleType type)
     {
         return System.Array.Find(enemyEleHits, ele => ele.type == type);
+    }
+
+    public List<Enemy> Find_NearEnemy()
+    {
+        LayerMask enemyLayer = LayerMask.GetMask("Enemy");
+        List<Enemy> nearEnemies = new List<Enemy>();
+
+        Collider2D[] enemiesInRange = Physics2D.OverlapCircleAll(transform.position, 5f, enemyLayer);
+
+        foreach (Collider2D enemy in enemiesInRange)
+        {
+            Enemy nearEnemy = enemy.GetComponent<Enemy>();
+
+            if (nearEnemy != null)
+                nearEnemies.Add(nearEnemy);
+        }
+
+        return nearEnemies;
+    }
+    public List<Enemy> Find_NearEnemy(EleType type)
+    {
+        List<Enemy> nearEnemies = Find_NearEnemy();
+        List<Enemy> eleEnemies = nearEnemies.FindAll(near => near.Find_EleHit(type).amount == 0);
+
+        return eleEnemies;
     }
 }
 
@@ -267,7 +310,7 @@ public class EnemyEleHit
                     if (calAmount <= 0)
                         break;
 
-                    enemy.DamagedEle((int)calAmount);
+                    enemy.DamagedEle((int)calAmount, type);
                     calAmount--;
 
                     yield return new WaitForSeconds(1f);
@@ -286,13 +329,13 @@ public class EnemyEleHit
                     if (calAmount <= 0)
                         break;
 
-                    enemy.DamagedEle((int)calAmount);
+                    enemy.DamagedEle((int)calAmount, type);
 
                     yield return new WaitForSeconds(1.2f);
                 }
                 break;
             case EleType.Thunder:
-                enemy.DamagedEle((int)calAmount);
+                enemy.DamagedEle((int)calAmount, type);
                 yield return new WaitForSeconds(1f);
                 break;
         }

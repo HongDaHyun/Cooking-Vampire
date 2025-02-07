@@ -60,6 +60,22 @@ public class PopUpTxt : MonoBehaviour, IPoolObject
                 textMeshPro.text = contents;
                 textMeshPro.color = spriteData.Export_Pallate("Bright_Brown");
                 break;
+            case PopUpType.Ele_Fire:
+                textMeshPro.text = contents;
+                textMeshPro.color = spriteData.Export_Pallate("Orange");
+                break;
+            case PopUpType.Ele_Ice:
+                textMeshPro.text = contents;
+                textMeshPro.color = spriteData.Export_Pallate("Blue");
+                break;
+            case PopUpType.Ele_Poison:
+                textMeshPro.text = contents;
+                textMeshPro.color = spriteData.Export_Pallate("Purple");
+                break;
+            case PopUpType.Ele_Thunder:
+                textMeshPro.text = contents;
+                textMeshPro.color = spriteData.Export_Pallate("Mint");
+                break;
         }
     }
 
@@ -73,4 +89,4 @@ public class PopUpTxt : MonoBehaviour, IPoolObject
     }
 }
 
-public enum PopUpType { Deal, Deal_Crit, Heal, Block, StatUP }
+public enum PopUpType { Deal, Deal_Crit, Heal, Block, StatUP, Ele_Fire, Ele_Ice, Ele_Poison, Ele_Thunder }

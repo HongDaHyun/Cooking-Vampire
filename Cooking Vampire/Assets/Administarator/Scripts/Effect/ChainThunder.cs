@@ -7,9 +7,8 @@ public class ChainThunder : MonoBehaviour, IPoolObject
 {
     SpawnManager sm;
 
-    public LayerMask enemyLayer;
+    public Enemy parentEnemy;
     public int amountToChain;
-    public List<Enemy> nearEnemies;
 
     public ParticleSystem particle;
 
@@ -20,13 +19,14 @@ public class ChainThunder : MonoBehaviour, IPoolObject
 
     public void OnGettingFromPool()
     {
-        nearEnemies.Clear();
     }
 
-    public void SetChainThunder(int _amountToChain, Vector2 pos)
+    public void SetChainThunder(int _amountToChain, Enemy enemy)
     {
+        parentEnemy = enemy;
+
         amountToChain = _amountToChain;
-        Vector2 startPos = new Vector2(pos.x, pos.y + 0.5f);
+        Vector2 startPos = enemy.transform.position + new Vector3(0, 0.5f);
         transform.position = startPos;
 
         Shoot_NearEnemy();
@@ -35,38 +35,24 @@ public class ChainThunder : MonoBehaviour, IPoolObject
     private void Shoot_NearEnemy()
     {
         // 1. 주변 적 찾기
-        RaycastHit2D[] enemiesInRange = Physics2D.CircleCastAll(transform.position, 5f, Vector2.zero, 0, enemyLayer);
+        List<Enemy> nearEnemies = parentEnemy.Find_NearEnemy(EleType.Thunder);
+        amountToChain--;
 
-        foreach (RaycastHit2D enemy in enemiesInRange)
-        {
-            Enemy nearEnemy = enemy.collider.GetComponent<Enemy>();
-
-            if (nearEnemy.Find_EleHit(EleType.Thunder).amount == 0 && nearEnemy != null)
-                nearEnemies.Add(nearEnemy);
-        }
-
-        if (nearEnemies.Count == 0)
+        if (nearEnemies.Count == 0 || amountToChain == 0)
         {
             amountToChain = 0;
-            StartCoroutine(ShootRoutine(transform.position, transform.position));
+            StartCoroutine(ShootRoutine(parentEnemy, parentEnemy));
         }
         else
         {
             Enemy tarEnemy = nearEnemies[Random.Range(0, nearEnemies.Count)];
-
-            tarEnemy.EleRoutine(EleType.Thunder, 1);
-
-            amountToChain--;
-
-            Vector2 tarPos = tarEnemy.transform.position;
-            tarPos += Vector2.up * 0.5f;
-            StartCoroutine(ShootRoutine(transform.position, tarPos));
+            StartCoroutine(ShootRoutine(parentEnemy, tarEnemy));
         }
     }
 
-    private IEnumerator ShootRoutine(Vector2 startPos, Vector2 tarPos)
+    private IEnumerator ShootRoutine(Enemy startEnemy, Enemy tarEnemy)
     {
-        if(startPos == tarPos)
+        if(startEnemy == tarEnemy)
         {
             yield return new WaitForSeconds(particle.main.duration);
             sm.Destroy_ChainThunder(this);
@@ -74,6 +60,8 @@ public class ChainThunder : MonoBehaviour, IPoolObject
         }
 
         float lerpTime = 0f;
+        Vector2 startPos = startEnemy.transform.position;
+        Vector2 tarPos = tarEnemy.transform.position;
 
         yield return new WaitForFixedUpdate();
 
@@ -88,8 +76,9 @@ public class ChainThunder : MonoBehaviour, IPoolObject
         }
 
         // 마지막 위치 보정
+        tarEnemy.EleRoutine(EleType.Thunder, amountToChain);
         transform.position = tarPos;
-        sm.Spawn_ChainThunder(amountToChain, tarPos);
+        sm.Spawn_ChainThunder(amountToChain, tarEnemy);
         sm.Destroy_ChainThunder(this);
     }
 }

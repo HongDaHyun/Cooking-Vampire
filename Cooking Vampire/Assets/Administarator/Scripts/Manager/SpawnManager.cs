@@ -12,11 +12,12 @@ public class SpawnManager : Singleton<SpawnManager>
 
     private void Start()
     {
-        Spawn_Droptem(DataManager.Instance.droptemDatas[2], new Vector2(7, 0));
+        // Spawn_Droptem(DataManager.Instance.droptemDatas[2], new Vector2(7, 0));
         // Spawn_Relic(DataManager.Instance.relicDatas[32], new Vector2(4, 0));
-        // Spawn_Relic(DataManager.Instance.relicDatas[47], new Vector2(7, 0));
+        // Spawn_Relic(DataManager.Instance.relicDatas[32], new Vector2(7, 0));
         // Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(6, 1), 1f).enemyMove.enabled = false;
         // Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(8, 0), 1f).enemyMove.enabled = false;
+        // Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(8, 2), 1f).enemyMove.enabled = false;
         // Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(10, 1), 1f).enemyMove.enabled = false;
         Spawn_Gem(10, new Vector2(10, 0));
     }
@@ -73,6 +74,13 @@ public class SpawnManager : Singleton<SpawnManager>
         enemyList.Remove(enemy);
 
         PoolManager.Instance.TakeToPool<Enemy>(enemyName, enemy);
+    }
+    public void KillAll_Enemy()
+    {
+        foreach(Enemy enemy in enemyList)
+        {
+            enemy.Dead(true);
+        }
     }
     #endregion
     #region ≈ıªÁ√º
@@ -265,12 +273,12 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         PoolManager.Instance.TakeToPool<Effect>(effect.name, effect);
     }
-    public ChainThunder Spawn_ChainThunder(int amountToChain, Vector2 pos)
+    public ChainThunder Spawn_ChainThunder(int amountToChain, Enemy enemy)
     {
         if (amountToChain <= 0)
             return null;
         ChainThunder thunder = PoolManager.Instance.GetFromPool<ChainThunder>("Effect_ChainThunder");
-        thunder.SetChainThunder(amountToChain, pos);
+        thunder.SetChainThunder(amountToChain, enemy);
 
         return thunder;
     }
