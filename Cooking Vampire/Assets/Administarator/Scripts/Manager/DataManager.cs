@@ -56,7 +56,7 @@ public class DataManager : Singleton<DataManager>
     }
     public DroptemData Export_DroptemData_Ran()
     {
-        TierType ranTier = GameManager_Survivor.Instance.Get_Tier();
+        TierType ranTier = GameManager_Survivor.Instance.stat.Get_Tier();
 
         DroptemData[] dropArray = Array.FindAll(droptemDatas, data => data.tierType == ranTier);
         

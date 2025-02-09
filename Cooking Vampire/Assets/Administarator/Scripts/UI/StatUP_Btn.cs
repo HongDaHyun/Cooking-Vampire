@@ -10,7 +10,7 @@ public class StatUP_Btn : UP_Btn
     public void SetBtn(StatID_Player statID)
     {
         ID = statID;
-        TierType tier = gm.Get_Tier();
+        TierType tier = gm.stat.Get_Tier();
 
         // 데이터 설정
         StatData_Player statData = cm.Find_StatData_Player(statID);

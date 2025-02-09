@@ -46,36 +46,6 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
 
         return new Vector2(playerPos.x + UnityEngine.Random.Range(-noise, noise), playerPos.y + UnityEngine.Random.Range(-noise, noise));
     }
-    public TierType Get_Tier()
-    {
-        int weightedLuck = UnityEngine.Random.Range(0, 100 + stat.LUK) + Get_TimeDifficult();
-
-        // 확률 기반으로 티어 결정 (weightedLuck이 클수록 높은 티어 확률 증가)
-        float epicChance = Mathf.Clamp((weightedLuck - 100) * 0.3f, 0, 30);      // epic은 빠르게 증가 (최대 30%)
-        float legendChance = Mathf.Clamp((weightedLuck - 100) * 0.2f, 0, 30);    // legend는 epic보다 약간 덜 증가 (최대 30%)
-
-        // rareChance는 epicChance와 legendChance가 높아질수록 줄어들도록 설정
-        float rareChanceBase = Mathf.Clamp(40 + (weightedLuck * 0.1f), 40, 60);  // 기본 rare 확률
-        float rareChance = Mathf.Clamp(rareChanceBase - (epicChance + legendChance) * 0.5f, 10, rareChanceBase);  // epic, legend 증가에 따라 rare 감소
-
-        // commonChance는 나머지 확률로 설정되며, rareChance와 epicChance, legendChance가 증가함에 따라 줄어듦
-        float commonChance = Mathf.Clamp(100 - rareChance - epicChance - legendChance, 10, 60);  // common은 나머지
-
-        // 총합 계산
-        float totalChance = legendChance + epicChance + rareChance + commonChance;
-
-        // 난수 생성 및 확률에 따라 티어 선택
-        float randomValue = UnityEngine.Random.Range(0f, totalChance);
-
-        if (randomValue <= legendChance)
-            return TierType.Legend;
-        else if (randomValue <= legendChance + epicChance)
-            return TierType.Epic;
-        else if (randomValue <= legendChance + epicChance + rareChance)
-            return TierType.Rare;
-        else
-            return TierType.Common;
-    }
     public int Get_TimeDifficult()
     {
         return Mathf.Max(1, Mathf.RoundToInt(curGameTime / 10));
@@ -390,6 +360,36 @@ public class PlayerStat
         UIManager.Instance.lvUpPannel.Tab(BtnManager.Instance);
     }
 
+    public TierType Get_Tier()
+    {
+        int weightedLuck = UnityEngine.Random.Range(0, 100 + GetStat(StatID_Player.LUK, false)) + GameManager_Survivor.Instance.Get_TimeDifficult();
+
+        // 확률 기반으로 티어 결정 (weightedLuck이 클수록 높은 티어 확률 증가)
+        float epicChance = Mathf.Clamp((weightedLuck - 100) * 0.3f, 0, 30);      // epic은 빠르게 증가 (최대 30%)
+        float legendChance = Mathf.Clamp((weightedLuck - 100) * 0.2f, 0, 30);    // legend는 epic보다 약간 덜 증가 (최대 30%)
+
+        // rareChance는 epicChance와 legendChance가 높아질수록 줄어들도록 설정
+        float rareChanceBase = Mathf.Clamp(40 + (weightedLuck * 0.1f), 40, 60);  // 기본 rare 확률
+        float rareChance = Mathf.Clamp(rareChanceBase - (epicChance + legendChance) * 0.5f, 10, rareChanceBase);  // epic, legend 증가에 따라 rare 감소
+
+        // commonChance는 나머지 확률로 설정되며, rareChance와 epicChance, legendChance가 증가함에 따라 줄어듦
+        float commonChance = Mathf.Clamp(100 - rareChance - epicChance - legendChance, 10, 60);  // common은 나머지
+
+        // 총합 계산
+        float totalChance = legendChance + epicChance + rareChance + commonChance;
+
+        // 난수 생성 및 확률에 따라 티어 선택
+        float randomValue = UnityEngine.Random.Range(0f, totalChance);
+
+        if (randomValue <= legendChance)
+            return TierType.Legend;
+        else if (randomValue <= legendChance + epicChance)
+            return TierType.Epic;
+        else if (randomValue <= legendChance + epicChance + rareChance)
+            return TierType.Rare;
+        else
+            return TierType.Common;
+    }
     public float Cal_HPREG_Cool()
     {
         return 5f / (1 + (GetStat(StatID_Player.HPREG, true) - 1) / 2.25f);

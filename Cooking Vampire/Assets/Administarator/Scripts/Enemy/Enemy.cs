@@ -191,8 +191,12 @@ public class Enemy : MonoBehaviour, IPoolObject
 
             if(data.ingredientID != -1)
             {
-                // 확률 처리 해야함
-                spawnManager.Spawn_IngredientDrop(data.ingredientID, transform.position);
+                TierType tier = gm.stat.Get_Tier();
+
+                if (data.atkType == AtkType.Boss || tier == TierType.Epic)
+                    spawnManager.Spawn_IngredientDrop(data.ingredientID, transform.position);
+                else if (tier == TierType.Legend)
+                    spawnManager.Spawn_Relic_Ran(transform.position);
             }
 
             spawnManager.Spawn_Gems(Random.Range(data.gemAmount, data.gemAmount + gm.stat.LUK / 10), transform.position);

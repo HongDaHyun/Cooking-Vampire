@@ -5,6 +5,7 @@ using Redcode.Pools;
 using TMPro;
 using DG.Tweening;
 using UnityEngine.UI;
+using System.Linq;
 
 public class SpawnManager : Singleton<SpawnManager>
 {
@@ -221,6 +222,18 @@ public class SpawnManager : Singleton<SpawnManager>
         relic.SetRelic(data, pos);
 
         return relic;
+    }
+    public Relic Spawn_Relic_Ran(Vector2 pos)
+    {
+        DataManager dm = DataManager.Instance;
+        RelicManager rm = RelicManager.Instance;
+
+        List<RelicData> relicList = dm.relicDatas.Where(x => !rm.relicCollectors.Contains(x.ID)).ToList();
+
+        if (relicList.Count == 0)
+            return null;
+
+        return Spawn_Relic(relicList[Random.Range(0, relicList.Count)], pos);
     }
     public Ingredient_Drop Spawn_IngredientDrop(int ID, Vector2 pos)
     {
