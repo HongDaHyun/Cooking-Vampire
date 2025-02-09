@@ -4,7 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
 
-[CreateAssetMenu(fileName = "PlayerData", menuName = "PlayerData")]
+[CreateAssetMenu(fileName = "PlayerData", menuName = "DataCreator/PlayerData")]
 public class PlayerData : ScriptableObject
 {
     [Title("UI")]

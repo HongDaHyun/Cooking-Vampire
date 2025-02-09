@@ -117,7 +117,7 @@ public class Enemy : MonoBehaviour, IPoolObject
             EleRoutine(EleType.Thunder, 3);
             spawnManager.Spawn_ChainThunder(3, this);
         }
-        EleRoutine(EleType.Fire, 3);
+        EleRoutine(EleType.Poison, 3);
 
         bool isCrit = gm.stat.Cal_CRIT_Percent();
         if (isCrit)
@@ -247,7 +247,7 @@ public class Enemy : MonoBehaviour, IPoolObject
         return System.Array.Find(enemyEleHits, ele => ele.type == type);
     }
 
-    public List<Enemy> Find_NearEnemy()
+    public List<Enemy> Find_NearEnemies()
     {
         LayerMask enemyLayer = LayerMask.GetMask("Enemy");
         List<Enemy> nearEnemies = new List<Enemy>();
@@ -264,12 +264,28 @@ public class Enemy : MonoBehaviour, IPoolObject
 
         return nearEnemies;
     }
-    public List<Enemy> Find_NearEnemy(EleType type)
+    public List<Enemy> Find_NearEnemies(EleType type)
     {
-        List<Enemy> nearEnemies = Find_NearEnemy();
+        List<Enemy> nearEnemies = Find_NearEnemies();
         List<Enemy> eleEnemies = nearEnemies.FindAll(near => near.Find_EleHit(type).amount == 0);
 
         return eleEnemies;
+    }
+    public Enemy Find_NearEnemy_Ran()
+    {
+        List<Enemy> nearEnemies = Find_NearEnemies();
+
+        if (nearEnemies.Count == 0)
+            return null;
+        return nearEnemies[Random.Range(0, nearEnemies.Count)];
+    }
+    public Enemy Find_NearEnemy_Ran(EleType type)
+    {
+        List<Enemy> nearEnemies = Find_NearEnemies(type);
+
+        if (nearEnemies.Count == 0)
+            return null;
+        return nearEnemies[Random.Range(0, nearEnemies.Count)];
     }
 }
 
@@ -323,15 +339,27 @@ public class EnemyEleHit
                 enemy.enemyMove.curSpeed = enemy.stat.speed;
                 break;
             case EleType.Poison:
-                sm.Spawn_Effect_Loop("Poison", enemy.transform, 1f, Mathf.Min(calAmount, 4.8f));
+                if (calAmount <= 0)
+                    break;
+                sm.Spawn_Effect_Loop("Poison", enemy.transform, 1f, 4.8f);
                 for (int i = 0; i < 4; i++)
                 {
-                    if (calAmount <= 0)
-                        break;
-
                     enemy.DamagedEle((int)calAmount, type);
 
                     yield return new WaitForSeconds(1.2f);
+                }
+
+                if(RelicManager.Instance.IsHave(37))
+                {
+                    Enemy tarEnemy = enemy.Find_NearEnemy_Ran(EleType.Poison);
+
+                    if (tarEnemy == null)
+                        break;
+
+                    int dmg = (int)calAmount - 1 - gm.stat.GetStat(StatID_Player.ELE, true);
+
+                    if(dmg >= 1)
+                        tarEnemy.EleRoutine(EleType.Poison, dmg);
                 }
                 break;
             case EleType.Thunder:

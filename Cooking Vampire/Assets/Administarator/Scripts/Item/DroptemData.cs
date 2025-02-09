@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "DroptemData", menuName = "DroptemData")]
+[CreateAssetMenu(fileName = "DroptemData", menuName = "DataCreator/DroptemData")]
 public class DroptemData : ScriptableObject
 {
     public TierType tierType;

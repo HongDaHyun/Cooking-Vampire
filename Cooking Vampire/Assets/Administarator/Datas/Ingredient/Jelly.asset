@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8f880652a86ee41a270721e3ed970d, type: 3}
+  m_Name: Jelly
+  m_EditorClassIdentifier: 
+  title: "\uC824\uB9AC"
+  sprites:
+  - {fileID: -213174380, guid: a72656eb15590c449ab3869f8dde290a, type: 3}
+  - {fileID: -928178437, guid: a72656eb15590c449ab3869f8dde290a, type: 3}
+  - {fileID: -1425087246, guid: 25c935acfb40d50409829e08898a4216, type: 3}
+  ID: 6
+  amount: 0
+  isDrop: 1

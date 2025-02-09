@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "RelicData", menuName = "RelicData")]
+[CreateAssetMenu(fileName = "RelicData", menuName = "DataCreator/RelicData")]
 public class RelicData : ScriptableObject
 {
     public int ID;

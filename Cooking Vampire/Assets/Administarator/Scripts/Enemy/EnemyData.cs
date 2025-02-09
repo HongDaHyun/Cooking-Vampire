@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyData", menuName = "EnemyData")]
+[CreateAssetMenu(fileName = "EnemyData", menuName = "DataCreator/EnemyData")]
 public class EnemyData : ScriptableObject
 {
     [Title("UI")]

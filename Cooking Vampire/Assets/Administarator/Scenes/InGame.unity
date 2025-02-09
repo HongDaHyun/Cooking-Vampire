@@ -19774,6 +19774,7 @@ MonoBehaviour:
       explainTxt: {fileID: 1207805254}
     statUI_Players: []
   bossPannel:
+    isCinematic: 0
     pannel: {fileID: 637384210}
     bossText: {fileID: 1306482693}
   playerIcon: {fileID: 1323693282}
@@ -24948,7 +24949,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 4294967295
 --- !u!114 &447595242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80215,6 +80216,7 @@ MonoBehaviour:
   - {fileID: 2136128229}
   - {fileID: 1736847679}
   - {fileID: 45026316}
+  timeEnd: 0
   player: {fileID: 75309338}
   killCount: 0
   stat:

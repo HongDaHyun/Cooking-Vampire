@@ -35,17 +35,16 @@ public class ChainThunder : MonoBehaviour, IPoolObject
     private void Shoot_NearEnemy()
     {
         // 1. 주변 적 찾기
-        List<Enemy> nearEnemies = parentEnemy.Find_NearEnemy(EleType.Thunder);
+        Enemy tarEnemy = parentEnemy.Find_NearEnemy_Ran(EleType.Thunder);
         amountToChain--;
 
-        if (nearEnemies.Count == 0 || amountToChain == 0)
+        if (tarEnemy == null || amountToChain == 0)
         {
             amountToChain = 0;
             StartCoroutine(ShootRoutine(parentEnemy, parentEnemy));
         }
         else
         {
-            Enemy tarEnemy = nearEnemies[Random.Range(0, nearEnemies.Count)];
             StartCoroutine(ShootRoutine(parentEnemy, tarEnemy));
         }
     }
