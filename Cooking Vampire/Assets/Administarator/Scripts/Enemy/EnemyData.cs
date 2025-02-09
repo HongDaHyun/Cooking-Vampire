@@ -15,8 +15,8 @@ public class EnemyData : ScriptableObject
     public float speed;
     public float hpScale = 1f;
     public int gemAmount;
+    public int ingredientID; // -1이면 드롭 X
     public AtkType atkType;
-    public EleType eleType;
     public RuntimeAnimatorController[] animators;
     public ColliderSetting colSetting;
 

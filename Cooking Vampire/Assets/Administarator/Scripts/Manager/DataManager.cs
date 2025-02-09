@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Sirenix.OdinInspector;
+using System.Linq;
 
 public class DataManager : Singleton<DataManager>
 {
@@ -11,6 +12,7 @@ public class DataManager : Singleton<DataManager>
     public PlayerType curPlayer;
     public WeaponData curWeapon;
     public int coin;
+    public List<int> ingredientInventory;
 
     [Title("정적 데이터")]
     public PlayerData[] playerDatas;
@@ -18,6 +20,7 @@ public class DataManager : Singleton<DataManager>
     public WeaponData[] weaponDatas;
     public DroptemData[] droptemDatas;
     public RelicData[] relicDatas;
+    public IngredientData[] ingredientDatas;
 
     public void EarnCoin(int amount)
     {
@@ -72,6 +75,25 @@ public class DataManager : Singleton<DataManager>
     public ref RelicData Export_RelicData_Ref(int ID)
     {
         return ref relicDatas[Array.FindIndex(relicDatas, data => data.ID == ID)];
+    }
+    #endregion
+    #region 재료
+    public IngredientData Export_IngredientData(int ID)
+    {
+        return Array.Find(ingredientDatas, data => data.ID == ID);
+    }
+    public void Gain_Ingredient(int ID, int amount)
+    {
+        for (int i = 0; i < amount; i++)
+            ingredientInventory.Add(ID);
+    }
+    public void Lose_Ingredient(int ID)
+    {
+        ingredientInventory.Remove(ID);
+    }
+    public void Count_Ingredient(int ID)
+    {
+        ingredientInventory.Count(x => x == ID);
     }
     #endregion
 

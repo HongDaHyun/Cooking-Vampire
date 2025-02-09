@@ -23,7 +23,7 @@ public class EnemyMove_Area : EnemyMove
 
     public void ShootArea()
     {
-        Area_Sprite sprite = enemy.spriteData.Export_Area_Sprite(enemy.data.eleType);
+        Area_Sprite sprite = enemy.spriteData.Export_Area_Sprite(enemy.data.title);
         enemy.spawnManager.Spawn_Projectile_Area(1f, sprite.anim, transform);
     }
 }

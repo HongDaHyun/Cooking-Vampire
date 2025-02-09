@@ -117,7 +117,7 @@ public class Enemy : MonoBehaviour, IPoolObject
             EleRoutine(EleType.Thunder, 3);
             spawnManager.Spawn_ChainThunder(3, this);
         }
-        EleRoutine(EleType.Poison, 3);
+        // EleRoutine(EleType.Poison, 3); (Test)
 
         bool isCrit = gm.stat.Cal_CRIT_Percent();
         if (isCrit)
@@ -188,6 +188,13 @@ public class Enemy : MonoBehaviour, IPoolObject
         if(!isForce)
         {
             gm.killCount++;
+
+            if(data.ingredientID != -1)
+            {
+                // 확률 처리 해야함
+                spawnManager.Spawn_IngredientDrop(data.ingredientID, transform.position);
+            }
+
             spawnManager.Spawn_Gems(Random.Range(data.gemAmount, data.gemAmount + gm.stat.LUK / 10), transform.position);
         }
     }

@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Redcode.Pools;
-using Sirenix.OdinInspector;
 
-public class Relic : Item, IPoolObject
+public class Ingredient_Drop : Item
 {
-    public RelicData data;
+    public IngredientData data;
 
-    public void SetRelic(RelicData _Data, Vector2 pos)
+    public void SetIngredient(int ID, Vector2 pos)
     {
-        data = _Data;
+        data = dm.Export_IngredientData(ID);
 
         Drop(pos);
+    }
+
+    protected override void Destroy()
+    {
+        dm.Gain_Ingredient(data.ID, 1);
+        spawnManager.Destroy_Item(this);
     }
 
     protected override void Drain()
@@ -24,11 +28,5 @@ public class Relic : Item, IPoolObject
     protected override void Drop(Vector2 pos)
     {
         DropRanPos(pos, data.sprites[1], data.sprites[0]);
-    }
-
-    protected override void Destroy()
-    {
-        data.Collect();
-        spawnManager.Destroy_Item(this);
     }
 }

@@ -18,6 +18,7 @@ MonoBehaviour:
   speed: 2
   hpScale: 20
   gemAmount: 20
+  ingredientID: 2
   atkType: 5
   eleType: 0
   animators:

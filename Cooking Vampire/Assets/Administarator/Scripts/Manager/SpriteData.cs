@@ -76,9 +76,9 @@ public class SpriteData : Singleton<SpriteData>
         return Array.Find(enemyProjectile_Sprites, data => data.name == name);
     }
 
-    public Area_Sprite Export_Area_Sprite(EleType type)
+    public Area_Sprite Export_Area_Sprite(string enemyName)
     {
-        return Array.Find(area_Sprites, data => data.eleType == type);
+        return Array.Find(area_Sprites, data => data.enemyName == enemyName);
     }
 }
 public enum EleType { Fire = 0, Ice, Poison, Thunder }
@@ -123,6 +123,6 @@ public struct Enemy_Projectile_Sprite
 [Serializable]
 public struct Area_Sprite
 {
-    public EleType eleType;
+    public string enemyName;
     public RuntimeAnimatorController anim;
 }

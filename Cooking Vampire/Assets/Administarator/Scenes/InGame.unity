@@ -2196,6 +2196,11 @@ MonoBehaviour:
     _count: 0
     _container: {fileID: 983652939}
     _nonLazy: 0
+  - _name: Ingredient_Drop
+    _component: {fileID: -3072820329620949300, guid: b727ae74f513485458dc63f3098a0abd, type: 3}
+    _count: 0
+    _container: {fileID: 983652939}
+    _nonLazy: 0
   - _name: Effect_Reborn
     _component: {fileID: -9128093287667705400, guid: 2b53430bdb658b847b5b64d28c344d58, type: 3}
     _count: 0
@@ -34749,6 +34754,7 @@ MonoBehaviour:
   curPlayer: 0
   curWeapon: {fileID: 11400000, guid: a2cabf283061bf54da703766a4046939, type: 2}
   coin: 0
+  ingredientInventory: 
   playerDatas:
   - {fileID: 11400000, guid: b77d2e00ddefa2b4d92a8e304f4ba6cc, type: 2}
   - {fileID: 11400000, guid: 5bb3dc03e6e988749ad61ded156cf314, type: 2}
@@ -34919,6 +34925,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ae5fdd0da614d094eacda586d4922db9, type: 2}
   - {fileID: 11400000, guid: 7442910ec86ef1948a2679c8ade8427d, type: 2}
   - {fileID: 11400000, guid: 65f084b7542393c46ba4502331daf474, type: 2}
+  ingredientDatas:
+  - {fileID: 11400000, guid: 66115fdc8259a784cb7c21312b75c2f6, type: 2}
+  - {fileID: 11400000, guid: 6b907d3fc19bafe459277715e7b0be37, type: 2}
+  - {fileID: 11400000, guid: 6eb500a961e57404e88c1b9b36a8e63d, type: 2}
+  - {fileID: 11400000, guid: 4b10ddc7aa24d874eafe911b74aa3bf1, type: 2}
+  - {fileID: 11400000, guid: 1204b442ed4cc074c91935d119dea6ad, type: 2}
+  - {fileID: 11400000, guid: e22f3bd6ffd8d8b4c9b918d532e24692, type: 2}
+  - {fileID: 11400000, guid: a6468264c1a2d3f408f3ab95819dfb36, type: 2}
+  - {fileID: 11400000, guid: 892a5245a21619946b7b882212ff89d7, type: 2}
+  - {fileID: 11400000, guid: 16a7e4ff3762cb24bbcd38e5acb36350, type: 2}
+  - {fileID: 11400000, guid: 7dba31ee2a2ae784e9bc0b62c474d0b4, type: 2}
+  - {fileID: 11400000, guid: 93adf24b9965df444bb78da3d1af2ba3, type: 2}
 --- !u!4 &1021996983
 Transform:
   m_ObjectHideFlags: 0
@@ -60425,11 +60443,11 @@ MonoBehaviour:
     sprite: {fileID: 185050617, guid: 6181ec4cab33cdf4ca5d7034f31cda8f, type: 3}
     anim: {fileID: 22100000, guid: 1da834709d85d1d44940f5aece37bebf, type: 2}
   area_Sprites:
-  - eleType: 1
+  - enemyName: "\uBD88 \uC815\uB839"
     anim: {fileID: 9100000, guid: 498eebfd997a31044b672cf913ab2b66, type: 2}
-  - eleType: 2
+  - enemyName: "\uC5BC\uC74C \uC815\uB839"
     anim: {fileID: 22100000, guid: 0d6dbf2a426b4b149927ca923dc99f7c, type: 2}
-  - eleType: 3
+  - enemyName: "\uB3C5 \uC815\uB839"
     anim: {fileID: 22100000, guid: 83c08972e05f2d545bacb879fe75bc4e, type: 2}
   battery_Sprites:
   - {fileID: -1170082534, guid: d7972bb6ae378e34083497cbb48f347c, type: 3}

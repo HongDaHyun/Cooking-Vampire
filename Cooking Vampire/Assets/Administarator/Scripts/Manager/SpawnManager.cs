@@ -13,12 +13,15 @@ public class SpawnManager : Singleton<SpawnManager>
     private void Start()
     {
         // Spawn_Droptem(DataManager.Instance.droptemDatas[2], new Vector2(7, 0));
-        Spawn_Relic(DataManager.Instance.relicDatas[37], new Vector2(4, 0));
+        //Spawn_Relic(DataManager.Instance.relicDatas[37], new Vector2(4, 0));
         // Spawn_Relic(DataManager.Instance.relicDatas[32], new Vector2(7, 0));
-        Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(6, 1), 1f).enemyMove.enabled = false;
-        Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(8, 0), 1f).enemyMove.enabled = false;
-        Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(8, 2), 1f).enemyMove.enabled = false;
-        Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(10, 1), 1f).enemyMove.enabled = false;
+        //Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(6, 1), 1f).enemyMove.enabled = false;
+        //Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(8, 0), 1f).enemyMove.enabled = false;
+        //Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(8, 2), 1f).enemyMove.enabled = false;
+        //Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(10, 1), 1f).enemyMove.enabled = false;
+        //Spawn_IngredientDrop(0, new Vector2(5, 0));
+        //Spawn_IngredientDrop(0, new Vector2(6, 0));
+        //Spawn_IngredientDrop(0, new Vector2(7, 0));
         Spawn_Gem(10, new Vector2(10, 0));
     }
 
@@ -219,9 +222,13 @@ public class SpawnManager : Singleton<SpawnManager>
 
         return relic;
     }
-    public void Destroy_Relic(Relic relic)
+    public Ingredient_Drop Spawn_IngredientDrop(int ID, Vector2 pos)
     {
-        PoolManager.Instance.TakeToPool<Relic>("Relic", relic);
+        Ingredient_Drop ingredient = PoolManager.Instance.GetFromPool<Ingredient_Drop>("Ingredient_Drop");
+
+        ingredient.SetIngredient(ID, pos);
+
+        return ingredient;
     }
     #endregion
     #region ÆË¾÷ÅØ½ºÆ®
