@@ -23,6 +23,7 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
     private void Start()
     {
         stat.curHP = stat.HP;
+        stat.curSpeed = stat.defSpeed;
         tileMaps[(int)DataManager.Instance.curStage].gameObject.SetActive(true);
 
         SetCamZoom();
@@ -62,8 +63,9 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
 public class PlayerStat
 {
     [Title("Á¤º¸")]
-    public int curHP;
+    [ReadOnly] public int curHP;
     [ReadOnly] public int curExp;
+    [ReadOnly] public float curSpeed;
     [ReadOnly] public int playerLvCount;
     [ReadOnly] public int level = 1;
     public int maxExp;
@@ -453,7 +455,7 @@ public class PlayerStat
     }
     public float Cal_SPE()
     {
-        return defSpeed + defSpeed * GetStat(StatID_Player.SPE, true) / 100f;
+        return curSpeed + curSpeed * GetStat(StatID_Player.SPE, true) / 100f;
     }
     public int Cal_AMT(int defAmount)
     {

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3200161036799241965}
   - component: {fileID: 8210766940131080769}
   - component: {fileID: 8506038044078578978}
+  - component: {fileID: 6418045479139215280}
   m_Layer: 0
   m_Name: Effect_Dirt
   m_TagString: Untagged
@@ -97,3 +98,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4eb04069470e5448b5ff3fe12f78fbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dirtSprites:
+  - {fileID: -745306055, guid: b1a85ab65f8ad3845a5fa317b1348f07, type: 3}
+  - {fileID: 1341140265, guid: b1a85ab65f8ad3845a5fa317b1348f07, type: 3}
+  - {fileID: -1778196061, guid: b1a85ab65f8ad3845a5fa317b1348f07, type: 3}
+--- !u!58 &6418045479139215280
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221102303680765526}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

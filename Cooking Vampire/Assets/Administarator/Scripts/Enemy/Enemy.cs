@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour, IPoolObject
 
     [HideInInspector] public EnemyMove enemyMove;
     [HideInInspector] public Animator anim;
-    CapsuleCollider2D col;
+    protected CapsuleCollider2D col;
     [HideInInspector] public Rigidbody2D rigid;
     [HideInInspector] public SpriteRenderer sr;
 
@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour, IPoolObject
     [HideInInspector] public UIManager uiManager;
     RelicManager relicManager;
 
-    public void OnCreatedInPool()
+    public virtual void OnCreatedInPool()
     {
         name = name.Replace("(Clone)", "");
 
@@ -178,7 +178,7 @@ public class Enemy : MonoBehaviour, IPoolObject
             Dead(false);
         }
     }
-    public void Dead(bool isForce)
+    public virtual void Dead(bool isForce)
     {
         isDead = true;
         col.enabled = false;
@@ -297,6 +297,13 @@ public class Enemy : MonoBehaviour, IPoolObject
         if (nearEnemies.Count == 0)
             return null;
         return nearEnemies[Random.Range(0, nearEnemies.Count)];
+    }
+
+    public Vector2 Get_Enemy_RoundPos(float noise)
+    {
+        Vector2 enemyPos = transform.position;
+
+        return new Vector2(enemyPos.x + Random.Range(-noise, noise), enemyPos.y + Random.Range(-noise, noise));
     }
 }
 

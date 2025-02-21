@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class Effect_Dirt : Effect
 {
+    public Sprite[] dirtSprites;
     SpriteData spriteData;
 
     SpriteRenderer sr;
@@ -21,6 +22,8 @@ public class Effect_Dirt : Effect
     {
         base.OnGettingFromPool();
 
+        sr.sprite = dirtSprites[Random.Range(0, dirtSprites.Length)];
+
         Color redColor = spriteData.Export_Pallate("Red");
 
         sr.color = Color.white;
@@ -34,5 +37,11 @@ public class Effect_Dirt : Effect
             .Append(sr.DOColor(Color.white, 1f))
             .Append(sr.DOFade(0f, 1f))
             .OnComplete(() => spawnManager.Destroy_Effect(this));
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+            collision.GetComponent<Player>().GetSlow(0.2f, 3f);
     }
 }

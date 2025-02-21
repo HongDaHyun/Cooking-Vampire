@@ -2097,7 +2097,7 @@ MonoBehaviour:
     _container: {fileID: 1248124059}
     _nonLazy: 0
   - _name: "Enemy_Boss_\uC9C4\uD759\uCFE4"
-    _component: {fileID: 3918482349272054123, guid: f56107072effc4f46bead5e771d5c2ea, type: 3}
+    _component: {fileID: 965152616701371485, guid: f56107072effc4f46bead5e771d5c2ea, type: 3}
     _count: 0
     _container: {fileID: 1248124059}
     _nonLazy: 0
@@ -80274,6 +80274,7 @@ MonoBehaviour:
   stat:
     curHP: 0
     curExp: 0
+    curSpeed: 0
     playerLvCount: 0
     level: 1
     maxExp: 10

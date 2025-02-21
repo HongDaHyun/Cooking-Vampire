@@ -16,12 +16,12 @@ public class Player : MonoBehaviour
 
     private Coroutine hitRoutine;
     private bool isHit;
+    private bool isSlow;
     private int shieldCount;
     [HideInInspector] public int rebornCount;
     public bool isDead;
 
     [HideInInspector] public GameManager_Survivor gm;
-    private RelicManager relicManager;
     private DataManager dataManager;
     private SpawnManager spawnManager;
     [ReadOnly] public PlayerData data;
@@ -40,7 +40,6 @@ public class Player : MonoBehaviour
     {
         dataManager = DataManager.Instance;
         spawnManager = SpawnManager.Instance;
-        relicManager = RelicManager.Instance;
         gm = GameManager_Survivor.Instance;
 
         data = dataManager.Export_PlayerData();
@@ -158,6 +157,22 @@ public class Player : MonoBehaviour
             shieldCount = 0;
             shield_Effect.SetActive(false);
         }
+    }
+
+    public void GetSlow(float amount, float time)
+    {
+        if (isSlow || amount > 1f)
+            return;
+
+        StartCoroutine(SlowRoutine(amount, time));
+    }
+    private IEnumerator SlowRoutine(float amount, float time)
+    {
+        gm.stat.curSpeed *= (1 - amount);
+
+        yield return new WaitForSeconds(time);
+
+        gm.stat.curSpeed = gm.stat.defSpeed;
     }
 
     public Vector2 Get_Player_RoundPos(float noise)
