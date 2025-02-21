@@ -2096,6 +2096,11 @@ MonoBehaviour:
     _count: 0
     _container: {fileID: 1248124059}
     _nonLazy: 0
+  - _name: "Enemy_Boss_\uC9C4\uD759\uCFE4"
+    _component: {fileID: 3918482349272054123, guid: f56107072effc4f46bead5e771d5c2ea, type: 3}
+    _count: 0
+    _container: {fileID: 1248124059}
+    _nonLazy: 0
   - _name: Gem
     _component: {fileID: -667716104821179834, guid: dd3b66f0cd1904043b40c2b30e42b06e, type: 3}
     _count: 0
@@ -2218,6 +2223,11 @@ MonoBehaviour:
     _nonLazy: 0
   - _name: Effect_Ice
     _component: {fileID: 494153315374649764, guid: f8b33ec97ced8c640a2bdf10bd0a532e, type: 3}
+    _count: 0
+    _container: {fileID: 774058395}
+    _nonLazy: 0
+  - _name: Effect_Dirt
+    _component: {fileID: 8506038044078578978, guid: c2984382e41383743b55c46a64db65cc, type: 3}
     _count: 0
     _container: {fileID: 774058395}
     _nonLazy: 0
@@ -29724,6 +29734,7 @@ GameObject:
   - component: {fileID: 519420034}
   - component: {fileID: 519420035}
   - component: {fileID: 519420036}
+  - component: {fileID: 519420037}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -29923,6 +29934,25 @@ MonoBehaviour:
   LetterboxAmount: 0.2
   LetterboxAnimDuration: 1
   LetterboxColor: {r: 0, g: 0, b: 0, a: 1}
+--- !u!114 &519420037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ac0ec3d6ad5f4a3d9d184bc3773a3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pc2D: {fileID: 519420033}
+  _serializedAxis: 0
+  ShakePresets:
+  - {fileID: 11400000, guid: 83c9e82d0ebc9074e8f60acbc58273e4, type: 2}
+  ConstantShakePresets: []
+  StartConstantShakePreset: {fileID: 0}
+  CurrentConstantShakePreset: {fileID: 0}
 --- !u!1 &526578687
 GameObject:
   m_ObjectHideFlags: 0
@@ -34750,7 +34780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407cc2c5670dbba47babe662c2cc49d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curStage: 0
+  curStage: 2
   curPlayer: 0
   curWeapon: {fileID: 11400000, guid: a2cabf283061bf54da703766a4046939, type: 2}
   coin: 0
@@ -34779,6 +34809,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6d9d02cc6a7cf624492ead694aa37095, type: 2}
   - {fileID: 11400000, guid: 78c2602e5da77a542b312801a0d19c3e, type: 2}
   - {fileID: 11400000, guid: 36eabc093c557c6419095887c92a3cf3, type: 2}
+  - {fileID: 11400000, guid: d39f8e86950b7cc498c7526f9c4c338f, type: 2}
   weaponDatas:
   - {fileID: 11400000, guid: a2cabf283061bf54da703766a4046939, type: 2}
   - {fileID: 11400000, guid: de6dd1bb83946584fbc4ec08b59babf5, type: 2}
@@ -60442,6 +60473,9 @@ MonoBehaviour:
   - name: "\uB543\uC950"
     sprite: {fileID: 185050617, guid: 6181ec4cab33cdf4ca5d7034f31cda8f, type: 3}
     anim: {fileID: 22100000, guid: 1da834709d85d1d44940f5aece37bebf, type: 2}
+  - name: "\uC9C4\uD759\uCFE4"
+    sprite: {fileID: 644635697, guid: 6181ec4cab33cdf4ca5d7034f31cda8f, type: 3}
+    anim: {fileID: 22100000, guid: d4875809c2fe6144e86c87d6d771fe3e, type: 2}
   area_Sprites:
   - enemyName: "\uBD88 \uC815\uB839"
     anim: {fileID: 9100000, guid: 498eebfd997a31044b672cf913ab2b66, type: 2}

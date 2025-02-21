@@ -13,7 +13,7 @@ public class EnemyData : ScriptableObject
     [Title("데이터")]
     public StageType[] stage;
     public float speed;
-    public float hpScale = 1f;
+    public int defHP;
     public int gemAmount;
     public int ingredientID; // -1이면 드롭 X
     public AtkType atkType;

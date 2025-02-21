@@ -99,7 +99,7 @@ Animator:
   m_GameObject: {fileID: 3918482349272054115}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 910639e92520bc24ba612359aca58647, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8123f78345cbd444589896254fcd3c3e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -160,11 +160,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDead: 0
   isDamaged: 0
+  enemyEleHits: []
   stat:
     curHp: 0
     maxHp: 0
     speed: 0
   data: {fileID: 0}
+  enemyMove: {fileID: 0}
   anim: {fileID: 0}
   rigid: {fileID: 0}
   sr: {fileID: 0}
@@ -172,6 +174,7 @@ MonoBehaviour:
   dataManager: {fileID: 0}
   spawnManager: {fileID: 0}
   spriteData: {fileID: 0}
+  uiManager: {fileID: 0}
 --- !u!114 &1188602202492456004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,3 +191,4 @@ MonoBehaviour:
   isStop: 0
   isForceStop: 0
   isPattern: 0
+  curSpeed: 0

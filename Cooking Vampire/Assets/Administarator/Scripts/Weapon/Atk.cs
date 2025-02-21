@@ -79,7 +79,7 @@ public abstract class Atk : MonoBehaviour
 
     protected Projectile_Rigid FireDir(Vector3 dir)
     {
-        Projectile_Rigid projectile = spawnManager.Spawn_Projectile_Rigid(GetProjectileSprite(), stat, transform, 0f);
+        Projectile_Rigid projectile = spawnManager.Spawn_Projectile_Rigid(GetProjectileSprite(), stat, transform);
 
         dir = dir.normalized;
         projectile.SetDir(dir);
@@ -92,7 +92,7 @@ public abstract class Atk : MonoBehaviour
     }
     protected Projectile_Rigid Fire(Vector3 targetPos)
     {
-        Projectile_Rigid projectile = spawnManager.Spawn_Projectile_Rigid(GetProjectileSprite(), stat, transform, 0f);
+        Projectile_Rigid projectile = spawnManager.Spawn_Projectile_Rigid(GetProjectileSprite(), stat, transform);
 
         Vector3 dir = targetPos - transform.position;
         dir = dir.normalized;

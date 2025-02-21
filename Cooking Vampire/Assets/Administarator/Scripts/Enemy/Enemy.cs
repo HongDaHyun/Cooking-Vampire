@@ -86,7 +86,7 @@ public class Enemy : MonoBehaviour, IPoolObject
         SetCol(data.colSetting, size);
 
         difficult = gm.Get_TimeDifficult();
-        stat.maxHp = Mathf.Max(1, Mathf.RoundToInt((10 + difficult) * data.hpScale));
+        stat.maxHp = Mathf.Max(1, difficult + data.defHP);
         stat.curHp = stat.maxHp;
         stat.speed = _data.speed;
         isDead = false;

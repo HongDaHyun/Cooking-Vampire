@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d9386556ef3dd4da6c775320f1bfdc, type: 3}
+  m_Name: DirtCun
+  m_EditorClassIdentifier: 
+  title: "\uC9C4\uD759\uCFE4"
+  discription: 
+  stage: 02000000
+  speed: 2.5
+  defHP: 500
+  gemAmount: 10
+  ingredientID: 0
+  atkType: 5
+  animators:
+  - {fileID: 9100000, guid: a7da309a83276994595586fdcbc17710, type: 2}
+  colSetting:
+    colOff: {x: 0, y: 0.28}
+    colSize: {x: 1.8, y: 0.9}
+    direction: 1

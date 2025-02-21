@@ -55,7 +55,7 @@ public class EnemyMove_Range : EnemyMove
 
     public void ShootRange()
     {
-        Projectile_Enemy projectile = enemy.spawnManager.Spawn_Projectile_Enemy(projectileSprite.sprite, 1f, projectileSprite.anim, transform.position, 0f);
+        Projectile_Enemy projectile = enemy.spawnManager.Spawn_Projectile_Enemy(projectileSprite.sprite, projectileSprite.anim, transform.position);
 
         Vector3 tarPos = player.Get_Player_RoundPos(1f);
         Vector3 dir = (tarPos - transform.position).normalized;

@@ -14,13 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: "\uBC84\uC12F\uB9E8"
   discription: 
-  stage: 00000000
+  stage: 02000000
   speed: 1.8
-  hpScale: 1
+  defHP: 15
   gemAmount: 2
   ingredientID: 7
   atkType: 1
-  eleType: 0
   animators:
   - {fileID: 22100000, guid: 04354d647b3edfd45a9b3dc67be9af2b, type: 2}
   colSetting:

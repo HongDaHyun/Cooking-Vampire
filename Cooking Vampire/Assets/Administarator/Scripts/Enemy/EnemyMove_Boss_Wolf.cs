@@ -32,14 +32,13 @@ public class EnemyMove_Boss_Wolf : EnemyMove_Boss
 
         for (int i = 0; i < count; i++)
         {
-            Projectile_Enemy projectile = enemy.spawnManager.Spawn_Projectile_Enemy(sprite.sprite, 1f, sprite.anim, transform.position, 0f);
+            Projectile_Enemy projectile = enemy.spawnManager.Spawn_Projectile_Enemy(sprite.sprite,sprite.anim, transform.position);
             // 각도를 이용하여 방향을 설정 (2D 환경, Z축 기준 회전)
             float angle = i * (360f / count) + 90f; // 90도에서 시작
-            Vector3 dir = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0); // 2D 방향 설정
-            dir.y *= rangeFlip ? -1 : 1;
+            if (rangeFlip) angle = -angle;
 
-            projectile.SetDir(dir, 5f);
-            projectile.SetRotation(dir);
+            projectile.SetDir(angle, 5f);
+            projectile.SetRotation(angle);
         }
 
         rangeFlip = !rangeFlip;

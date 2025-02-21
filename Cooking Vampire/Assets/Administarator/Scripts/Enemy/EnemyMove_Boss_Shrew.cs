@@ -60,7 +60,7 @@ public class EnemyMove_Boss_Shrew : EnemyMove_Boss
         // 투사체 생성 및 설정
         for (int i = 0; i < directions.Length; i++)
         {
-            projectiles[i] = enemy.spawnManager.Spawn_Projectile_Enemy(projectileSprite.sprite, 0.8f, projectileSprite.anim, pos + offsets[i], 0f);
+            projectiles[i] = enemy.spawnManager.Spawn_Projectile_Enemy(projectileSprite.sprite, projectileSprite.anim, pos + offsets[i], 0.8f, 1f);
             projectiles[i].SetRotation(directions[i] * -1);
         }
 

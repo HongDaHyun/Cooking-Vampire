@@ -27,7 +27,7 @@ public class EnemyMove_Boss_Vampire : EnemyMove_Boss
             ranSize = Random.Range(0.5f, 1.3f);
             Vector2 dir = Quaternion.Euler(0, 0, ranAngle) * direction;
 
-            Projectile_Enemy projectile = enemy.spawnManager.Spawn_Projectile_Enemy(projectileSprite.sprite, ranSize, projectileSprite.anim, startPos, 0f);
+            Projectile_Enemy projectile = enemy.spawnManager.Spawn_Projectile_Enemy(projectileSprite.sprite, projectileSprite.anim, startPos, ranSize);
             projectiles.Add(projectile);
             projectile.SetDir(dir.normalized, 8f);
             projectile.SetRotation(Vector2.up);

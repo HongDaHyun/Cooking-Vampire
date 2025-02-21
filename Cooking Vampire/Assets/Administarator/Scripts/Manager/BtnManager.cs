@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Com.LuisPedroFonseca.ProCamera2D;
 
 public class BtnManager : Singleton<BtnManager>
 {
@@ -45,5 +46,12 @@ public class BtnManager : Singleton<BtnManager>
     public void TestBoss()
     {
         StartCoroutine(UIManager.Instance.bossPannel.CinematicSequence());
+    }
+
+    public void ShakeCamera()
+    {
+        ProCamera2DShake camShake = Camera.main.GetComponent<ProCamera2DShake>();
+
+        camShake.Shake(0);
     }
 }

@@ -55,21 +55,21 @@ public class Player : MonoBehaviour
         if (!collision.CompareTag("Enemy_Projectile"))
             return;
 
-        Hitted(gm.Get_TimeDifficult());
+        Hitted(Mathf.Max(1, gm.Get_TimeDifficult()));
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (!collision.CompareTag("Enemy_Projectile"))
             return;
 
-        Hitted(gm.Get_TimeDifficult());
+        Hitted(Mathf.Max(1, gm.Get_TimeDifficult()));
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (!collision.collider.CompareTag("Enemy"))
             return;
 
-        Hitted(gm.Get_TimeDifficult());
+        Hitted(Mathf.Max(1, gm.Get_TimeDifficult()));
     }
 
     public void Hitted(int dmg)

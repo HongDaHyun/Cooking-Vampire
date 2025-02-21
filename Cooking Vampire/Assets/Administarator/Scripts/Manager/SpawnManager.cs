@@ -96,7 +96,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
         return projectile;
     }
-    public Projectile_Rigid Spawn_Projectile_Rigid(Sprite sprite, AtkStat stat, Transform parent, float gravity)
+    public Projectile_Rigid Spawn_Projectile_Rigid(Sprite sprite, AtkStat stat, Transform parent, float gravity = 0)
     {
         Projectile_Rigid projectile = PoolManager.Instance.GetFromPool<Projectile_Rigid>("Projectile_Rigid");
 
@@ -105,7 +105,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
         return projectile;
     }
-    public Projectile_Enemy Spawn_Projectile_Enemy(Sprite sprite, float size, RuntimeAnimatorController anim, Vector2 position, float gravity)
+    public Projectile_Enemy Spawn_Projectile_Enemy(Sprite sprite, RuntimeAnimatorController anim, Vector2 position, float size = 1f, float gravity = 0)
     {
         Projectile_Enemy projectile = PoolManager.Instance.GetFromPool<Projectile_Enemy>("Projectile_Enemy");
 

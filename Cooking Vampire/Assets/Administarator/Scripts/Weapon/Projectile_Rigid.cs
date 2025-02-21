@@ -50,9 +50,25 @@ public class Projectile_Rigid : Projectile
     {
         rigid.velocity = dir * speed;
     }
+    public void SetDir(float angle)
+    {
+        rigid.velocity = AngleToDir(angle);
+    }
+    public void SetDir(float angle, float speed)
+    {
+        rigid.velocity = AngleToDir(angle) * speed;
+    }
     public void SetRotation(Vector3 dir)
     {
         transform.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+    }
+    public void SetRotation(float angle)
+    {
+        transform.rotation = Quaternion.FromToRotation(Vector3.up, AngleToDir(angle));
+    }
+    private Vector3 AngleToDir(float angle)
+    {
+        return new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0); // 2D 방향 설정
     }
     public void SetGravity(float scale)
     {

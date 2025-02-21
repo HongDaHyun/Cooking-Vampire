@@ -48,7 +48,7 @@ public class GameManager_Survivor : Singleton<GameManager_Survivor>
     }
     public int Get_TimeDifficult()
     {
-        return Mathf.Max(1, Mathf.RoundToInt(curGameTime / 10));
+        return Mathf.Max(0, Mathf.RoundToInt(curGameTime / 30f));
     }
     public void SetCamZoom()
     {

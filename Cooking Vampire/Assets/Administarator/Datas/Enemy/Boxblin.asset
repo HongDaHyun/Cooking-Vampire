@@ -16,11 +16,10 @@ MonoBehaviour:
   discription: 
   stage: 00000000010000000200000003000000
   speed: 1.7
-  hpScale: 3
+  defHP: 30
   gemAmount: 3
   ingredientID: -1
   atkType: 4
-  eleType: 0
   animators:
   - {fileID: 22100000, guid: 595a2690a77d60243a2795ebf8d8aef3, type: 2}
   colSetting:
