@@ -20,7 +20,7 @@ public class EnemyMove_Boss_DirtCun : EnemyMove_Boss
     public void SetSplit(int count)
     {
         splitCount = count;
-        scale = Mathf.Min(0.5f, scale / count);
+        scale = Mathf.Max(1f, scale / 2f);
     }
 
     public void Split()
