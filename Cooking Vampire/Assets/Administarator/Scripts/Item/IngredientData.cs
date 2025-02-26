@@ -14,5 +14,4 @@ public class IngredientData : ScriptableObject
     [Title("ตฅภฬลอ")]
     public int ID;
     public int amount;
-    public bool isDrop;
 }

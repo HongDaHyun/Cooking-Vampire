@@ -18,7 +18,7 @@ MonoBehaviour:
   speed: 2.5
   defHP: 500
   gemAmount: 10
-  ingredientID: 0
+  ingredientID: 11
   atkType: 5
   animators:
   - {fileID: 9100000, guid: a7da309a83276994595586fdcbc17710, type: 2}

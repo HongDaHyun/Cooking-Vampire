@@ -168,10 +168,12 @@ public class Player : MonoBehaviour
     }
     private IEnumerator SlowRoutine(float amount, float time)
     {
+        isSlow = true;
         gm.stat.curSpeed *= (1 - amount);
 
         yield return new WaitForSeconds(time);
 
+        isSlow = false;
         gm.stat.curSpeed = gm.stat.defSpeed;
     }
 

@@ -370,6 +370,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Ingredient_Icon_11
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 1
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33124221555434b44a7bf8fb06dedb63
+      internalID: 1125464198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -382,6 +403,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Ingredient_Icon_2: 867654634
+      Ingredient_Icon_11: 1125464198
       Ingredient_Icon_3: -585867498
       Ingredient_Icon_4: 1732373941
       Ingredient_Icon_8: 765590548
