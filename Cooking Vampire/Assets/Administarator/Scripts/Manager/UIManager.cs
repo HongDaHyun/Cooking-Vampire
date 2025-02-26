@@ -23,6 +23,7 @@ public class UIManager : Singleton<UIManager>
     public BossPannel bossPannel;
     public PlayerIcon_Btn playerIcon;
 
+    SpawnManager sm;
     GameManager_Survivor gm;
     DataManager dm;
 
@@ -30,6 +31,7 @@ public class UIManager : Singleton<UIManager>
     {
         gm = GameManager_Survivor.Instance;
         dm = DataManager.Instance;
+        sm = SpawnManager.Instance;
 
         lvUpPannel.Set_StatUI_Player();
     }
@@ -75,6 +77,22 @@ public class UIManager : Singleton<UIManager>
         float targetHP = curHp / maxHp;
         healSlider.value = targetHP;
         hpSlider.value = Mathf.Lerp(hpSlider.value, targetHP, Time.deltaTime * 5f);
+
+        // BOSS_HP_SLIDER
+        if (bossPannel.bossSlider.IsActive())
+        {
+            float bossCur = 0, bossMax = 0;
+            List<Enemy> bossList = sm.Find_EnemyLists(AtkType.Boss);
+            foreach (Enemy boss in bossList)
+            {
+                bossCur += boss.stat.curHp;
+                bossMax += boss.stat.maxHp;
+            }
+            float bossTarget = bossCur / bossMax;
+
+            bossPannel.bossSlider.value = Mathf.Lerp(bossPannel.bossSlider.value, bossTarget, Time.deltaTime * 5f);
+            bossPannel.sliderText.text = $"{bossCur}/{bossMax}";
+        }
 
         // TEST_BTN
         for (int i = 0; i < weaponTest_Btn.Length; i++)
@@ -270,8 +288,12 @@ public struct RelicTooltip
 public class BossPannel
 {
     public bool isCinematic;
+    [Title("보스 패널")]
     public GameObject pannel;
     public TextMeshProUGUI bossText;
+    [Title("보스 체력바")]
+    public Slider bossSlider;
+    public TextMeshProUGUI sliderText;
 
     public IEnumerator CinematicSequence()
     {
@@ -312,5 +334,6 @@ public class BossPannel
 
         pannel.SetActive(false);
         isCinematic = false;
+        bossSlider.gameObject.SetActive(true);
     }
 }

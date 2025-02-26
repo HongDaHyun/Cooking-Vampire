@@ -34,6 +34,12 @@ public class SpawnManager : Singleton<SpawnManager>
 
         return enemyList[Random.Range(0, enemyList.Count)];
     }
+    public List<Enemy> Find_EnemyLists(AtkType type)
+    {
+        if (enemyList.Count == 0)
+            return null;
+        return enemyList.FindAll(enemy => enemy.data.atkType == type);
+    }
     #endregion
     #region ≈∏¿œ
     public SpriteRenderer Spawn_TileObj(Transform parentTrans)
