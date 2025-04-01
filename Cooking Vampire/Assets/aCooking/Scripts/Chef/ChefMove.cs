@@ -13,6 +13,7 @@ public class ChefMove : MonoBehaviour
     [ReadOnly] public Vector2 inputLook;
     private float curSpeed = 2f;
     [ReadOnly] public float curStamina;
+    [ReadOnly] public bool isInteract;
     private bool isExhaustion;
 
     private float walkSpeed = 2f, runSpeed = 5f;
@@ -45,6 +46,11 @@ public class ChefMove : MonoBehaviour
         else
             curSpeed = walkSpeed;
     }
+    void OnInteract(InputValue value)
+    {
+        isInteract = value.isPressed;
+        anim.SetBool("Doing", isInteract);
+    }
 
     private void FixedUpdate()
     {
@@ -71,6 +77,8 @@ public class ChefMove : MonoBehaviour
             }
 
         }
+        if (isInteract)
+            return;
         Vector2 nextVec = inputVec.normalized * curSpeed * Time.fixedDeltaTime;
 
         // 위치 이동
