@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Vampire;
 
 [CreateAssetMenu(fileName = "RelicData", menuName = "DataCreator/RelicData")]
 public class RelicData : ScriptableObject

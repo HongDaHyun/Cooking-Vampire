@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Redcode.Pools;
 using Sirenix.OdinInspector;
+using Vampire;
 
 public class Projectile : MonoBehaviour, IPoolObject
 {

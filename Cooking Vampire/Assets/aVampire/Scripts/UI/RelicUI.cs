@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Redcode.Pools;
+using Vampire;
 
 public class RelicUI : MonoBehaviour, IPoolObject
 {

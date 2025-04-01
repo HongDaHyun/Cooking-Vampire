@@ -6,6 +6,7 @@ using TMPro;
 using DG.Tweening;
 using UnityEngine.UI;
 using System.Linq;
+using Vampire;
 
 public class SpawnManager : Singleton<SpawnManager>
 {

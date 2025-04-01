@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Com.LuisPedroFonseca.ProCamera2D;
+using Vampire;
 
 public class BtnManager : Singleton<BtnManager>
 {

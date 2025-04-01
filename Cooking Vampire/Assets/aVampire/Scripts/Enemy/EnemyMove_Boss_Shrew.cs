@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Vampire;
 
 public class EnemyMove_Boss_Shrew : EnemyMove_Boss
 {

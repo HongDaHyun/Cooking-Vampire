@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
+using Vampire;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "DataCreator/PlayerData")]
 public class PlayerData : ScriptableObject

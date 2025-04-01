@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Redcode.Pools;
+using Vampire;
 
 public abstract class Pet : MonoBehaviour, IPoolObject
 {

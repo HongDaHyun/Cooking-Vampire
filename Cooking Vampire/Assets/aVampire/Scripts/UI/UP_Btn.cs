@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Vampire;
 
 public abstract class UP_Btn : MonoBehaviour
 {

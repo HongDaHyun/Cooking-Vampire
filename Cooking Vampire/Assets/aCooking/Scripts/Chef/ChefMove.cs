@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Sirenix.OdinInspector;
+using Cooking;
 
-public class PlayerMove : MonoBehaviour
+public class ChefMove : MonoBehaviour
 {
+    GameManager_Cooking gm;
+
     [ReadOnly] public Vector2 inputVec;
     [ReadOnly] public Vector2 inputLook;
     private float curSpeed = 2f;
+    [ReadOnly] public float curStamina;
+    private bool isExhaustion;
 
     private float walkSpeed = 2f, runSpeed = 5f;
     private SpriteRenderer sr;
@@ -17,6 +22,8 @@ public class PlayerMove : MonoBehaviour
 
     private void Awake()
     {
+        gm = GameManager_Cooking.Instance;
+
         rigid = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
@@ -24,7 +31,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(LookRoutine());
+        curStamina = gm.chefStat.STAMINA;
     }
 
     void OnMove(InputValue value)
@@ -33,17 +40,37 @@ public class PlayerMove : MonoBehaviour
     }
     void OnRun(InputValue value)
     {
-        curSpeed = value.isPressed ? runSpeed : walkSpeed;
-    }
-    IEnumerator LookRoutine()
-    {
-        if (inputVec != Vector2.zero)
-            inputLook = inputVec;
-        yield return new WaitForSeconds(0.1f);
+        if (!isExhaustion && value.isPressed)
+            curSpeed = runSpeed;
+        else
+            curSpeed = walkSpeed;
     }
 
     private void FixedUpdate()
     {
+        if (curSpeed == runSpeed && inputVec != Vector2.zero && !isExhaustion)
+        {
+            curStamina -= 1f * Time.deltaTime; // 1초에 1씩 감소
+
+            // 탈진
+            if(curStamina <= 0)
+            {
+                curStamina = 0;
+                isExhaustion = true;
+                curSpeed = walkSpeed;
+            }
+        }
+        else
+        {
+            if (curStamina < gm.chefStat.STAMINA)
+                curStamina += 1f * Time.deltaTime; // 1초에 1씩 회복
+            else
+            {
+                curStamina = gm.chefStat.STAMINA;
+                isExhaustion = false;
+            }
+
+        }
         Vector2 nextVec = inputVec.normalized * curSpeed * Time.fixedDeltaTime;
 
         // 위치 이동

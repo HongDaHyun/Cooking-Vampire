@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Sirenix.OdinInspector;
+using Vampire;
 
 public class MoveController : MonoBehaviour
 {
@@ -24,23 +25,9 @@ public class MoveController : MonoBehaviour
         player = GetComponent<Player>();
     }
 
-    private void Start()
-    {
-        StartCoroutine(LookRoutine());
-    }
-
     void OnMove(InputValue value)
     {
         inputVec = value.Get<Vector2>();
-    }
-    IEnumerator LookRoutine()
-    {
-        while(!player.isDead)
-        {
-            if (inputVec != Vector2.zero)
-                inputLook = inputVec;
-            yield return new WaitForSeconds(0.1f);
-        }
     }
 
     private void FixedUpdate()

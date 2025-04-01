@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using Sirenix.OdinInspector;
 using System.Linq;
+using Vampire;
 
 public class DataManager : Singleton<DataManager>
 {
