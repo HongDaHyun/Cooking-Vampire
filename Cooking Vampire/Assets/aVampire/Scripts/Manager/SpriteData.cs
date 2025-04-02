@@ -16,6 +16,10 @@ public class SpriteData : Singleton<SpriteData>
     public Area_Sprite[] area_Sprites;
     public Sprite[] battery_Sprites;
 
+    [Title("ÄíÅ·")]
+    public Sprite[] ovenSprites;
+
+    #region Vampire
     public Sprite[] Export_StageSprites(StageType type)
     {
         Sprite[] sprites = Array.Find(stageSprites, data => data.type == type).sprites;
@@ -80,7 +84,20 @@ public class SpriteData : Singleton<SpriteData>
     {
         return Array.Find(area_Sprites, data => data.enemyName == enemyName);
     }
+    #endregion
+    #region Cooking
+    public Sprite Export_OvenSprites(int woodCount, bool isFire)
+    {
+        if (woodCount >= 1 && woodCount <= 6)
+        {
+            int index = isFire ? 3 + (woodCount >= 4 ? 1 : 0) : 1 + (woodCount >= 4 ? 1 : 0);
+            return ovenSprites[index];
+        }
+        return ovenSprites[0];
+    }
+    #endregion
 }
+#region Vampire
 public enum EleType { Fire = 0, Ice, Poison, Thunder }
 
 [Serializable]
@@ -126,3 +143,7 @@ public struct Area_Sprite
     public string enemyName;
     public RuntimeAnimatorController anim;
 }
+#endregion
+
+#region Cooking
+#endregion

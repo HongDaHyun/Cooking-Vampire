@@ -16,6 +16,7 @@ public class ChefMove : MonoBehaviour
     [ReadOnly] public bool isInteract;
     private bool isExhaustion;
 
+    Chef chef;
     private float walkSpeed = 2f, runSpeed = 5f;
     private SpriteRenderer sr;
     private Rigidbody2D rigid;
@@ -25,6 +26,7 @@ public class ChefMove : MonoBehaviour
     {
         gm = GameManager_Cooking.Instance;
 
+        chef = GetComponent<Chef>();
         rigid = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
@@ -48,8 +50,12 @@ public class ChefMove : MonoBehaviour
     }
     void OnInteract(InputValue value)
     {
+        if (chef.chefScan.nearestObj == null)
+            return;
+
         isInteract = value.isPressed;
         anim.SetBool("Doing", isInteract);
+        chef.chefScan.nearestObj.Doing();
     }
 
     private void FixedUpdate()

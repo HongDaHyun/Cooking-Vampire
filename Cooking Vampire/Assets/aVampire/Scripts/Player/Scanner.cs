@@ -53,7 +53,15 @@ public class Scanner : MonoBehaviour
             }
         }
 
-        nearestTarget = result;
+        // 범위를 벗어나면 null로 설정
+        if (result != null && Vector3.Distance(transform.position, result.position) <= player.gm.stat.Cal_RAN())
+        {
+            nearestTarget = result;
+        }
+        else
+        {
+            nearestTarget = null;
+        }
     }
 
     public Transform Export_RanTarget()

@@ -18,9 +18,15 @@ namespace Cooking
     {
         [Title("·¹º§")]
         public int staminaLv = 1;
+        public int rangeLv = 1;
+
         public int STAMINA
         {
             get { return staminaLv * 3; }
+        }
+        public float RANGE
+        {
+            get { return 1 + rangeLv * 0.5f; }
         }
     }
 

@@ -276,6 +276,7 @@ GameObject:
   - component: {fileID: 431643888}
   - component: {fileID: 431643892}
   - component: {fileID: 431643890}
+  - component: {fileID: 431643893}
   - component: {fileID: 431643891}
   m_Layer: 0
   m_Name: Chef
@@ -345,7 +346,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2103497840, guid: c3101806686b8d440b7b9078a924fa74, type: 3}
+  m_Sprite: {fileID: 1359556504, guid: c3101806686b8d440b7b9078a924fa74, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -381,10 +382,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.5625}
+  m_Offset: {x: 0, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.21875}
@@ -395,7 +396,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 0.8, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &431643889
 Rigidbody2D:
@@ -476,7 +477,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ea3268e4deede4186a6e43299daf98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gm: {fileID: 0}
   chefMove: {fileID: 0}
+  chefScan: {fileID: 0}
+--- !u!114 &431643893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431643883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efb517d53189f5045a8687c3e32a97d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  nearestObj: {fileID: 0}
 --- !u!1 &494778062
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,6 +725,12 @@ MonoBehaviour:
   - {fileID: -1218880720, guid: d7972bb6ae378e34083497cbb48f347c, type: 3}
   - {fileID: -42849940, guid: d7972bb6ae378e34083497cbb48f347c, type: 3}
   - {fileID: -2016831080, guid: d7972bb6ae378e34083497cbb48f347c, type: 3}
+  ovenSprites:
+  - {fileID: 617492940, guid: c38ef0acb8602a643896f8cdf7a2a069, type: 3}
+  - {fileID: 654071065, guid: c38ef0acb8602a643896f8cdf7a2a069, type: 3}
+  - {fileID: 656352434, guid: c38ef0acb8602a643896f8cdf7a2a069, type: 3}
+  - {fileID: 433486416, guid: c38ef0acb8602a643896f8cdf7a2a069, type: 3}
+  - {fileID: 901845389, guid: c38ef0acb8602a643896f8cdf7a2a069, type: 3}
 --- !u!4 &843259169
 Transform:
   m_ObjectHideFlags: 0
@@ -739,7 +764,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1050921293
 RectTransform:
   m_ObjectHideFlags: 0
@@ -758,8 +783,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2.5, y: 2.5}
+  m_AnchoredPosition: {x: 0, y: 1.5}
+  m_SizeDelta: {x: 1.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1050921294
 MonoBehaviour:
@@ -932,11 +957,11 @@ RectTransform:
   m_Father: {fileID: 1050921293}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2, y: 0.5}
-  m_Pivot: {x: 0.5, y: 1}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1221750227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -987,7 +1012,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: IObj, Assembly-CSharp
+        m_MethodName: UpdateColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1232446687
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,6 +1201,7 @@ MonoBehaviour:
   chef: {fileID: 431643892}
   chefStat:
     staminaLv: 1
+    rangeLv: 1
 --- !u!4 &1289346860
 Transform:
   m_ObjectHideFlags: 0
@@ -1382,11 +1420,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1521675389}
   - component: {fileID: 1521675388}
+  - component: {fileID: 1521675392}
   - component: {fileID: 1521675391}
-  - component: {fileID: 1521675390}
-  m_Layer: 0
-  m_Name: Cboard
-  m_TagString: Iobj
+  - component: {fileID: 1521675393}
+  m_Layer: 9
+  m_Name: Oven
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1432,7 +1471,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 656352434, guid: c38ef0acb8602a643896f8cdf7a2a069, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1442,7 +1481,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &1521675389
 Transform:
   m_ObjectHideFlags: 0
@@ -1459,19 +1498,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1521675390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1521675387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2687eb19bf137614c96e60380b9bd095, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isReady: 1
 --- !u!61 &1521675391
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1482,22 +1508,58 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.1}
+    oldSize: {x: 1, y: 1.25}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1, y: 1.25}
   m_EdgeRadius: 0
+--- !u!50 &1521675392
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521675387}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &1521675393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521675387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a20c6cde760d34ebe75ea5d5fff7b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sliderObj: {fileID: 1050921293}
+  isReady: 1
+  woodCount: 6
 --- !u!1 &1575542067
 GameObject:
   m_ObjectHideFlags: 0
@@ -1700,7 +1762,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

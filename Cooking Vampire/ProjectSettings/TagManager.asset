@@ -9,7 +9,6 @@ TagManager:
   - Item
   - Enemy_Projectile
   - Item_Box
-  - Iobj
   layers:
   - Default
   - TransparentFX
@@ -20,7 +19,7 @@ TagManager:
   - Enemy
   - Item_Drain
   - Item_Hit
-  - 
+  - IObj
   - 
   - 
   - 
