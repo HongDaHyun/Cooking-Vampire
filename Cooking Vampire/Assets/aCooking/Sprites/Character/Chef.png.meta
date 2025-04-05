@@ -1084,6 +1084,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Chef_45
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.21875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6424bb7f26a7b144db897fbf5519064a
+      internalID: 403652760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1108,6 +1129,7 @@ TextureImporter:
       Chef_1: -139304192
       Chef_14: 942994145
       Chef_32: -1768079653
+      Chef_45: 403652760
       Chef_11: 147098891
       Chef_4: 1702528895
       Chef_30: -660455498
@@ -1119,8 +1141,8 @@ TextureImporter:
       Chef_42: -1200100359
       Chef_28: -316293353
       Chef_8: 1359556504
-      Chef_25: -470978933
       Chef_43: 967009502
+      Chef_25: -470978933
       Chef_15: 1931773970
       Chef_23: -2090215869
       Chef_24: 1881446647

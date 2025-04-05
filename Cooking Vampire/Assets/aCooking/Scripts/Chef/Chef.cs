@@ -12,6 +12,8 @@ public class Chef : MonoBehaviour
     [HideInInspector] public ChefMove chefMove;
     [HideInInspector] public ChefScan chefScan;
 
+    public int ingredientInven; // 0 일때는 아무것도 소지하지 않은 상태
+
     private void Awake()
     {
         gm = GameManager_Cooking.Instance;

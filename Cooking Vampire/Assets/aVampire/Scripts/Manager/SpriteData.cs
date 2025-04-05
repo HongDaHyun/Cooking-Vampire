@@ -18,6 +18,7 @@ public class SpriteData : Singleton<SpriteData>
 
     [Title("ÄíÅ·")]
     public Sprite[] ovenSprites;
+    public Sprite[] oak_Sprites;
 
     #region Vampire
     public Sprite[] Export_StageSprites(StageType type)
@@ -94,6 +95,10 @@ public class SpriteData : Singleton<SpriteData>
             return ovenSprites[index];
         }
         return ovenSprites[0];
+    }
+    public Sprite Export_OakSprites(bool isOpen)
+    {
+        return oak_Sprites[isOpen ? 1 : 0];
     }
     #endregion
 }

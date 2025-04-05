@@ -13,7 +13,7 @@ public class ChefMove : MonoBehaviour
     [ReadOnly] public Vector2 inputLook;
     private float curSpeed = 2f;
     [ReadOnly] public float curStamina;
-    [ReadOnly] public bool isInteract;
+    [ReadOnly] public bool isInteract, isCarry;
     private bool isExhaustion;
 
     Chef chef;
@@ -43,19 +43,49 @@ public class ChefMove : MonoBehaviour
     }
     void OnRun(InputValue value)
     {
-        if (!isExhaustion && value.isPressed)
+        if (!isExhaustion && value.isPressed && !isCarry)
             curSpeed = runSpeed;
         else
             curSpeed = walkSpeed;
     }
     void OnInteract(InputValue value)
     {
-        if (chef.chefScan.nearestObj == null)
+        IObj nearObj = chef.chefScan.nearestObj;
+
+        if (nearObj == null)
             return;
 
         isInteract = value.isPressed;
-        anim.SetBool("Doing", isInteract);
-        chef.chefScan.nearestObj.Doing();
+
+        switch(nearObj.objID)
+        {
+            case 0: // 오븐
+                if (nearObj.GetComponent<Oven>().ingredients.Count <= 0 && chef.ingredientInven == 0)
+                    return;
+                break;
+            case 1: // 오크 통
+                Oak oak = nearObj.GetComponent<Oak>();
+
+                if (oak.amount <= 0 || (chef.ingredientInven != 0 && oak.ingredientID != chef.ingredientInven))
+                    return;
+                break;
+            case 2:
+                if (chef.ingredientInven != 0 && chef.ingredientInven != 8)
+                    return;
+                break;
+        }
+
+        if(nearObj.isPickable && isInteract)
+        {
+            isCarry = !isCarry;
+            anim.SetBool("Carrying", isCarry);
+            nearObj.Doing();
+        }
+        else if(!nearObj.isPickable)
+        {
+            anim.SetBool("Doing", isInteract);
+            nearObj.Doing();
+        }
     }
 
     private void FixedUpdate()
@@ -83,8 +113,7 @@ public class ChefMove : MonoBehaviour
             }
 
         }
-        if (isInteract)
-            return;
+
         Vector2 nextVec = inputVec.normalized * curSpeed * Time.fixedDeltaTime;
 
         // 위치 이동
