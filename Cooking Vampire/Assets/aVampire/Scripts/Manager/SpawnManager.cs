@@ -7,16 +7,21 @@ using DG.Tweening;
 using UnityEngine.UI;
 using System.Linq;
 using Vampire;
+using Sirenix.OdinInspector;
 
 public class SpawnManager : Singleton<SpawnManager>
 {
+    [Title("¼­¹ÙÀÌ¹ú")]
     public List<Enemy> enemyList;
+
+    [Title("ÄíÅ·")]
+    public int dustCount;
 
     private void Start()
     {
         // Spawn_Droptem(DataManager.Instance.droptemDatas[2], new Vector2(7, 0));
         //Spawn_Relic(DataManager.Instance.relicDatas[37], new Vector2(4, 0));
-        // Spawn_Relic(DataManager.Instance.relicDatas[32], new Vector2(7, 0));
+        //Spawn_Relic(DataManager.Instance.relicDatas[32], new Vector2(7, 0));
         //Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(6, 1), 1f).enemyMove.enabled = false;
         //Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(8, 0), 1f).enemyMove.enabled = false;
         //Spawn_Enemy(DataManager.Instance.enemyDatas[6], new Vector2(8, 2), 1f).enemyMove.enabled = false;
@@ -24,9 +29,14 @@ public class SpawnManager : Singleton<SpawnManager>
         //Spawn_IngredientDrop(0, new Vector2(5, 0));
         //Spawn_IngredientDrop(0, new Vector2(6, 0));
         //Spawn_IngredientDrop(0, new Vector2(7, 0));
-        Spawn_Gem(10, new Vector2(10, 0));
+        //Spawn_Gem(10, new Vector2(10, 0));
+
+        Spawn_Dust(new Vector2(5, 0));
+        Spawn_Dust(new Vector2(5, 5));
+        Spawn_Dust(new Vector2(-5, 0));
     }
 
+    #region Vampire
     #region enemyList
     public Enemy Find_EnemyList_Ran()
     {
@@ -349,6 +359,20 @@ public class SpawnManager : Singleton<SpawnManager>
         relicUI.SetUI(data);
 
         return relicUI;
+    }
+    #endregion
+    #endregion
+    #region Survivor
+    public void Spawn_Dust(Vector2 pos)
+    {
+        dustCount++;
+
+        Transform trans = PoolManager.Instance.GetFromPool<Transform>("Dust");
+        trans.position = pos;
+    }
+    public void Destroy_Dust(Transform trans)
+    {
+        PoolManager.Instance.TakeToPool<Transform>(trans);
     }
     #endregion
 }

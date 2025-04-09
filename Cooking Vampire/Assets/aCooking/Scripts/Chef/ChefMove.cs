@@ -52,13 +52,21 @@ public class ChefMove : MonoBehaviour
     {
         IObj nearObj = chef.chefScan.nearestObj;
 
-        if (nearObj == null)
-            return;
+        // 근처 상호작용 가능한 obj가 있다면,
+        if (nearObj != null)
+        {
+            isInteract = value.isPressed;
 
-        isInteract = value.isPressed;
+            if (isInteract)
+                nearObj.Interact();
+        }
+        // 근처 먼지가 없고, 아이템을 들고 있다면,
+        else if (chef.chefScan.nearestDust == null && chef.IsItem())
+        {
+            chef.sm.Spawn_Dust(transform.position);
+            chef.UseItem();
+        }
 
-        if(isInteract)
-            nearObj.Interact();
     }
 
     public void CarryAnim(bool isCarry)
