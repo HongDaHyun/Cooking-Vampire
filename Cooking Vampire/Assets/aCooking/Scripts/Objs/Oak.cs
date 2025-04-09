@@ -9,26 +9,27 @@ public class Oak : IObj
     public int ingredientID;
     public int amount;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         sr.sprite = spriteData.Export_OakSprites(false);
     }
 
-    protected override void DoingFinish()
+    public override void Interact()
     {
         if (amount <= 0)
             return;
 
         StartCoroutine(SpriteRoutine());
 
-        if (chef.ingredientInven == 0)
+        if (!chef.IsItem())
         {
-            chef.ingredientInven = ingredientID;
+            chef.GainItem(ingredientID);
             amount--;
         }
-        else if (chef.ingredientInven == ingredientID)
+        else if (chef.IsItem(ingredientID))
         {
-            chef.ingredientInven = 0;
+            chef.UseItem();
             amount++;
         }
     }

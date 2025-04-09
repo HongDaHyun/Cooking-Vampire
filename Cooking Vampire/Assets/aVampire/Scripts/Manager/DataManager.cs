@@ -22,6 +22,25 @@ public class DataManager : Singleton<DataManager>
     public DroptemData[] droptemDatas;
     public RelicData[] relicDatas;
     public IngredientData[] ingredientDatas;
+    public CookItemData[] cookItemDatas;
+
+    private void Start()
+    {
+        SetCookItem();
+    }
+
+    private void SetCookItem()
+    {
+        int length = ingredientDatas.Length;
+        cookItemDatas = new CookItemData[length];
+
+        for (int i = 0; i < length; i++)
+        {
+            CookItemData item = ScriptableObject.CreateInstance<CookItemData>();
+            item.Init(ingredientDatas[i].ID, ingredientDatas[i].sprites[2]);
+            cookItemDatas[i] = item;
+        }
+    }
 
     public void EarnCoin(int amount)
     {
@@ -95,6 +114,12 @@ public class DataManager : Singleton<DataManager>
     public void Count_Ingredient(int ID)
     {
         ingredientInventory.Count(x => x == ID);
+    }
+    #endregion
+    #region ¿ä¸®ÅÛ
+    public CookItemData Export_CookItemData(int ID)
+    {
+        return Array.Find(cookItemDatas, data => data.ID == ID);
     }
     #endregion
 

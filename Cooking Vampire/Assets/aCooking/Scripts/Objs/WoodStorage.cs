@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class WoodStorage : IObj
 {
-    protected override void DoingFinish()
+    public override void Interact()
     {
-        if (chef.ingredientInven == 0)
-            chef.ingredientInven = 8;
-        else if (chef.ingredientInven == 8)
-            chef.ingredientInven = 0;
+        if (!chef.IsItem())
+            chef.GainItem(8);
+        else if (chef.IsItem(8))
+            chef.UseItem();
     }
 }

@@ -100,6 +100,10 @@ public class SpriteData : Singleton<SpriteData>
     {
         return oak_Sprites[isOpen ? 1 : 0];
     }
+    public Sprite Export_CookItemSprites(int ID)
+    {
+        return DataManager.Instance.Export_CookItemData(ID).sprite;
+    }
     #endregion
 }
 #region Vampire

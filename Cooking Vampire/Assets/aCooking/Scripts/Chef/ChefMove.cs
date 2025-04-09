@@ -13,7 +13,7 @@ public class ChefMove : MonoBehaviour
     [ReadOnly] public Vector2 inputLook;
     private float curSpeed = 2f;
     [ReadOnly] public float curStamina;
-    [ReadOnly] public bool isInteract, isCarry;
+    [ReadOnly] public bool isInteract;
     private bool isExhaustion;
 
     Chef chef;
@@ -43,7 +43,7 @@ public class ChefMove : MonoBehaviour
     }
     void OnRun(InputValue value)
     {
-        if (!isExhaustion && value.isPressed && !isCarry)
+        if (!isExhaustion && value.isPressed && !chef.IsItem())
             curSpeed = runSpeed;
         else
             curSpeed = walkSpeed;
@@ -57,35 +57,17 @@ public class ChefMove : MonoBehaviour
 
         isInteract = value.isPressed;
 
-        switch(nearObj.objID)
-        {
-            case 0: // ¿Àºì
-                if (nearObj.GetComponent<Oven>().ingredients.Count <= 0 && chef.ingredientInven == 0)
-                    return;
-                break;
-            case 1: // ¿ÀÅ© Åë
-                Oak oak = nearObj.GetComponent<Oak>();
+        if(isInteract)
+            nearObj.Interact();
+    }
 
-                if (oak.amount <= 0 || (chef.ingredientInven != 0 && oak.ingredientID != chef.ingredientInven))
-                    return;
-                break;
-            case 2:
-                if (chef.ingredientInven != 0 && chef.ingredientInven != 8)
-                    return;
-                break;
-        }
-
-        if(nearObj.isPickable && isInteract)
-        {
-            isCarry = !isCarry;
-            anim.SetBool("Carrying", isCarry);
-            nearObj.Doing();
-        }
-        else if(!nearObj.isPickable)
-        {
-            anim.SetBool("Doing", isInteract);
-            nearObj.Doing();
-        }
+    public void CarryAnim(bool isCarry)
+    {
+        anim.SetBool("Carrying", isCarry);
+    }
+    public void DoingAnim(bool isDoing)
+    {
+        anim.SetBool("Doing", isDoing);
     }
 
     private void FixedUpdate()
