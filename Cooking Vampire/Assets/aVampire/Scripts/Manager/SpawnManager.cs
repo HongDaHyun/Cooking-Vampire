@@ -372,6 +372,7 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     public void Destroy_Dust(Transform trans)
     {
+        dustCount--;
         PoolManager.Instance.TakeToPool<Transform>(trans);
     }
     #endregion
