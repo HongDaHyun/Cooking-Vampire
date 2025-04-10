@@ -60,8 +60,8 @@ public class ChefMove : MonoBehaviour
             if (isInteract)
                 nearObj.Interact();
         }
-        // 근처 먼지가 없고, 아이템을 들고 있다면,
-        else if (chef.chefScan.nearestDust == null && chef.IsItem())
+        // 아이템을 들고 있다면,
+        else if (chef.IsItem())
         {
             chef.sm.Spawn_Dust(transform.position);
             chef.UseItem();

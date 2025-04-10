@@ -57,7 +57,6 @@ public class Oven : IObj_Slider
         else
         {
             sr.sprite = spriteData.Export_OvenSprites(woodCount, true);
-            sliderObj.gameObject.SetActive(true);
 
             StartCoroutine(SliderRoutine());
         }

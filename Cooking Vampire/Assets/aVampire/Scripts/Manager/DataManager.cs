@@ -22,7 +22,7 @@ public class DataManager : Singleton<DataManager>
     public DroptemData[] droptemDatas;
     public RelicData[] relicDatas;
     public IngredientData[] ingredientDatas;
-    public CookItemData[] cookItemDatas;
+    public List<CookItemData> cookItemLists;
 
     private void Start()
     {
@@ -31,15 +31,13 @@ public class DataManager : Singleton<DataManager>
 
     private void SetCookItem()
     {
-        int length = ingredientDatas.Length;
-        cookItemDatas = new CookItemData[length];
-
-        for (int i = 0; i < length; i++)
+        foreach(IngredientData data in ingredientDatas)
         {
             CookItemData item = ScriptableObject.CreateInstance<CookItemData>();
-            item.Init(ingredientDatas[i].ID, ingredientDatas[i].sprites[2]);
-            cookItemDatas[i] = item;
+            item.Init(data.ID, data.sprites[2]);
+            cookItemLists.Add(item);
         }
+        int length = ingredientDatas.Length;
     }
 
     public void EarnCoin(int amount)
@@ -119,7 +117,7 @@ public class DataManager : Singleton<DataManager>
     #region ¿ä¸®ÅÛ
     public CookItemData Export_CookItemData(int ID)
     {
-        return Array.Find(cookItemDatas, data => data.ID == ID);
+        return cookItemLists.Find(data => data.ID == ID);
     }
     #endregion
 

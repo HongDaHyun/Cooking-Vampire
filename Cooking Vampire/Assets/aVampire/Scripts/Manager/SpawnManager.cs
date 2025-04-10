@@ -31,9 +31,9 @@ public class SpawnManager : Singleton<SpawnManager>
         //Spawn_IngredientDrop(0, new Vector2(7, 0));
         //Spawn_Gem(10, new Vector2(10, 0));
 
-        Spawn_Dust(new Vector2(5, 0));
-        Spawn_Dust(new Vector2(5, 5));
-        Spawn_Dust(new Vector2(-5, 0));
+        //Spawn_Dust(new Vector2(5, 0));
+        //Spawn_Dust(new Vector2(5, 5));
+        //Spawn_Dust(new Vector2(-5, 0));
     }
 
     #region Vampire
@@ -363,17 +363,19 @@ public class SpawnManager : Singleton<SpawnManager>
     #endregion
     #endregion
     #region Survivor
-    public void Spawn_Dust(Vector2 pos)
+    public Dust Spawn_Dust(Vector2 pos)
     {
         dustCount++;
 
-        Transform trans = PoolManager.Instance.GetFromPool<Transform>("Dust");
-        trans.position = pos;
+        Dust dust = PoolManager.Instance.GetFromPool<Dust>("Dust");
+        dust.transform.position = pos;
+
+        return dust;
     }
-    public void Destroy_Dust(Transform trans)
+    public void Destroy_Dust(Dust dust)
     {
         dustCount--;
-        PoolManager.Instance.TakeToPool<Transform>(trans);
+        PoolManager.Instance.TakeToPool<Dust>(dust);
     }
     #endregion
 }

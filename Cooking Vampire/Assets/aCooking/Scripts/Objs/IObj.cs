@@ -7,8 +7,7 @@ using Sirenix.OdinInspector;
 
 public abstract class IObj : MonoBehaviour
 {
-    [Title("꼭 설정하기")]
-    public int objID;
+    protected SpawnManager sm;
 
     // 컴포넌트
     protected SpriteRenderer sr;
@@ -25,6 +24,7 @@ public abstract class IObj : MonoBehaviour
     protected virtual void Start()
     {
         spriteData = SpriteData.Instance;
+        sm = SpawnManager.Instance;
     }
 
     public abstract void Interact();

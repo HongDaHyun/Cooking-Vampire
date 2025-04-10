@@ -22,7 +22,6 @@ public abstract class IObj_Slider : IObj
     protected virtual IEnumerator SliderRoutine()
     {
         sliderObj.gameObject.SetActive(true);
-        Debug.Log(1);
         chef.chefMove.DoingAnim(true);
 
         while (chef.chefMove.isInteract)
