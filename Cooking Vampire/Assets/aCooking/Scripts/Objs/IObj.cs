@@ -10,14 +10,13 @@ public abstract class IObj : MonoBehaviour
     protected SpawnManager sm;
 
     // ÄÄÆ÷³ÍÆ®
-    protected SpriteRenderer sr;
+    [HideInInspector]public SpriteRenderer sr;
     protected SpriteData spriteData;
     protected Chef chef;
 
     protected virtual void Awake()
     {
         chef = GameManager_Cooking.Instance.chef;
-
         sr = GetComponent<SpriteRenderer>();
     }
 

@@ -369,6 +369,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
         Dust dust = PoolManager.Instance.GetFromPool<Dust>("Dust");
         dust.transform.position = pos;
+        dust.sr.sprite = SpriteData.Instance.Export_DustSprite_Ran();
 
         return dust;
     }

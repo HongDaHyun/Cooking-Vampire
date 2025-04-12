@@ -19,6 +19,7 @@ public class SpriteData : Singleton<SpriteData>
     [Title("ÄíÅ·")]
     public Sprite[] ovenSprites;
     public Sprite[] oak_Sprites;
+    public Sprite[] dust_Sprites;
 
     #region Vampire
     public Sprite[] Export_StageSprites(StageType type)
@@ -103,6 +104,10 @@ public class SpriteData : Singleton<SpriteData>
     public Sprite Export_CookItemSprites(int ID)
     {
         return DataManager.Instance.Export_CookItemData(ID).sprite;
+    }
+    public Sprite Export_DustSprite_Ran()
+    {
+        return dust_Sprites[UnityEngine.Random.Range(0, dust_Sprites.Length)];
     }
     #endregion
 }
